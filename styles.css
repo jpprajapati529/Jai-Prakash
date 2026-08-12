@@ -268,7 +268,7 @@ body {
   border: 1px solid rgba(168, 85, 247, 0.25);
   
   /* THE FIX: Adds the subtle ambient edge glow matching the IDE window */
-  box-shadow: 0 0 25px rgba(169, 85, 247, 0.342);
+  box-shadow: 0 0 10px rgba(169, 85, 247, 0.342);
   
   border-radius: 12px;
   padding: 16px 24px; 
