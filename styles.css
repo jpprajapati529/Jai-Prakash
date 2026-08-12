@@ -265,11 +265,11 @@ body {
   width: 200px;
   object-fit: contain;
   
-  /* THE FIX: Forces every pixel of the logo to become pure white */
+  /* Forces every pixel of the logo to become pure white */
   filter: brightness(0) invert(1);
   
-  /* Drops the opacity to 60% for a classy, muted gray/silver look */
-  opacity: 0.6; 
+  /* THE FIX: Turned up to 1 so they are bold, bright white by default */
+  opacity: 1; 
   
   transition: all 0.3s ease;
 }
@@ -282,11 +282,9 @@ body {
 }
 
 .tech-item:hover .brand-wordmark {
-  /* When the user hovers, the logo lights up to full 100% white */
-  opacity: 1; 
-  
-  /* Important: keep the filter here so it doesn't revert to original colors */
-  filter: brightness(0) invert(1); 
+  /* Since they are already full brightness, we add a subtle white glow and slight zoom on hover */
+  filter: brightness(0) invert(1) drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.5));
+  transform: scale(1.05); 
 }
 
 @keyframes scrollMarquee {
