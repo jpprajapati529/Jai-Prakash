@@ -145,24 +145,28 @@ body {
 }
 
 /* 2. The Glowing Purple Horizon */
+/* 2. The Glowing Purple Horizon */
 .tech-marquee-section::after {
   content: "";
   position: absolute;
-  bottom: -220px; /* Adjusts the height of the curve */
+  bottom: -220px; 
   left: -50%;
   width: 200%;
   height: 300px;
   border-radius: 50%;
   
-  /* The sharp curved horizon line (Purple) */
-  border-top: 1px solid rgba(162, 74, 245, 0.5); 
+  /* The sharp curved horizon line */
+  border-top: 1px solid rgba(168, 85, 247, 0.6); 
   
-  /* The JetBrains atmospheric upward glow (Purple) */
-  /* The negative Y-value (-50px) pushes the light upwards above the curve */
-  box-shadow: 0 -50px 150px rgba(168, 85, 247, 0.3);
+  /* The upward purple glow (slightly increased opacity since the mask will soften it) */
+  box-shadow: 0 -50px 150px rgba(168, 85, 247, 0.4);
   
-  /* Seamlessly blends the area UNDER the curve with your dark background */
   background-color: transparent !important;
+  
+  /* THE MAGIC: Masks the ends of the curve so it fades into darkness */
+  /* Because the element is 200% wide, 25% and 75% represent the actual left/right edges of your screen */
+  -webkit-mask-image: linear-gradient(to right, transparent 25%, black 45%, black 55%, transparent 75%);
+  mask-image: linear-gradient(to right, transparent 25%, black 45%, black 55%, transparent 75%);
   
   z-index: 0;
   pointer-events: none;
