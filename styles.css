@@ -132,41 +132,45 @@ body {
   border-bottom: 1px solid rgba(168, 85, 247, 0.2);
 /* } */
 
+/* 1. The Container */
 .tech-marquee-section {
   position: relative;
   width: 100%;
-  /* Increased bottom padding to 120px to push logos safely above the curve */
   padding: 60px 0 120px 0; 
   margin-bottom: 40px; 
   overflow: hidden; 
-  border: none;
-  background-color: var(--bg-dark); 
+  /* The !important tag forces that stubborn straight line to disappear */
+  border: none !important; 
+  background-color: transparent; 
 }
 
-/* The curved horizon effect */
+/* 2. The Glowing Purple Horizon */
 .tech-marquee-section::after {
   content: "";
   position: absolute;
-  /* Pushed further down (-260px) so only a sliver of the 300px circle peeks up */
-  bottom: -260px; 
-  left: -50%;     
+  bottom: -220px; /* Adjusts the height of the curve */
+  left: -50%;
   width: 200%;
-  height: 300px;  
-  border-radius: 50%; 
-
-  /* Swapped the blue line for your theme's subtle card border color */
-  border-top: 1px solid var(--card-border); 
-
-  /* Removed the blue glow and replaced it with a deep, dark shadow that blends into the background */
-  box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.8);
-
-  z-index: 0; 
+  height: 300px;
+  border-radius: 50%;
+  
+  /* The sharp curved horizon line (Purple) */
+  border-top: 1px solid rgba(168, 85, 247, 0.5); 
+  
+  /* The JetBrains atmospheric upward glow (Purple) */
+  /* The negative Y-value (-50px) pushes the light upwards above the curve */
+  box-shadow: 0 -50px 150px rgba(168, 85, 247, 0.3);
+  
+  /* Seamlessly blends the area UNDER the curve with your dark background */
+  background-color: var(--bg-dark);
+  
+  z-index: 0;
   pointer-events: none;
 }
 
 .tech-marquee {
   position: relative;
-  z-index: 1; /* Ensures logos sit on top of the glowing curve */
+  z-index: 1; /* Ensures logos sit on top of the purple glow */
   
   display: flex;
   width: 100%;
