@@ -465,10 +465,9 @@ body {
   
   /* THE FIX: A multi-stop gradient with a bright, high-opacity center */
   background: radial-gradient(
-    circle 100px at var(--x, -500px) var(--y, -500px),
-    rgba(157, 71, 236, 0.728) 0%,   /* 1. The Hot Core: Bright neon purple, almost solid */
-    rgba(157, 71, 236, 0.728) 30%,   /* 2. The Body: Rich brand purple */
-    rgba(168, 85, 247, 0) 100%      /* 3. The Edge: Smooth fade into transparency */
+    circle at var(--x, -500px) var(--y, -500px), 
+    rgb(183, 74, 247) 0%, 
+    rgba(183, 74, 247, 0) 100px
   );
   
   opacity: 0;
