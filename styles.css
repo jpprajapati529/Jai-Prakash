@@ -551,3 +551,19 @@ h2 {
   overflow-x: auto;
   white-space: pre;
 }
+
+/* Ambient Background Cursor Glow */
+#cursor-glow-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* THIS LINE IS CRITICAL - DO NOT REMOVE */
+  z-index: 0;
+  background: radial-gradient(
+    600px circle at var(--bg-x, 50%) var(--bg-y, 50%),
+    rgba(168, 85, 247, 0.05),
+    transparent 80%
+  );
+}

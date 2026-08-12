@@ -88,7 +88,7 @@ spec:
         code: `# Business Management System
 GitHub: https://github.com/jpprajapati529/Business-Management-System
 
-Architecture Highlights based on 4-Years Multi-Cloud Experience:
+Architecture Highlights:
 - Cloud Providers: AWS, Azure, GCP
 - Container Orchestration: Kubernetes, OpenShift, Helm
 - IaC & Automation: Terraform, Docker
@@ -97,7 +97,7 @@ Architecture Highlights based on 4-Years Multi-Cloud Experience:
 - Scripting: BASH, Python`
       },
       {
-        name: "Terraform IaC (Multi-Cloud)",
+        name: "Terraform IaC",
         filename: "infrastructure/main.tf",
         code: `# Multi-Cloud Infrastructure Provisioning
 module "gcp_gke_cluster" {
@@ -105,76 +105,7 @@ module "gcp_gke_cluster" {
   project_id = "business-mgmt-prod"
   name       = "gke-production-cluster"
   region     = "asia-south1"
-}
-
-module "aws_rds_database" {
-  source               = "terraform-aws-modules/rds/aws"
-  identifier           = "business-mgmt-db"
-  engine               = "postgres"
-  engine_version       = "15.0"
-  instance_class       = "db.t3.medium"
-  allocated_storage    = 20
 }`
-      },
-      {
-        name: "K8s & Helm Manifests",
-        filename: "k8s/deployment.yaml",
-        code: `apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: business-mgmt-api
-  namespace: production
-  labels:
-    app: business-mgmt
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: business-mgmt
-  template:
-    metadata:
-      labels:
-        app: business-mgmt
-    spec:
-      containers:
-      - name: backend-service
-        image: jpprajapati529/business-mgmt:latest
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            cpu: "250m"
-            memory: "512Mi"
-          limits:
-            cpu: "500m"
-            memory: "1Gi"`
-      },
-      {
-        name: "GitHub Actions CI/CD",
-        filename: ".github/workflows/deploy.yml",
-        code: `name: Enterprise Build & Deploy Pipeline
-
-on:
-  push:
-    branches: [ "main" ]
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-
-    - name: Run BASH Linting & Tests
-      run: bash scripts/test.sh
-
-    - name: Build Docker Image
-      run: docker build -t jpprajapati529/business-mgmt:\${{ github.sha }} .
-
-    - name: Deploy to Kubernetes (Helm/OpenShift)
-      run: |
-        kubectl apply -f k8s/deployment.yaml
-        kubectl apply -f k8s/service.yaml`
       }
     ]
   }
@@ -237,7 +168,7 @@ function copyCodeSnippet() {
   alert("Snippet copied to clipboard!");
 }
 
-// Fixed Pipeline Simulation Engine
+// Pipeline Simulation Engine
 let isPipelineRunning = false;
 
 async function triggerPipelineRun() {
@@ -245,11 +176,14 @@ async function triggerPipelineRun() {
   isPipelineRunning = true;
 
   const logsConsole = document.getElementById("pipeline-logs");
+  if (!logsConsole) return; // Prevent crash if element is missing
+  
   logsConsole.innerHTML = "";
   
   const steps = ["step-lint", "step-build", "step-tf", "step-deploy"];
   steps.forEach(id => {
-    document.getElementById(id).className = "step";
+    const el = document.getElementById(id);
+    if(el) el.className = "step";
   });
 
   const appendLog = (msg, colorClass = "text-muted") => {
@@ -262,33 +196,25 @@ async function triggerPipelineRun() {
 
   appendLog("Triggering workflow for repository: jpprajapati529/Business-Management-System...", "text-cyan");
   
-  // Step 1: Lint
   document.getElementById("step-lint").className = "step running";
-  appendLog("Running BASH script & SonarQube linting...", "text-muted");
   await new Promise(r => setTimeout(r, 1000));
   document.getElementById("step-lint").className = "step passed";
-  appendLog("✓ Code linting & security scans passed successfully.", "text-green");
+  appendLog("✓ Code linting & security scans passed.", "text-green");
 
-  // Step 2: Build
   document.getElementById("step-build").className = "step running";
-  appendLog("Executing 'docker build' for Business Management System...", "text-muted");
   await new Promise(r => setTimeout(r, 1200));
   document.getElementById("step-build").className = "step passed";
-  appendLog("✓ Docker image jpprajapati529/business-mgmt:latest built and pushed.", "text-green");
+  appendLog("✓ Docker image built and pushed.", "text-green");
 
-  // Step 3: Terraform
   document.getElementById("step-tf").className = "step running";
-  appendLog("Executing 'terraform plan' against multi-cloud target...", "text-muted");
   await new Promise(r => setTimeout(r, 1200));
   document.getElementById("step-tf").className = "step passed";
-  appendLog("✓ Terraform Plan: 2 resources to create, 0 to destroy.", "text-green");
+  appendLog("✓ Terraform Plan executed successfully.", "text-green");
 
-  // Step 4: Deploy
   document.getElementById("step-deploy").className = "step running";
-  appendLog("Applying Kubernetes manifests via kubectl...", "text-muted");
   await new Promise(r => setTimeout(r, 1400));
   document.getElementById("step-deploy").className = "step passed";
-  appendLog("🚀 Deployment Successful! App running on production cluster.", "text-green");
+  appendLog("🚀 Deployment Successful!", "text-green");
 
   isPipelineRunning = false;
 }
