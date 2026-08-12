@@ -171,9 +171,11 @@ body {
   align-items: center;
   justify-content: center;
   
-  /* Changed to a clean white card so the colorful logos & black text pop! */
-  background-color: #ffffff; 
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  /* Replaced solid #ffffff with a frosted glass effect */
+  background-color: rgba(255, 255, 255, 0.08); 
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  
   border-radius: 12px;
   padding: 16px 36px; 
   min-width: 240px; 
