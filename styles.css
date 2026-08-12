@@ -109,6 +109,9 @@ body {
 /* =========================================================
    3. METRICS GRID & JETBRAINS SPOTLIGHT CARDS
    ========================================================= */
+/* =========================================================
+   3. METRICS GRID & JETBRAINS SPOTLIGHT CARDS
+   ========================================================= */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -116,6 +119,7 @@ body {
   margin-bottom: 24px;
 }
 
+/* 1. Add Premium Padding to ALL Cards & Sections */
 .card, 
 .dashboard-section, 
 .project-card,
@@ -124,13 +128,30 @@ body {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 12px;
+  padding: 32px; /* Adds generous breathing room inside the cards */
+  box-sizing: border-box;
   overflow: hidden;
   transition: border-color 0.3s ease, transform 0.2s ease;
 }
 
+/* 2. Center the content inside the top Metric Cards */
+.metrics-grid .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Center the Icon and Title in the Metric Cards */
+.metrics-grid .card h3 {
+  justify-content: center;
+  width: 100%;
+}
+
 .cert-card {
-  border-left: 3px solid var(--accent-purple);
+  border-left: 4px solid var(--accent-purple);
   transition: transform 0.2s ease, border-color 0.2s ease;
+  padding: 24px; /* Ensure cert cards also have proper spacing */
 }
 
 .cert-card:hover {
@@ -174,6 +195,7 @@ body {
 .project-card:hover,
 .rich-content-container:hover {
   border-color: rgba(168, 85, 247, 0.5);
+  transform: translateY(-2px);
 }
 
 .card *, 
@@ -182,12 +204,6 @@ body {
 .rich-content-container * {
   position: relative;
   z-index: 2;
-}
-
-/* Ensure rich layout gets proper padding */
-.rich-content-container {
-  padding: 24px;
-  animation: fadeIn 0.3s ease;
 }
 
 .card h3 {
