@@ -115,85 +115,114 @@ html {
 -------hero------------------
 /* 1. Two-Column Hero Layout */
 /* 1. STRICT GRID LAYOUT (Forces 2 columns) */
-.hero-banner {
-  display: grid !important;
-  /* Mathematically forces 2 columns: Text gets 1.2 fractions, Image gets 0.8 fractions */
-  grid-template-columns: 1.2fr 0.8fr !important; 
+/* 1. THE MAIN TILE (Forces a single row card) */
+.hero-card {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important; /* Physically prevents wrapping */
   align-items: center;
-  gap: 40px;
+  justify-content: space-between;
   width: 100%;
-  min-height: 45vh;
+  
+  /* Matches the dark, sleek TeamCity background tile */
+  background-color: #050b14; 
+  border-radius: 24px;
+  padding: 60px 80px;
   margin-bottom: 60px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
-  background: transparent;
+  box-sizing: border-box; /* Crucial: includes padding in width calculations */
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* 2. LEFT SIDE (Text aligned strictly left) */
-.hero-content {
+/* 2. LEFT SIDE (Strictly 50% width) */
+.hero-content-left {
+  flex: 0 0 50%; /* Grow: 0, Shrink: 0, Width: 50% */
+  max-width: 50%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  padding-right: 40px;
+  box-sizing: border-box;
 }
 
-.hero-title {
-  font-size: clamp(2.5rem, 5vw, 4rem); 
-  font-weight: 700;
-  letter-spacing: -1.5px;
-  margin-bottom: 12px;
-  line-height: 1.1;
-}
-
-.hero-subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  color: var(--text-primary);
-  margin-bottom: 16px;
-}
-
-.hero-description {
+/* --- EXACT TEAMCITY TYPOGRAPHY --- */
+.hero-overline {
   font-size: 1.1rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 24px;
-  max-width: 90%;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  font-family: var(--font-sans);
 }
 
-/* 3. RIGHT SIDE (Image aligned strictly right) */
-.hero-image {
+.hero-headline {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+.hero-subtext {
+  font-size: 1.15rem;
+  color: #e2e8f0; 
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 95%;
+}
+
+/* The TeamCity White Pill Button */
+.hero-btn {
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.hero-btn:hover {
+  background-color: #f1f5f9;
+  transform: scale(1.02);
+}
+
+/* 3. RIGHT SIDE (Strictly 50% width) */
+.hero-image-right {
+  flex: 0 0 50%;
+  max-width: 50%;
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  align-items: center;
+  box-sizing: border-box;
 }
 
-.hero-image img {
+.hero-image-right img {
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
   height: auto;
-  mix-blend-mode: screen; 
-  opacity: 0.95; 
-  -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 80%);
-  mask-image: radial-gradient(ellipse at center, black 50%, transparent 80%);
+  mix-blend-mode: screen;
+  /* Expands the visibility so the loop isn't cut off too early */
+  -webkit-mask-image: radial-gradient(ellipse at center, black 65%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, black 65%, transparent 100%);
 }
 
-/* 4. MOBILE OVERRIDE (Stacks to 1 column only on smaller screens) */
+/* 4. MOBILE LAYOUT (Only stacks on small screens) */
 @media (max-width: 960px) {
-  .hero-banner {
-    grid-template-columns: 1fr !important; /* Forces 1 single column */
-    text-align: center;
+  .hero-card {
+    flex-direction: column !important;
+    padding: 40px 20px;
   }
-  
-  .hero-content {
-    align-items: center; /* Centers text horizontally */
-  }
-  
-  .hero-description {
+  .hero-content-left, .hero-image-right {
+    flex: 0 0 100%;
     max-width: 100%;
+    padding-right: 0;
   }
-
-  .hero-image {
-    justify-content: center;
+  .hero-image-right {
     margin-top: 40px;
+    justify-content: center;
   }
 }
 
