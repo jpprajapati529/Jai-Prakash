@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jai Prakash | DevOps & Platform Engineer</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Icons & Chart.js -->
+  <!-- Lucide Icons & Chart.js -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -18,156 +18,99 @@
   <header class="navbar">
     <div class="logo">
       <i data-lucide="terminal"></i>
-      <span>JAI_PRAKASH // PLATFORM_ENG</span>
+      <span>JAI_PRAKASH // DEVOPS_ENG</span>
     </div>
     <div class="system-status" onclick="triggerPipelineRun()" style="cursor: pointer;">
       <span class="pulse-dot"></span>
-      <span id="cluster-status">SYSTEM STATUS: OPERATIONAL</span>
+      <span id="cluster-status">CLUSTER STATUS: OPERATIONAL (CLICK TO RUN)</span>
     </div>
     <nav>
       <a href="#about">About</a>
+      <a href="#certs">Certifications</a>
       <a href="#experience">Experience</a>
-      <a href="#skills">Skills Matrix</a>
       <a href="#pipeline-sim">Pipeline Sim</a>
       <a href="#projects">Projects</a>
       <a href="#terminal">CLI</a>
     </nav>
   </header>
 
-  <!-- Hero & Metric Cards -->
+  <!-- Clickable Top Metric Cards -->
   <section class="metrics-grid">
-    <div class="card">
+    <div class="card clickable-card" onclick="openMetricModal('experience')">
       <h3><i data-lucide="briefcase"></i> Experience</h3>
-      <div class="metric-value">3+ Years</div>
-      <div class="metric-sub">Senior Analyst / Platform Eng</div>
+      <div class="metric-value">4 Years</div>
+      <div class="metric-sub">DevOps & Platform Engineering (Click for details)</div>
     </div>
-    <div class="card">
+    <div class="card clickable-card" onclick="openMetricModal('multicloud')">
       <h3><i data-lucide="cloud"></i> Multi-Cloud</h3>
-      <div class="metric-value">AWS & GCP</div>
-      <div class="metric-sub">Terraform & OpenShift</div>
+      <div class="metric-value">AWS, Azure & GCP</div>
+      <div class="metric-sub">Terraform IaC & Automation (Click for details)</div>
     </div>
-    <div class="card">
+    <div class="card clickable-card" onclick="openMetricModal('domains')">
       <h3><i data-lucide="shield-check"></i> Enterprise Domains</h3>
       <div class="metric-value">Fintech & Banking</div>
-      <div class="metric-sub">Hybrid Cloud Environments</div>
+      <div class="metric-sub">High-Availability & Security (Click for details)</div>
     </div>
-    <div class="card">
-      <h3><i data-lucide="github"></i> Live GitHub Stats</h3>
-      <div class="metric-value" id="repo-count">Loading...</div>
-      <div class="metric-sub" id="star-count">Total Stars: --</div>
+    <div class="card clickable-card" onclick="openMetricModal('github')">
+      <h3><i data-lucide="github"></i> DevOps Stack Repo</h3>
+      <div class="metric-value">Business Mgmt System</div>
+      <div class="metric-sub">Explore Full Stack Repo ↗</div>
     </div>
   </section>
 
   <!-- About Section -->
   <section id="about" class="dashboard-section">
     <div class="section-header">
-      <h2><i data-lucide="user-check"></i> About & Engineering Focus</h2>
+      <h2><i data-lucide="user-check"></i> Professional Summary</h2>
     </div>
     <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 20px;">
-      Specializing in <strong>DevOps and Platform Engineering</strong> with experience building resilient multi-cloud infrastructure across <strong>AWS and GCP</strong>. Experienced in automating complex deployment pipelines, managing Kubernetes cluster workloads, provisioning IaC with <strong>Terraform</strong>, and enforcing cloud IAM, billing governance, and security controls for Banking and Fintech clients.
+      DevOps Engineer with 4 years of multi-cloud experience (AWS, Azure & GCP) in automating CI/CD pipelines and implementing IaC using Terraform, skilled in Docker, OpenShift, Kubernetes, Helm, Prometheus, Azure DevOps, GitHub Actions and Jenkins. Strong scripting abilities (BASH, Python) and a proven track record in improving deployment efficiency, system reliability, and scalability in an agile environment.
     </p>
     <div class="tag-group" style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <span class="tag-badge"><i data-lucide="check-circle"></i> Hybrid Cloud Management</span>
+      <span class="tag-badge"><i data-lucide="check-circle"></i> Multi-Cloud (AWS, Azure, GCP)</span>
       <span class="tag-badge"><i data-lucide="check-circle"></i> Kubernetes & OpenShift</span>
-      <span class="tag-badge"><i data-lucide="check-circle"></i> Infrastructure as Code</span>
-      <span class="tag-badge"><i data-lucide="check-circle"></i> CI/CD Pipeline Automation</span>
+      <span class="tag-badge"><i data-lucide="check-circle"></i> Terraform & IaC</span>
+      <span class="tag-badge"><i data-lucide="check-circle"></i> BASH & Python Scripting</span>
     </div>
   </section>
 
-  <!-- Experience / Work History Timeline -->
-  <section id="experience" class="dashboard-section">
+  <!-- Certifications Grid Section -->
+  <section id="certs" class="dashboard-section">
     <div class="section-header">
-      <h2><i data-lucide="history"></i> Career Milestones</h2>
+      <h2><i data-lucide="award"></i> Certifications & Credentials</h2>
     </div>
-    <div class="timeline">
-      
-      <div class="timeline-item card" style="margin-bottom: 16px;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
-          <div>
-            <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 4px;">Platform Engineer / Senior Analyst</h3>
-            <p style="color: var(--accent-purple); font-weight: 500; font-size: 0.9rem;">Capgemini · Fintech & Cloud Domain</p>
-          </div>
-          <span style="font-size: 0.8rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 12px;">Present</span>
-        </div>
-        <ul style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 12px; padding-left: 20px; line-height: 1.6;">
-          <li>Automating cloud resource provisioning across GCP and AWS environments using modular <strong>Terraform</strong> code.</li>
-          <li>Managing cloud IAM roles, security policies, and project billing structures to optimize cloud expenditure.</li>
-          <li>Maintaining deployment pipelines using <strong>GitHub Actions</strong> and <strong>Jenkins</strong> for continuous delivery.</li>
-        </ul>
+    <div class="skills-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+      <div class="card cert-card">
+        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="cloud"></i> AWS Certifications</h4>
+        <p style="font-size: 0.85rem; color: #fff;">• AWS Certified Cloud Practitioner</p>
+        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• AWS Certified DevOps Engineer - Professional</p>
       </div>
 
-      <div class="timeline-item card">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
-          <div>
-            <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 4px;">DevOps Engineer</h3>
-            <p style="color: var(--accent-purple); font-weight: 500; font-size: 0.9rem;">Banking Client Operations</p>
-          </div>
-          <span style="font-size: 0.8rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 12px;">Hybrid Cloud Environment</span>
-        </div>
-        <ul style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 12px; padding-left: 20px; line-height: 1.6;">
-          <li>Managed enterprise container orchestration using <strong>OpenShift</strong> and Docker containers.</li>
-          <li>Set up end-to-end cluster monitoring and alert dashboards using <strong>Prometheus and Grafana</strong>.</li>
-          <li>Ensured 99.9% uptime and zero-downtime application rollouts across hybrid banking environments.</li>
-        </ul>
+      <div class="card cert-card">
+        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="cloud"></i> Microsoft Azure Certifications</h4>
+        <p style="font-size: 0.85rem; color: #fff;">• Azure Developer Associate</p>
+        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• Azure DevOps Expert</p>
       </div>
 
+      <div class="card cert-card">
+        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="cloud"></i> GCP & CNCF Certifications</h4>
+        <p style="font-size: 0.85rem; color: #fff;">• GCP Associate Cloud Engineer</p>
+        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• GCP Professional Cloud DevOps Engineer</p>
+        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• KCNA (Kubernetes and Cloud Native Associate)</p>
+      </div>
+
+      <div class="card cert-card">
+        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="layers"></i> IaC & Automation</h4>
+        <p style="font-size: 0.85rem; color: #fff;">• HashiCorp Certified Terraform Associate</p>
+      </div>
     </div>
   </section>
 
-  <!-- Skills Loadout Matrix -->
-  <section id="skills" class="dashboard-section">
-    <div class="section-header">
-      <h2><i data-lucide="cpu"></i> Technical Skill Loadout</h2>
-    </div>
-    <div class="skills-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
-      
-      <div class="card">
-        <h4 style="color: var(--accent-purple); margin-bottom: 12px;"><i data-lucide="cloud"></i> Cloud & IaC</h4>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span class="tag-badge">AWS</span>
-          <span class="tag-badge">GCP</span>
-          <span class="tag-badge">Terraform</span>
-          <span class="tag-badge">Cloud IAM</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h4 style="color: var(--accent-purple); margin-bottom: 12px;"><i data-lucide="box"></i> Containers</h4>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span class="tag-badge">Kubernetes</span>
-          <span class="tag-badge">OpenShift</span>
-          <span class="tag-badge">Docker</span>
-          <span class="tag-badge">Helm</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h4 style="color: var(--accent-purple); margin-bottom: 12px;"><i data-lucide="git-merge"></i> CI/CD & Languages</h4>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span class="tag-badge">GitHub Actions</span>
-          <span class="tag-badge">Jenkins</span>
-          <span class="tag-badge">Java</span>
-          <span class="tag-badge">Bash / Scripting</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h4 style="color: var(--accent-purple); margin-bottom: 12px;"><i data-lucide="activity"></i> Observability</h4>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span class="tag-badge">Prometheus</span>
-          <span class="tag-badge">Grafana</span>
-          <span class="tag-badge">CloudWatch</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CI/CD Pipeline Simulator -->
+  <!-- Interactive CI/CD Pipeline Simulator -->
   <section id="pipeline-sim" class="dashboard-section">
     <div class="section-header">
-      <h2><i data-lucide="play-circle"></i> Live CI/CD Pipeline Engine</h2>
-      <button class="btn-primary" onclick="triggerPipelineRun()">Trigger Deployment</button>
+      <h2><i data-lucide="play-circle"></i> Live CI/CD Pipeline Engine (Business-Management-System)</h2>
+      <button id="trigger-btn" class="btn-primary" onclick="triggerPipelineRun()">Trigger Deployment</button>
     </div>
     
     <div class="pipeline-stepper">
@@ -181,21 +124,33 @@
     </div>
 
     <div class="pipeline-logs-console" id="pipeline-logs">
-      <div class="log-line text-muted">[SYSTEM] Workflow engine standing by. Click 'Trigger Deployment' to simulate live execution...</div>
+      <div class="log-line text-muted">[SYSTEM] Ready to trigger GitHub workflow for jpprajapati529/Business-Management-System. Click 'Trigger Deployment' or type 'bash deploy.sh' in terminal...</div>
     </div>
   </section>
 
-  <!-- GitHub Live Repositories -->
+  <!-- Featured DevOps Repository Card -->
   <section id="projects" class="dashboard-section">
     <div class="section-header">
-      <h2><i data-lucide="git-branch"></i> Open Source & GitHub Repositories</h2>
+      <h2><i data-lucide="git-branch"></i> Primary DevOps Repository</h2>
     </div>
-    <div id="repos-container" class="projects-grid">
-      <!-- Loaded dynamically via JavaScript -->
+    <div class="card clickable-card" onclick="openModuleModal('business-mgmt')">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="color: var(--accent-purple); font-size: 1.1rem;"><i data-lucide="folder-git-2"></i> Business Management System</h3>
+        <span class="tag-badge" style="color: var(--accent-purple);">Featured Stack</span>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 12px 0;">Click here to open interactive code configs for Docker Compose, Kubernetes manifests, Terraform IaC, and GitHub Actions CI/CD workflows.</p>
+      <div style="display:flex; gap: 8px; flex-wrap: wrap;">
+        <span class="tag-badge">Docker</span>
+        <span class="tag-badge">Kubernetes</span>
+        <span class="tag-badge">Terraform</span>
+        <span class="tag-badge">Jenkins</span>
+        <span class="tag-badge">Prometheus</span>
+        <span class="tag-badge">GitHub Actions</span>
+      </div>
     </div>
   </section>
 
-  <!-- Terminal Drawer -->
+  <!-- Interactive Terminal Drawer -->
   <section id="terminal" class="terminal-container">
     <div class="terminal-header">
       <div class="terminal-buttons">
@@ -206,22 +161,52 @@
       <span class="terminal-title">bash — jai-prakash@control-plane:~</span>
     </div>
     <div class="terminal-body" id="terminal-body">
-      <p class="term-output">System initialized. Type <span class="highlight">'help'</span> or <span class="highlight">'kubectl get pods'</span> to execute commands.</p>
+      <p class="term-output">Terminal active. Try commands: <span class="highlight">'bash deploy.sh'</span>, <span class="highlight">'kubectl get pods'</span>, <span class="highlight">'terraform plan'</span>, or <span class="highlight">'certs'</span>.</p>
     </div>
     <div class="terminal-input-line">
       <span class="prompt">jaiprakash@k8s-node1:~$</span>
-      <input type="text" id="cli-input" placeholder="Try 'kubectl get pods' or 'terraform plan'..." autofocus />
+      <input type="text" id="cli-input" placeholder="Type 'bash deploy.sh' to trigger GitHub repository build..." autofocus />
     </div>
-    
   </section>
 
-  <!-- Contact Footer -->
+  <!-- Interactive Drill-Down Modal Overlay -->
+  <div id="modal-overlay" class="modal-overlay" onclick="closeModalOnOuterClick(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <i id="modal-icon" data-lucide="box" style="color: var(--accent-purple);"></i>
+          <h2 id="modal-title" style="font-size: 1.2rem; color: #fff;">Details</h2>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p id="modal-description" style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.95rem;"></p>
+
+        <div class="modal-tabs" id="modal-tabs"></div>
+
+        <div class="code-preview-container">
+          <div class="code-header">
+            <span id="code-filename" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-purple);">config.yaml</span>
+            <button class="btn-copy" onclick="copyCodeSnippet()">Copy Snippet</button>
+          </div>
+          <pre><code id="code-block" class="code-content">// Select a tab above...</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Connect & Footer -->
   <footer class="dashboard-section" style="text-align: center; margin-top: 40px; padding: 30px;">
     <h2>Let's Connect & Build</h2>
-    <p style="color: var(--text-secondary); margin: 10px 0 20px 0;">Open to platform engineering discussions, DevOps strategy, and cloud architecture.</p>
+    <p style="color: var(--text-secondary); margin: 10px 0 20px 0;">Multi-Cloud DevOps Strategy · CI/CD Automation · Infrastructure as Code</p>
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-      <a href="https://github.com/jpprajapati529" target="_blank" style="text-decoration: none;"><button class="btn-primary"><i data-lucide="github"></i> GitHub</button></a>
-      <a href="https://linkedin.com" target="_blank" style="text-decoration: none;"><button class="btn-primary" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);"><i data-lucide="linkedin"></i> LinkedIn</button></a>
+      <a href="https://github.com/jpprajapati529/Business-Management-System" target="_blank" style="text-decoration: none;">
+        <button class="btn-primary"><i data-lucide="github"></i> Business Management System Repo</button>
+      </a>
+      <a href="https://www.linkedin.com/in/jaiprajapati529/" target="_blank" style="text-decoration: none;">
+        <button class="btn-primary" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);"><i data-lucide="linkedin"></i> LinkedIn Profile</button>
+      </a>
     </div>
   </footer>
 
