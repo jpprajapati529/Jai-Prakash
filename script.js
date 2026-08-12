@@ -176,7 +176,7 @@ async function triggerPipelineRun() {
   isPipelineRunning = true;
 
   const logsConsole = document.getElementById("pipeline-logs");
-  if (!logsConsole) return; // Prevent crash if element is missing
+  if (!logsConsole) return;
   
   logsConsole.innerHTML = "";
   

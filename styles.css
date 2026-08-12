@@ -547,7 +547,7 @@ h2 {
   padding: 16px;
   font-family: var(--font-mono);
   font-size: 0.825rem;
-  color: #a7f3d0; /* Terminal Mint Green */
+  color: #a7f3d0;
   overflow-x: auto;
   white-space: pre;
 }
@@ -559,7 +559,7 @@ h2 {
   left: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none; /* THIS LINE IS CRITICAL - DO NOT REMOVE */
+  pointer-events: none; /* CRITICAL - DO NOT REMOVE */
   z-index: 0;
   background: radial-gradient(
     600px circle at var(--bg-x, 50%) var(--bg-y, 50%),

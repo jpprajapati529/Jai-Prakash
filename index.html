@@ -36,27 +36,27 @@
 
   <!-- Clickable Top Metric Cards -->
   <section class="metrics-grid">
-  <div class="card clickable-card" onclick="openMetricModal('experience')">
-    <h3><i data-lucide="briefcase"></i> EXPERIENCE</h3>
-    <div class="metric-value">4 Years</div>
-    <div class="metric-sub">DevOps & Platform Engineering (Click for details)</div>
-  </div>
-  <div class="card clickable-card" onclick="openMetricModal('multicloud')">
-    <h3><i data-lucide="cloud"></i> MULTI-CLOUD</h3>
-    <div class="metric-value">AWS, Azure & GCP</div>
-    <div class="metric-sub">Terraform IaC & Automation (Click for details)</div>
-  </div>
-  <div class="card clickable-card" onclick="openMetricModal('domains')">
-    <h3><i data-lucide="shield-check"></i> ENTERPRISE DOMAINS</h3>
-    <div class="metric-value">Fintech & Banking</div>
-    <div class="metric-sub">High-Availability & Security (Click for details)</div>
-  </div>
-  <div class="card clickable-card" onclick="openMetricModal('github')">
-    <h3><i data-lucide="github"></i> DEVOPS STACK REPO</h3>
-    <div class="metric-value">Business Mgmt System</div>
-    <div class="metric-sub">Explore Full Stack Repo ↗</div>
-  </div>
-</section>
+    <div class="card clickable-card" onclick="openMetricModal('experience')">
+      <h3><i data-lucide="briefcase"></i> EXPERIENCE</h3>
+      <div class="metric-value">4 Years</div>
+      <div class="metric-sub">DevOps & Platform Engineering (Click for details)</div>
+    </div>
+    <div class="card clickable-card" onclick="openMetricModal('multicloud')">
+      <h3><i data-lucide="cloud"></i> MULTI-CLOUD</h3>
+      <div class="metric-value">AWS, Azure & GCP</div>
+      <div class="metric-sub">Terraform IaC & Automation (Click for details)</div>
+    </div>
+    <div class="card clickable-card" onclick="openMetricModal('domains')">
+      <h3><i data-lucide="shield-check"></i> ENTERPRISE DOMAINS</h3>
+      <div class="metric-value">Fintech & Banking</div>
+      <div class="metric-sub">High-Availability & Security (Click for details)</div>
+    </div>
+    <div class="card clickable-card" onclick="openMetricModal('github')">
+      <h3><i data-lucide="github"></i> DEVOPS STACK REPO</h3>
+      <div class="metric-value">Business Mgmt System</div>
+      <div class="metric-sub">Explore Full Stack Repo ↗</div>
+    </div>
+  </section>
 
   <!-- About Section -->
   <section id="about" class="dashboard-section">
@@ -134,20 +134,20 @@
       <h2><i data-lucide="git-branch"></i> Primary DevOps Repository</h2>
     </div>
     <div class="card clickable-card" onclick="openModuleModal('business-mgmt')">
-  <div style="display:flex; justify-content:space-between; align-items:center;">
-    <h3 style="color: var(--accent-purple); font-size: 1.1rem;"><i data-lucide="folder-git-2"></i> BUSINESS MANAGEMENT SYSTEM</h3>
-    <span class="tag-badge" style="color: var(--accent-purple);">Featured Stack</span>
-  </div>
-  <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 12px 0;">Click here to open interactive code configs for Docker Compose, Kubernetes manifests, Terraform IaC, and GitHub Actions CI/CD workflows.</p>
-  <div style="display:flex; gap: 8px; flex-wrap: wrap;">
-    <span class="tag-badge">Docker</span>
-    <span class="tag-badge">Kubernetes</span>
-    <span class="tag-badge">Terraform</span>
-    <span class="tag-badge">Jenkins</span>
-    <span class="tag-badge">Prometheus</span>
-    <span class="tag-badge">GitHub Actions</span>
-  </div>
-</div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="color: var(--accent-purple); font-size: 1.1rem;"><i data-lucide="folder-git-2"></i> BUSINESS MANAGEMENT SYSTEM</h3>
+        <span class="tag-badge" style="color: var(--accent-purple);">Featured Stack</span>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 12px 0;">Click here to open interactive code configs for Docker Compose, Kubernetes manifests, Terraform IaC, and GitHub Actions CI/CD workflows.</p>
+      <div style="display:flex; gap: 8px; flex-wrap: wrap;">
+        <span class="tag-badge">Docker</span>
+        <span class="tag-badge">Kubernetes</span>
+        <span class="tag-badge">Terraform</span>
+        <span class="tag-badge">Jenkins</span>
+        <span class="tag-badge">Prometheus</span>
+        <span class="tag-badge">GitHub Actions</span>
+      </div>
+    </div>
   </section>
 
   <!-- Interactive Terminal Drawer -->
@@ -170,7 +170,6 @@
   </section>
 
   <!-- Interactive Drill-Down Modal Overlay -->
-  <!-- Interactive Drill-Down Modal Overlay -->
   <div id="modal-overlay" class="modal-overlay" onclick="closeModalOnOuterClick(event)">
     <div class="modal-content">
       <div class="modal-header">
@@ -183,9 +182,7 @@
 
       <div class="modal-body">
         <p id="modal-description" style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.95rem;"></p>
-
         <div class="modal-tabs" id="modal-tabs"></div>
-
         <div class="code-preview-container">
           <div class="code-header">
             <span id="code-filename" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-purple);">config.yaml</span>
@@ -198,7 +195,5 @@
   </div>
 
   <script src="script.js"></script>
-</body>
-</html>
 </body>
 </html>
