@@ -149,6 +149,12 @@ body {
   animation: scrollMarquee 40s linear infinite;
 }
 
+.tile {
+    background-color: #1E1E24; /* A dark, elevated gray */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle outline */
+    border-radius: 8px;
+}
+
 .tech-track:hover {
   animation-play-state: paused;
 }
