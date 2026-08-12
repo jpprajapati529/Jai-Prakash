@@ -118,12 +118,12 @@ body {
 
 .card, 
 .dashboard-section, 
-.project-card {
+.project-card,
+.rich-content-container {
   position: relative;
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 12px;
-  padding: 24px;
   overflow: hidden;
   transition: border-color 0.3s ease, transform 0.2s ease;
 }
@@ -147,7 +147,8 @@ body {
 /* JetBrains Purple Cursor Spotlight */
 .card::before, 
 .dashboard-section::before, 
-.project-card::before {
+.project-card::before,
+.rich-content-container::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -164,21 +165,29 @@ body {
 
 .card:hover::before, 
 .dashboard-section:hover::before, 
-.project-card:hover::before {
+.project-card:hover::before,
+.rich-content-container:hover::before {
   opacity: 1;
 }
 
 .card:hover, 
-.project-card:hover {
+.project-card:hover,
+.rich-content-container:hover {
   border-color: rgba(168, 85, 247, 0.5);
-  transform: translateY(-2px);
 }
 
 .card *, 
 .dashboard-section *, 
-.project-card * {
+.project-card *,
+.rich-content-container * {
   position: relative;
   z-index: 2;
+}
+
+/* Ensure rich layout gets proper padding */
+.rich-content-container {
+  padding: 24px;
+  animation: fadeIn 0.3s ease;
 }
 
 .card h3 {

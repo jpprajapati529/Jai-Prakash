@@ -1,9 +1,9 @@
 // Initialize Icons
 lucide.createIcons();
 
-// Mouse Tracking for JetBrains Cursor Spotlight
+// Mouse Tracking for JetBrains Cursor Spotlight (Now includes modal contents)
 document.addEventListener("mousemove", (e) => {
-  const card = e.target.closest(".card, .project-card, .dashboard-section");
+  const card = e.target.closest(".card, .project-card, .dashboard-section, .rich-content-container");
   if (card) {
     const rect = card.getBoundingClientRect();
     card.style.setProperty("--x", `${e.clientX - rect.left}px`);
@@ -11,15 +11,15 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 
-// Modal Module Data Strategy
+// Modal Module Data Strategy - Dual Modes for ALL Cards
 const moduleData = {
   "experience": {
-    title: "4 Years DevOps & Platform Engineering Experience",
+    title: "4 Years DevOps & Platform Engineering",
     description: "Multi-cloud experience managing infrastructure, provisioning automated pipelines, and administering production clusters.",
     tabs: [
       {
-        name: "Role Overview",
-        type: "html", // Tells the engine to use rich UI formatting
+        name: "Visual UI",
+        type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
@@ -45,21 +45,54 @@ const moduleData = {
             </div>
           </div>
         `
+      },
+      {
+        name: "Raw Code",
+        type: "code",
+        filename: "experience_profile.yaml",
+        content: `role: "Senior Analyst / Platform Engineer"
+company: "Capgemini"
+experience_years: 4
+domain_focus:
+  - "Fintech"
+  - "Banking Operations"
+cloud_providers: ["AWS", "Azure", "GCP"]
+orchestration: ["Kubernetes", "OpenShift", "Docker", "Helm"]
+education:
+  institute: "BIST, Bhopal"
+  graduation_year: 2022`
       }
     ]
   },
   "multicloud": {
-    title: "Multi-Cloud Ecosystem (AWS, Azure, GCP)",
-    description: "Automated cloud resource provisioning, IAM policy governance, and cost optimization.",
+    title: "Multi-Cloud Ecosystem",
+    description: "Automated cloud resource provisioning and IAM policy governance.",
     tabs: [
       {
-        name: "Terraform IaC",
-        type: "code", // Tells the engine to use the terminal code viewer
+        name: "Visual UI",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="cloud"></i> Provider Strategy</h4>
+              <p class="rich-text">Unified management of multi-cloud environments to prevent vendor lock-in and ensure high availability.</p>
+              <ul class="rich-list">
+                <li><strong>AWS:</strong> EC2, EKS, RDS, S3, CloudWatch, IAM.</li>
+                <li><strong>Azure:</strong> Azure DevOps, AKS, Resource Manager.</li>
+                <li><strong>GCP:</strong> GKE, Compute Engine, Cloud Storage.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "Raw Code",
+        type: "code",
         filename: "provider_setup.tf",
         content: `terraform {
   required_providers {
-    aws    = { source = "hashicorp/aws", version = "~> 5.0" }
-    google = { source = "hashicorp/google", version = "~> 4.0" }
+    aws     = { source = "hashicorp/aws", version = "~> 5.0" }
+    google  = { source = "hashicorp/google", version = "~> 4.0" }
     azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" }
   }
 }
@@ -70,12 +103,30 @@ const moduleData = {
   },
   "domains": {
     title: "Fintech & Banking Infrastructure",
-    description: "Managing secure hybrid-cloud environments with zero downtime deployments and strict regulatory compliance.",
+    description: "Managing secure hybrid-cloud environments with zero downtime deployments.",
     tabs: [
       {
-        name: "Security & Monitoring",
+        name: "Visual UI",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="shield-check"></i> Compliance & Security</h4>
+              <p class="rich-text">Maintaining strict regulatory compliance for banking clients through infrastructure-as-code and GitOps.</p>
+              <ul class="rich-list">
+                <li>Enforcing strict Pod Security Policies (PSP) in Kubernetes clusters.</li>
+                <li>Managing IAM roles with Principle of Least Privilege (PoLP).</li>
+                <li>Implementing end-to-end monitoring using Prometheus & Grafana.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "Raw Code",
+        type: "code",
         filename: "cluster_policy.yaml",
-        code: `apiVersion: policy/v1
+        content: `apiVersion: policy/v1
 kind: PodSecurityPolicy
 metadata:
   name: banking-restricted-psp
@@ -87,39 +138,33 @@ spec:
       }
     ]
   },
-  "github": {
-    title: "Business Management System Repository",
-    description: "Primary repository showcasing end-to-end DevOps tooling integration.",
-    tabs: [
-      {
-        name: "Repo Quick Link",
-        filename: "repo_info.md",
-        code: "URL: https://github.com/jpprajapati529/Business-Management-System\nStatus: Active\nDescription: Complete Docker, Kubernetes, Terraform, and CI/CD demonstration repository."
-      }
-    ]
-  },
   "business-mgmt": {
-    title: "Business Management System — DevOps Stack",
-    description: "End-to-end DevOps architecture demonstrating CI/CD automation, Terraform IaC, and Kubernetes orchestration across multi-cloud environments.",
+    title: "Business Management System Stack",
+    description: "End-to-end DevOps architecture demonstrating CI/CD automation and Kubernetes orchestration.",
     tabs: [
       {
-        name: "Project Overview & Repo",
-        filename: "README.md",
-        code: `# Business Management System
-GitHub: https://github.com/jpprajapati529/Business-Management-System
-
-Architecture Highlights:
-- Cloud Providers: AWS, Azure, GCP
-- Container Orchestration: Kubernetes, OpenShift, Helm
-- IaC & Automation: Terraform, Docker
-- CI/CD Pipelines: GitHub Actions, Jenkins, Azure DevOps
-- Monitoring: Prometheus & Grafana
-- Scripting: BASH, Python`
+        name: "Visual UI",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="folder-git-2"></i> Architecture Overview</h4>
+              <p class="rich-text">A comprehensive repository showcasing a production-ready DevOps pipeline.</p>
+              <ul class="rich-list">
+                <li>Automated testing and linting via <strong>GitHub Actions</strong>.</li>
+                <li>Containerization strategies using <strong>Docker Compose</strong>.</li>
+                <li>Infrastructure provisioning using <strong>Terraform</strong>.</li>
+                <li>Deployment orchestration via <strong>Kubernetes Manifests</strong>.</li>
+              </ul>
+            </div>
+          </div>
+        `
       },
       {
-        name: "Terraform IaC",
-        filename: "infrastructure/main.tf",
-        code: `# Multi-Cloud Infrastructure Provisioning
+        name: "Raw Code",
+        type: "code",
+        filename: "main.tf",
+        content: `# Multi-Cloud Infrastructure Provisioning
 module "gcp_gke_cluster" {
   source     = "terraform-google-modules/kubernetes-engine/google"
   project_id = "business-mgmt-prod"
@@ -165,6 +210,7 @@ function openModuleModal(moduleId) {
   lucide.createIcons();
 }
 
+// Hybrid Code/UI Renderer
 function selectModalTab(data, index, targetBtn) {
   document.querySelectorAll(".tab-btn").forEach(t => t.classList.remove("active"));
   if (targetBtn) targetBtn.classList.add("active");
@@ -173,15 +219,12 @@ function selectModalTab(data, index, targetBtn) {
   const richContainer = document.getElementById("modal-rich-content");
   const codeContainer = document.getElementById("modal-code-container");
 
-  // Hybrid Rendering Engine
   if (tab.type === "html") {
-    // Show Recruiter UI
     codeContainer.style.display = "none";
     richContainer.style.display = "block";
     richContainer.innerHTML = tab.content;
-    lucide.createIcons(); // Re-render icons inside the injected HTML
+    lucide.createIcons(); // Re-render injected icons
   } else {
-    // Show Developer Code UI
     richContainer.style.display = "none";
     codeContainer.style.display = "block";
     document.getElementById("code-filename").innerText = tab.filename || "snippet.txt";
@@ -254,7 +297,7 @@ async function triggerPipelineRun() {
   isPipelineRunning = false;
 }
 
-// BASH Terminal Engine with GitHub Workflow Command Binding
+// BASH Terminal Engine
 const cliInput = document.getElementById("cli-input");
 const terminalBody = document.getElementById("terminal-body");
 
