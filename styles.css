@@ -108,6 +108,11 @@ body {
 .navbar nav a:hover { color: var(--text-primary); }
 
 .hero-banner {
+  /* Added these two lines to hold the background image inside the box */
+  position: relative;
+  overflow: hidden; 
+  
+  /* Your existing layout styles */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,6 +123,32 @@ body {
   border-radius: 16px;
   background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(168, 85, 247, 0.4) 0%, rgba(8, 8, 10, 0) 100%);
   border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+/* THE NEW 3D INFINITY LOOP BACKGROUND */
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px; 
+  height: 600px;
+  
+  /* Make sure you downloaded the image and named it infinity-loop.png! */
+  background: url('./infinity-loop.png') no-repeat center center;
+  background-size: contain;
+  
+  mix-blend-mode: screen;
+  opacity: 0.25; 
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ensures your Name and Title stay layered on top of the glowing image */
+.hero-banner > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-title {
