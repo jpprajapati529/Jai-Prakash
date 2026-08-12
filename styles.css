@@ -150,9 +150,8 @@ body {
 }
 
 .tile {
-    background-color: #1E1E24; /* A dark, elevated gray */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle outline */
-    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05); /* Just a 5% wash of white */
+    backdrop-filter: blur(10px); /* Optional: adds a frosted glass look */
 }
 
 .tech-track:hover {
