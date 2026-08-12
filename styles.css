@@ -108,11 +108,8 @@ body {
 .navbar nav a:hover { color: var(--text-primary); }
 
 .hero-banner {
-  /* Added these two lines to hold the background image inside the box */
   position: relative;
   overflow: hidden; 
-  
-  /* Your existing layout styles */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -121,31 +118,34 @@ body {
   text-align: center;
   margin-bottom: 40px;
   border-radius: 16px;
-  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(168, 85, 247, 0.4) 0%, rgba(8, 8, 10, 0) 100%);
+  
+  /* THE FIX 1: Completely removed the purple radial-gradient */
+  background: transparent; 
+  
   border-bottom: 1px solid rgba(168, 85, 247, 0.2);
 }
 
-/* THE NEW 3D INFINITY LOOP BACKGROUND */
 .hero-banner::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 900px; 
-  height: 600px;
+  /* THE FIX 2: Pin it to the top left and force it to be 100% width/height */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   
-  /* Make sure you downloaded the image and named it infinity-loop.png! */
   background: url('./infinity-loop.png') no-repeat center center;
-  background-size: contain;
+  
+  /* THE FIX 3: 'cover' ensures the image expands to fill every single corner of the banner without stretching weirdly */
+  background-size: cover; 
   
   mix-blend-mode: screen;
-  opacity: 0.25; 
+  opacity: 0.35; /* Bumped up slightly so it shines beautifully without the purple gradient behind it */
   z-index: 0;
   pointer-events: none;
 }
 
-/* Ensures your Name and Title stay layered on top of the glowing image */
+/* Ensures your Name and Title stay layered on top */
 .hero-banner > * {
   position: relative;
   z-index: 1;
