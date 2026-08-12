@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps & Platform Engineering Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Chart.js for Grafana-style charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Top Status Bar -->
+  <header class="navbar">
+    <div class="logo">
+      <i data-lucide="terminal"></i>
+      <span>DEVOPS_CONTROL_PLANE</span>
+    </div>
+    <div class="system-status">
+      <span class="pulse-dot"></span>
+      <span id="cluster-status">CLUSTER STATUS: HEALTHY</span>
+    </div>
+    <nav>
+      <a href="#overview">Overview</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#projects">Pipelines & Repos</a>
+      <a href="#terminal">CLI Terminal</a>
+    </nav>
+  </header>
+
+  <!-- Metric Cards Section (Grafana Style) -->
+  <section id="overview" class="metrics-grid">
+    <div class="card">
+      <h3><i data-lucide="cpu"></i> Active Pipelines</h3>
+      <div class="metric-value" id="pipeline-count">12 Running</div>
+      <div class="metric-sub">Success Rate: 99.4%</div>
+    </div>
+    <div class="card">
+      <h3><i data-lucide="cloud"></i> Cloud Provider Stack</h3>
+      <div class="metric-value">AWS & GCP</div>
+      <div class="metric-sub">Terraform Managed</div>
+    </div>
+    <div class="card">
+      <h3><i data-lucide="layers"></i> Containerization</h3>
+      <div class="metric-value">Kubernetes / Docker</div>
+      <div class="metric-sub">Helm & OpenShift</div>
+    </div>
+    <div class="card">
+      <h3><i data-lucide="github"></i> Live Public Repos</h3>
+      <div class="metric-value" id="repo-count">Loading...</div>
+      <div class="metric-sub" id="star-count">Total Stars: --</div>
+    </div>
+  </section>
+
+  <!-- Interactive Infrastructure Radar Chart -->
+  <section id="architecture" class="dashboard-section">
+    <h2><i data-lucide="activity"></i> Skill Radar & Tech Stack Proficiency</h2>
+    <div class="chart-container">
+      <canvas id="skillRadarCanvas"></canvas>
+    </div>
+  </section>
+
+  <!-- Projects & CI/CD Pipelines -->
+  <section id="projects" class="dashboard-section">
+    <h2><i data-lucide="git-branch"></i> DevOps Projects & GitHub Workflows</h2>
+    <div id="repos-container" class="projects-grid">
+      <!-- Repositories populated dynamically via GitHub API -->
+    </div>
+  </section>
+
+  <!-- Interactive Terminal Drawer -->
+  <section id="terminal" class="terminal-container">
+    <div class="terminal-header">
+      <div class="terminal-buttons">
+        <span class="btn red"></span>
+        <span class="btn yellow"></span>
+        <span class="btn green"></span>
+      </div>
+      <span class="terminal-title">bash — devops-engineer@control-plane:~</span>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <p class="term-output">Type <span class="highlight">'help'</span> to view available commands (`projects`, `skills`, `clear`, `contact`).</p>
+    </div>
+    <div class="terminal-input-line">
+      <span class="prompt">devops@k8s-node1:~$</span>
+      <input type="text" id="cli-input" placeholder="Enter command..." autofocus />
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
