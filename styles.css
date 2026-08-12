@@ -162,6 +162,9 @@ body {
   width: 100%;
   overflow: hidden;
 
+  /* THIS IS THE FIX: Adds invisible vertical headroom so the logos don't get clipped when they float up */
+  padding: 20px 0;
+
   /* Modern CSS Mask: Fades the logos into transparency on the left and right */
   /* This ensures the fade looks perfect over top of our new purple background */
   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
