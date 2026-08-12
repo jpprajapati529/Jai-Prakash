@@ -125,8 +125,14 @@ body {
   padding: 120px 0;
   margin-bottom: 60px;
   overflow: hidden;
-  background: transparent; /* Removed the background tint to blend seamlessly */
+  /* background: transparent; Removed the background tint to blend seamlessly */
   border: none; /* Removed harsh borders to match JetBrains */
+  /* The JetBrains Deep Horizon Gradient (Purple version) */
+  /* Fades from your dark background at the top to a rich, luminous purple at the bottom */
+  background: linear-gradient(to bottom, var(--bg-dark) 0%, rgba(168, 85, 247, 0.2) 100%);
+  
+  /* Optional: Adds a subtle line at the very bottom to anchor the section */
+  border-bottom: 1px solid rgba(168, 85, 247, 0.3);
 }
 
 /* Feathered fade edges so logos disappear cleanly */
@@ -155,6 +161,11 @@ body {
   display: flex;
   width: 100%;
   overflow: hidden;
+
+  /* Modern CSS Mask: Fades the logos into transparency on the left and right */
+  /* This ensures the fade looks perfect over top of our new purple background */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
 .tech-track {
