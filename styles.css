@@ -264,14 +264,14 @@ body {
   align-items: center;
   justify-content: center;
   
-  /* The New Purple Background: A subtle 12% opacity wash of your accent color */
   background-color: rgba(168, 85, 247, 0.12); 
-  
-  /* A slightly more visible purple border to frame the logos nicely */
   border: 1px solid rgba(168, 85, 247, 0.25);
   
+  /* THE FIX: Adds the subtle ambient edge glow matching the IDE window */
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.15);
+  
   border-radius: 12px;
-  padding: 16px 36px; 
+  padding: 16px 24px; 
   min-width: 260px; 
   
   transition: all 0.3s ease;
