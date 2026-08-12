@@ -151,9 +151,6 @@ body {
 /* =========================================================
    3. METRICS GRID & JETBRAINS SPOTLIGHT CARDS
    ========================================================= */
-/* =========================================================
-   3. METRICS GRID & JETBRAINS SPOTLIGHT CARDS
-   ========================================================= */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -187,8 +184,7 @@ body {
   z-index: 10;
 }
 
-/* JetBrains Purple Cursor Spotlight */
-/* JetBrains Purple Cursor Spotlight */
+/* JetBrains Exact Purple Cursor Spotlight */
 .card::before, 
 .dashboard-section::before, 
 .project-card::before,
@@ -196,12 +192,8 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  /* Fixed: Extremely tight radius (120px) with a hot center (0.65 opacity) */
-  background: radial-gradient(
-    100px circle at var(--x, -500px) var(--y, -500px),
-    rgba(183, 74, 247, 0.65) 0%,
-    transparent 100%
-  );
+  /* 1:1 match with the JetBrains DevTools inspector */
+  background: radial-gradient(circle at var(--x, -500px) var(--y, -500px), rgb(183, 74, 247) 0%, rgba(161, 20, 243, 0.973) calc(0% + 100px)) no-repeat border-box border-box rgba(0, 0, 0, 0);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -232,7 +224,7 @@ body {
 .card h3 {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--accent-purple); /* Changed to purple to match JB aesthetic */
+  color: var(--accent-purple);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   display: flex;
@@ -251,9 +243,9 @@ body {
 
 .metric-sub {
   font-size: 0.85rem;
-  color: var(--text-secondary); /* Changed to muted gray for cleaner look */
+  color: var(--text-secondary);
   line-height: 1.5;
-  margin-top: auto; /* Pushes text to the bottom if cards vary in height */
+  margin-top: auto; 
 }
 
 /* =========================================================
@@ -264,7 +256,7 @@ body {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 16px;
-  padding: 36px 40px; /* Massive horizontal padding prevents edge clipping */
+  padding: 36px 40px; 
   margin-bottom: 28px;
   overflow: hidden;
   transition: border-color 0.3s ease;
