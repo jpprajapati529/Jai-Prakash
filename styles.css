@@ -117,56 +117,28 @@ body {
 .hero-highlight { color: var(--accent-purple); font-weight: 600; }
 
 /* =========================================================
-   2.6 TECH STACK MARQUEE (Infinite Scroll)
+   2.6 TECH STACK MARQUEE (JetBrains "Trusted By" Style)
    ========================================================= */
 .tech-marquee-section {
   position: relative;
   width: 100%;
-  padding: 120px 0;
-  margin-bottom: 60px;
+  padding: 60px 0; /* Reduced vertical padding for tighter look */
+  margin-bottom: 40px; 
   overflow: hidden;
-  /* background: transparent; Removed the background tint to blend seamlessly */
-  border: none; /* Removed harsh borders to match JetBrains */
-  /* The JetBrains Deep Horizon Gradient (Purple version) */
-  /* Fades from your dark background at the top to a rich, luminous purple at the bottom */
-  background: linear-gradient(to bottom, var(--bg-dark) 0%, rgba(168, 85, 247, 0.2) 100%);
+  border: none;
   
-  /* Optional: Adds a subtle line at the very bottom to anchor the section */
-  border-bottom: 1px solid rgba(168, 85, 247, 0.3);
-}
-
-/* Feathered fade edges so logos disappear cleanly */
-.tech-marquee-section::before,
-.tech-marquee-section::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 250px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.tech-marquee-section::before {
-  left: 0;
-  background: linear-gradient(to right, var(--bg-dark), transparent);
-}
-
-.tech-marquee-section::after {
-  right: 0;
-  background: linear-gradient(to left, var(--bg-dark), transparent);
+  /* Deep Purple Horizon Gradient */
+  background: linear-gradient(to bottom, var(--bg-dark) 0%, rgba(168, 85, 247, 0.15) 100%);
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
 }
 
 .tech-marquee {
   display: flex;
   width: 100%;
   overflow: hidden;
-
-  /* THIS IS THE FIX: Adds invisible vertical headroom so the logos don't get clipped when they float up */
-  padding: 20px 0;
-
-  /* Modern CSS Mask: Fades the logos into transparency on the left and right */
-  /* This ensures the fade looks perfect over top of our new purple background */
+  padding: 10px 0; /* Prevents box-shadow clipping on hover */
+  
+  /* Modern CSS Mask */
   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
@@ -174,11 +146,9 @@ body {
 .tech-track {
   display: flex;
   width: max-content;
-  /* Adjust '45s' to make the scroll faster or slower */
-  animation: scrollMarquee 45s linear infinite;
+  animation: scrollMarquee 40s linear infinite;
 }
 
-/* Pause the animation if the user hovers over the logos */
 .tech-track:hover {
   animation-play-state: paused;
 }
@@ -186,46 +156,59 @@ body {
 .tech-group {
   display: flex;
   align-items: center;
-  gap: 100px;
-  padding-right: 100px; /* Crucial: Matches gap to make the loop seamless */
+  gap: 20px; /* Much tighter spacing between pills */
+  padding-right: 20px; /* Must match gap exactly! */
 }
 
+/* 
+  NEW: JetBrains Pill Card Style 
+  Horizontal layout, dark background, rounded corners 
+*/
 .tech-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Icon left, Text right */
   align-items: center;
-  gap: 16px;
-  min-width: 80px;
-  transition: transform 0.3s ease;
+  justify-content: center;
+  gap: 12px;
+  
+  /* Pill Card Styling */
+  background-color: rgba(255, 255, 255, 0.03); /* Subtle dark card */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 12px 24px;
+  min-width: 160px; /* Ensures consistent pill sizes */
+  
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
 }
 
 .tech-item:hover {
-  transform: translateY(-8px) scale(1.05);
+  transform: translateY(-4px);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 .tech-item img {
-  width: 55px;
-  height: 55px;
+  width: 28px; /* Smaller icon for horizontal layout */
+  height: 28px;
   object-fit: contain;
-  /* Adds a subtle purple ambient glow behind the logos */
-  filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.15));
+  /* Removed heavy drop shadow for a flatter, modern look */
+  filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.2)); 
 }
 
 .tech-item span {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
+  font-size: 1rem; /* Slightly larger text */
+  color: var(--text-primary); /* Brighter text to match JetBrains screenshot */
+  font-family: var(--font-sans); /* Switched back to sans-serif for cleaner read */
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
-/* Forces the dark GitHub logo to render purely white on our dark mode background */
 .invert-logo {
-  filter: invert(1) brightness(100) drop-shadow(0 0 10px rgba(168, 85, 247, 0.4)) !important;
+  filter: invert(1) brightness(100) !important;
 }
 
-/* The Magic Scroll Math: Move left exactly 50% of the total width */
 @keyframes scrollMarquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); } 
