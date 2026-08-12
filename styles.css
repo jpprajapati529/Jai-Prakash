@@ -454,6 +454,7 @@ body {
 .clickable-card { cursor: pointer; z-index: 10; }
 
 /* Perfected JetBrains Purple Cursor Spotlight */
+/* Perfected JetBrains Purple Cursor Spotlight with a "Hot Core" */
 .card::before, 
 .dashboard-section::before, 
 .project-card::before,
@@ -461,12 +462,15 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  /* Bulletproof standard CSS for a tight 120px radius punchy glow */
+  
+  /* THE FIX: A multi-stop gradient with a bright, high-opacity center */
   background: radial-gradient(
-    circle 120px at var(--x, -500px) var(--y, -500px),
-    rgba(183, 74, 247, 0.65) 0%,
-    transparent 100%
+    circle 180px at var(--x, -500px) var(--y, -500px),
+    rgba(216, 139, 255, 0.95) 0%,   /* 1. The Hot Core: Bright neon purple, almost solid */
+    rgba(168, 85, 247, 0.65) 30%,   /* 2. The Body: Rich brand purple */
+    rgba(168, 85, 247, 0) 100%      /* 3. The Edge: Smooth fade into transparency */
   );
+  
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
