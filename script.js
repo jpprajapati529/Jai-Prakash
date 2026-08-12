@@ -316,7 +316,32 @@ if (cliInput) {
 
       if (cmd === "bash deploy.sh" || cmd === "bash" || cmd === "sh trigger.sh" || cmd === "gh workflow run") {
         response = "Executing GitHub Actions trigger for jpprajapati529/Business-Management-System...";
-        triggerPipelineRun();
+        
+        // 1. Trigger the Visual UI Stepper above
+        triggerPipelineRun(); 
+        
+        // 2. Smooth scroll the user slightly so they see both the terminal and the pipeline
+        document.getElementById("pipeline-sim").scrollIntoView({ behavior: "smooth", block: "center" });
+
+        // 3. Print the simulated logs directly into the terminal with realistic delays!
+        const termLogs = [
+          { msg: "Connecting to GitHub Actions API...", color: "text-cyan", delay: 800 },
+          { msg: "✓ Code linting & security scans passed.", color: "text-green", delay: 1800 },
+          { msg: "✓ Docker image built and pushed to registry.", color: "text-green", delay: 3000 },
+          { msg: "✓ Terraform Plan executed successfully.", color: "text-green", delay: 4200 },
+          { msg: "🚀 Deployment to K8s Successful!", color: "text-green", delay: 5600 }
+        ];
+
+        termLogs.forEach(log => {
+          setTimeout(() => {
+            const p = document.createElement("p");
+            p.className = `term-output ${log.color}`;
+            p.innerText = `[${new Date().toLocaleTimeString()}] ${log.msg}`;
+            terminalBody.appendChild(p);
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+          }, log.delay);
+        });
+
       } else if (cmd === "help") {
         response = "Available CLI commands: <br>• <span class='highlight'>bash deploy.sh</span> (triggers pipeline)<br>• <span class='highlight'>certs</span><br>• <span class='highlight'>kubectl get pods</span><br>• <span class='highlight'>terraform plan</span><br>• <span class='highlight'>clear</span>";
       } else if (cmd === "certs") {
@@ -332,6 +357,7 @@ if (cliInput) {
         response = `Command not recognized: '${input}'. Try <span class='highlight'>'bash deploy.sh'</span> or <span class='highlight'>'help'</span>.`;
       }
 
+      // Print initial response immediately
       const respLine = document.createElement("p");
       respLine.className = "term-output";
       respLine.innerHTML = response;
