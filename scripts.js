@@ -162,3 +162,30 @@ cliInput.addEventListener("keydown", (e) => {
     terminalBody.scrollTop = terminalBody.scrollHeight;
   }
 });
+
+// --- JetBrains-Style Spotlight Glow Tracking ---
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".card, .dashboard-section, .project-card");
+  const bgGlow = document.getElementById("cursor-glow-bg");
+
+  // Track cursor position across all cards
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left; // Mouse X inside card
+      const y = e.clientY - rect.top;  // Mouse Y inside card
+
+      // Update CSS Variables for specific card
+      card.style.setProperty("--x", `${x}px`);
+      card.style.setProperty("--y", `${y}px`);
+    });
+  });
+
+  // Track ambient screen background glow
+  window.addEventListener("mousemove", (e) => {
+    if (bgGlow) {
+      bgGlow.style.setProperty("--bg-x", `${e.clientX}px`);
+      bgGlow.style.setProperty("--bg-y", `${e.clientY}px`);
+    }
+  });
+});
