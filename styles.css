@@ -264,7 +264,7 @@ body {
   align-items: center;
   justify-content: center;
   
-  background-color: rgba(168, 85, 247, 0.12); 
+  background-color: rgba(31, 3, 57, 0.12); 
   border: 1px solid rgba(168, 85, 247, 0.25);
   
   /* THE FIX: Adds the subtle ambient edge glow matching the IDE window */
