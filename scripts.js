@@ -163,29 +163,22 @@ cliInput.addEventListener("keydown", (e) => {
   }
 });
 
-// --- JetBrains-Style Spotlight Glow Tracking ---
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".card, .dashboard-section, .project-card");
-  const bgGlow = document.getElementById("cursor-glow-bg");
+  // =========================================================
+// JETBRAINS SPOTLIGHT CURSOR TRACKING (EVENT DELEGATION)
+// =========================================================
 
-  // Track cursor position across all cards
-  cards.forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left; // Mouse X inside card
-      const y = e.clientY - rect.top;  // Mouse Y inside card
+document.addEventListener("mousemove", (e) => {
+  // Find the closest card container under the cursor
+  const card = e.target.closest(".card, .project-card, .dashboard-section");
+  
+  if (card) {
+    const rect = card.getBoundingClientRect();
+    // Calculate precise mouse X and Y coordinates inside the card
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-      // Update CSS Variables for specific card
-      card.style.setProperty("--x", `${x}px`);
-      card.style.setProperty("--y", `${y}px`);
-    });
-  });
-
-  // Track ambient screen background glow
-  window.addEventListener("mousemove", (e) => {
-    if (bgGlow) {
-      bgGlow.style.setProperty("--bg-x", `${e.clientX}px`);
-      bgGlow.style.setProperty("--bg-y", `${e.clientY}px`);
-    }
-  });
+    // Pass coordinates to CSS custom variables
+    card.style.setProperty("--x", `${x}px`);
+    card.style.setProperty("--y", `${y}px`);
+  }
 });
