@@ -145,21 +145,21 @@ body {
 }
 
 /* 2. THE NEW GLOW: A dedicated central spotlight */
-.tech-marquee-section::before {
+/* .tech-marquee-section::before {
   content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 75%; /* Keeps the light focused entirely in the middle */
-  height: 180px; /* Controls how high the light reaches up behind the logos */
+  /* height: 180px; /* Controls how high the light reaches up behind the logos */
   
   /* Creates a natural glowing orb that fades into transparency at its edges */
-  background: radial-gradient(ellipse at bottom, rgba(168, 85, 247, 0.35) 0%, transparent 70%);
+  /* background: radial-gradient(ellipse at bottom, rgba(168, 85, 247, 0.35) 0%, transparent 70%); */
   
-  z-index: 0;
-  pointer-events: none;
-}
+  /* z-index: 0; */
+  /* pointer-events: none; */
+/* } */
 
 /* 3. THE CURVED LINE: Kept sharp in the middle, faded at the edges */
 .tech-marquee-section::after {
