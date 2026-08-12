@@ -261,12 +261,16 @@ body {
 }
 
 .brand-wordmark {
-  height: 75px; 
-  width: 200px; 
-  object-fit: contain; 
+  height: 75px;
+  width: 200px;
+  object-fit: contain;
   
-  /* REMOVED the monochrome invert filter so original colors show perfectly */
-  opacity: 1; 
+  /* THE FIX: Forces every pixel of the logo to become pure white */
+  filter: brightness(0) invert(1);
+  
+  /* Drops the opacity to 60% for a classy, muted gray/silver look */
+  opacity: 0.6; 
+  
   transition: all 0.3s ease;
 }
 
@@ -278,7 +282,11 @@ body {
 }
 
 .tech-item:hover .brand-wordmark {
-  opacity: 1;
+  /* When the user hovers, the logo lights up to full 100% white */
+  opacity: 1; 
+  
+  /* Important: keep the filter here so it doesn't revert to original colors */
+  filter: brightness(0) invert(1); 
 }
 
 @keyframes scrollMarquee {
