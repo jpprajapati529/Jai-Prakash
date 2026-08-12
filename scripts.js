@@ -79,37 +79,53 @@ spec:
     ]
   },
   "business-mgmt": {
-    title: "Business Management System — DevOps Architecture",
-    description: "All-in-one repository integrating Docker Compose, Kubernetes manifests, Terraform IaC, and GitHub Actions CI/CD automation.",
+    title: "Business Management System — DevOps Stack",
+    description: "End-to-end DevOps architecture demonstrating CI/CD automation, Terraform IaC, and Kubernetes orchestration across multi-cloud environments.",
     tabs: [
       {
-        name: "Docker Compose",
-        filename: "docker-compose.yml",
-        code: `version: '3.8'
-services:
-  app-backend:
-    build: .
-    ports:
-      - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-      - DB_HOST=postgres-db
-    depends_on:
-      - postgres-db
+        name: "Project Overview & Repo",
+        filename: "README.md",
+        code: `# Business Management System
+GitHub: https://github.com/jpprajapati529/Business-Management-System
 
-  postgres-db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: business_db
-      POSTGRES_USER: devops_admin`
+Architecture Highlights based on 4-Years Multi-Cloud Experience:
+- Cloud Providers: AWS, Azure, GCP
+- Container Orchestration: Kubernetes, OpenShift, Helm
+- IaC & Automation: Terraform, Docker
+- CI/CD Pipelines: GitHub Actions, Jenkins, Azure DevOps
+- Monitoring: Prometheus & Grafana
+- Scripting: BASH, Python`
       },
       {
-        name: "Kubernetes Manifest",
-        filename: "deployment.yaml",
+        name: "Terraform IaC (Multi-Cloud)",
+        filename: "infrastructure/main.tf",
+        code: `# Multi-Cloud Infrastructure Provisioning
+module "gcp_gke_cluster" {
+  source     = "terraform-google-modules/kubernetes-engine/google"
+  project_id = "business-mgmt-prod"
+  name       = "gke-production-cluster"
+  region     = "asia-south1"
+}
+
+module "aws_rds_database" {
+  source               = "terraform-aws-modules/rds/aws"
+  identifier           = "business-mgmt-db"
+  engine               = "postgres"
+  engine_version       = "15.0"
+  instance_class       = "db.t3.medium"
+  allocated_storage    = 20
+}`
+      },
+      {
+        name: "K8s & Helm Manifests",
+        filename: "k8s/deployment.yaml",
         code: `apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: business-mgmt-app
+  name: business-mgmt-api
+  namespace: production
+  labels:
+    app: business-mgmt
 spec:
   replicas: 3
   selector:
@@ -121,25 +137,22 @@ spec:
         app: business-mgmt
     spec:
       containers:
-      - name: app
+      - name: backend-service
         image: jpprajapati529/business-mgmt:latest
         ports:
-        - containerPort: 8080`
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"`
       },
       {
-        name: "Terraform IaC",
-        filename: "main.tf",
-        code: `module "gcp_gke_cluster" {
-  source       = "terraform-google-modules/kubernetes-engine/google"
-  project_id   = "fintech-platform-prod"
-  name         = "business-mgmt-cluster"
-  region       = "asia-south1"
-}`
-      },
-      {
-        name: "CI/CD Pipeline",
+        name: "GitHub Actions CI/CD",
         filename: ".github/workflows/deploy.yml",
-        code: `name: Build & Deploy Business Management System
+        code: `name: Enterprise Build & Deploy Pipeline
 
 on:
   push:
@@ -149,9 +162,19 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Run BASH Linting & Tests
+      run: bash scripts/test.sh
+
     - name: Build Docker Image
-      run: docker build -t jpprajapati529/business-mgmt:latest .`
+      run: docker build -t jpprajapati529/business-mgmt:\${{ github.sha }} .
+
+    - name: Deploy to Kubernetes (Helm/OpenShift)
+      run: |
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml`
       }
     ]
   }
