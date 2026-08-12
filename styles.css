@@ -133,19 +133,35 @@ body {
 /* } */
 
 /* 1. The Container */
+/* 1. The Container */
 .tech-marquee-section {
   position: relative;
   width: 100%;
   padding: 60px 0 120px 0; 
   margin-bottom: 40px; 
   overflow: hidden; 
-  /* The !important tag forces that stubborn straight line to disappear */
   border: none !important; 
-  background-color: transparent; 
+  background: transparent !important; 
 }
 
-/* 2. The Glowing Purple Horizon */
-/* 2. The Glowing Purple Horizon */
+/* 2. THE NEW GLOW: A dedicated central spotlight */
+.tech-marquee-section::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%; /* Keeps the light focused entirely in the middle */
+  height: 180px; /* Controls how high the light reaches up behind the logos */
+  
+  /* Creates a natural glowing orb that fades into transparency at its edges */
+  background: radial-gradient(ellipse at bottom, rgba(168, 85, 247, 0.35) 0%, transparent 70%);
+  
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 3. THE CURVED LINE: Kept sharp in the middle, faded at the edges */
 .tech-marquee-section::after {
   content: "";
   position: absolute;
@@ -155,16 +171,11 @@ body {
   height: 300px;
   border-radius: 50%;
   
-  /* The sharp curved horizon line */
-  border-top: 1px solid rgba(168, 85, 247, 0.6); 
-  
-  /* The upward purple glow (slightly increased opacity since the mask will soften it) */
-  box-shadow: 0 -50px 150px rgba(168, 85, 247, 0.4);
-  
+  /* Made the purple line slightly brighter so it pops against the new glow */
+  border-top: 1px solid rgba(168, 85, 247, 0.8); 
   background-color: transparent !important;
   
-  /* THE MAGIC: Masks the ends of the curve so it fades into darkness */
-  /* Because the element is 200% wide, 25% and 75% represent the actual left/right edges of your screen */
+  /* The mask strictly fades the left and right ends of the line */
   -webkit-mask-image: linear-gradient(to right, transparent 25%, black 45%, black 55%, transparent 75%);
   mask-image: linear-gradient(to right, transparent 25%, black 45%, black 55%, transparent 75%);
   
