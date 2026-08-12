@@ -162,6 +162,7 @@ body {
 /* } */
 
 /* 3. THE CURVED LINE: Kept sharp in the middle, faded at the edges */
+/* The Curved Line + Upward Glow */
 .tech-marquee-section::after {
   content: "";
   position: absolute;
@@ -171,13 +172,19 @@ body {
   height: 300px;
   border-radius: 50%;
   
-  /* Made the purple line slightly brighter so it pops against the new glow */
+  /* The crisp purple horizon line */
   border-top: 1px solid rgba(168, 85, 247, 0.8); 
+  
+  /* THE FIX: A double outset shadow that strictly casts UPWARDS from the border */
+  box-shadow: 
+    0 -15px 40px rgba(168, 85, 247, 0.4), /* Tight inner glow */
+    0 -50px 120px rgba(168, 85, 247, 0.2); /* Wide atmospheric glow */
+  
   background-color: transparent !important;
   
-  /* The mask strictly fades the left and right ends of the line */
-  -webkit-mask-image: linear-gradient(to right, transparent 25%, black 45%, black 55%, transparent 75%);
-  mask-image: linear-gradient(to right, transparent 25%, black 45%, black 55%, transparent 75%);
+  /* The mask keeps the center fully bright (35% to 65%) and fades the extreme edges smoothly */
+  -webkit-mask-image: linear-gradient(to right, transparent 25%, black 35%, black 65%, transparent 75%);
+  mask-image: linear-gradient(to right, transparent 25%, black 35%, black 65%, transparent 75%);
   
   z-index: 0;
   pointer-events: none;
