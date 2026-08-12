@@ -114,30 +114,27 @@ html {
 
 -------hero------------------
 /* 1. Two-Column Hero Layout */
+/* 1. STRICT GRID LAYOUT (Forces 2 columns) */
 .hero-banner {
-  display: flex !important;
-  flex-direction: row !important;
-  
-  /* THE FIX: Strictly forbids the image from dropping to the next line */
-  flex-wrap: nowrap !important; 
-  
+  display: grid !important;
+  /* Mathematically forces 2 columns: Text gets 1.2 fractions, Image gets 0.8 fractions */
+  grid-template-columns: 1.2fr 0.8fr !important; 
   align-items: center;
-  justify-content: space-between;
+  gap: 40px;
   width: 100%;
-  min-height: 50vh;
-  text-align: left;
+  min-height: 45vh;
   margin-bottom: 60px;
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(168, 85, 247, 0.2);
   background: transparent;
 }
 
-/* 2. Left Side: Text Box */
+/* 2. LEFT SIDE (Text aligned strictly left) */
 .hero-content {
-  /* Strictly allocate 55% of the space to the text */
-  width: 55%; 
-  flex-shrink: 0; /* Prevents the image from squishing the text */
-  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .hero-title {
@@ -159,47 +156,43 @@ html {
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 24px;
+  max-width: 90%;
 }
 
-/* 3. RIGHT SIDE: Image Box */
+/* 3. RIGHT SIDE (Image aligned strictly right) */
 .hero-image {
-  /* Allocate the remaining 45% of the space to the image */
-  width: 45%; 
-  flex-shrink: 0;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  width: 100%;
 }
 
 .hero-image img {
   width: 100%;
   max-width: 600px;
   height: auto;
-  
   mix-blend-mode: screen; 
   opacity: 0.95; 
-  
-  /* THE FIX FOR THE RECTANGLE EDGES: 
-     This acts as an invisible feathering brush, keeping the center 100% visible 
-     but fading the hard borders of the image perfectly into transparency */
   -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 80%);
   mask-image: radial-gradient(ellipse at center, black 50%, transparent 80%);
 }
 
-/* 4. MOBILE LAYOUT (Stacks neatly only on small screens) */
-@media (max-width: 900px) {
+/* 4. MOBILE OVERRIDE (Stacks to 1 column only on smaller screens) */
+@media (max-width: 960px) {
   .hero-banner {
-    flex-direction: column !important; 
+    grid-template-columns: 1fr !important; /* Forces 1 single column */
     text-align: center;
   }
   
-  .hero-content, .hero-image {
-    width: 100%;
-    padding-right: 0;
-    justify-content: center;
+  .hero-content {
+    align-items: center; /* Centers text horizontally */
   }
   
+  .hero-description {
+    max-width: 100%;
+  }
+
   .hero-image {
+    justify-content: center;
     margin-top: 40px;
   }
 }
