@@ -135,30 +135,32 @@ body {
 .tech-marquee-section {
   position: relative;
   width: 100%;
-  padding: 60px 0 80px 0; /* Increased bottom padding */
+  /* Increased bottom padding to 120px to push logos safely above the curve */
+  padding: 60px 0 120px 0; 
   margin-bottom: 40px; 
-  overflow: hidden; /* Crucial: clips the giant circle so it doesn't break the page */
+  overflow: hidden; 
   border: none;
-  background-color: var(--bg-dark); /* Replaced the linear gradient with a solid dark base */
+  background-color: var(--bg-dark); 
 }
 
 /* The curved horizon effect */
 .tech-marquee-section::after {
   content: "";
   position: absolute;
-  bottom: -200px; /* Pushes the shape down so only the top arc is visible */
-  left: -50%;     /* Stretches the shape way past the screen edges */
+  /* Pushed further down (-260px) so only a sliver of the 300px circle peeks up */
+  bottom: -260px; 
+  left: -50%;     
   width: 200%;
-  height: 300px;  /* Controls the shallowness of the curve */
-  border-radius: 50%; /* Makes it a perfect oval */
+  height: 300px;  
+  border-radius: 50%; 
 
-  /* The sharp horizon line (using JetBrains Blue) */
-  border-top: 1px solid rgba(59, 130, 246, 0.6); 
+  /* Swapped the blue line for your theme's subtle card border color */
+  border-top: 1px solid var(--card-border); 
 
-  /* The atmospheric glow emanating upwards */
-  box-shadow: 0 -40px 100px rgba(59, 130, 246, 0.25);
+  /* Removed the blue glow and replaced it with a deep, dark shadow that blends into the background */
+  box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.8);
 
-  z-index: 0; /* Keeps it in the background */
+  z-index: 0; 
   pointer-events: none;
 }
 
