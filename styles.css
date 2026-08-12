@@ -117,6 +117,108 @@ body {
 .hero-highlight { color: var(--accent-purple); font-weight: 600; }
 
 /* =========================================================
+   2.6 TECH STACK MARQUEE (Infinite Scroll)
+   ========================================================= */
+.tech-marquee-section {
+  position: relative;
+  width: 100%;
+  padding: 30px 0;
+  margin-bottom: 40px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.01);
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+
+/* Feathered fade edges so logos disappear cleanly */
+.tech-marquee-section::before,
+.tech-marquee-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tech-marquee-section::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-dark), transparent);
+}
+
+.tech-marquee-section::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-dark), transparent);
+}
+
+.tech-marquee {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.tech-track {
+  display: flex;
+  width: max-content;
+  /* Adjust '45s' to make the scroll faster or slower */
+  animation: scrollMarquee 45s linear infinite;
+}
+
+/* Pause the animation if the user hovers over the logos */
+.tech-track:hover {
+  animation-play-state: paused;
+}
+
+.tech-group {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  padding-right: 70px; /* Crucial: Matches gap to make the loop seamless */
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 70px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.tech-item:hover {
+  transform: translateY(-6px) scale(1.05);
+}
+
+.tech-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  /* Adds a subtle purple ambient glow behind the logos */
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.2));
+}
+
+.tech-item span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Forces the dark GitHub logo to render purely white on our dark mode background */
+.invert-logo {
+  filter: invert(1) brightness(100) drop-shadow(0 0 10px rgba(168, 85, 247, 0.4)) !important;
+}
+
+/* The Magic Scroll Math: Move left exactly 50% of the total width */
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
+}
+
+/* =========================================================
    3. METRICS GRID & JETBRAINS SPOTLIGHT CARDS
    ========================================================= */
 .metrics-grid {
