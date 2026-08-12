@@ -15,28 +15,48 @@ document.addEventListener("mousemove", (e) => {
 const moduleData = {
   "experience": {
     title: "4 Years DevOps & Platform Engineering Experience",
-    description: "Multi-cloud experience managing infrastructure, provisioning automated pipelines, and administering production clusters in Banking and Fintech domains.",
+    description: "Multi-cloud experience managing infrastructure, provisioning automated pipelines, and administering production clusters.",
     tabs: [
       {
-        name: "Overview",
-        filename: "experience_summary.txt",
-        code: `Role: Senior Analyst / Platform Engineer
-Domain Focus: Fintech & Banking Client Operations
-Core Focus: Multi-Cloud Automation (AWS, Azure, GCP)
-IaC & Orchestration: Terraform, OpenShift, Kubernetes, Docker, Helm
-Pipeline Tooling: GitHub Actions, Jenkins, Azure DevOps
-Observability: Prometheus, Grafana, CloudWatch`
+        name: "Role Overview",
+        type: "html", // Tells the engine to use rich UI formatting
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Current Impact</h4>
+              <p class="rich-text"><strong>Senior Analyst / Platform Engineer</strong> at Capgemini, transitioning from core DevOps to specialized Platform Engineering.</p>
+              <ul class="rich-list">
+                <li>Architecting and provisioning robust multi-cloud resources across <strong>AWS and GCP</strong> using modular Terraform architectures.</li>
+                <li>Managing enterprise-scale cloud IAM roles, security policies, and optimizing project billing structures.</li>
+                <li>Executing zero-downtime application rollouts across hybrid banking environments using OpenShift and Docker.</li>
+              </ul>
+            </div>
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="layers"></i> Core Stack</h4>
+              <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom: 20px;">
+                <span class="tag-badge">AWS & GCP</span>
+                <span class="tag-badge">Terraform</span>
+                <span class="tag-badge">Kubernetes</span>
+                <span class="tag-badge">Jenkins</span>
+                <span class="tag-badge">GitHub Actions</span>
+              </div>
+              <h4 class="rich-heading"><i data-lucide="graduation-cap"></i> Education</h4>
+              <p class="rich-text">BIST, Bhopal<br><span style="color: var(--text-muted); font-size: 0.85rem;">Class of 2022</span></p>
+            </div>
+          </div>
+        `
       }
     ]
   },
   "multicloud": {
     title: "Multi-Cloud Ecosystem (AWS, Azure, GCP)",
-    description: "Automated cloud resource provisioning, IAM policy governance, and cost optimization across AWS, Azure, and GCP.",
+    description: "Automated cloud resource provisioning, IAM policy governance, and cost optimization.",
     tabs: [
       {
         name: "Terraform IaC",
+        type: "code", // Tells the engine to use the terminal code viewer
         filename: "provider_setup.tf",
-        code: `terraform {
+        content: `terraform {
   required_providers {
     aws    = { source = "hashicorp/aws", version = "~> 5.0" }
     google = { source = "hashicorp/google", version = "~> 4.0" }
@@ -150,8 +170,23 @@ function selectModalTab(data, index, targetBtn) {
   if (targetBtn) targetBtn.classList.add("active");
 
   const tab = data.tabs[index];
-  document.getElementById("code-filename").innerText = tab.filename;
-  document.getElementById("code-block").innerText = tab.code;
+  const richContainer = document.getElementById("modal-rich-content");
+  const codeContainer = document.getElementById("modal-code-container");
+
+  // Hybrid Rendering Engine
+  if (tab.type === "html") {
+    // Show Recruiter UI
+    codeContainer.style.display = "none";
+    richContainer.style.display = "block";
+    richContainer.innerHTML = tab.content;
+    lucide.createIcons(); // Re-render icons inside the injected HTML
+  } else {
+    // Show Developer Code UI
+    richContainer.style.display = "none";
+    codeContainer.style.display = "block";
+    document.getElementById("code-filename").innerText = tab.filename || "snippet.txt";
+    document.getElementById("code-block").innerText = tab.content;
+  }
 }
 
 function closeModal() {

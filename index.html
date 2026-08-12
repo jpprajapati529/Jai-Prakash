@@ -183,7 +183,14 @@
       <div class="modal-body">
         <p id="modal-description" style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.95rem;"></p>
         <div class="modal-tabs" id="modal-tabs"></div>
-        <div class="code-preview-container">
+        
+        <!-- CONTAINER 1: For Recruiter-Friendly Rich Content -->
+        <div id="modal-rich-content" class="rich-content-container" style="display: none;">
+          <!-- Populated dynamically by JS -->
+        </div>
+
+        <!-- CONTAINER 2: For Technical Code Snippets -->
+        <div id="modal-code-container" class="code-preview-container" style="display: none;">
           <div class="code-header">
             <span id="code-filename" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-purple);">config.yaml</span>
             <button class="btn-copy" onclick="copyCodeSnippet()">Copy Snippet</button>
