@@ -108,6 +108,47 @@ body {
 }
 
 /* =========================================================
+   2.5 HERO BANNER SECTION (JetBrains Inspired)
+   ========================================================= */
+.hero-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 45vh; /* Creates massive vertical breathing room */
+  text-align: center;
+  margin-bottom: 40px;
+  border-radius: 16px;
+  position: relative;
+  
+  /* JetBrains sweeping horizon glow effect */
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(168, 85, 247, 0.4) 0%, rgba(8, 8, 10, 0) 100%);
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.hero-title {
+  /* Scales beautifully on both mobile and large desktop monitors */
+  font-size: clamp(2.5rem, 6vw, 4.5rem); 
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -1.5px;
+  margin-bottom: 16px;
+  z-index: 2;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  color: var(--text-secondary);
+  font-weight: 400;
+  z-index: 2;
+}
+
+.hero-highlight {
+  color: var(--accent-purple);
+  font-weight: 600;
+}
+
+/* =========================================================
    3. METRICS GRID & JETBRAINS SPOTLIGHT CARDS
    ========================================================= */
 /* =========================================================
