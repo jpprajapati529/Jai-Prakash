@@ -172,9 +172,9 @@ body {
   justify-content: center;
   
   /* Replaced solid #ffffff with a frosted glass effect */
-  background-color: rgba(255, 255, 255, 0.08); 
+  background-color: rgba(183, 38, 232, 0.295); 
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(202, 44, 242, 0.272);
   
   border-radius: 12px;
   padding: 16px 36px; 
