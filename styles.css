@@ -232,6 +232,139 @@ body {
 }
 
 /* =========================================================
+   JETBRAINS STICKY SCROLL SECTION
+   ========================================================= */
+.sticky-scroll-section {
+  padding: 100px 0;
+  position: relative;
+  border-top: 1px solid var(--card-border);
+}
+
+.sticky-container {
+  display: flex;
+  gap: 60px;
+  position: relative;
+  align-items: flex-start; /* Crucial for sticky behavior */
+}
+
+/* Left Column: Scrolling Text */
+.scroll-text-column {
+  width: 50%;
+  padding-bottom: 30vh; /* Gives the last item room to scroll */
+}
+
+.scroll-block {
+  min-height: 70vh; /* Spacing between blocks so they scroll naturally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0.2; /* Faded out by default */
+  transform: translateX(-20px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-block.active {
+  opacity: 1; /* Highlights when scrolled into view */
+  transform: translateX(0);
+}
+
+.scroll-block h2 {
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.scroll-block p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* Right Column: Sticky Pinned IDEs */
+.sticky-visual-column {
+  width: 50%;
+  position: sticky;
+  top: 15vh; /* Pins it to the screen here */
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mock IDE Windows */
+.ide-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0f1015;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(168, 85, 247, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  
+  /* Hidden state for crossfade */
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.ide-window.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.ide-header {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.mac-dots { display: flex; gap: 8px; margin-right: 20px; }
+.mac-dots .dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.red { background: #ef4444; }
+.dot.yellow { background: #f59e0b; }
+.dot.green { background: #10b981; }
+
+.ide-filename {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.ide-body {
+  padding: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #e5e7eb;
+  overflow-x: auto;
+}
+
+/* JetBrains Syntax Highlighting Colors */
+.ide-body .keyword { color: #c678dd; } /* Purple */
+.ide-body .string { color: #98c379; }  /* Green */
+.ide-body .number { color: #d19a66; }  /* Orange */
+
+/* Responsive Mobile Layout (Disables sticky on small screens) */
+@media (max-width: 900px) {
+  .sticky-container { flex-direction: column; }
+  .scroll-text-column, .sticky-visual-column { width: 100%; }
+  .scroll-block { min-height: auto; margin-bottom: 40px; opacity: 1; transform: none; }
+  .sticky-visual-column { position: relative; top: 0; height: 400px; margin-bottom: 60px;}
+}
+
+/* =========================================================
    3. METRICS GRID & JETBRAINS SPOTLIGHT CARDS
    ========================================================= */
 .metrics-grid {

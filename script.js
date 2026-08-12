@@ -366,3 +366,42 @@ if (cliInput) {
     }
   });
 }
+
+// =========================================================
+// JETBRAINS-STYLE STICKY SCROLL OBSERVER
+// =========================================================
+const scrollBlocks = document.querySelectorAll('.scroll-block');
+const ideWindows = document.querySelectorAll('.ide-window');
+
+if (scrollBlocks.length > 0 && ideWindows.length > 0) {
+  // Intersection Observer setup
+  const observerOptions = {
+    root: null,
+    // Triggers when the block hits the middle 40% of the screen
+    rootMargin: '-30% 0px -30% 0px', 
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 1. Highlight the active text block
+        scrollBlocks.forEach(b => b.classList.remove('active'));
+        entry.target.classList.add('active');
+
+        // 2. Crossfade to the corresponding IDE window
+        const targetId = entry.target.getAttribute('data-target');
+        ideWindows.forEach(window => {
+          if (window.id === targetId) {
+            window.classList.add('active');
+          } else {
+            window.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  // Observe all scroll blocks
+  scrollBlocks.forEach(block => observer.observe(block));
+}
