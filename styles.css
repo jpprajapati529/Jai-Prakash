@@ -119,17 +119,27 @@ body {
 /* =========================================================
    2.6 TECH STACK MARQUEE (JetBrains "Trusted By" Style)
    ========================================================= */
-.tech-marquee-section {
+/* .tech-marquee-section {
   position: relative;
   width: 100%;
   padding: 60px 0; /* Reduced vertical padding for tighter look */
-  margin-bottom: 40px; 
+  /* margin-bottom: 40px; 
   overflow: hidden;
   border: none;
   
   /* Deep Purple Horizon Gradient */
-  background: linear-gradient(to bottom, var(--bg-dark) 0%, rgba(168, 85, 247, 0.15) 100%);
+  /* background: linear-gradient(to bottom, var(--bg-dark) 0%, rgba(168, 85, 247, 0.15) 100%);
   border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+/* } */
+
+.tech-marquee-section {
+  position: relative;
+  width: 100%;
+  padding: 60px 0 80px 0; /* Increased bottom padding */
+  margin-bottom: 40px; 
+  overflow: hidden; /* Crucial: clips the giant circle so it doesn't break the page */
+  border: none;
+  background-color: var(--bg-dark); /* Replaced the linear gradient with a solid dark base */
 }
 
 .tech-marquee {
