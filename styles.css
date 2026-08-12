@@ -166,23 +166,24 @@ body {
   align-items: center;
   justify-content: center;
   
-  /* Subtle dark card */
   background-color: rgba(255, 255, 255, 0.03); 
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  padding: 14px 28px; /* Slightly wider padding for horizontal logos */
-  min-width: 170px; 
+  /* Increased padding to give the larger logos breathing room */
+  padding: 16px 36px; 
+  /* Widened the card to fit the full brand text */
+  min-width: 240px; 
   
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .brand-wordmark {
-  height: 32px; /* Perfect height to make the brand text readable */
-  width: auto;
-  object-fit: contain;
+  /* Massively increased dimensions so the text is highly legible */
+  height: 50px; 
+  width: 160px; 
+  object-fit: contain; /* Ensures the logo scales up perfectly without stretching */
   
-  /* MAGIC TRICK: Turns all colored/black SVGs into unified, sleek white logos */
   filter: brightness(0) invert(1) opacity(0.85); 
   transition: all 0.3s ease;
 }
@@ -196,7 +197,6 @@ body {
 
 .tech-item:hover .brand-wordmark {
   opacity: 1;
-  /* Adds a glowing purple aura to the white logo on hover */
   filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
 }
 
