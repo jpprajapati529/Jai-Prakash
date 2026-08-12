@@ -254,19 +254,19 @@ body {
   
   border-radius: 12px;
   padding: 16px 36px; 
-  min-width: 240px; 
+  min-width: 260px; 
   
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .brand-wordmark {
-  height: 50px; 
-  width: 160px; 
+  height: 75px; 
+  width: 200px; 
   object-fit: contain; 
   
   /* REMOVED the monochrome invert filter so original colors show perfectly */
-  opacity: 0.9; 
+  opacity: 1; 
   transition: all 0.3s ease;
 }
 
