@@ -372,3 +372,31 @@ h2 {
 }
 
 .highlight { color: var(--accent-purple); font-weight: 600; }
+
+/* Tag Badges (JetBrains Style Pills) */
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+}
+
+.tag-badge:hover {
+  border-color: var(--accent-purple);
+  color: var(--text-primary);
+  background: rgba(168, 85, 247, 0.1);
+}
+
+/* Timeline Custom Bullet Styling */
+.timeline-item {
+  position: relative;
+  padding-left: 20px;
+  border-left: 2px solid var(--accent-purple);
+}
