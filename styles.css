@@ -155,14 +155,14 @@ body {
   border-radius: 50%;
   
   /* The sharp curved horizon line (Purple) */
-  border-top: 1px solid rgba(168, 85, 247, 0.5); 
+  border-top: 1px solid rgba(162, 74, 245, 0.5); 
   
   /* The JetBrains atmospheric upward glow (Purple) */
   /* The negative Y-value (-50px) pushes the light upwards above the curve */
   box-shadow: 0 -50px 150px rgba(168, 85, 247, 0.3);
   
   /* Seamlessly blends the area UNDER the curve with your dark background */
-  background-color: var(--bg-dark);
+  background-color: transparent !important;
   
   z-index: 0;
   pointer-events: none;
