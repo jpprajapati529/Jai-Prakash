@@ -13,31 +13,33 @@ document.addEventListener("mousemove", (e) => {
 
 // Modal Module Data Strategy - Dual Modes for ALL Cards
 const moduleData = {
-  // Paste these INSIDE your existing const moduleData = { ... }; object
-
+  // ----------------------------------------------------
+  // CLOUD PROVIDERS
+  // ----------------------------------------------------
   "aws": {
-    title: "AWS Cloud Engineering",
-    description: "Architecting scalable environments and enforcing IAM security controls across AWS services.",
+    title: "Amazon Web Services (AWS)",
+    description: "AWS is a comprehensive cloud platform offering compute, storage, database, and networking services.",
     tabs: [
       {
-        name: "Visual UI",
+        name: "My Responsibilities",
         type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="cloud"></i> Infrastructure & Migration</h4>
-              <p class="rich-text">Built and maintained resilient multi-tenant AWS environments using Terraform for effortless application scaling. Executed seamless on-premises to AWS migrations with minimal downtime.</p>
-              <h4 class="rich-heading"><i data-lucide="shield"></i> Security & Governance</h4>
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Built and maintained resilient multi-tenant environments to enable reliable operations and effortless scaling of applications.</p>
               <ul class="rich-list">
-                <li>Established IAM roles, policies, and security groups to exceed compliance requirements.</li>
-                <li>Audited IAM access controls for S3, EC2, RDS, and CloudWatch.</li>
+                <li>Managed EC2, S3, RDS, DynamoDB, Lambda, and EKS deployments across the cloud infrastructure.</li>
+                <li>Migrated on-premises applications to AWS, ensuring minimal downtime and seamless integration.</li>
+                <li>Established IAM roles, policies, and security groups to mitigate breaches and exceed compliance audit requirements.</li>
+                <li>Implemented comprehensive monitoring and alerting using AWS CloudWatch, CloudTrail, and Prometheus.</li>
               </ul>
             </div>
           </div>
         `
       },
       {
-        name: "Raw Code",
+        name: "IaC Example",
         type: "code",
         filename: "aws_iam_policy.tf",
         content: `resource "aws_iam_policy" "strict_s3_access" {
@@ -57,28 +59,29 @@ const moduleData = {
     ]
   },
   "azure": {
-    title: "Azure Cloud Engineering",
-    description: "Managing hybrid infrastructures, AKS containerization, and strict Entra ID RBAC policies.",
+    title: "Microsoft Azure",
+    description: "Azure is a public cloud computing platform providing scalable computing, analytics, storage, and IAM networking.",
     tabs: [
       {
-        name: "Visual UI",
+        name: "My Responsibilities",
         type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="cloud"></i> Infrastructure & CI/CD</h4>
-              <p class="rich-text">Managed commissioning and decommissioning of resources across a hybrid Azure and OpenShift ecosystem. Optimized deployments using Azure Pipelines.</p>
-              <h4 class="rich-heading"><i data-lucide="shield"></i> Security & Governance</h4>
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Engineered automated deployments and maintained infrastructure across hybrid environments, including Azure resources and on-premises OpenShift clusters.</p>
               <ul class="rich-list">
-                <li>Established Azure Entra ID & RBAC policies, mitigating security breaches.</li>
-                <li>Configured access controls for Blob storage, VMs, SQL, and Azure Monitor.</li>
+                <li>Provisioned and managed Azure Compute, Blob, Cosmos DB, and Azure Kubernetes Service (AKS).</li>
+                <li>Configured Azure Entra ID, RBAC policies, and security groups to strictly control access to critical services.</li>
+                <li>Migrated legacy applications to the Azure cloud, improving application responsiveness and reliability.</li>
+                <li>Utilized Azure Monitor and Prometheus to analyze performance bottlenecks and usage trends for cost optimization.</li>
               </ul>
             </div>
           </div>
         `
       },
       {
-        name: "Raw Code",
+        name: "IaC Example",
         type: "code",
         filename: "azure_rbac.tf",
         content: `resource "azurerm_role_assignment" "aks_monitoring" {
@@ -90,28 +93,29 @@ const moduleData = {
     ]
   },
   "gcp": {
-    title: "GCP & SRE Engineering",
-    description: "Deploying GKE microservices and establishing SRE practices with Stackdriver.",
+    title: "Google Cloud Platform (GCP)",
+    description: "GCP is a suite of cloud services that runs on the same infrastructure Google uses internally, offering high-performance compute and data analytics.",
     tabs: [
       {
-        name: "Visual UI",
+        name: "My Responsibilities",
         type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="activity"></i> Site Reliability Engineering</h4>
-              <p class="rich-text">Implemented SRE practices by defining SLIs/SLOs and error budgets. Unified observability across the cluster using GCP Stackdriver and Prometheus.</p>
-              <h4 class="rich-heading"><i data-lucide="shield"></i> Security & Operations</h4>
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Managed containerized microservices and automated cloud deployments while strictly enforcing Site Reliability Engineering (SRE) practices.</p>
               <ul class="rich-list">
-                <li>Maintained GCP Projects, Service Accounts, and IAM roles to exceed industry audit standards.</li>
-                <li>Audited custom roles for GCS, Compute Engine, Cloud SQL, and Stackdriver.</li>
+                <li>Provisioned multi-tenant GCP environments including GCS, Compute Engine, Cloud SQL, and GKE.</li>
+                <li>Implemented SRE practices by defining SLIs/SLOs and error budgets to maintain system reliability.</li>
+                <li>Established GCP Projects, Service Accounts, and IAM roles to exceed industry security compliance standards.</li>
+                <li>Unified observability and incident response using GCP Stackdriver and Prometheus.</li>
               </ul>
             </div>
           </div>
         `
       },
       {
-        name: "Raw Code",
+        name: "SRE Config",
         type: "code",
         filename: "gcp_slo.yaml",
         content: `apiVersion: monitoring.googleapis.com/v3
@@ -130,55 +134,33 @@ spec:
       }
     ]
   },
-  "terraform": {
-    title: "Infrastructure as Code",
-    description: "Architecting modular, multi-tenant cloud environments.",
-    tabs: [
-      {
-        name: "Visual UI",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="boxes"></i> Multi-Cloud Provisioning</h4>
-              <p class="rich-text">Built and maintained resilient multi-tenant environments across AWS, Azure, and GCP using Terraform, ensuring effortless scaling of applications and optimal resource utilization.</p>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Raw Code",
-        type: "code",
-        filename: "modules.tf",
-        content: `module "multi_tenant_aks" {
-  source              = "./modules/aks"
-  cluster_name        = "prod-hybrid-cluster"
-  kubernetes_version  = "1.27"
-  enable_auto_scaling = true
-  min_count           = 3
-  max_count           = 10
-}`
-      }
-    ]
-  },
+
+  // ----------------------------------------------------
+  // ORCHESTRATION & CONTAINERS
+  // ----------------------------------------------------
   "docker": {
-    title: "Docker Containerization",
-    description: "Packaging microservices for reliable and efficient deployments.",
+    title: "Docker",
+    description: "Docker is a software platform that allows developers to package applications into lightweight, standardized executable components called containers.",
     tabs: [
       {
-        name: "Visual UI",
+        name: "My Responsibilities",
         type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="box"></i> Containerization</h4>
-              <p class="rich-text">Deployed and managed containerized microservices using Docker, enhancing system reliability and drastically reducing infrastructure costs through efficient resource utilization.</p>
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Leveraged Docker to decouple applications from underlying infrastructure, ensuring consistency across development and production.</p>
+              <ul class="rich-list">
+                <li>Deployed and managed containerized microservices across diverse cloud environments.</li>
+                <li>Reduced infrastructure costs through highly efficient resource utilization and optimized container footprints.</li>
+                <li>Integrated Docker builds seamlessly into enterprise CI/CD pipelines.</li>
+              </ul>
             </div>
           </div>
         `
       },
       {
-        name: "Raw Code",
+        name: "Dockerfile",
         type: "code",
         filename: "Dockerfile",
         content: `FROM python:3.9-slim
@@ -193,28 +175,28 @@ CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:main"]`
     ]
   },
   "kubernetes": {
-    title: "Kubernetes Orchestration",
-    description: "Administering high-availability clusters and implementing strict security policies.",
+    title: "Kubernetes (K8s)",
+    description: "Kubernetes is an open-source container orchestration system for automating application deployment, scaling, and operational management.",
     tabs: [
       {
-        name: "Visual UI",
+        name: "My Responsibilities",
         type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="server"></i> Cluster Administration</h4>
-              <p class="rich-text">Managed microservices across EKS, AKS, and GKE. Enhanced reliability while optimizing resource usage.</p>
-              <h4 class="rich-heading"><i data-lucide="lock"></i> Kubernetes Security</h4>
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Administered large-scale, high-availability Kubernetes clusters (AKS, EKS, GKE) to ensure reliable microservice operations.</p>
               <ul class="rich-list">
-                <li>Implemented security best practices leveraging HashiCorp Vault and Secrets Manager.</li>
-                <li>Reduced security incidents by 60% through rigorous IAM and RBAC enforcement.</li>
+                <li>Enhanced system reliability through self-healing configurations and automated scaling.</li>
+                <li>Implemented stringent K8s security best practices, utilizing IAM, HashiCorp Vault, and Secrets Manager.</li>
+                <li>Successfully reduced security incidents by 60% through rigorous policy enforcement.</li>
               </ul>
             </div>
           </div>
         `
       },
       {
-        name: "Raw Code",
+        name: "Security Manifest",
         type: "code",
         filename: "k8s_security.yaml",
         content: `apiVersion: rbac.authorization.k8s.io/v1
@@ -229,24 +211,65 @@ rules:
       }
     ]
   },
-  "openshift": {
-    title: "Red Hat OpenShift",
-    description: "Managing enterprise on-premises container platforms.",
+  "helm": {
+    title: "Helm",
+    description: "Helm is the package manager for Kubernetes, used to define, install, and upgrade complex Kubernetes applications using Charts.",
     tabs: [
       {
-        name: "Visual UI",
+        name: "My Responsibilities",
         type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="layers"></i> Hybrid Cloud Integrations</h4>
-              <p class="rich-text">Managed the commissioning and decommissioning of on-premises OpenShift clusters within complex hybrid-cloud ecosystems, ensuring seamless interoperability with public cloud resources.</p>
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Utilized Helm and Kustomize to standardize microservice deployments and simplify cluster configuration management.</p>
+              <ul class="rich-list">
+                <li>Packaged microservices into reusable Helm Charts for rapid, repeatable deployments across multiple environments.</li>
+                <li>Managed complex YAML templating to ensure environment-specific configurations were securely injected at runtime.</li>
+              </ul>
             </div>
           </div>
         `
       },
       {
-        name: "Raw Code",
+        name: "Values YAML",
+        type: "code",
+        filename: "values.yaml",
+        content: `replicaCount: 3
+image:
+  repository: my-enterprise-repo/core-api
+  pullPolicy: IfNotPresent
+  tag: "v2.4.1"
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi`
+      }
+    ]
+  },
+  "openshift": {
+    title: "Red Hat OpenShift",
+    description: "OpenShift is an enterprise-grade Kubernetes platform built for a hybrid cloud strategy, offering enhanced security and developer tools.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Administered enterprise on-premises container platforms, ensuring seamless interoperability with public cloud resources.</p>
+              <ul class="rich-list">
+                <li>Managed the commissioning and decommissioning of on-premises OpenShift clusters within hybrid-cloud ecosystems.</li>
+                <li>Ensured optimal resource utilization and strict cost control across physical and cloud hardware.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "Route Config",
         type: "code",
         filename: "route.yaml",
         content: `apiVersion: route.openshift.io/v1
@@ -263,24 +286,105 @@ spec:
       }
     ]
   },
-  "jenkins": {
-    title: "Jenkins CI/CD",
-    description: "Building robust, automated deployment pipelines.",
+
+  // ----------------------------------------------------
+  // IAC, CI/CD & SCRIPTING
+  // ----------------------------------------------------
+  "terraform": {
+    title: "Terraform",
+    description: "Terraform is an Infrastructure as Code (IaC) tool by HashiCorp used to provision and manage cloud resources safely and predictably.",
     tabs: [
       {
-        name: "Visual UI",
+        name: "My Responsibilities",
         type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="git-merge"></i> Automation Engineering</h4>
-              <p class="rich-text">Built and optimized CI/CD pipelines using Jenkins to drastically improve deployment speed, frequency, and reliability across development, staging, and production environments.</p>
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Acted as the primary IaC architect to enforce infrastructure consistency and prevent manual configuration drift.</p>
+              <ul class="rich-list">
+                <li>Built and maintained resilient multi-tenant environments across AWS, Azure, and GCP using modular Terraform code.</li>
+                <li>Automated the provisioning of networking (VPCs), computing, databases, and IAM access controls.</li>
+              </ul>
             </div>
           </div>
         `
       },
       {
-        name: "Raw Code",
+        name: "Terraform Module",
+        type: "code",
+        filename: "modules.tf",
+        content: `module "multi_tenant_cluster" {
+  source              = "./modules/k8s-engine"
+  cluster_name        = "prod-hybrid-cluster"
+  kubernetes_version  = "1.27"
+  enable_auto_scaling = true
+  min_count           = 3
+  max_count           = 10
+}`
+      }
+    ]
+  },
+  "github": {
+    title: "GitHub Actions",
+    description: "GitHub Actions is a CI/CD platform that automates software workflows, allowing for build, test, and deployment pipelines directly within GitHub.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Engineered automated, event-driven workflows to standardize the software delivery process.</p>
+              <ul class="rich-list">
+                <li>Built and optimized CI/CD pipelines to drastically improve deployment speed, frequency, and overall reliability.</li>
+                <li>Automated security scans, linting, and container builds triggered by repository pull requests.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "Workflow YAML",
+        type: "code",
+        filename: "deploy.yml",
+        content: `name: Production Rollout
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run SonarQube Analysis
+      run: bash scripts/sonar-scan.sh`
+      }
+    ]
+  },
+  "jenkins": {
+    title: "Jenkins",
+    description: "Jenkins is a widely used open-source automation server that enables developers to reliably build, test, and deploy their software.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Designed and maintained enterprise-grade automation pipelines to support agile development cycles.</p>
+              <ul class="rich-list">
+                <li>Optimized legacy CI/CD pipelines using Jenkins to improve deployment speed and release reliability.</li>
+                <li>Integrated Jenkins with diverse toolchains including Docker, SonarQube, and Kubernetes deployment scripts.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "Jenkinsfile",
         type: "code",
         filename: "Jenkinsfile",
         content: `pipeline {
@@ -302,164 +406,28 @@ spec:
       }
     ]
   },
-  "github": {
-    title: "GitHub Actions",
-    description: "Event-driven CI/CD and repository automation.",
-    tabs: [
-      {
-        name: "Visual UI",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="github"></i> Pipeline Optimization</h4>
-              <p class="rich-text">Engineered automated workflows utilizing GitHub Actions to standardize testing, container builds, and deployment rollouts, establishing a highly responsive development process.</p>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Raw Code",
-        type: "code",
-        filename: "deploy.yml",
-        content: `name: Production Rollout
-on:
-  push:
-    branches: [ "main" ]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Authenticate to Cloud
-      uses: google-github-actions/auth@v1
-      with:
-        credentials_json: '\${{ secrets.GCP_CREDENTIALS }}'`
-      }
-    ]
-  },
-  "python": {
-    title: "Python Scripting",
-    description: "Developing robust automation and operational scripts.",
-    tabs: [
-      {
-        name: "Visual UI",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="terminal"></i> Operations Automation</h4>
-              <p class="rich-text">Engineered advanced Python and Bash scripts to automate complex cloud deployments, enabling quicker releases, reducing manual toil, and ensuring repeatable infrastructure provisioning.</p>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Raw Code",
-        type: "code",
-        filename: "cleanup_automation.py",
-        content: `import boto3
-from datetime import datetime, timezone
-
-def cleanup_stale_snapshots():
-    ec2 = boto3.client('ec2')
-    snapshots = ec2.describe_snapshots(OwnerIds=['self'])['Snapshots']
-    
-    for snap in snapshots:
-        age_days = (datetime.now(timezone.utc) - snap['StartTime']).days
-        if age_days > 30:
-            ec2.delete_snapshot(SnapshotId=snap['SnapshotId'])
-            print(f"Deleted stale snapshot: {snap['SnapshotId']}")`
-      }
-    ]
-  },
-  "helm": {
-    title: "Helm Package Management",
-    description: "Templating and deploying complex Kubernetes applications.",
-    tabs: [
-      {
-        name: "Visual UI",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="package"></i> Microservices Templating</h4>
-              <p class="rich-text">Leveraged Helm and Kustomize to package, configure, and seamlessly deploy multi-tier applications across diverse Kubernetes environments (AKS, EKS, GKE).</p>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Raw Code",
-        type: "code",
-        filename: "values.yaml",
-        content: `replicaCount: 3
-image:
-  repository: my-enterprise-repo/core-api
-  pullPolicy: IfNotPresent
-  tag: "v2.4.1"
-
-resources:
-  limits:
-    cpu: 500m
-    memory: 512Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi`
-      }
-    ]
-  },
-  "java": {
-    title: "Java Application Support",
-    description: "Building pipelines and containerizing Java-based enterprise software.",
-    tabs: [
-      {
-        name: "Visual UI",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="coffee"></i> Software Engineering</h4>
-              <p class="rich-text">Supported the software engineering lifecycle by optimizing build processes (Maven/Gradle) and securely containerizing Java backend services for reliable cloud deployments.</p>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Raw Code",
-        type: "code",
-        filename: "Dockerfile",
-        content: `FROM maven:3.8-eclipse-temurin-17 AS build
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-RUN mvn clean package -DskipTests
-
-FROM eclipse-temurin:17-jre-alpine
-WORKDIR /app
-COPY --from=build /app/target/api-service.jar .
-ENTRYPOINT ["java", "-jar", "api-service.jar"]`
-      }
-    ]
-  },
   "gitlab": {
-    title: "GitLab Source & CI",
-    description: "Managing code repositories and integrated pipelines.",
+    title: "GitLab",
+    description: "GitLab is a comprehensive DevSecOps platform delivered as a single application, providing source code management and CI/CD.",
     tabs: [
       {
-        name: "Visual UI",
+        name: "My Responsibilities",
         type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="git-commit"></i> Source Control & CI</h4>
-              <p class="rich-text">Managed source code repositories and utilized integrated CI/CD toolchains to enforce code quality, run security scans, and automate releases across agile sprints.</p>
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Facilitated secure version control and integrated pipeline automation for development teams.</p>
+              <ul class="rich-list">
+                <li>Managed source code repositories and enforced version control best practices across agile sprints.</li>
+                <li>Utilized integrated pipelines to automate testing and code-quality enforcement prior to cloud deployments.</li>
+              </ul>
             </div>
           </div>
         `
       },
       {
-        name: "Raw Code",
+        name: "GitLab CI",
         type: "code",
         filename: ".gitlab-ci.yml",
         content: `stages:
@@ -482,6 +450,83 @@ deploy_production:
       }
     ]
   },
+  "python": {
+    title: "Python & Shell Scripting",
+    description: "Python and BASH are versatile scripting languages essential for system administration, automation, and infrastructure operations.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Developed robust operational scripts to eliminate manual toil and streamline complex processes.</p>
+              <ul class="rich-list">
+                <li>Engineered advanced Python, Shell, and Bash scripts to automate cloud deployments.</li>
+                <li>Enabled quicker release cycles and a more responsive development process by scripting repetitive administrative tasks.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "Automation Script",
+        type: "code",
+        filename: "cleanup.py",
+        content: `import boto3
+from datetime import datetime, timezone
+
+def cleanup_stale_snapshots():
+    ec2 = boto3.client('ec2')
+    snapshots = ec2.describe_snapshots(OwnerIds=['self'])['Snapshots']
+    
+    for snap in snapshots:
+        age_days = (datetime.now(timezone.utc) - snap['StartTime']).days
+        if age_days > 30:
+            ec2.delete_snapshot(SnapshotId=snap['SnapshotId'])
+            print(f"Deleted stale snapshot: {snap['SnapshotId']}")`
+      }
+    ]
+  },
+  "java": {
+    title: "Java Ecosystem",
+    description: "Java is a widely-used object-oriented programming language popular for building robust, enterprise-grade backend services.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Supported developers by standardizing the build and deployment processes for enterprise Java applications.</p>
+              <ul class="rich-list">
+                <li>Optimized build systems using Maven/Gradle to integrate seamlessly into CI/CD pipelines.</li>
+                <li>Securely containerized Java backend microservices (e.g., Spring Boot) to ensure reliable, scalable operations on Kubernetes.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "Java Dockerfile",
+        type: "code",
+        filename: "Dockerfile",
+        content: `FROM maven:3.8-eclipse-temurin-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:17-jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/api-service.jar .
+ENTRYPOINT ["java", "-jar", "api-service.jar"]`
+      }
+    ]
+  },
+  
 
   "experience": {
     title: "4 Years DevOps & Platform Engineering",
