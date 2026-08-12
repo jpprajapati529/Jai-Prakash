@@ -729,6 +729,11 @@ h2 {
 .code-content { display: block; padding: 16px; font-family: var(--font-mono); font-size: 0.825rem; color: #a7f3d0; overflow-x: auto; white-space: pre; }
 
 .rich-content-container {
+  /* THE FIX: These lock the absolute glowing pseudo-element inside this exact box */
+  position: relative;
+  overflow: hidden;
+  
+  /* Your existing styles */
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--card-border);
   border-radius: 10px;
