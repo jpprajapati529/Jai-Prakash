@@ -182,3 +182,171 @@ document.addEventListener("mousemove", (e) => {
     card.style.setProperty("--y", `${y}px`);
   }
 });
+
+// =========================================================
+// DRILL-DOWN MODAL & DEV-TOOLS ENGINE
+// =========================================================
+
+const moduleData = {
+  "business-mgmt": {
+    title: "Business Management System — DevOps Stack",
+    icon: "folder-git-2",
+    description: "An all-in-one DevOps architecture showcasing automated containerization, Kubernetes orchestration, Terraform cloud provisioning, and Prometheus monitoring for enterprise services.",
+    tabs: [
+      {
+        name: "Docker Compose",
+        filename: "docker-compose.yml",
+        code: `version: '3.8'
+services:
+  app-backend:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - DB_HOST=postgres-db
+    depends_on:
+      - postgres-db
+
+  postgres-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: business_db
+      POSTGRES_USER: devops_admin
+      POSTGRES_PASSWORD: \${DB_PASSWORD}`
+      },
+      {
+        name: "Kubernetes Manifest",
+        filename: "deployment.yaml",
+        code: `apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: business-mgmt-app
+  namespace: production
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: business-mgmt
+  template:
+    metadata:
+      labels:
+        app: business-mgmt
+    spec:
+      containers:
+      - name: app
+        image: jpprajapati529/business-mgmt:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"`
+      },
+      {
+        name: "Terraform IaC",
+        filename: "main.tf",
+        code: `module "gcp_gke_cluster" {
+  source       = "terraform-google-modules/kubernetes-engine/google"
+  project_id   = "fintech-platform-prod"
+  name         = "business-mgmt-cluster"
+  region       = "asia-south1"
+  network      = "custom-vpc"
+  subnetwork   = "gke-subnet"
+  ip_range_pods     = "pod-range"
+  ip_range_services = "service-range"
+
+  node_pools = [
+    {
+      name         = "default-node-pool"
+      machine_type = "e2-standard-4"
+      min_count    = 2
+      max_count    = 5
+      auto_repair  = true
+    }
+  ]
+}`
+      },
+      {
+        name: "CI/CD Pipeline",
+        filename: ".github/workflows/deploy.yml",
+        code: `name: Build & Deploy Business Management System
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: Build Docker Image
+      run: docker build -t jpprajapati529/business-mgmt:\${{ github.sha }} .
+    - name: Deploy to Kubernetes
+      run: kubectl apply -f k8s/`
+      }
+    ]
+  }
+};
+
+let currentTabCode = "";
+
+function openModuleModal(moduleId) {
+  const data = moduleData[moduleId];
+  if (!data) return;
+
+  document.getElementById("modal-title").innerText = data.title;
+  document.getElementById("modal-description").innerText = data.description;
+
+  const tabsContainer = document.getElementById("modal-tabs");
+  tabsContainer.innerHTML = "";
+
+  data.tabs.forEach((tab, index) => {
+    const btn = document.createElement("button");
+    btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
+    btn.innerText = tab.name;
+    btn.onclick = () => selectModalTab(data, index, btn);
+    tabsContainer.appendChild(btn);
+  });
+
+  // Select first tab by default
+  selectModalTab(data, 0, tabsContainer.children[0]);
+
+  const overlay = document.getElementById("modal-overlay");
+  overlay.classList.add("active");
+  lucide.createIcons();
+}
+
+function selectModalTab(data, index, targetBtn) {
+  const allTabs = document.querySelectorAll(".tab-btn");
+  allTabs.forEach(t => t.classList.remove("active"));
+  if (targetBtn) targetBtn.classList.add("active");
+
+  const tab = data.tabs[index];
+  document.getElementById("code-filename").innerText = tab.filename;
+  document.getElementById("code-block").innerText = tab.code;
+  currentTabCode = tab.code;
+}
+
+function closeModal() {
+  document.getElementById("modal-overlay").classList.remove("active");
+}
+
+function closeModalOnOuterClick(e) {
+  if (e.target.id === "modal-overlay") {
+    closeModal();
+  }
+}
+
+function copyCodeSnippet() {
+  if (currentTabCode) {
+    navigator.clipboard.writeText(currentTabCode);
+    alert("Snippet copied to clipboard!");
+  }
+}
