@@ -157,7 +157,7 @@ body {
   inset: 0;
   /* Fixed: Extremely tight radius (120px) with a hot center (0.65 opacity) */
   background: radial-gradient(
-    120px circle at var(--x, -500px) var(--y, -500px),
+    90px circle at var(--x, -500px) var(--y, -500px),
     rgba(168, 85, 247, 0.65) 0%,
     transparent 100%
   );
