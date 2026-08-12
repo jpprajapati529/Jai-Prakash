@@ -122,12 +122,11 @@ body {
 .tech-marquee-section {
   position: relative;
   width: 100%;
-  padding: 30px 0;
-  margin-bottom: 40px;
+  padding: 120px 0;
+  margin-bottom: 60px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.01);
-  border-top: 1px solid var(--card-border);
-  border-bottom: 1px solid var(--card-border);
+  background: transparent; /* Removed the background tint to blend seamlessly */
+  border: none; /* Removed harsh borders to match JetBrains */
 }
 
 /* Feathered fade edges so logos disappear cleanly */
@@ -136,7 +135,7 @@ body {
   content: "";
   position: absolute;
   top: 0;
-  width: 150px;
+  width: 250px;
   height: 100%;
   z-index: 2;
   pointer-events: none;
@@ -173,30 +172,30 @@ body {
 .tech-group {
   display: flex;
   align-items: center;
-  gap: 70px;
-  padding-right: 70px; /* Crucial: Matches gap to make the loop seamless */
+  gap: 100px;
+  padding-right: 100px; /* Crucial: Matches gap to make the loop seamless */
 }
 
 .tech-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  min-width: 70px;
+  gap: 16px;
+  min-width: 80px;
   transition: transform 0.3s ease;
   cursor: pointer;
 }
 
 .tech-item:hover {
-  transform: translateY(-6px) scale(1.05);
+  transform: translateY(-8px) scale(1.05);
 }
 
 .tech-item img {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   object-fit: contain;
   /* Adds a subtle purple ambient glow behind the logos */
-  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.2));
+  filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.15));
 }
 
 .tech-item span {
