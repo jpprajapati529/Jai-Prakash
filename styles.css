@@ -1,69 +1,374 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 /* =========================================================
-   JETBRAINS CURSOR SPOTLIGHT GLOW
+   1. GLOBAL RESETS & JETBRAINS DARK VARIABLES
    ========================================================= */
+:root {
+  --bg-dark: #08080a;           /* Deep JetBrains OLED Black */
+  --card-bg: #111216;           /* JetBrains Dark Slate Card */
+  --card-border: #22252d;       /* Subtle Glass Border */
+  --card-border-hover: #a855f7; /* JetBrains Purple Highlight */
+  
+  --text-primary: #ffffff;      /* Crisp High Contrast White */
+  --text-secondary: #9ca3af;    /* Soft Muted Gray */
+  --text-muted: #6b7280;        /* Dimmed Gray */
+  
+  --accent-purple: #a855f7;     /* JetBrains Purple */
+  --accent-green: #22c55e;      /* Success Green */
+  --accent-blue: #3b82f6;       /* Tech Blue */
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  padding: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   2. NAVBAR & CONTROL PLANE HEADER
+   ========================================================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: rgba(17, 18, 22, 0.8);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  margin-bottom: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.system-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent-green);
+  transition: all 0.2s ease;
+}
+
+.system-status:hover {
+  background: rgba(34, 197, 94, 0.2);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-green);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-green);
+}
+
+.navbar nav {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navbar nav a:hover {
+  color: var(--text-primary);
+}
+
+/* =========================================================
+   3. METRICS GRID & JETBRAINS SPOTLIGHT CARDS
+   ========================================================= */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
 
 .card, 
-.project-card, 
-.dashboard-section {
+.dashboard-section, 
+.project-card {
   position: relative;
-  background-color: #121318;
-  border: 1px solid #2d333b;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 12px;
-  overflow: hidden; /* Restricts the purple glow within the card bounds */
+  padding: 24px;
+  overflow: hidden;
   transition: border-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Purple Spotlight Overlay Layer */
+/* JetBrains Purple Cursor Spotlight */
 .card::before, 
-.project-card::before, 
-.dashboard-section::before {
+.dashboard-section::before, 
+.project-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  /* Radial gradient centered at mouse coordinates --x and --y */
   background: radial-gradient(
     380px circle at var(--x, -500px) var(--y, -500px),
-    rgba(168, 85, 247, 0.35), /* JetBrains Accent Purple */
+    rgba(168, 85, 247, 0.25),
     transparent 70%
   );
   opacity: 0;
   transition: opacity 0.3s ease;
-  pointer-events: none; /* Crucial: lets mouse clicks pass directly to links & buttons */
+  pointer-events: none;
   z-index: 1;
 }
 
-/* Fade in the spotlight on card hover */
 .card:hover::before, 
-.project-card:hover::before, 
-.dashboard-section:hover::before {
+.dashboard-section:hover::before, 
+.project-card:hover::before {
   opacity: 1;
 }
 
-/* Hover border glow */
 .card:hover, 
 .project-card:hover {
   border-color: rgba(168, 85, 247, 0.5);
   transform: translateY(-2px);
 }
 
-/* Ensure all internal text, buttons, and badges sit ABOVE the spotlight */
 .card *, 
-.project-card *, 
-.dashboard-section * {
+.dashboard-section *, 
+.project-card * {
   position: relative;
   z-index: 2;
 }
 
-/* JetBrains Style Tag Badges (like "Shanghai", "Sales" in video) */
-.tag-badge {
-  display: inline-flex;
+.card h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  font-size: 0.8rem;
-  color: #c9d1d9;
-  backdrop-filter: blur(4px);
+  gap: 8px;
+  margin-bottom: 12px;
 }
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.metric-sub {
+  font-size: 0.8rem;
+  color: var(--accent-purple);
+  font-weight: 500;
+}
+
+/* =========================================================
+   4. DASHBOARD SECTIONS & BUTTONS
+   ========================================================= */
+.dashboard-section {
+  margin-bottom: 24px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* JetBrains Style Pill Button */
+.btn-primary, button {
+  background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover, button:hover {
+  opacity: 0.95;
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+}
+
+/* =========================================================
+   5. CI/CD PIPELINE SIMULATOR STEPPER
+   ========================================================= */
+.pipeline-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.step {
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--card-border);
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.step.running {
+  border-color: #f59e0b;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.step.passed {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.step-connector {
+  flex-grow: 1;
+  height: 2px;
+  background: var(--card-border);
+  min-width: 20px;
+}
+
+.pipeline-logs-console {
+  background-color: #050507;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  height: 140px;
+  overflow-y: auto;
+  color: var(--text-secondary);
+}
+
+.log-line { margin-bottom: 6px; }
+.text-muted { color: var(--text-muted); }
+.text-cyan { color: var(--accent-blue); }
+.text-green { color: var(--accent-green); }
+
+/* =========================================================
+   6. PROJECTS GRID & TERMINAL
+   ========================================================= */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.chart-container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.terminal-container {
+  background-color: #050507;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: var(--font-mono);
+}
+
+.terminal-header {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.terminal-buttons .btn {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.btn.red { background: #ef4444; }
+.btn.yellow { background: #f59e0b; }
+.btn.green { background: #10b981; }
+
+.terminal-title {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.terminal-body {
+  padding: 16px;
+  height: 180px;
+  overflow-y: auto;
+  font-size: 0.85rem;
+}
+
+.terminal-input-line {
+  display: flex;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid var(--card-border);
+}
+
+.prompt { color: var(--accent-green); margin-right: 10px; }
+
+#cli-input {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  outline: none;
+  width: 100%;
+}
+
+.highlight { color: var(--accent-purple); font-weight: 600; }
