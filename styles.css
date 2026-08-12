@@ -246,10 +246,11 @@ body {
   align-items: center;
   justify-content: center;
   
-  /* Replaced solid #ffffff with a frosted glass effect */
-  background-color: rgba(255, 255, 255, 0.08); 
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* The New Purple Background: A subtle 12% opacity wash of your accent color */
+  background-color: rgba(168, 85, 247, 0.12); 
+  
+  /* A slightly more visible purple border to frame the logos nicely */
+  border: 1px solid rgba(168, 85, 247, 0.25);
   
   border-radius: 12px;
   padding: 16px 36px; 
@@ -271,7 +272,7 @@ body {
 
 .tech-item:hover {
   transform: translateY(-4px);
-  /* Adds a beautiful purple aura behind the white card */
+  background-color: rgba(168, 85, 247, 0.2); /* Slightly brighter purple on hover */
   box-shadow: 0 12px 24px rgba(168, 85, 247, 0.3);
   border-color: var(--accent-purple);
 }
