@@ -142,13 +142,34 @@ body {
   background-color: var(--bg-dark); /* Replaced the linear gradient with a solid dark base */
 }
 
+/* The curved horizon effect */
+.tech-marquee-section::after {
+  content: "";
+  position: absolute;
+  bottom: -200px; /* Pushes the shape down so only the top arc is visible */
+  left: -50%;     /* Stretches the shape way past the screen edges */
+  width: 200%;
+  height: 300px;  /* Controls the shallowness of the curve */
+  border-radius: 50%; /* Makes it a perfect oval */
+
+  /* The sharp horizon line (using JetBrains Blue) */
+  border-top: 1px solid rgba(59, 130, 246, 0.6); 
+
+  /* The atmospheric glow emanating upwards */
+  box-shadow: 0 -40px 100px rgba(59, 130, 246, 0.25);
+
+  z-index: 0; /* Keeps it in the background */
+  pointer-events: none;
+}
+
 .tech-marquee {
+  position: relative;
+  z-index: 1; /* Ensures logos sit on top of the glowing curve */
+  
   display: flex;
   width: 100%;
   overflow: hidden;
-  padding: 10px 0; /* Prevents box-shadow clipping on hover */
-  
-  /* Modern CSS Mask */
+  padding: 10px 0; 
   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
