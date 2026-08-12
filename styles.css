@@ -116,9 +116,13 @@ html {
 /* 1. Two-Column Hero Layout */
 .hero-banner {
   display: flex !important;
-  flex-direction: row !important; /* Forces elements side-by-side */
-  justify-content: space-between;
+  flex-direction: row !important;
+  
+  /* THE FIX: Strictly forbids the image from dropping to the next line */
+  flex-wrap: nowrap !important; 
+  
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   min-height: 50vh;
   text-align: left;
@@ -126,13 +130,14 @@ html {
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(168, 85, 247, 0.2);
   background: transparent;
-  gap: 40px; /* Creates clean space between text and image */
 }
 
 /* 2. Left Side: Text Box */
 .hero-content {
-  flex: 1 1 50%; /* Takes up exactly 50% of the space */
-  max-width: 650px; 
+  /* Strictly allocate 55% of the space to the text */
+  width: 55%; 
+  flex-shrink: 0; /* Prevents the image from squishing the text */
+  padding-right: 20px;
 }
 
 .hero-title {
@@ -156,11 +161,13 @@ html {
   margin-bottom: 24px;
 }
 
-/* 3. Right Side: Image Box */
+/* 3. RIGHT SIDE: Image Box */
 .hero-image {
-  flex: 1 1 50%; /* Takes up exactly the other 50% of the space */
+  /* Allocate the remaining 45% of the space to the image */
+  width: 45%; 
+  flex-shrink: 0;
   display: flex;
-  justify-content: flex-end; /* Pushes the image to the far right */
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -169,21 +176,30 @@ html {
   max-width: 600px;
   height: auto;
   
-  /* Removes the dark background from the image */
   mix-blend-mode: screen; 
   opacity: 0.95; 
-  filter: drop-shadow(0 0 50px rgba(168, 85, 247, 0.25));
+  
+  /* THE FIX FOR THE RECTANGLE EDGES: 
+     This acts as an invisible feathering brush, keeping the center 100% visible 
+     but fading the hard borders of the image perfectly into transparency */
+  -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 80%);
+  mask-image: radial-gradient(ellipse at center, black 50%, transparent 80%);
 }
 
-/* 4. Mobile Responsiveness */
+/* 4. MOBILE LAYOUT (Stacks neatly only on small screens) */
 @media (max-width: 900px) {
   .hero-banner {
-    flex-direction: column !important; /* Stacks vertically only on mobile */
+    flex-direction: column !important; 
     text-align: center;
   }
   
-  .hero-image {
+  .hero-content, .hero-image {
+    width: 100%;
+    padding-right: 0;
     justify-content: center;
+  }
+  
+  .hero-image {
     margin-top: 40px;
   }
 }
