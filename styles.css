@@ -3,9 +3,27 @@
 /* =========================================================
    1. GLOBAL RESETS & JETBRAINS DARK VARIABLES
    ========================================================= */
-:root {
+/* :root {
   --bg-dark: #08080a;
   --card-bg: #111216;
+  --card-border: #22252d;
+  --accent-purple: #a855f7;
+  --accent-green: #22c55e;
+  --accent-blue: #3b82f6;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+} */
+
+/* GLOBAL RESETS & JETBRAINS DARK VARIABLES */
+:root {
+  --bg-dark: #08080a;
+  
+  /* THE FIX: Changed from the dark grey (#111216) to pure black */
+  --card-bg: #000000; 
+  
   --card-border: #22252d;
   --accent-purple: #a855f7;
   --accent-green: #22c55e;
