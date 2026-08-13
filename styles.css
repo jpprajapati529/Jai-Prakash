@@ -416,6 +416,7 @@ html {
    ellipse that draws the horizon line, so the light always follows the arc. */
 /* 2. THE ATMOSPHERIC GLOW (Pushed Down) */
 /* 2. THE ATMOSPHERIC GLOW (The Massive Upward Aura) */
+/* 2. THE ATMOSPHERIC FOG (The Massive Upward Aura) */
 .tech-marquee-section::before {
   content: "";
   position: absolute;
@@ -425,13 +426,10 @@ html {
   height: 400px;
   border-radius: 50%;
   
-  /* THE FIX: Massive negative Y-offset (-80px) and huge blur (150px) 
-     forces the purple light to blast upwards like volumetric fog */
-  box-shadow: 0 -80px 150px 20px rgba(168, 85, 247, 0.4);
-  
-  /* Masks the bottom so the light doesn't bleed downwards */
-  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 80%);
-  mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 80%);
+  /* THE FIX: We completely removed the 'mask-image' from this layer! 
+     Now the shadow can freely bleed outside the box and shoot upwards. 
+     Increased the spread to 40px to make it thick and volumetric. */
+  box-shadow: 0 -80px 120px 40px rgba(168, 85, 247, 0.25);
   
   z-index: 0;
   pointer-events: none;
@@ -448,18 +446,18 @@ html {
   border-radius: 50%;
   
   /* The bright, solid neon horizon line */
-  border-top: 2px solid rgba(168, 85, 247, 1); 
+  border-top: 2px solid rgba(168, 85, 247, 0.8); 
   
-  /* THE FIX: Double-layered intense core shadows sitting directly on the line */
+  /* The hot core sitting directly on the line */
   box-shadow: 
-    0 -10px 20px 0 rgba(168, 85, 247, 0.8),
-    0 -30px 60px 0 rgba(168, 85, 247, 0.5);
+    0 -15px 30px 0 rgba(168, 85, 247, 0.5),
+    0 -30px 60px 0 rgba(168, 85, 247, 0.25);
     
   background: transparent !important;
   
-  /* Fades the line smoothly out at the left and right edges */
-  -webkit-mask-image: linear-gradient(to right, transparent 15%, black 50%, transparent 85%);
-  mask-image: linear-gradient(to right, transparent 15%, black 50%, transparent 85%);
+  /* The mask stays HERE ONLY just to fade the left/right ends of the solid line */
+  -webkit-mask-image: linear-gradient(to right, transparent 10%, black 50%, transparent 90%);
+  mask-image: linear-gradient(to right, transparent 10%, black 50%, transparent 90%);
   
   z-index: 0;
   pointer-events: none;
