@@ -732,6 +732,55 @@ html {
   100% { transform: translateX(-50%); } 
 }
 
+
+/* =========================================================
+   PROFESSIONAL SUMMARY CARD (Cursor Spotlight Effect)
+   ========================================================= */
+.summary-card {
+  position: relative;
+  background-color: var(--card-bg, #111216);
+  border: 1px solid var(--card-border, rgba(168, 85, 247, 0.3));
+  border-radius: 20px;
+  padding: 40px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* The Cursor-Tracking Spotlight Layer */
+.summary-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    700px circle at var(--x) var(--y),
+    rgba(168, 85, 247, 0.18),
+    transparent 50%
+  );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.summary-card:hover::before {
+  opacity: 1;
+}
+
+.summary-card:hover {
+  border-color: rgba(168, 85, 247, 0.7);
+  box-shadow: 0 20px 45px rgba(168, 85, 247, 0.15);
+}
+
+/* Ensures content stays above the spotlight glow layer */
+.summary-card > * {
+  position: relative;
+  z-index: 2;
+}
+
 /* =========================================================
    JETBRAINS STICKY SCROLL SECTION
    ========================================================= */
