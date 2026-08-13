@@ -95,6 +95,7 @@ html {
 .navbar nav a:hover { color: var(--text-primary); }
 
 /* --- HERO TILE (Strict Side-by-Side Layout) --- */
+/* 1. THE MAIN TILE */
 .hero-card {
   display: flex !important;
   flex-direction: row !important;
@@ -104,12 +105,20 @@ html {
   width: 100%;
   background-color: #050b14; 
   border-radius: 24px;
-  padding: 60px 80px;
+  
+  /* THE FIX: Left padding keeps your text spaced nicely, 
+     while 0 right padding allows the image to touch the absolute edge */
+  padding: 60px 0 60px 80px; 
+  
   margin-bottom: 60px;
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  
+  /* Clips the image cleanly to the card's rounded corners */
+  overflow: hidden; 
 }
 
+/* 2. LEFT SIDE (Text) */
 .hero-content-left {
   flex: 0 0 50%;
   max-width: 50%;
@@ -117,78 +126,29 @@ html {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  padding-right: 40px;
+  padding-right: 20px;
   box-sizing: border-box;
 }
 
-.hero-overline {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 12px;
-  font-family: var(--font-sans);
-}
-
-.hero-headline {
-  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.2;
-  margin-bottom: 24px;
-  letter-spacing: -0.5px;
-}
-
-.hero-subtext {
-  font-size: 1.05rem;
-  color: #e2e8f0; 
-  line-height: 1.6;
-  margin-bottom: 32px;
-}
-
-.hero-btn {
-  background-color: #ffffff;
-  color: #000000;
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 12px 24px;
-  border-radius: 9999px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  display: inline-block;
-}
-
-.hero-btn:hover {
-  background-color: #f1f5f9;
-  transform: scale(1.02);
-}
-
+/* 3. RIGHT SIDE (Image) */
 .hero-image-right {
-  flex: 0 0 50%;
-  max-width: 50%;
+  flex: 0 0 48%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   box-sizing: border-box;
-  overflow: hidden; /* Clips any overflow so it fits cleanly inside the card's right border */
-  position: relative;
-  height: 100%;
 }
 
 .hero-image-right img {
-  /* Forces the image to expand past the natural box boundary */
-  width: 130%; 
-  max-width: none;
+  width: 100%;
+  max-width: 650px;
   height: auto;
-  
   mix-blend-mode: screen;
   
-  /* Pushes the image to the right so it bleeds directly against the card's edge */
-  position: absolute;
-  right: -60px; 
-  
-  /* Removes the harsh vertical mask cutout completely */
-  -webkit-mask-image: none;
-  mask-image: none;
+  /* THE FIX: Zooms the loop slightly and anchors it to the right wall 
+     so it looks naturally embedded against the card boundary */
+  transform: scale(1.15);
+  transform-origin: right center;
 }
 
 /* Responsive breakpoint: only stacks on screens narrower than 960px */
