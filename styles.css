@@ -128,6 +128,9 @@ html {
 /* =========================================================
    2. NAVBAR & HERO BANNER TILE
    ========================================================= */
+/* =========================================================
+   2. NAVBAR (Seamless & Tight Spacing)
+   ========================================================= */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -143,26 +146,56 @@ html {
   
   /* Shrunk the bottom margin to snap the hero card right underneath the nav */
   margin-bottom: 12px; 
+} /* <--- THIS CLOSING BRACE WAS MISSING! */
 
-  /* =========================================================
+/* Alignment fix for the navigation links */
+.navbar nav { 
+  display: flex; 
+  align-items: center; 
+  gap: 24px; 
+}
+
+.navbar nav > a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+/* =========================================================
    NAVIGATION DROPDOWN MENU
    ========================================================= */
 .nav-dropdown {
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .dropdown-trigger {
   display: flex !important;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.dropdown-trigger:hover {
+  color: var(--text-primary);
 }
 
 .dropdown-icon {
   width: 14px;
   height: 14px;
   transition: transform 0.3s ease;
+  margin-top: 2px;
 }
 
 /* Rotates the arrow smoothly when hovered */
@@ -232,7 +265,6 @@ html {
   width: 16px;
   height: 16px;
   color: var(--accent-purple);
-}
 }
 
 /* =========================================================
