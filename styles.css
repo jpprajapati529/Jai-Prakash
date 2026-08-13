@@ -23,6 +23,20 @@
   padding: 0;
 }
 
+/* Enables smooth scrolling across the entire site instead of aggressive jumping */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 
+  Ensures that when a user clicks an anchor link, the browser stops scrolling 
+  150px early so the text sits perfectly centered next to the IDE window, 
+  rather than hiding under the top navigation bar.
+*/
+.scroll-block {
+  scroll-margin-top: 150px; 
+}
+
 body {
   background-color: var(--bg-dark);
   color: var(--text-primary);
