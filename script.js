@@ -26,7 +26,7 @@ function toggleTheme() {
 
 // Mouse Tracking for JetBrains Cursor Spotlight
 document.addEventListener("mousemove", (e) => {
-  const card = e.target.closest(".card, .project-card, .dashboard-section, .rich-content-container");
+  const card = e.target.closest(".card, .project-card, .dashboard-section, .rich-content-container, .ide-window");
   if (card) {
     const rect = card.getBoundingClientRect();
     card.style.setProperty("--x", `${e.clientX - rect.left}px`);
