@@ -315,135 +315,189 @@
   <!-- =========================================================
        CERTIFICATIONS & CREDENTIALS (Sticky Scroll)
        ========================================================= -->
-  <section id="certifications" class="cert-section-container">
-    <div class="section-title-wrapper">
+  <!-- =========================================================
+       CERTIFICATIONS (JetBrains Sticky Scroll & Badge IDE Layout)
+       ========================================================= -->
+  <section id="certifications" class="jetbrains-sticky-section">
+    <div class="section-title-wrapper" style="padding: 0 24px; max-width: 1200px; margin: 0 auto 60px auto;">
       <h2 class="section-headline"><i data-lucide="award"></i> Certifications</h2>
-      <p class="section-subtext">Validated expertise across major cloud providers and infrastructure automation tools.</p>
+      <p class="section-subtext">Validated technical expertise across multi-cloud architectures and infrastructure automation.</p>
     </div>
 
-    <!-- 1. AWS GROUP -->
-    <div id="certs-aws" class="cert-group">
-      <div class="cert-sidebar">
-        <div class="sticky-header">
-          <i data-lucide="cloud" style="color: #FF9900;"></i>
-          <h3>AWS</h3>
-          <span class="cert-badge">2 Credentials</span>
+    <div class="sticky-container">
+      
+      <!-- LEFT COLUMN: Scrolling Text Blocks -->
+      <div class="scroll-blocks-col">
+        
+        <!-- 1. AWS SAA -->
+        <div class="scroll-block active" data-target="ide-aws-saa">
+          <span class="cert-provider-tag" style="color: #FF9900;">Amazon Web Services</span>
+          <h3>AWS Certified Solutions Architect – Associate</h3>
+          <p>Validation of comprehensive knowledge in designing resilient, secure, and cost-optimized distributed systems on AWS.</p>
         </div>
-      </div>
-      <div class="cert-content">
-        <div class="cert-card">
-          <div class="cert-card-text">
-            <h4>AWS Certified Solutions Architect – Associate</h4>
-            <p>Designing highly available, scalable, and secure distributed systems on AWS.</p>
-          </div>
-          <!-- Right Side: Badge Image -->
-          <div class="cert-card-image">
-            <img src="./aws-saa-badge.png" alt="AWS Solutions Architect Badge">
-          </div>
-        </div>
-        <div class="cert-card">
-          <div class="cert-card-text">
-            <h4>AWS Certified DevOps Engineer – Professional</h4>
-            <p>Advanced expertise in provisioning, operating, and managing environments on the AWS platform.</p>
-          </div>
-          <div class="cert-card-image">
-            <img src="./aws-devops-pro-badge.png" alt="AWS DevOps Pro Badge">
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- 2. GCP GROUP -->
-    <div id="certs-gcp" class="cert-group">
-      <div class="cert-sidebar">
-        <div class="sticky-header">
-          <i data-lucide="cloud-lightning" style="color: #4285F4;"></i>
-          <h3>GCP</h3>
-          <span class="cert-badge">2 Credentials</span>
+        <!-- 2. AWS DevOps Pro -->
+        <div class="scroll-block" data-target="ide-aws-devops">
+          <span class="cert-provider-tag" style="color: #FF9900;">Amazon Web Services</span>
+          <h3>AWS Certified DevOps Engineer – Professional</h3>
+          <p>Advanced expertise in provisioning, operating, managing secure environments, and automating CI/CD workflows at scale.</p>
         </div>
-      </div>
-      <div class="cert-content">
-        <div class="cert-card">
-          <div class="cert-card-text">
-            <h4>Google Cloud Associate Cloud Engineer</h4>
-            <p>Deploying applications, monitoring operations, and managing enterprise solutions.</p>
-          </div>
-          <div class="cert-card-image">
-            <img src="./gcp-ace-badge.png" alt="GCP ACE Badge">
-          </div>
-        </div>
-        <div class="cert-card">
-          <div class="cert-card-text">
-            <h4>GCP Professional Cloud DevOps Engineer</h4>
-            <p>Implementing SRE practices, CI/CD pipelines, and monitoring robust cloud infrastructure.</p>
-          </div>
-          <div class="cert-card-image">
-            <img src="./gcp-devops-pro-badge.png" alt="GCP DevOps Pro Badge">
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- 3. AZURE GROUP -->
-    <div id="certs-azure" class="cert-group">
-      <div class="cert-sidebar">
-        <div class="sticky-header">
-          <i data-lucide="cloud-snow" style="color: #0089D6;"></i>
-          <h3>Azure</h3>
-          <span class="cert-badge">2 Credentials</span>
+        <!-- 3. GCP ACE -->
+        <div class="scroll-block" data-target="ide-gcp-ace">
+          <span class="cert-provider-tag" style="color: #4285F4;">Google Cloud Platform</span>
+          <h3>Google Cloud Associate Cloud Engineer</h3>
+          <p>Deploying applications, actively monitoring cloud operations, and managing multi-tenant enterprise solutions.</p>
         </div>
-      </div>
-      <div class="cert-content">
-        <div class="cert-card">
-          <div class="cert-card-text">
-            <h4>Azure Developer Associate</h4>
-            <p>Designing, building, testing, and maintaining cloud applications on Azure.</p>
-          </div>
-          <div class="cert-card-image">
-            <img src="./azure-developer-badge.png" alt="Azure Developer Badge">
-          </div>
-        </div>
-        <div class="cert-card">
-          <div class="cert-card-text">
-            <h4>Azure DevOps Engineer Expert</h4>
-            <p>Combining people, processes, and technologies to continuously deliver valuable products.</p>
-          </div>
-          <div class="cert-card-image">
-            <img src="./azure-devops-expert-badge.png" alt="Azure DevOps Expert Badge">
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- 4. CONTAINERS & IAC GROUP -->
-    <div id="certs-iac" class="cert-group">
-      <div class="cert-sidebar">
-        <div class="sticky-header">
-          <i data-lucide="layers" style="color: var(--accent-purple);"></i>
-          <h3>Containers & IaC</h3>
-          <span class="cert-badge">2 Credentials</span>
+        <!-- 4. GCP DevOps Pro -->
+        <div class="scroll-block" data-target="ide-gcp-devops">
+          <span class="cert-provider-tag" style="color: #4285F4;">Google Cloud Platform</span>
+          <h3>GCP Professional Cloud DevOps Engineer</h3>
+          <p>Implementing rigorous SRE practices, defining service level objectives, and optimizing infrastructure reliability.</p>
+        </div>
+
+        <!-- 5. Azure Developer -->
+        <div class="scroll-block" data-target="ide-azure-dev">
+          <span class="cert-provider-tag" style="color: #0089D6;">Microsoft Azure</span>
+          <h3>Azure Developer Associate</h3>
+          <p>Designing, building, testing, and maintaining cloud-native applications and microservice integrations.</p>
+        </div>
+
+        <!-- 6. Azure DevOps Expert -->
+        <div class="scroll-block" data-target="ide-azure-expert">
+          <span class="cert-provider-tag" style="color: #0089D6;">Microsoft Azure</span>
+          <h3>Azure DevOps Engineer Expert</h3>
+          <p>Streamlining delivery pipelines, managing source control, and orchestrating enterprise deployments using Azure DevOps.</p>
+        </div>
+
+        <!-- 7. KCNA -->
+        <div class="scroll-block" data-target="ide-kcna">
+          <span class="cert-provider-tag" style="color: var(--accent-purple);">Cloud Native Foundation</span>
+          <h3>Kubernetes and Cloud Native Associate (KCNA)</h3>
+          <p>Foundational mastery of Kubernetes cluster architecture, workload scheduling, and container orchestration workflows.</p>
+        </div>
+
+        <!-- 8. Terraform Associate -->
+        <div class="scroll-block" data-target="ide-terraform">
+          <span class="cert-provider-tag" style="color: var(--accent-purple);">HashiCorp</span>
+          <h3>HashiCorp Certified: Terraform Associate</h3>
+          <p>Automating infrastructure resource provisioning, maintaining state files, and preventing configuration drift using IaC.</p>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Sticky IDE Windows Displaying Badges -->
+      <div class="ide-windows-col">
+        <div class="sticky-ide-wrapper">
+          
+          <!-- IDE 1: AWS SAA -->
+          <div class="ide-window active" id="ide-aws-saa">
+            <div class="ide-header">
+              <span class="dot" style="background:#FF5F56;"></span>
+              <span class="dot" style="background:#FFBD2E;"></span>
+              <span class="dot" style="background:#27C93F;"></span>
+              <span class="ide-title">aws-solutions-architect.cert</span>
+            </div>
+            <div class="ide-body-badge">
+              <img src="./aws-saa-badge.png" alt="AWS SAA Badge">
+            </div>
+          </div>
+
+          <!-- IDE 2: AWS DevOps Pro -->
+          <div class="ide-window" id="ide-aws-devops">
+            <div class="ide-header">
+              <span class="dot" style="background:#FF5F56;"></span>
+              <span class="dot" style="background:#FFBD2E;"></span>
+              <span class="dot" style="background:#27C93F;"></span>
+              <span class="ide-title">aws-devops-pro.cert</span>
+            </div>
+            <div class="ide-body-badge">
+              <img src="./aws-devops-pro-badge.png" alt="AWS DevOps Pro Badge">
+            </div>
+          </div>
+
+          <!-- IDE 3: GCP ACE -->
+          <div class="ide-window" id="ide-gcp-ace">
+            <div class="ide-header">
+              <span class="dot" style="background:#FF5F56;"></span>
+              <span class="dot" style="background:#FFBD2E;"></span>
+              <span class="dot" style="background:#27C93F;"></span>
+              <span class="ide-title">gcp-associate-cloud-engineer.cert</span>
+            </div>
+            <div class="ide-body-badge">
+              <img src="./gcp-ace-badge.png" alt="GCP ACE Badge">
+            </div>
+          </div>
+
+          <!-- IDE 4: GCP DevOps Pro -->
+          <div class="ide-window" id="ide-gcp-devops">
+            <div class="ide-header">
+              <span class="dot" style="background:#FF5F56;"></span>
+              <span class="dot" style="background:#FFBD2E;"></span>
+              <span class="dot" style="background:#27C93F;"></span>
+              <span class="ide-title">gcp-devops-pro.cert</span>
+            </div>
+            <div class="ide-body-badge">
+              <img src="./gcp-devops-pro-badge.png" alt="GCP DevOps Pro Badge">
+            </div>
+          </div>
+
+          <!-- IDE 5: Azure Developer -->
+          <div class="ide-window" id="ide-azure-dev">
+            <div class="ide-header">
+              <span class="dot" style="background:#FF5F56;"></span>
+              <span class="dot" style="background:#FFBD2E;"></span>
+              <span class="dot" style="background:#27C93F;"></span>
+              <span class="ide-title">azure-developer-associate.cert</span>
+            </div>
+            <div class="ide-body-badge">
+              <img src="./azure-developer-badge.png" alt="Azure Developer Badge">
+            </div>
+          </div>
+
+          <!-- IDE 6: Azure DevOps Expert -->
+          <div class="ide-window" id="ide-azure-expert">
+            <div class="ide-header">
+              <span class="dot" style="background:#FF5F56;"></span>
+              <span class="dot" style="background:#FFBD2E;"></span>
+              <span class="dot" style="background:#27C93F;"></span>
+              <span class="ide-title">azure-devops-expert.cert</span>
+            </div>
+            <div class="ide-body-badge">
+              <img src="./azure-devops-expert-badge.png" alt="Azure DevOps Expert Badge">
+            </div>
+          </div>
+
+          <!-- IDE 7: KCNA -->
+          <div class="ide-window" id="ide-kcna">
+            <div class="ide-header">
+              <span class="dot" style="background:#FF5F56;"></span>
+              <span class="dot" style="background:#FFBD2E;"></span>
+              <span class="dot" style="background:#27C93F;"></span>
+              <span class="ide-title">kubernetes-kcna.cert</span>
+            </div>
+            <div class="ide-body-badge">
+              <img src="./kcna-badge.png" alt="KCNA Badge">
+            </div>
+          </div>
+
+          <!-- IDE 8: Terraform Associate -->
+          <div class="ide-window" id="ide-terraform">
+            <div class="ide-header">
+              <span class="dot" style="background:#FF5F56;"></span>
+              <span class="dot" style="background:#FFBD2E;"></span>
+              <span class="dot" style="background:#27C93F;"></span>
+              <span class="ide-title">terraform-associate.cert</span>
+            </div>
+            <div class="ide-body-badge">
+              <img src="./terraform-associate-badge.png" alt="Terraform Badge">
+            </div>
+          </div>
+
         </div>
       </div>
-      <div class="cert-content">
-        <div class="cert-card">
-          <div class="cert-card-text">
-            <h4>KCNA: Kubernetes and Cloud Native Associate</h4>
-            <p>Foundational knowledge of Kubernetes ecosystem architecture and container orchestration.</p>
-          </div>
-          <div class="cert-card-image">
-            <img src="./kcna-badge.png" alt="KCNA Badge">
-          </div>
-        </div>
-        <div class="cert-card">
-          <div class="cert-card-text">
-            <h4>HashiCorp Certified: Terraform Associate</h4>
-            <p>Automating infrastructure provisioning and managing state across multi-cloud environments.</p>
-          </div>
-          <div class="cert-card-image">
-            <img src="./terraform-associate-badge.png" alt="Terraform Badge">
-          </div>
-        </div>
-      </div>
+
     </div>
   </section>
 
