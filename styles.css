@@ -29,8 +29,8 @@ body {
   font-family: var(--font-sans);
   line-height: 1.6;
   
-  /* THE FIX: Reduced top padding from 32px to 16px to push everything closer to the top edge */
-  padding: 16px 24px; 
+  /* THE FIX: Removed top padding (set to 0) to push the navbar to the absolute edge */
+  padding: 0 24px 32px 24px; 
   
   max-width: 1280px;
   margin: 0 auto;
@@ -133,16 +133,17 @@ html {
   justify-content: space-between;
   align-items: center;
   
-  /* THE FIX: Reduced vertical padding from 16px to 12px for a slimmer profile */
-  padding: 12px 24px; 
+  /* THE FIX: Padding directly against the top edge. Side padding removed as body handles it */
+  padding: 24px 0 20px 0; 
   
-  background-color: var(--nav-bg, rgba(17, 18, 22, 0.8));
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  backdrop-filter: blur(12px);
+  /* THE FIX: Completely strips away the boxed background, border, and frosted glass */
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  backdrop-filter: none;
   
-  /* THE FIX: Pulled the bottom margin up slightly so the hero card sits tighter underneath */
-  margin-bottom: 20px; 
+  /* Space between the navigation and the hero tile below it */
+  margin-bottom: 24px; 
 }
 
 /* =========================================================
