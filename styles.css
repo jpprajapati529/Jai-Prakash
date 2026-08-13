@@ -348,36 +348,16 @@ html {
   background: transparent !important; 
 }
 
-/* 2. THE ATMOSPHERIC GLOW (radial light rising from the curve's peak) */
+/* 2. Curvy Horizon Glow
+   The old design used a separate radial-gradient box above the curve.
+   That creates a soft rectangular/oval hotspot that can visually drift away
+   from the actual horizon. The glow now comes ONLY from the same curved
+   ellipse that draws the horizon line, so the light always follows the arc. */
 .tech-marquee-section::before {
-  content: "";
-  position: absolute;
-  /* Bottom edge pinned to the arc's peak (see ::after: -300px + 400px = 100px). */
-  bottom: 100px;
-  /* Matches the arc's own box exactly (left:-20%, width:140%) so both are
-     centered on the identical horizontal midpoint — this is what makes the
-     glow's origin land precisely on the curve's peak instead of off to the
-     side, and removes any seam/edge visible within the viewport. */
-  left: -20%;
-  width: 140%;
-  height: 260px;
-
-  /* Explicit pixel radii (not % of the box) so the gradient fully decays to
-     0 opacity well before it reaches the box's edges in any direction —
-     that's what was causing the hard "square" cutoff before. Origin
-     "at 50% 100%" = this box's bottom-center = the curve's peak. */
-  background: radial-gradient(
-    ellipse 480px 230px at 50% 100%,
-    rgba(168, 85, 247, 0.45) 0%,
-    rgba(168, 85, 247, 0.18) 45%,
-    rgba(168, 85, 247, 0) 100%
-  );
-
-  z-index: 0;
-  pointer-events: none;
+  display: none;
 }
 
-/* 2. The Curvy Horizon & Centered Glow */
+/* 2. The Curvy Horizon & Curve-Following Glow */
 .tech-marquee-section::after {
   content: "";
   position: absolute;
@@ -391,14 +371,17 @@ html {
   /* The solid purple horizon line */
   border-top: 2px solid rgba(168, 85, 247, 0.9); 
   
-  /* 
-     THE UPWARD GLOW: 
-     Negative Y values (-15px, -50px) aggressively pull the light UPWARDS.
-     The '0' spread ensures the light physically cannot bleed downwards under the curve!
+  /*
+     CURVE-FOLLOWING GLOW:
+     Because these shadows belong to the same ellipse as the border-top,
+     every glow layer follows the exact same horizon curvature.
   */
-  box-shadow: 
-    0 -15px 35px 0 rgba(168, 85, 247, 0.6),
-    0 -50px 100px 0 rgba(168, 85, 247, 0.25);
+  box-shadow:
+    0 -4px 10px 0 rgba(168, 85, 247, 0.90),
+    0 -12px 24px 0 rgba(168, 85, 247, 0.62),
+    0 -28px 55px 0 rgba(168, 85, 247, 0.38),
+    0 -58px 110px 0 rgba(168, 85, 247, 0.18);
+  filter: drop-shadow(0 -2px 4px rgba(168, 85, 247, 0.55));
   
   background: transparent !important;
   
