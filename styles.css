@@ -988,11 +988,15 @@ html {
 .cert-card {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
-  padding: 24px 30px;
+  padding: 30px; /* Slightly more breathing room */
   border-radius: 16px;
+  
+  /* THE FIX: Forces the card into a row, spreading text left and image right */
   display: flex;
-  gap: 20px;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  gap: 40px; 
   transition: all 0.3s ease;
 }
 
@@ -1003,45 +1007,63 @@ html {
   box-shadow: -5px 10px 30px rgba(168, 85, 247, 0.05);
 }
 
-.cert-card-icon {
-  flex: 0 0 auto;
-}
-
-.cert-card-icon i {
-  width: 28px;
-  height: 28px;
+/* Forces the text to stay on the left and take up available space */
+.cert-card-text {
+  flex: 1;
+  text-align: left;
 }
 
 .cert-card-text h4 {
   color: var(--text-primary);
-  font-size: 1.1rem;
-  margin-bottom: 6px;
+  font-size: 1.15rem;
+  margin-bottom: 8px;
 }
 
 .cert-card-text p {
   color: var(--text-secondary);
   font-size: 0.95rem;
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* Mobile Responsiveness */
+/* Creates a strict bounding box for the badge image on the right */
+.cert-card-image {
+  flex: 0 0 110px; /* Fixed width so the badge never shrinks or grows awkwardly */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cert-card-image img {
+  width: 100%;
+  max-width: 110px;
+  height: auto;
+  object-fit: contain;
+  /* Adds a subtle high-end shadow to the transparent PNG badges */
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.25)); 
+  transition: transform 0.3s ease;
+}
+
+.cert-card:hover .cert-card-image img {
+  transform: scale(1.05); /* Slight pop effect on the badge when the card is hovered */
+}
+
+/* Mobile Responsiveness for the Cards */
 @media (max-width: 900px) {
-  .cert-group {
-    flex-direction: column;
+  /* ... your existing media query for .cert-group and .sticky-header ... */
+  
+  .cert-card {
+    flex-direction: column-reverse; /* Stacks image on top, text on bottom for mobile */
+    align-items: flex-start;
     gap: 20px;
   }
-  .sticky-header {
-    position: relative;
-    top: 0;
-    flex-direction: row;
-    align-items: center;
-    padding: 20px;
+  
+  .cert-card-image {
+    flex: 0 0 auto;
   }
-  .cert-card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+  
+  .cert-card-image img {
+    max-width: 80px; /* Smaller badge on mobile screens */
   }
 }
 
