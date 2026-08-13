@@ -3,27 +3,9 @@
 /* =========================================================
    1. GLOBAL RESETS & JETBRAINS DARK VARIABLES
    ========================================================= */
-/* :root {
-  --bg-dark: #08080a;
-  --card-bg: #111216;
-  --card-border: #22252d;
-  --accent-purple: #a855f7;
-  --accent-green: #22c55e;
-  --accent-blue: #3b82f6;
-  --text-primary: #ffffff;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-} */
-
-/* GLOBAL RESETS & JETBRAINS DARK VARIABLES */
 :root {
   --bg-dark: #08080a;
-  
-  /* THE FIX: Changed from the dark grey (#111216) to pure black */
   --card-bg: #000000; 
-  
   --card-border: #22252d;
   --accent-purple: #a855f7;
   --accent-green: #22c55e;
@@ -52,8 +34,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Enable smooth scrolling for the anchor link jump */
+html {
+  scroll-behavior: smooth;
+}
+
 /* =========================================================
-   2. NAVBAR & HERO BANNER
+   2. NAVBAR & HERO BANNER TILE
    ========================================================= */
 .navbar {
   display: flex;
@@ -107,35 +94,24 @@ body {
 }
 .navbar nav a:hover { color: var(--text-primary); }
 
-/* Enable smooth scrolling for the anchor link jump */
-html {
-  scroll-behavior: smooth;
-}
-
--------hero------------------
-/* 1. Two-Column Hero Layout */
-/* 1. STRICT GRID LAYOUT (Forces 2 columns) */
-/* 1. THE MAIN TILE (Forces a single row card) */
+/* --- HERO TILE (Strict Side-by-Side Layout) --- */
 .hero-card {
   display: flex !important;
   flex-direction: row !important;
-  flex-wrap: nowrap !important; /* Physically prevents wrapping */
+  flex-wrap: nowrap !important;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  
-  /* Matches the dark, sleek TeamCity background tile */
   background-color: #050b14; 
   border-radius: 24px;
   padding: 60px 80px;
   margin-bottom: 60px;
-  box-sizing: border-box; /* Crucial: includes padding in width calculations */
+  box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* 2. LEFT SIDE (Strictly 50% width) */
 .hero-content-left {
-  flex: 0 0 50%; /* Grow: 0, Shrink: 0, Width: 50% */
+  flex: 0 0 50%;
   max-width: 50%;
   display: flex;
   flex-direction: column;
@@ -145,7 +121,6 @@ html {
   box-sizing: border-box;
 }
 
-/* --- EXACT TEAMCITY TYPOGRAPHY --- */
 .hero-overline {
   font-size: 1.1rem;
   font-weight: 700;
@@ -155,7 +130,7 @@ html {
 }
 
 .hero-headline {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
   font-weight: 700;
   color: #ffffff;
   line-height: 1.2;
@@ -164,20 +139,18 @@ html {
 }
 
 .hero-subtext {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: #e2e8f0; 
   line-height: 1.6;
   margin-bottom: 32px;
-  max-width: 95%;
 }
 
-/* The TeamCity White Pill Button */
 .hero-btn {
   background-color: #ffffff;
   color: #000000;
   font-weight: 600;
-  font-size: 1rem;
-  padding: 14px 28px;
+  font-size: 0.95rem;
+  padding: 12px 24px;
   border-radius: 9999px;
   text-decoration: none;
   transition: all 0.2s ease;
@@ -189,7 +162,6 @@ html {
   transform: scale(1.02);
 }
 
-/* 3. RIGHT SIDE (Strictly 50% width) */
 .hero-image-right {
   flex: 0 0 50%;
   max-width: 50%;
@@ -201,15 +173,14 @@ html {
 
 .hero-image-right img {
   width: 100%;
-  max-width: 650px;
+  max-width: 500px;
   height: auto;
   mix-blend-mode: screen;
-  /* Expands the visibility so the loop isn't cut off too early */
   -webkit-mask-image: radial-gradient(ellipse at center, black 65%, transparent 100%);
   mask-image: radial-gradient(ellipse at center, black 65%, transparent 100%);
 }
 
-/* 4. MOBILE LAYOUT (Only stacks on small screens) */
+/* Responsive breakpoint: only stacks on screens narrower than 960px */
 @media (max-width: 960px) {
   .hero-card {
     flex-direction: column !important;
