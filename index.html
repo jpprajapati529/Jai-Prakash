@@ -28,11 +28,10 @@
   </div>
   <span class="logo-text">ja<span class="neon-ssh">SSH</span>board</span>
 </div>
-    <!-- Glowing Purple Status Icon (Clickable Pipeline Trigger) -->
-<div class="system-status-icon" onclick="triggerPipelineRun()" title="Cluster Operational - Click to trigger pipeline">
-  <i data-lucide="activity"></i>
-  <span class="neon-ring"></span>
-</div>
+    <div class="system-status" onclick="triggerPipelineRun()" style="cursor: pointer;">
+      <span class="pulse-dot"></span>
+      <span id="cluster-status">CLUSTER STATUS: OPERATIONAL (CLICK TO RUN)</span>
+    </div>
     <nav>
       <a href="#about">About</a>
       <a href="#certs">Certifications</a>
