@@ -450,8 +450,8 @@ html {
   
   /* The hot core sitting directly on the line */
   box-shadow: 
-    0 -15px 30px 0 rgba(168, 85, 247, 0.5),
-    0 -30px 60px 0 rgba(168, 85, 247, 0.25);
+    0 -5px 10px 0 rgba(168, 85, 247, 0.5),
+    0 -15px 30px 0 rgba(168, 85, 247, 0.25);
     
   background: transparent !important;
   
