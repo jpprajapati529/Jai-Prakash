@@ -169,22 +169,26 @@ html {
   justify-content: flex-end;
   align-items: center;
   box-sizing: border-box;
+  overflow: hidden; /* Clips any overflow so it fits cleanly inside the card's right border */
+  position: relative;
+  height: 100%;
 }
 
 .hero-image-right img {
-  width: 100%;
-  max-width: 650px; /* Increased max-width so it renders larger */
+  /* Forces the image to expand past the natural box boundary */
+  width: 130%; 
+  max-width: none;
   height: auto;
+  
   mix-blend-mode: screen;
   
-  /* THE FIX: Zooms the image up and shifts it slightly to the right & down 
-     so it pushes past the boundaries of the card edge seamlessly */
-  transform: scale(1.25) translate(20px, 10px);
-  transform-origin: bottom right;
-
-  /* Softens the edge mask so the crop blends completely with the dark tile background */
-  -webkit-mask-image: radial-gradient(ellipse at center, black 75%, transparent 100%);
-  mask-image: radial-gradient(ellipse at center, black 75%, transparent 100%);
+  /* Pushes the image to the right so it bleeds directly against the card's edge */
+  position: absolute;
+  right: -60px; 
+  
+  /* Removes the harsh vertical mask cutout completely */
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 /* Responsive breakpoint: only stacks on screens narrower than 960px */
