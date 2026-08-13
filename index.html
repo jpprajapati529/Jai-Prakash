@@ -17,8 +17,16 @@
   <!-- Navbar -->
   <header class="navbar">
    <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-  <span class="logo-prompt">&gt;_</span>
-  <span class="logo-text">jaSSH<span class="logo-highlight">board</span></span>
+  <div class="logo-emblem">
+    <!-- Neon Glowing Hardware / Server Stack Icon -->
+    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+      <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+      <line x1="6" y1="6" x2="6.01" y2="6"></line>
+      <line x1="6" y1="18" x2="6.01" y2="18"></line>
+    </svg>
+  </div>
+  <span class="logo-text">ja<span class="neon-ssh">SSH</span>board</span>
 </div>
     <div class="system-status" onclick="triggerPipelineRun()" style="cursor: pointer;">
       <span class="pulse-dot"></span>
