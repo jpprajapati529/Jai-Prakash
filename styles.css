@@ -173,11 +173,18 @@ html {
 
 .hero-image-right img {
   width: 100%;
-  max-width: 500px;
+  max-width: 650px; /* Increased max-width so it renders larger */
   height: auto;
   mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(ellipse at center, black 65%, transparent 100%);
-  mask-image: radial-gradient(ellipse at center, black 65%, transparent 100%);
+  
+  /* THE FIX: Zooms the image up and shifts it slightly to the right & down 
+     so it pushes past the boundaries of the card edge seamlessly */
+  transform: scale(1.25) translate(20px, 10px);
+  transform-origin: bottom right;
+
+  /* Softens the edge mask so the crop blends completely with the dark tile background */
+  -webkit-mask-image: radial-gradient(ellipse at center, black 75%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, black 75%, transparent 100%);
 }
 
 /* Responsive breakpoint: only stacks on screens narrower than 960px */
