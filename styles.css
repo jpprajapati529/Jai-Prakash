@@ -379,11 +379,6 @@ html {
   border-radius: 50%;
   border-top: 2px solid rgba(168, 85, 247, 0.88);
 
-  box-shadow:
-    0 -2px 8px rgba(168, 85, 247, 0.72),
-    0 -8px 22px rgba(168, 85, 247, 0.34);
-} 
-  
   /*
      CURVE-FOLLOWING GLOW:
      Because these shadows belong to the same ellipse as the border-top,
