@@ -268,6 +268,65 @@ html {
 }
 
 /* =========================================================
+   TECH-STYLE HERO CTA BUTTON / CARD
+   ========================================================= */
+.hero-cta-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  
+  /* Matches the dark card background and border from your Helm box */
+  background-color: var(--card-bg, #111216);
+  color: var(--text-primary, #ffffff);
+  border: 1px solid var(--card-border, rgba(168, 85, 247, 0.3));
+  
+  padding: 14px 28px;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* The Cursor-Tracking Spotlight (Matches image_422458.png) */
+.hero-cta-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    500px circle at var(--x) var(--y),
+    rgba(168, 85, 247, 0.25),
+    transparent 50%
+  );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero-cta-btn:hover::before {
+  opacity: 1;
+}
+
+.hero-cta-btn:hover {
+  border-color: rgba(168, 85, 247, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(168, 85, 247, 0.2);
+}
+
+/* Ensures text and icons stay above the background glow layer */
+.hero-cta-btn > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================================
    COMBINED NEON LOGO & STATUS RING
    ========================================================= */
 .logo {
