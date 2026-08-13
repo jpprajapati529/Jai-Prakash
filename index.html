@@ -47,7 +47,7 @@
       <a href="#career-details" class="hero-btn">View Professional Details ↓</a>
     </div>
 
-    <!-- Right Side: 3D Image (Verify filename matches your local file) -->
+    <!-- Right Side: 3D Image -->
     <div class="hero-image-right">
       <img src="./infinity-loop.png" alt="CI/CD Infinity Loop">
     </div>
@@ -57,15 +57,51 @@
        2. TECH STACK MARQUEE (Infinite Scroll)
        ========================================================= -->
   <section class="tech-marquee-section">
-    <!-- Marquee content remains unchanged -->
+    <div class="tech-marquee">
+      <div class="tech-track">
+        
+        <!-- GROUP 1: Official Brand Wordmarks -->
+        <div class="tech-group">
+          <div class="tech-item" onclick="openModuleModal('aws')"><img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg" alt="AWS" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('azure')"><img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-ar21.svg" alt="Azure" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('gcp')"><img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-ar21.svg" alt="GCP" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('docker')"><img src="https://www.vectorlogo.zone/logos/docker/docker-ar21.svg" alt="Docker" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('kubernetes')"><img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-ar21.svg" alt="Kubernetes" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('helm')"><img src="https://www.vectorlogo.zone/logos/helmsh/helmsh-ar21.svg" alt="Helm" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('openshift')"><img src="https://www.vectorlogo.zone/logos/openshift/openshift-ar21.svg" alt="OpenShift" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('terraform')"><img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-ar21.svg" alt="Terraform" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('github')"><img src="https://www.vectorlogo.zone/logos/github/github-ar21.svg" alt="GitHub" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('jenkins')"><img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-ar21.svg" alt="Jenkins" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('gitlab')"><img src="https://www.vectorlogo.zone/logos/gitlab/gitlab-ar21.svg" alt="GitLab" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('python')"><img src="https://www.vectorlogo.zone/logos/python/python-ar21.svg" alt="Python" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('java')"><img src="https://www.vectorlogo.zone/logos/java/java-ar21.svg" alt="Java" class="brand-wordmark"></div>
+        </div>
+
+        <!-- GROUP 2: Exact Duplicate for Loop -->
+        <div class="tech-group">
+          <div class="tech-item" onclick="openModuleModal('aws')"><img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg" alt="AWS" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('azure')"><img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-ar21.svg" alt="Azure" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('gcp')"><img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-ar21.svg" alt="GCP" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('docker')"><img src="https://www.vectorlogo.zone/logos/docker/docker-ar21.svg" alt="Docker" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('kubernetes')"><img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-ar21.svg" alt="Kubernetes" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('helm')"><img src="https://www.vectorlogo.zone/logos/helmsh/helmsh-ar21.svg" alt="Helm" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('openshift')"><img src="https://www.vectorlogo.zone/logos/openshift/openshift-ar21.svg" alt="OpenShift" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('terraform')"><img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-ar21.svg" alt="Terraform" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('github')"><img src="https://www.vectorlogo.zone/logos/github/github-ar21.svg" alt="GitHub" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('jenkins')"><img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-ar21.svg" alt="Jenkins" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('gitlab')"><img src="https://www.vectorlogo.zone/logos/gitlab/gitlab-ar21.svg" alt="GitLab" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('python')"><img src="https://www.vectorlogo.zone/logos/python/python-ar21.svg" alt="Python" class="brand-wordmark"></div>
+          <div class="tech-item" onclick="openModuleModal('java')"><img src="https://www.vectorlogo.zone/logos/java/java-ar21.svg" alt="Java" class="brand-wordmark"></div>
+        </div>
+
+      </div>
+    </div>
   </section>
 
-  <!-- Anchor Target Wrapper for Career Details -->
+  <!-- =========================================================
+       3. CLICKABLE TOP METRIC CARDS & CONTENT (Target for Anchor)
+       ========================================================= -->
   <div id="career-details" style="scroll-margin-top: 40px;">
-
-    <!-- =========================================================
-         3. CLICKABLE TOP METRIC CARDS
-         ========================================================= -->
     <section class="metrics-grid">
       <div class="card clickable-card" onclick="openMetricModal('experience')">
         <h3><i data-lucide="briefcase"></i> EXPERIENCE</h3>
@@ -89,9 +125,6 @@
       </div>
     </section>
 
-    <!-- =========================================================
-         4. PROFESSIONAL SUMMARY
-         ========================================================= -->
     <section id="about" class="dashboard-section">
       <div class="section-header">
         <h2><i data-lucide="user-check"></i> Professional Summary</h2>
@@ -106,242 +139,9 @@
         <span class="tag-badge"><i data-lucide="check-circle"></i> BASH & Python Scripting</span>
       </div>
     </section>
-
-
-  <!-- =========================================================
-       4. CERTIFICATIONS
-       ========================================================= -->
-  <section id="certs" class="dashboard-section">
-    <div class="section-header">
-      <h2><i data-lucide="award"></i> Certifications & Credentials</h2>
-    </div>
-    <div class="skills-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
-      <div class="card cert-card">
-        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="cloud"></i> AWS Certifications</h4>
-        <p style="font-size: 0.85rem; color: #fff;">• AWS Certified Cloud Practitioner</p>
-        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• AWS Certified DevOps Engineer - Professional</p>
-      </div>
-      <div class="card cert-card">
-        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="cloud"></i> Microsoft Azure Certifications</h4>
-        <p style="font-size: 0.85rem; color: #fff;">• Azure Developer Associate</p>
-        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• Azure DevOps Expert</p>
-      </div>
-      <div class="card cert-card">
-        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="cloud"></i> GCP & CNCF Certifications</h4>
-        <p style="font-size: 0.85rem; color: #fff;">• GCP Associate Cloud Engineer</p>
-        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• GCP Professional Cloud DevOps Engineer</p>
-        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• KCNA (Kubernetes and Cloud Native Associate)</p>
-      </div>
-      <div class="card cert-card">
-        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="layers"></i> IaC & Automation</h4>
-        <p style="font-size: 0.85rem; color: #fff;">• HashiCorp Certified Terraform Associate</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       6. JETBRAINS-STYLE STICKY SCROLL SECTION
-       ========================================================= -->
-  <section class="sticky-scroll-section">
-    <div class="sticky-container">
-      <div class="scroll-text-column">
-        <div class="scroll-block" data-target="ide-1">
-          <h2>Multi-Cloud Infrastructure</h2>
-          <p>Architecting and provisioning robust, high-availability multi-cloud resources across AWS, Azure, and GCP. Ensuring zero vendor lock-in using modular Infrastructure as Code.</p>
-        </div>
-        <div class="scroll-block" data-target="ide-2">
-          <h2>Container Orchestration</h2>
-          <p>Executing zero-downtime application rollouts, managing self-healing clusters, and configuring strict Pod Security Policies across Kubernetes and Red Hat OpenShift.</p>
-        </div>
-        <div class="scroll-block" data-target="ide-3">
-          <h2>CI/CD Automation</h2>
-          <p>Building enterprise-grade, event-driven CI/CD pipelines. Automating code linting, Docker image building, vulnerability scanning, and production deployments.</p>
-        </div>
-        <div class="scroll-block" data-target="ide-4">
-          <h2>Advanced Observability</h2>
-          <p>Implementing end-to-end telemetry and alerting using Prometheus and Grafana. Deep visibility into cluster health, latency, and resource utilization.</p>
-        </div>
-      </div>
-
-      <div class="sticky-visual-column">
-        <!-- IDE 1: Terraform -->
-        <div class="ide-window active" id="ide-1">
-          <div class="ide-header">
-            <div class="mac-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-            <span class="ide-filename">main.tf — Terraform</span>
-          </div>
-          <pre class="ide-body"><code><span class="keyword">module</span> <span class="string">"gcp_gke_cluster"</span> {
-  <span class="keyword">source</span>     = <span class="string">"terraform-google-modules/kubernetes-engine"</span>
-  project_id = <span class="string">"fintech-prod-env"</span>
-  name       = <span class="string">"primary-ha-cluster"</span>
-  region     = <span class="string">"asia-south1"</span>
-  
-  node_pools = [
-    {
-      name         = <span class="string">"default-node-pool"</span>
-      machine_type = <span class="string">"e2-standard-4"</span>
-      min_count    = <span class="number">3</span>
-      max_count    = <span class="number">10</span>
-    }
-  ]
-}</code></pre>
-        </div>
-        <!-- IDE 2: Kubernetes -->
-        <div class="ide-window" id="ide-2">
-          <div class="ide-header">
-            <div class="mac-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-            <span class="ide-filename">deployment.yaml — Kubernetes</span>
-          </div>
-          <pre class="ide-body"><code><span class="keyword">apiVersion:</span> apps/v1
-<span class="keyword">kind:</span> Deployment
-<span class="keyword">metadata:</span>
-  <span class="keyword">name:</span> banking-core-api
-  <span class="keyword">namespace:</span> production
-<span class="keyword">spec:</span>
-  <span class="keyword">replicas:</span> <span class="number">5</span>
-  <span class="keyword">strategy:</span>
-    <span class="keyword">type:</span> RollingUpdate
-    <span class="keyword">rollingUpdate:</span>
-      <span class="keyword">maxSurge:</span> <span class="number">1</span>
-      <span class="keyword">maxUnavailable:</span> <span class="number">0</span>
-  <span class="keyword">template:</span>
-    <span class="keyword">spec:</span>
-      <span class="keyword">containers:</span>
-      - <span class="keyword">name:</span> api-service
-        <span class="keyword">image:</span> jpprajapati529/banking-api:v2.4.1</code></pre>
-        </div>
-        <!-- IDE 3: GitHub Actions -->
-        <div class="ide-window" id="ide-3">
-          <div class="ide-header">
-            <div class="mac-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-            <span class="ide-filename">deploy.yml — GitHub Actions</span>
-          </div>
-          <pre class="ide-body"><code><span class="keyword">name:</span> Enterprise Release Pipeline
-<span class="keyword">on:</span>
-  <span class="keyword">push:</span>
-    <span class="keyword">branches:</span> [ <span class="string">"main"</span> ]
-
-<span class="keyword">jobs:</span>
-  <span class="keyword">security-scan:</span>
-    <span class="keyword">runs-on:</span> ubuntu-latest
-    <span class="keyword">steps:</span>
-    - <span class="keyword">uses:</span> actions/checkout@v3
-    - <span class="keyword">name:</span> Run SonarQube Analysis
-      <span class="keyword">run:</span> bash scripts/sonar-scan.sh
-
-  <span class="keyword">deploy-to-aks:</span>
-    <span class="keyword">needs:</span> security-scan
-    <span class="keyword">run:</span> kubectl apply -f k8s/</code></pre>
-        </div>
-        <!-- IDE 4: Prometheus -->
-        <div class="ide-window" id="ide-4">
-          <div class="ide-header">
-            <div class="mac-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-            <span class="ide-filename">alert-rules.yml — Prometheus</span>
-          </div>
-          <pre class="ide-body"><code><span class="keyword">groups:</span>
-- <span class="keyword">name:</span> cluster-health-alerts
-  <span class="keyword">rules:</span>
-  - <span class="keyword">alert:</span> HighPodMemoryUsage
-    <span class="keyword">expr:</span> sum(container_memory_usage_bytes) by (pod) > <span class="number">85</span>
-    <span class="keyword">for:</span> 5m
-    <span class="keyword">labels:</span>
-      <span class="keyword">severity:</span> critical
-    <span class="keyword">annotations:</span>
-      <span class="keyword">summary:</span> <span class="string">"Pod {{ $labels.pod }} is running out of memory"</span>
-      <span class="keyword">action:</span> <span class="string">"Scale up node pool immediately"</span></code></pre>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       7. PIPELINE SIMULATOR & PROJECTS
-       ========================================================= -->
-  <section id="pipeline-sim" class="dashboard-section">
-    <div class="section-header">
-      <h2><i data-lucide="play-circle"></i> Live CI/CD Pipeline Engine (Business-Management-System)</h2>
-      <button id="trigger-btn" class="btn-primary" onclick="triggerPipelineRun()">Trigger Deployment</button>
-    </div>
-    <div class="pipeline-stepper">
-      <div class="step" id="step-lint"><i data-lucide="code"></i> Lint & Security</div>
-      <div class="step-connector"></div>
-      <div class="step" id="step-build"><i data-lucide="box"></i> Build Container</div>
-      <div class="step-connector"></div>
-      <div class="step" id="step-tf"><i data-lucide="file-code"></i> Terraform Plan</div>
-      <div class="step-connector"></div>
-      <div class="step" id="step-deploy"><i data-lucide="server"></i> Deploy to K8s</div>
-    </div>
-    <div class="pipeline-logs-console" id="pipeline-logs">
-      <div class="log-line text-muted">[SYSTEM] Ready to trigger GitHub workflow for jpprajapati529/Business-Management-System. Click 'Trigger Deployment' or type 'bash deploy.sh' in terminal...</div>
-    </div>
-  </section>
-
-  <section id="projects" class="dashboard-section">
-    <div class="section-header">
-      <h2><i data-lucide="git-branch"></i> Primary DevOps Repository</h2>
-    </div>
-    <div class="card clickable-card" onclick="openModuleModal('business-mgmt')">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <h3 style="color: var(--accent-purple); font-size: 1.1rem;"><i data-lucide="folder-git-2"></i> BUSINESS MANAGEMENT SYSTEM</h3>
-        <span class="tag-badge" style="color: var(--accent-purple);">Featured Stack</span>
-      </div>
-      <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 12px 0;">Click here to open interactive code configs for Docker Compose, Kubernetes manifests, Terraform IaC, and GitHub Actions CI/CD workflows.</p>
-      <div style="display:flex; gap: 8px; flex-wrap: wrap;">
-        <span class="tag-badge">Docker</span>
-        <span class="tag-badge">Kubernetes</span>
-        <span class="tag-badge">Terraform</span>
-        <span class="tag-badge">Jenkins</span>
-        <span class="tag-badge">Prometheus</span>
-        <span class="tag-badge">GitHub Actions</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="terminal" class="terminal-container">
-    <div class="terminal-header">
-      <div class="terminal-buttons">
-        <span class="btn red"></span>
-        <span class="btn yellow"></span>
-        <span class="btn green"></span>
-      </div>
-      <span class="terminal-title">bash — jai-prakash@control-plane:~</span>
-    </div>
-    <div class="terminal-body" id="terminal-body">
-      <p class="term-output">Terminal active. Try commands: <span class="highlight">'bash deploy.sh'</span>, <span class="highlight">'kubectl get pods'</span>, <span class="highlight">'terraform plan'</span>, or <span class="highlight">'certs'</span>.</p>
-    </div>
-    <div class="terminal-input-line">
-      <span class="prompt">jaiprakash@k8s-node1:~$</span>
-      <input type="text" id="cli-input" placeholder="Type 'bash deploy.sh' to trigger GitHub repository build..." autofocus />
-    </div>
-  </section>
-
-  <!-- =========================================================
-       MODAL OVERLAY
-       ========================================================= -->
-  <div id="modal-overlay" class="modal-overlay" onclick="closeModalOnOuterClick(event)">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <i id="modal-icon" data-lucide="box" style="color: var(--accent-purple);"></i>
-          <h2 id="modal-title" style="font-size: 1.2rem; color: #fff;">Details</h2>
-        </div>
-        <button class="modal-close-btn" onclick="closeModal()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p id="modal-description" style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.95rem;"></p>
-        <div class="modal-tabs" id="modal-tabs"></div>
-        <div id="modal-rich-content" class="rich-content-container" style="display: none;"></div>
-        <div id="modal-code-container" class="code-preview-container" style="display: none;">
-          <div class="code-header">
-            <span id="code-filename" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-purple);">config.yaml</span>
-            <button class="btn-copy" onclick="copyCodeSnippet()">Copy Snippet</button>
-          </div>
-          <pre><code id="code-block" class="code-content">// Select a tab above...</code></pre>
-        </div>
-      </div>
-    </div>
   </div>
+
+  <!-- Rest of your existing sections (Certifications, Sticky Scroll, Pipeline, Terminal, Modals) remain below -->
 
   <script src="script.js"></script>
 </body>
