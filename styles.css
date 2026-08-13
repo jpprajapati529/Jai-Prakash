@@ -899,6 +899,153 @@ html {
 }
 
 /* =========================================================
+   CERTIFICATIONS STICKY SCROLL
+   ========================================================= */
+.cert-section-container {
+  max-width: 1000px; /* Keeps the cards from getting too wide/unreadable */
+  margin: 100px auto;
+  padding-top: 40px; /* Buffer for dropdown anchors */
+}
+
+.section-title-wrapper {
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-headline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 2rem;
+  color: var(--text-primary);
+}
+
+.section-subtext {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+/* The Grid Layout */
+.cert-group {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+/* Left Column: The Sticky Zone */
+.cert-sidebar {
+  flex: 0 0 240px;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 100px; /* Locks it 100px from the top of the screen */
+  background-color: rgba(17, 18, 22, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.sticky-header i {
+  width: 32px;
+  height: 32px;
+}
+
+.sticky-header h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.cert-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Right Column: The Scrolling Cards */
+.cert-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cert-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 24px 30px;
+  border-radius: 16px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: translateX(5px);
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: -5px 10px 30px rgba(168, 85, 247, 0.05);
+}
+
+.cert-card-icon {
+  flex: 0 0 auto;
+}
+
+.cert-card-icon i {
+  width: 28px;
+  height: 28px;
+}
+
+.cert-card-text h4 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.cert-card-text p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .cert-group {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .sticky-header {
+    position: relative;
+    top: 0;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+  }
+  .cert-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+/* =========================================================
    4. DASHBOARD SECTIONS
    ========================================================= */
 .dashboard-section {
