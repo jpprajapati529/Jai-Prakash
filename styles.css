@@ -417,6 +417,7 @@ html {
 /* 2. THE ATMOSPHERIC GLOW (Pushed Down) */
 /* 2. THE ATMOSPHERIC GLOW (The Massive Upward Aura) */
 /* 2. THE ATMOSPHERIC FOG (The Massive Upward Aura) */
+/* 2. THE RADIANT CENTRAL GLOW (TeamCity Spotlight Effect) */
 .tech-marquee-section::before {
   content: "";
   position: absolute;
@@ -426,10 +427,15 @@ html {
   height: 400px;
   border-radius: 50%;
   
-  /* THE FIX: We completely removed the 'mask-image' from this layer! 
-     Now the shadow can freely bleed outside the box and shoot upwards. 
-     Increased the spread to 40px to make it thick and volumetric. */
-  box-shadow: 0 -80px 120px 40px rgba(168, 85, 247, 0.25);
+  /* Layered shadows: A massive soft fog, plus a brighter inner hot-spot */
+  box-shadow: 
+    0 -80px 120px 20px rgba(168, 85, 247, 0.25),
+    0 -30px 60px 10px rgba(168, 85, 247, 0.5);
+  
+  /* THE SECRET FIX: This radial mask clips the fog so it ONLY exists at the top-center apex! 
+     It acts exactly like a spotlight shining upwards from the middle. */
+  -webkit-mask-image: radial-gradient(ellipse at center top, black 0%, transparent 50%);
+  mask-image: radial-gradient(ellipse at center top, black 0%, transparent 50%);
   
   z-index: 0;
   pointer-events: none;
@@ -446,18 +452,18 @@ html {
   border-radius: 50%;
   
   /* The bright, solid neon horizon line */
-  border-top: 2px solid rgba(168, 85, 247, 0.8); 
+  border-top: 2px solid rgba(168, 85, 247, 0.9); 
   
-  /* The hot core sitting directly on the line */
+  /* The localized neon tube glow hugging the line */
   box-shadow: 
-    0 -15px 30px 0 rgba(168, 85, 247, 0.5),
-    0 -30px 60px 0 rgba(168, 85, 247, 0.25);
+    0 -15px 30px 0 rgba(168, 85, 247, 0.6),
+    0 -30px 60px 0 rgba(168, 85, 247, 0.3);
     
   background: transparent !important;
   
-  /* The mask stays HERE ONLY just to fade the left/right ends of the solid line */
-  -webkit-mask-image: linear-gradient(to right, transparent 10%, black 50%, transparent 90%);
-  mask-image: linear-gradient(to right, transparent 10%, black 50%, transparent 90%);
+  /* Fades the solid line away at the far left and right edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 15%, black 50%, transparent 85%);
+  mask-image: linear-gradient(to right, transparent 15%, black 50%, transparent 85%);
   
   z-index: 0;
   pointer-events: none;
