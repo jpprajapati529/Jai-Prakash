@@ -29,11 +29,11 @@ body {
   font-family: var(--font-sans);
   line-height: 1.6;
   
-  /* THE FIX: Removed top padding (set to 0) to push the navbar to the absolute edge */
+  /* Strictly 0 top padding to ensure the nav hits the absolute ceiling */
   padding: 0 24px 32px 24px; 
+  margin: 0 auto;
   
   max-width: 1280px;
-  margin: 0 auto;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -133,17 +133,16 @@ html {
   justify-content: space-between;
   align-items: center;
   
-  /* THE FIX: Padding directly against the top edge. Side padding removed as body handles it */
-  padding: 24px 0 20px 0; 
+  /* Drastically reduced top padding to push nav up, and reduced bottom padding */
+  padding: 12px 0 8px 0; 
   
-  /* THE FIX: Completely strips away the boxed background, border, and frosted glass */
   background-color: transparent;
   border: none;
   border-radius: 0;
   backdrop-filter: none;
   
-  /* Space between the navigation and the hero tile below it */
-  margin-bottom: 24px; 
+  /* Shrunk the bottom margin to snap the hero card right underneath the nav */
+  margin-bottom: 12px; 
 }
 
 /* =========================================================
