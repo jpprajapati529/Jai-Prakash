@@ -150,10 +150,19 @@ html {
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
+  
+  /* Removes the outer box, borders, and backgrounds entirely */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.logo:hover {
+  transform: translateY(-1px);
 }
 
 .logo-text {
-  /* Using the variable ensures it automatically turns black in Light Mode */
   color: var(--text-primary);
   letter-spacing: -0.5px;
 }
@@ -167,7 +176,7 @@ html {
   font-weight: 800;
 }
 
-/* --- NEON STATUS PULSE ICON --- */
+/* The Pulsing Ring acts as the Logo Icon */
 .system-status-icon {
   position: relative;
   display: flex;
@@ -191,15 +200,6 @@ html {
   transform: scale(1.05);
 }
 
-.system-status-icon:hover {
-  background: rgba(168, 85, 247, 0.25);
-  border-color: rgba(168, 85, 247, 0.9);
-  color: #ffffff;
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
-  transform: scale(1.05);
-}
-
-/* The Radiating Neon Ripple Effect */
 .neon-ring {
   position: absolute;
   inset: 0;
