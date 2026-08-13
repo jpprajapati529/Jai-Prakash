@@ -42,6 +42,9 @@ html {
 /* =========================================================
    2. NAVBAR & HERO BANNER TILE
    ========================================================= */
+/* =========================================================
+   2. NAVBAR & HERO BANNER TILE
+   ========================================================= */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -94,8 +97,7 @@ html {
 }
 .navbar nav a:hover { color: var(--text-primary); }
 
-/* --- HERO TILE (Strict Side-by-Side Layout) --- */
-/* 1. THE MAIN TILE */
+/* --- JETBRAINS EXACT HERO TILE --- */
 .hero-card {
   display: flex !important;
   flex-direction: row !important;
@@ -105,34 +107,74 @@ html {
   width: 100%;
   background-color: #050b14; 
   border-radius: 24px;
-  
-  /* THE FIX: Left padding keeps your text spaced nicely, 
-     while 0 right padding allows the image to touch the absolute edge */
-  padding: 60px 0 60px 80px; 
-  
+  padding: 60px 0 60px 60px; /* Left padding, 0 right padding for edge bleed */
   margin-bottom: 60px;
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  
-  /* Clips the image cleanly to the card's rounded corners */
   overflow: hidden; 
 }
 
-/* 2. LEFT SIDE (Text) */
+/* 55% width for text so titles fit cleanly */
 .hero-content-left {
-  flex: 0 0 50%;
-  max-width: 50%;
+  flex: 0 0 55%;
+  max-width: 55%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  padding-right: 20px;
+  padding-right: 30px;
   box-sizing: border-box;
 }
 
-/* 3. RIGHT SIDE (Image) */
+.hero-overline {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+}
+
+.hero-headline {
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.hero-subtext {
+  font-size: 1.05rem;
+  color: #94a3b8; 
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 95%;
+}
+
+/* Exact White Pill Button with forced overriding */
+.hero-btn {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  padding: 12px 26px !important;
+  border-radius: 9999px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  display: inline-block !important;
+}
+
+.hero-btn:hover {
+  background-color: #f1f5f9 !important;
+  transform: scale(1.02);
+}
+
+/* 45% width for the right-side image */
 .hero-image-right {
-  flex: 0 0 48%;
+  flex: 0 0 45%;
+  max-width: 45%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -144,14 +186,11 @@ html {
   max-width: 650px;
   height: auto;
   mix-blend-mode: screen;
-  
-  /* THE FIX: Zooms the loop slightly and anchors it to the right wall 
-     so it looks naturally embedded against the card boundary */
   transform: scale(1.15);
   transform-origin: right center;
 }
 
-/* Responsive breakpoint: only stacks on screens narrower than 960px */
+/* Responsive Mobile Layout */
 @media (max-width: 960px) {
   .hero-card {
     flex-direction: column !important;
@@ -166,8 +205,10 @@ html {
     margin-top: 40px;
     justify-content: center;
   }
+  .hero-image-right img {
+    transform: scale(1);
+  }
 }
-
 /* =========================================================
    2.6 TECH STACK MARQUEE (JetBrains "Trusted By" Style)
    ========================================================= */
