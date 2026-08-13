@@ -242,22 +242,25 @@ html {
 .tech-marquee-section::before {
   content: "";
   position: absolute;
-  /* Anchored at the bottom-center of the section, not tied to the arc's
-     off-screen geometry — this is why it now actually survives overflow:hidden. */
-  bottom: 0;
+  /* This box's BOTTOM edge is pinned to the arc's peak, not the section's
+     bottom edge. The arc (::after below) has bottom:-300px + height:400px,
+     so its topmost point sits 100px above the section's bottom — that's the
+     100px here. Nothing renders below this line anymore, only above it. */
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
-  width: min(900px, 140%);
-  height: 340px;
+  width: min(760px, 120%);
+  height: 220px;
 
-  /* Bright, tight core at the very center-bottom, dissolving outward and upward.
-     This IS the "blue gradient glow at the middle" effect — swap the rgba color
-     to a blue (e.g. 59,130,246) if you want TeamCity's exact hue instead of purple. */
+  /* Origin "at 50% 100%" = this box's own bottom-center = the curve's peak.
+     It only fades UPWARD and outward from that point — it can no longer
+     bleed down into the block below the line.
+     Swap the rgba to e.g. 59,130,246 for TeamCity's blue instead of purple. */
   background: radial-gradient(
-    ellipse 55% 100% at 50% 100%,
-    rgba(168, 85, 247, 0.55) 0%,
-    rgba(168, 85, 247, 0.28) 35%,
-    rgba(168, 85, 247, 0) 72%
+    ellipse 60% 100% at 50% 100%,
+    rgba(168, 85, 247, 0.42) 0%,
+    rgba(168, 85, 247, 0.16) 40%,
+    rgba(168, 85, 247, 0) 78%
   );
 
   z-index: 0;
