@@ -527,7 +527,9 @@ ENTRYPOINT ["java", "-jar", "api-service.jar"]`
     ]
   },
   
-
+  // ----------------------------------------------------
+  // METRIC CARD MODULES
+  // ----------------------------------------------------
   "experience": {
     title: "4 Years DevOps & Platform Engineering",
     description: "Multi-cloud experience managing infrastructure, provisioning automated pipelines, and administering production clusters.",
@@ -738,7 +740,7 @@ function selectModalTab(data, index, targetBtn) {
     codeContainer.style.display = "none";
     richContainer.style.display = "block";
     richContainer.innerHTML = tab.content;
-    lucide.createIcons(); // Re-render injected icons
+    lucide.createIcons();
   } else {
     richContainer.style.display = "none";
     codeContainer.style.display = "block";
@@ -831,14 +833,9 @@ if (cliInput) {
 
       if (cmd === "bash deploy.sh" || cmd === "bash" || cmd === "sh trigger.sh" || cmd === "gh workflow run") {
         response = "Executing GitHub Actions trigger for jpprajapati529/Business-Management-System...";
-        
-        // 1. Trigger the Visual UI Stepper above
         triggerPipelineRun(); 
-        
-        // 2. Smooth scroll the user slightly so they see both the terminal and the pipeline
         document.getElementById("pipeline-sim").scrollIntoView({ behavior: "smooth", block: "center" });
 
-        // 3. Print the simulated logs directly into the terminal with realistic delays!
         const termLogs = [
           { msg: "Connecting to GitHub Actions API...", color: "text-cyan", delay: 800 },
           { msg: "✓ Code linting & security scans passed.", color: "text-green", delay: 1800 },
@@ -872,7 +869,6 @@ if (cliInput) {
         response = `Command not recognized: '${input}'. Try <span class='highlight'>'bash deploy.sh'</span> or <span class='highlight'>'help'</span>.`;
       }
 
-      // Print initial response immediately
       const respLine = document.createElement("p");
       respLine.className = "term-output";
       respLine.innerHTML = response;
@@ -889,10 +885,8 @@ const scrollBlocks = document.querySelectorAll('.scroll-block');
 const ideWindows = document.querySelectorAll('.ide-window');
 
 if (scrollBlocks.length > 0 && ideWindows.length > 0) {
-  // Intersection Observer setup
   const observerOptions = {
     root: null,
-    // Triggers when the block hits the middle 40% of the screen
     rootMargin: '-30% 0px -30% 0px', 
     threshold: 0
   };
@@ -900,11 +894,9 @@ if (scrollBlocks.length > 0 && ideWindows.length > 0) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // 1. Highlight the active text block
         scrollBlocks.forEach(b => b.classList.remove('active'));
         entry.target.classList.add('active');
 
-        // 2. Crossfade to the corresponding IDE window
         const targetId = entry.target.getAttribute('data-target');
         ideWindows.forEach(window => {
           if (window.id === targetId) {
@@ -917,6 +909,5 @@ if (scrollBlocks.length > 0 && ideWindows.length > 0) {
     });
   }, observerOptions);
 
-  // Observe all scroll blocks
   scrollBlocks.forEach(block => observer.observe(block));
 }
