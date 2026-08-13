@@ -23,14 +23,31 @@
       </div>
       <span class="logo-text">ja<span class="neon-ssh">SSH</span>board</span>
     </div>
+    <!-- 2. Navigation & Theme Toggle -->
     <nav>
       <a href="#about">About</a>
-      <a href="#certs">Certifications</a>
-      <a href="#experience">Experience</a>
-      <a href="#pipeline-sim">Pipeline Sim</a>
+      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="#terminal">CLI</a>
-
+      
+      <!-- Certifications Dropdown Container -->
+      <div class="nav-dropdown">
+        <a href="#certifications" class="dropdown-trigger">
+          Certifications <i data-lucide="chevron-down" class="dropdown-icon"></i>
+        </a>
+        
+        <!-- The Hover Menu -->
+        <div class="dropdown-menu">
+          <a href="#certs-aws"><i data-lucide="cloud"></i> AWS</a>
+          <a href="#certs-gcp"><i data-lucide="cloud-lightning"></i> GCP</a>
+          <a href="#certs-azure"><i data-lucide="cloud-snow"></i> Azure</a>
+          <a href="#certs-kubernetes"><i data-lucide="ship"></i> Kubernetes</a>
+          <a href="#certs-terraform"><i data-lucide="box"></i> Terraform</a>
+        </div>
+      </div>
+      
+      <a href="#contact">Contact</a>
+      
+      <!-- Dedicated Theme Switcher -->
       <div class="theme-switch" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
         <i id="theme-icon" data-lucide="sun"></i>
       </div>

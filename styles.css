@@ -143,6 +143,96 @@ html {
   
   /* Shrunk the bottom margin to snap the hero card right underneath the nav */
   margin-bottom: 12px; 
+
+  /* =========================================================
+   NAVIGATION DROPDOWN MENU
+   ========================================================= */
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown-trigger {
+  display: flex !important;
+  align-items: center;
+  gap: 4px;
+}
+
+.dropdown-icon {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+}
+
+/* Rotates the arrow smoothly when hovered */
+.nav-dropdown:hover .dropdown-icon {
+  transform: rotate(180deg);
+  color: var(--text-primary);
+}
+
+/* The hidden menu box */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  background-color: var(--nav-bg);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 170px;
+  
+  /* Creates a floating shadow and blurred glass background */
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.6), 
+    0 0 20px rgba(168, 85, 247, 0.15);
+  backdrop-filter: blur(16px);
+  
+  /* Hidden by default with a soft fade-in transition */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100;
+}
+
+/* Reveals the menu when hovering over the parent */
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(8px);
+}
+
+/* Styling the links inside the dropdown */
+.dropdown-menu a {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  margin-bottom: 2px;
+}
+
+.dropdown-menu a:last-child {
+  margin-bottom: 0;
+}
+
+/* Hover effect on individual dropdown items */
+.dropdown-menu a:hover {
+  background-color: rgba(168, 85, 247, 0.1);
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+/* Coloring the Lucide icons inside the dropdown */
+.dropdown-menu a i {
+  width: 16px;
+  height: 16px;
+  color: var(--accent-purple);
+}
 }
 
 /* =========================================================
