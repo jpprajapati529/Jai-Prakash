@@ -253,30 +253,30 @@ html {
 
 /* --- JETBRAINS EXACT HERO TILE --- */
 /* --- JETBRAINS PURPLE NEON HERO TILE --- */
+/* --- JETBRAINS PURPLE NEON HERO TILE --- */
 .hero-card {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
   width: 100%;
   
-  /* Matches your site's pure black card theme with an ambient purple corner glow */
   background-color: var(--card-bg); 
   background-image: radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 65%);
-  
   border-radius: 24px;
-  padding: 60px 0 60px 60px;
-  margin-bottom: 60px;
-  box-sizing: border-box;
   
-  /* Signature Purple Neon Border & Soft Ambient Glow */
+  /* THE FIX: Reduced top and bottom padding from 60px to 36px */
+  padding: 36px 0 36px 60px;
+  
+  /* THE FIX: Reduced the gap below the hero card from 60px to 24px */
+  margin-bottom: 24px;
+  
+  box-sizing: border-box;
   border: 1px solid rgba(168, 85, 247, 0.45);
   box-shadow: 
     0 0 35px rgba(168, 85, 247, 0.2),
     inset 0 0 25px rgba(168, 85, 247, 0.05);
-    
   overflow: hidden; 
 }
 
@@ -394,11 +394,17 @@ html {
 /* 1. The Container */
 /* 1. The Container */
 /* 1. The Container */
+/* 1. The Container */
 .tech-marquee-section {
   position: relative;
   width: 100%;
-  padding: 60px 0 120px 0; 
-  margin-bottom: 40px; 
+  
+  /* THE FIX: Drastically reduced top padding from 60px to 10px, pulling the logos up */
+  padding: 10px 0 100px 0; 
+  
+  /* THE FIX: Reduced bottom margin to pull the metric cards below it closer */
+  margin-bottom: 20px; 
+  
   overflow: hidden; 
   border: none !important; 
   background: transparent !important; 
