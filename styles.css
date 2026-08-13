@@ -39,6 +39,46 @@ html {
   scroll-behavior: smooth;
 }
 
+
+/* --- JETBRAINS TECH WORDMARK LOGO --- */
+.logo-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.5px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.logo-wordmark:hover {
+  opacity: 0.9;
+}
+
+.logo-prompt {
+  color: var(--accent-purple);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  text-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
+}
+
+.logo-text {
+  color: #ffffff;
+}
+
+.logo-highlight {
+  /* Creates a sleek luxury gradient transitioning from pure white to neon purple */
+  background: linear-gradient(135deg, #ffffff 30%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.35));
+}
+
 /* =========================================================
    2. NAVBAR & HERO BANNER TILE
    ========================================================= */
