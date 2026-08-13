@@ -41,8 +41,8 @@ html {
 
 
 /* --- JETBRAINS TECH WORDMARK LOGO --- */
-.logo-wordmark {
-  display: flex;
+.logo {
+  display: flex !important;
   align-items: center;
   gap: 8px;
   font-family: var(--font-sans);
@@ -55,7 +55,7 @@ html {
   transition: opacity 0.2s ease;
 }
 
-.logo-wordmark:hover {
+.logo:hover {
   opacity: 0.9;
 }
 
@@ -72,8 +72,8 @@ html {
 }
 
 .logo-highlight {
-  /* Creates a sleek luxury gradient transitioning from pure white to neon purple */
   background: linear-gradient(135deg, #ffffff 30%, #a855f7 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.35));
