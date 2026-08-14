@@ -1726,13 +1726,17 @@ h2 {
 
 /* The Deep Purple JetBrains Card */
 .jb-skill-card {
-  background-color: rgba(43, 27, 84, 0.4); /* Deep translucent indigo */
+  background-color: rgba(43, 27, 84, 0.4); 
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  padding: 24px;
+  
+  /* THE FIX: Massive increase to padding and height */
+  padding: 36px 30px; 
+  min-height: 160px;  
+  
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px; /* Increased gap to push text away from the larger logo */
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -1743,15 +1747,15 @@ h2 {
 
 /* The Iconic Blocky Logos */
 .jb-skill-logo {
-  min-width: 56px;
-  height: 56px;
-  border-radius: 12px;
+  min-width: 64px; /* Increased from 56px */
+  height: 64px;    /* Increased from 56px */
+  border-radius: 14px;
   display: flex;
-  align-items: flex-end; /* Pushes the text to the bottom like IntelliJ */
-  padding: 8px;
+  align-items: flex-end; 
+  padding: 10px 12px;
   font-family: 'Inter', sans-serif;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 22px; /* Slightly larger text */
   color: #ffffff;
   line-height: 1;
   letter-spacing: -1px;
@@ -1771,13 +1775,13 @@ h2 {
 .jb-skill-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   text-align: left;
 }
 
 .jb-skill-title {
   font-family: 'Inter', sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
