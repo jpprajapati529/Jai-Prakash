@@ -1695,6 +1695,33 @@ h2 {
    JETBRAINS SKILLS GRID
    ========================================================= */
 
+.jetbrains-skills-header {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 1.8rem) !important; 
+  font-weight: 600 !important; 
+  
+  /* The exact JetBrains "For Teams" cyan/teal color */
+  color: #00d2b4 !important; 
+  
+  letter-spacing: -0.02em; 
+  line-height: 1 !important;        
+  margin-bottom: 24px !important;   
+  
+  /* Flexbox ensures the text and icon align perfectly */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px; /* Space between words and icon */
+  width: 100%;
+}
+
+/* Forces the Lucide gear icon to scale perfectly with the text */
+.jetbrains-skills-header i {
+  width: 1em;
+  height: 1em;
+  stroke-width: 2.5;
+}
+
 .jetbrains-section-title {
   font-family: 'Inter', sans-serif;
   font-size: clamp(1.2rem, 2.5vw, 1.5rem);
