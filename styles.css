@@ -1752,24 +1752,40 @@ h2 {
 }
 
 /* The Deep Purple JetBrains Card */
+/* =========================================================
+   JETBRAINS SKILLS GRID CARDS (Gradle Base / Docker Hover)
+   ========================================================= */
+
+/* BASE STATE: Sleek dark background like Gradle/Zynex */
 .jb-skill-card {
-  background-color: rgba(43, 27, 84, 0.4); 
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #08080a; /* Deep, solid dark background */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Faint, thin border */
   border-radius: 12px;
-  
-  /* THE FIX: Massive increase to padding and height */
   padding: 36px 30px; 
   min-height: 160px;  
-  
   display: flex;
   align-items: center;
-  gap: 24px; /* Increased gap to push text away from the larger logo */
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  gap: 24px;
+  transition: all 0.3s ease;
 }
 
+/* HOVER STATE: Docker Marquee Neon Glow */
 .jb-skill-card:hover {
-  background-color: rgba(53, 35, 102, 0.7); 
-  transform: translateY(-2px); /* Slight lift on hover */
+  background-color: #08080a; /* Stays dark! No grey or light background */
+  transform: translateY(-4px); /* Slightly higher lift */
+  
+  /* The purple neon bounding box from your Docker screenshot */
+  border-color: #a855f7; 
+  box-shadow: 
+    0 10px 30px rgba(168, 85, 247, 0.25),
+    inset 0 0 15px rgba(168, 85, 247, 0.1); 
+}
+
+/* The White Neon Glow on the internal text and logo when hovered */
+.jb-skill-card:hover .jb-skill-title,
+.jb-skill-card:hover .jb-skill-logo {
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
 }
 
 /* The Iconic Blocky Logos */
