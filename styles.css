@@ -372,14 +372,14 @@ html {
   letter-spacing: -0.5px;
 }
 
-.neon-ssh {
+/* .neon-ssh {
   color: #d8b4fe;
   text-shadow: 
     0 0 6px rgba(168, 85, 247, 0.9),
     0 0 15px rgba(168, 85, 247, 0.7),
     0 0 30px rgba(168, 85, 247, 0.4);
   font-weight: 800;
-}
+} */
 
 /* The Pulsing Ring acts as the Logo Icon */
 .system-status-icon {
