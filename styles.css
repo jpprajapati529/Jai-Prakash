@@ -1672,15 +1672,22 @@ h2 {
    ========================================================= */
 .jetbrains-about-header {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(2rem, 4vw, 2.75rem); /* Massive on desktop, scales down cleanly for mobile */
-  font-weight: 500;
-  color: #9d80ff; /* The exact soft periwinkle/purple from the JetBrains site */
-  letter-spacing: -0.04em; /* Tight letter spacing creates that premium tech brand feel */
   
-  /* Spacing */
-  margin-top: 60px; /* Gives breathing room below the horizon curve */
-  margin-bottom: -140px; /* Pushes the 4 cards down perfectly */
-  text-align: left; /* Aligns perfectly with the left edge of your cards */
+  /* Matches JetBrains smaller kicker size */
+  font-size: clamp(1.5rem, 3vw, 1.8rem) !important; 
+  font-weight: 600 !important; 
+  
+  /* Deeper JetBrains Indigo */
+  color: #6B57FF !important; 
+  
+  letter-spacing: -0.02em; 
+  line-height: 1 !important;        
+  margin-top: -30px !important;     
+  
+  /* THE FIX: Replaced -140px with a normal 24px gap */
+  margin-bottom: 24px !important;   
+  
+  text-align: left; 
   width: 100%;
 }
 
