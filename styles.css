@@ -1659,7 +1659,7 @@ h2 {
   
   /* Spacing */
   margin-top: 60px; /* Gives breathing room below the horizon curve */
-  margin-bottom: 5px; /* Pushes the 4 cards down perfectly */
+  margin-bottom: 100px; /* Pushes the 4 cards down perfectly */
   text-align: left; /* Aligns perfectly with the left edge of your cards */
   width: 100%;
 }
