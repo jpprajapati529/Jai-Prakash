@@ -1545,17 +1545,19 @@ h2 {
    CERTIFICATIONS HEADER WRAPPER & SUBTEXT
    ========================================================= */
 
+/* =========================================================
+   CERTIFICATIONS HEADER ALIGNMENT FIX
+   ========================================================= */
 .cert-header-wrapper {
+  max-width: 1200px;   /* Matches the standard width of your Skills/About sections */
+  margin: 0 auto;      /* Centers the invisible container on the screen */
   width: 100%;
+  padding: 0 20px;     /* Keeps it aligned with the AWS card */
+  margin-bottom: 40px; /* Adds nice breathing room before the AWS card starts */
+  
+  /* Ensures the flex layout of your H2 doesn't stretch weirdly */
   display: flex;
-  flex-direction: column;
-  align-items: center; /* Forces everything inside to be perfectly centered */
-  
-  /* Pulls the whole certifications block UP to close that empty gap */
-  margin-top: -40px; 
-  
-  /* Pushes the AWS content further DOWN to give it breathing room */
-  margin-bottom: 80px; 
+  justify-content: flex-start; 
 }
 
 /* The Scrolling Subtext */
@@ -1878,3 +1880,4 @@ h2 {
   margin: 0;
   line-height: 1.4;
 }
+
