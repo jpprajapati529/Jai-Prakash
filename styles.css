@@ -1658,8 +1658,8 @@ h2 {
   letter-spacing: -0.04em; /* Tight letter spacing creates that premium tech brand feel */
   
   /* Spacing */
-  margin-top: 60px; /* Gives breathing room below the horizon curve */
-  margin-bottom: 20px; /* Pushes the 4 cards down perfectly */
+  margin-top: 40px; /* Gives breathing room below the horizon curve */
+  margin-bottom: 16px; /* Pushes the 4 cards down perfectly */
   text-align: left; /* Aligns perfectly with the left edge of your cards */
   width: 100%;
 }
