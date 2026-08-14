@@ -1553,7 +1553,7 @@ h2 {
   margin: 0 auto;      /* Centers the invisible container on the screen */
   width: 100%;
   padding: 0 20px;     /* Keeps it aligned with the AWS card */
-  margin-bottom: 40px; /* Adds nice breathing room before the AWS card starts */
+  margin-bottom: 10px; /* Adds nice breathing room before the AWS card starts */
   
   /* Ensures the flex layout of your H2 doesn't stretch weirdly */
   display: flex;
