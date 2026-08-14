@@ -100,16 +100,38 @@ html {
   letter-spacing: -0.5px;
 }
 
-/* Intense Purple Neon Glow for "SSH" */
-.neon-ssh {
-  color: #c084fc; 
-  
-  /* 2. Tight, controlled glow + physical depth */
-  text-shadow: 
-    0 0 8px rgba(192, 132, 252, 0.6),  /* Very tight, subtle purple light */
-    0 4px 6px rgba(0, 0, 0, 0.9);      /* Heavy dark shadow to make it "pop" off the screen */
-    
+/* =========================================================
+   JETBRAINS BADGE LOGO (jaSSHboard)
+   ========================================================= */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.brand-ja {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* The Solid JetBrains Product Block */
+.brand-ssh {
+  background: linear-gradient(135deg, #a855f7 0%, #00d2b4 100%); /* Purple fading to Cyan */
+  color: #08080a; /* Deep dark text inside the bright block */
   font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin: 0 4px; /* Gives a tiny gap between 'ja' and 'board' */
+  font-size: 1.1rem; /* Slightly smaller to fit neatly in the badge */
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(168, 85, 247, 0.2); /* Very subtle premium depth */
+}
+
+.brand-board {
+  color: #a1a1aa; /* Muted grey so it doesn't fight the badge for attention */
+  font-weight: 500;
 }
 
 @keyframes pulseNeonGreen {
