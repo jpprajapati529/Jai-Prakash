@@ -934,3 +934,33 @@ if (scrollBlocks.length > 0 && ideWindows.length > 0) {
 
   scrollBlocks.forEach(block => observer.observe(block));
 }
+
+
+// =========================================================
+// STICKY NAV SCROLLSPY (JetBrains Segmented Control)
+// =========================================================
+const navPills = document.querySelectorAll('.nav-pill');
+const scrollSections = document.querySelectorAll('.scroll-section');
+
+if (navPills.length > 0 && scrollSections.length > 0) {
+  window.addEventListener('scroll', () => {
+    let currentId = '';
+    
+    // Check which section is currently in the viewport
+    scrollSections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      // The 250px offset ensures it triggers a bit before you hit the exact top
+      if (scrollY >= (sectionTop - 250)) { 
+        currentId = section.getAttribute('id');
+      }
+    });
+
+    // Remove active class from all, then apply to the current section's pill
+    navPills.forEach(pill => {
+      pill.classList.remove('active');
+      if (pill.getAttribute('href') === `#${currentId}`) {
+        pill.classList.add('active');
+      }
+    });
+  });
+}

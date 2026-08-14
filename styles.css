@@ -1567,3 +1567,62 @@ h2 {
   font-size: 1.1rem;
   color: #94a3b8;
 }
+
+/* =========================================================
+   JETBRAINS STICKY SEGMENTED CONTROL (About / Certs)
+   ========================================================= */
+
+.sticky-section-nav {
+  position: sticky;
+  top: 15px; 
+  z-index: 120;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  pointer-events: none; /* Allows scrolling clicks to pass through the invisible full-width box */
+}
+
+/* The dark pill box holding the individual options */
+.nav-pill-group {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(11, 15, 23, 0.85); /* Deep dark glassmorphism */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  pointer-events: auto; /* Re-enables clicking on the actual buttons */
+}
+
+/* The individual text buttons inside the pill box */
+.nav-pill {
+  color: #94a3b8;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.nav-pill:hover {
+  color: #ffffff;
+}
+
+/* The ACTIVE state (This mimics your previous neon glowing pill!) */
+.nav-pill.active {
+  color: #ffffff;
+  border: 2px solid #7c3aed;
+  background-color: var(--bg-main, #0b0f17);
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.25);
+}
+
+/* Gives the jumping anchor links perfect spacing below the sticky nav */
+.scroll-section {
+  scroll-margin-top: 120px;
+}
