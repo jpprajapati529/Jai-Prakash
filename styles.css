@@ -1675,7 +1675,7 @@ h2 {
   
   /* Matches JetBrains smaller kicker size */
   font-size: clamp(1.5rem, 3vw, 1.8rem) !important; 
-  font-weight: 600 !important; 
+  font-weight: 800 !important; 
   
   /* Deeper JetBrains Indigo */
   color: #6B57FF !important; 
