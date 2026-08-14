@@ -937,31 +937,43 @@ if (scrollBlocks.length > 0 && ideWindows.length > 0) {
 
 
 // =========================================================
-// STICKY NAV SCROLLSPY (JetBrains Segmented Control)
-// =========================================================
-// =========================================================
 // STICKY NAV SCROLLSPY & SLIDE-IN LOGIC
 // =========================================================
 const navPills = document.querySelectorAll('.nav-pill');
 const scrollSections = document.querySelectorAll('.scroll-section');
-const stickyNav = document.querySelector('.sticky-section-nav'); // Target the nav wrapper
+const stickyNav = document.querySelector('.sticky-section-nav'); 
+const navSlider = document.querySelector('.nav-slider'); // Target the slider
+
+// Function to move the slider behind the active text
+function updateSliderPosition() {
+  const activePill = document.querySelector('.nav-pill.active');
+  if (activePill && navSlider) {
+    navSlider.style.width = `${activePill.offsetWidth}px`;
+    navSlider.style.height = `${activePill.offsetHeight}px`;
+    navSlider.style.left = `${activePill.offsetLeft}px`;
+    navSlider.style.top = `${activePill.offsetTop}px`;
+  }
+}
 
 if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
+  
+  // 1. Run it once on page load so it starts in the right spot
+  updateSliderPosition(); 
+  window.addEventListener('resize', updateSliderPosition);
+
+  // 2. The scroll listener
   window.addEventListener('scroll', () => {
     let currentId = '';
-    
-    // 1. SLIDE-IN LOGIC: Check how close we are to the About section
     const firstSectionTop = scrollSections[0].offsetTop;
     
-    // If we scroll within 350px of the About section, slide the nav down
+    // Slide-in visibility logic
     if (window.scrollY >= (firstSectionTop - 10)) { 
       stickyNav.classList.add('is-visible');
     } else {
-      // If we scroll back up to the hero banner, hide it again
       stickyNav.classList.remove('is-visible');
     }
 
-    // 2. HIGHLIGHT LOGIC: Check which section is currently in the viewport
+    // Highlight logic
     scrollSections.forEach(section => {
       const sectionTop = section.offsetTop;
       if (window.scrollY >= (sectionTop - 250)) { 
@@ -969,12 +981,21 @@ if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
       }
     });
 
-    // Remove active class from all, then apply to the current section
+    // Update active class AND move the slider
+    let changed = false;
     navPills.forEach(pill => {
-      pill.classList.remove('active');
       if (pill.getAttribute('href') === `#${currentId}`) {
-        pill.classList.add('active');
+        if (!pill.classList.contains('active')) {
+          pill.classList.add('active');
+          changed = true; // Only move slider if the active section actually changed
+        }
+      } else {
+        pill.classList.remove('active');
       }
     });
+
+    if (changed) {
+      updateSliderPosition();
+    }
   });
 }

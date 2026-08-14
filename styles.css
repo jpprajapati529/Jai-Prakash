@@ -1603,21 +1603,39 @@ h2 {
 /* (Keep your existing .nav-pill-group and .nav-pill styles exactly as they are below this!) */
 
 /* The dark pill box holding the individual options */
+/* =========================================================
+   JETBRAINS STICKY SEGMENTED CONTROL (About / Certs)
+   ========================================================= */
+/* ... keep your .sticky-section-nav fixed code exactly the same ... */
+
 .nav-pill-group {
   display: inline-flex;
   align-items: center;
-  background-color: rgba(11, 15, 23, 0.85); /* Deep dark glassmorphism */
+  background-color: rgba(11, 15, 23, 0.85); 
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 100px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 6px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-  pointer-events: auto; /* Re-enables clicking on the actual buttons */
+  pointer-events: auto; 
+  position: relative; /* REQUIRED: Keeps the slider trapped inside the box */
 }
 
-/* The individual text buttons inside the pill box */
+/* THE NEW MOVING SLIDER */
+.nav-slider {
+  position: absolute;
+  border-radius: 100px;
+  background-color: var(--bg-main, #0b0f17);
+  border: 2px solid #7c3aed;
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.25);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* JetBrains-style smooth snap */
+  z-index: 0; /* Stays behind the text */
+}
+
 .nav-pill {
+  position: relative; /* REQUIRED: Allows z-index to work */
+  z-index: 1; /* Puts the text on top of the glowing slider */
   color: #94a3b8;
   font-family: 'Inter', -apple-system, sans-serif;
   font-size: 1rem;
@@ -1625,7 +1643,7 @@ h2 {
   padding: 8px 24px;
   border-radius: 100px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease; /* We only transition the text color now */
   border: 2px solid transparent;
 }
 
@@ -1633,12 +1651,9 @@ h2 {
   color: #ffffff;
 }
 
-/* The ACTIVE state (This mimics your previous neon glowing pill!) */
+/* We removed the border/box-shadow from here because the slider handles it! */
 .nav-pill.active {
   color: #ffffff;
-  border: 2px solid #7c3aed;
-  background-color: var(--bg-main, #0b0f17);
-  box-shadow: 0 0 15px rgba(124, 58, 237, 0.25);
 }
 
 /* Gives the jumping anchor links perfect spacing below the sticky nav */
