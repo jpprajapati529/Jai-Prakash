@@ -1683,3 +1683,103 @@ h2 {
   text-align: left; /* Aligns perfectly with the left edge of your cards */
   width: 100%;
 }
+
+/* =========================================================
+   JETBRAINS SKILLS GRID
+   ========================================================= */
+
+.jetbrains-section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  color: #ffffff;
+  margin-top: 80px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.jetbrains-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
+  gap: 20px;
+  margin-bottom: 100px; /* Space before certifications start */
+}
+
+/* Responsive grid for smaller screens */
+@media (max-width: 900px) {
+  .jetbrains-skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .jetbrains-skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The Deep Purple JetBrains Card */
+.jb-skill-card {
+  background-color: rgba(43, 27, 84, 0.4); /* Deep translucent indigo */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.jb-skill-card:hover {
+  background-color: rgba(53, 35, 102, 0.7); 
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* The Iconic Blocky Logos */
+.jb-skill-logo {
+  min-width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-end; /* Pushes the text to the bottom like IntelliJ */
+  padding: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -1px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+/* JetBrains Specific Gradients recreated from the screenshot */
+.logo-cloud { background: linear-gradient(135deg, #FF318C, #FF7B02); }    /* IntelliJ vibe */
+.logo-cicd { background: linear-gradient(135deg, #00FF9D, #00D1FF); }     /* PyCharm vibe */
+.logo-container { background: linear-gradient(135deg, #9D00FF, #FF007A); }/* DataGrip vibe */
+.logo-iac { background: linear-gradient(135deg, #0055FF, #00E5FF); }      /* WebStorm vibe */
+.logo-prog { background: linear-gradient(135deg, #FF0055, #FFC800); }     /* Rider vibe */
+.logo-script { background: linear-gradient(135deg, #00FFAA, #0088FF); }   /* CLion vibe */
+
+/* Text Styling */
+.jb-skill-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.jb-skill-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.jb-skill-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #b4a8e5; /* The soft lavender secondary text */
+  margin: 0;
+  line-height: 1.4;
+}
