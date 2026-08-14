@@ -954,7 +954,7 @@ if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
     const firstSectionTop = scrollSections[0].offsetTop;
     
     // If we scroll within 350px of the About section, slide the nav down
-    if (window.scrollY >= (firstSectionTop - 350)) { 
+    if (window.scrollY >= (firstSectionTop - 10)) { 
       stickyNav.classList.add('is-visible');
     } else {
       // If we scroll back up to the hero banner, hide it again
