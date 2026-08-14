@@ -795,6 +795,45 @@ html {
   z-index: 2;
 }
 
+
+/* =========================================================
+   CENTERED & STICKY CERTIFICATIONS HEADER
+   ========================================================= */
+.sticky-section-header {
+  /* 1. Perfect Centering */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  
+  /* 2. Sticky Pinning Behavior */
+  position: sticky;
+  top: 55px; /* Sits right underneath your top navigation bar */
+  z-index: 110; /* Ensures it stays above all scrolling text and IDE windows */
+  
+  /* 3. Glassmorphism Background (Hides scrolling text smoothly) */
+  background: rgba(11, 15, 23, 0.85); /* Matches your deep dark theme */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  
+  /* 4. Spacing & Bottom Border */
+  padding: 25px 24px;
+  margin: 0 -24px 60px -24px; /* Pulls the background edge-to-edge */
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2); /* Soft purple divider line */
+}
+
+/* Centers the Lucide icon with the text */
+.sticky-section-header .section-headline {
+  justify-content: center; 
+  margin-bottom: 12px;
+}
+
+/* Keeps the paragraph clean and readable */
+.sticky-section-header .section-subtext {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 /* =========================================================
    JETBRAINS STICKY SCROLL SECTION
    ========================================================= */
@@ -1465,4 +1504,47 @@ h2 {
   position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   pointer-events: none; z-index: 0;
   background: radial-gradient(600px circle at var(--bg-x, 50%) var(--bg-y, 50%), rgba(168, 85, 247, 0.05), transparent 80%);
+}
+
+
+/* =========================================================
+   RICH TYPOGRAPHY UPGRADE FOR HEADERS
+   ========================================================= */
+   
+/* Gives the text a tight, premium structural feel */
+.sticky-section-header .section-headline {
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em; /* Tightening letter spacing creates a high-end look */
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Perfect spacing between icon and text */
+}
+
+/* The Vercel/Apple style text gradient */
+.sticky-section-header .rich-text {
+  background: linear-gradient(135deg, #ffffff 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; 
+  /* Adds a very subtle glow behind the text to make it pop off the dark background */
+  text-shadow: 0px 4px 24px rgba(168, 85, 247, 0.2); 
+}
+
+/* Upgrades the subtext to match the premium feel */
+.sticky-section-header .section-subtext {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #94a3b8; /* Slate gray for high contrast against the bright header */
+  letter-spacing: -0.01em;
+}
+
+/* Ensure the Lucide icon matches the rich purple theme */
+.sticky-section-header .section-headline i {
+  color: #a855f7;
+  width: 32px;
+  height: 32px;
 }
