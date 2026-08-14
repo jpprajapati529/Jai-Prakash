@@ -1540,3 +1540,30 @@ h2 {
   pointer-events: auto; 
   margin: 0;
 }
+
+/* =========================================================
+   CERTIFICATIONS HEADER WRAPPER & SUBTEXT
+   ========================================================= */
+
+.cert-header-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Forces everything inside to be perfectly centered */
+  
+  /* Pulls the whole certifications block UP to close that empty gap */
+  margin-top: -40px; 
+  
+  /* Pushes the AWS content further DOWN to give it breathing room */
+  margin-bottom: 80px; 
+}
+
+/* The Scrolling Subtext */
+.cert-subtext {
+  text-align: center;
+  max-width: 700px;
+  /* Adds a small 15px gap below the pill, no bottom margin needed here since wrapper handles it */
+  margin: 15px auto 0 auto; 
+  font-size: 1.1rem;
+  color: #94a3b8;
+}
