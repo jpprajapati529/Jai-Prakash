@@ -1789,30 +1789,26 @@ h2 {
 }
 
 /* The Iconic Blocky Logos */
+/* =========================================================
+   MONOCHROME WHITE ICONS
+   ========================================================= */
 .jb-skill-logo {
-  min-width: 64px; /* Increased from 56px */
-  height: 64px;    /* Increased from 56px */
-  border-radius: 14px;
+  min-width: 64px;
+  height: 64px;
   display: flex;
-  align-items: flex-end; 
-  padding: 10px 12px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  font-size: 22px; /* Slightly larger text */
-  color: #ffffff;
-  line-height: 1;
-  letter-spacing: -1px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  position: relative;
+  align-items: center;       /* Centers the icon vertically */
+  justify-content: center;   /* Centers the icon horizontally */
+  color: #ffffff;            /* Pure white color for the icon */
+  background: transparent;   /* Removes the colored blocks */
 }
 
-/* JetBrains Specific Gradients recreated from the screenshot */
-.logo-cloud { background: linear-gradient(135deg, #FF318C, #FF7B02); }    /* IntelliJ vibe */
-.logo-cicd { background: linear-gradient(135deg, #00FF9D, #00D1FF); }     /* PyCharm vibe */
-.logo-container { background: linear-gradient(135deg, #9D00FF, #FF007A); }/* DataGrip vibe */
-.logo-iac { background: linear-gradient(135deg, #0055FF, #00E5FF); }      /* WebStorm vibe */
-.logo-prog { background: linear-gradient(135deg, #FF0055, #FFC800); }     /* Rider vibe */
-.logo-script { background: linear-gradient(135deg, #00FFAA, #0088FF); }   /* CLion vibe */
+/* Sizes the Lucide icon perfectly */
+.jb-skill-logo i {
+  width: 42px;
+  height: 42px;
+  stroke-width: 1.5;
+  transition: all 0.3s ease;
+}
 
 /* Text Styling */
 .jb-skill-info {
