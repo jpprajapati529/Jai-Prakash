@@ -967,7 +967,7 @@ if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
     const firstSectionTop = scrollSections[0].offsetTop;
     
     // Slide-in visibility logic
-    if (window.scrollY >= (firstSectionTop - 10)) { 
+    if (window.scrollY >= (firstSectionTop - 150)) { 
       stickyNav.classList.add('is-visible');
     } else {
       stickyNav.classList.remove('is-visible');
