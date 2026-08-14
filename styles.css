@@ -1611,15 +1611,19 @@ h2 {
 .nav-pill-group {
   display: inline-flex;
   align-items: center;
-  background-color: rgba(11, 15, 23, 0.85); 
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  
+  /* 1. COMPLETELY TRANSPARENT BACKGROUND */
+  background-color: transparent; 
+  
+  /* 2. FAINT OUTLINE JUST LIKE JETBRAINS */
+  border: 1px solid rgba(255, 255, 255, 0.15); 
+  
   border-radius: 100px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 6px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
   pointer-events: auto; 
-  position: relative; /* REQUIRED: Keeps the slider trapped inside the box */
+  position: relative; /* REQUIRED: Keeps the slider trapped inside */
+  
+  /* (Removed the box-shadow and backdrop-filter blur completely!) */
 }
 
 /* THE NEW MOVING SLIDER */
