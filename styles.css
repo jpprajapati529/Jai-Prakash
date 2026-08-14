@@ -1758,8 +1758,8 @@ h2 {
 
 /* BASE STATE: Sleek dark background like Gradle/Zynex */
 .jb-skill-card {
-  background-color: #08080a; /* Deep, solid dark background */
-  border: 1px solid rgba(255, 255, 255, 0.08); /* Faint, thin border */
+  background-color: #08080a; 
+  border: 1px solid rgba(255, 255, 255, 0.08); 
   border-radius: 12px;
   padding: 36px 30px; 
   min-height: 160px;  
@@ -1767,6 +1767,43 @@ h2 {
   align-items: center;
   gap: 24px;
   transition: all 0.3s ease;
+  
+  /* REQUIRED FOR CURSOR GLOW: Keeps the spotlight trapped inside the borders */
+  position: relative; 
+  overflow: hidden;
+}
+
+/* The dynamic cursor spotlight layer */
+.jb-skill-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Creates a soft purple circle at the exact coordinates of your mouse pointer */
+  background: radial-gradient(
+    600px circle at var(--x, -500px) var(--y, -500px),
+    rgba(168, 85, 247, 0.15),
+    transparent 40%
+  );
+  
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.jb-skill-card:hover::before {
+  opacity: 1; /* Makes the spotlight visible only on hover */
+}
+
+/* Forces the text and icons to float safely ABOVE the spotlight layer */
+.jb-skill-logo, 
+.jb-skill-info {
+  position: relative;
+  z-index: 2;
 }
 
 /* HOVER STATE: Docker Marquee Neon Glow */
