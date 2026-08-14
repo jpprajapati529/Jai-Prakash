@@ -1770,25 +1770,20 @@ h2 {
 }
 
 /* HOVER STATE: Docker Marquee Neon Glow */
-/* HOVER STATE: Massive Whole-Box Neon Glow */
 .jb-skill-card:hover {
-  background-color: rgba(168, 85, 247, 0.05); /* Very faint purple fill so the inside doesn't feel dead */
-  transform: translateY(-6px); /* Lifts up a bit higher to emphasize the glow */
+  background-color: #08080a; /* Stays dark! No grey or light background */
+  transform: translateY(-4px); /* Slightly higher lift */
   
-  /* The entire border turns hot white */
-  border-color: rgba(255, 255, 255, 0.8); 
-  
-  /* The massive whole-box aura! */
+  /* The purple neon bounding box from your Docker screenshot */
+  border-color: #a855f7; 
   box-shadow: 
-    0 0 15px rgba(255, 255, 255, 0.5),      /* Hot white inner core glow */
-    0 20px 50px rgba(168, 85, 247, 0.6),    /* Massive deep purple outer spread */
-    inset 0 0 20px rgba(255, 255, 255, 0.1); /* Subtle internal reflection */
+    0 10px 30px rgba(168, 85, 247, 0.25),
+    inset 0 0 15px rgba(168, 85, 247, 0.1); 
 }
 
-/* Keep the text and logo glowing too! */
+/* The White Neon Glow on the internal text and logo when hovered */
 .jb-skill-card:hover .jb-skill-title,
-.jb-skill-card:hover .jb-skill-logo i,
-.jb-skill-card:hover .jb-skill-logo svg {
+.jb-skill-card:hover .jb-skill-logo {
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
 }
