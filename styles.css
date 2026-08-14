@@ -1508,43 +1508,42 @@ h2 {
 
 
 /* =========================================================
-   RICH TYPOGRAPHY UPGRADE FOR HEADERS
+   JETBRAINS NEON PILL HEADER (Sticky)
    ========================================================= */
-   
-/* Gives the text a tight, premium structural feel */
-.sticky-section-header .section-headline {
-  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 2.5rem;
-  font-weight: 800;
-  letter-spacing: -0.03em; /* Tightening letter spacing creates a high-end look */
+
+/* Container ensures the pill stays centered while pinned to the top */
+.sticky-pill-container {
+  position: sticky;
+  top: 70px; /* Sits cleanly below your navigation bar */
+  z-index: 110;
   display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  pointer-events: none; /* Allows user to click things behind the invisible container box */
+}
+
+/* The actual JetBrains-style glowing outline button */
+.neon-pill-header {
+  display: inline-flex;
   align-items: center;
-  gap: 12px; /* Perfect spacing between icon and text */
+  background-color: var(--bg-main, #0b0f17); /* Matches your deep background */
+  color: #ffffff; /* Crisp, readable white */
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 1.5rem; /* Much larger and readable */
+  font-weight: 500;
+  padding: 14px 40px;
+  border-radius: 100px; /* Perfect pill shape */
+  border: 3px solid #7c3aed; /* The rich, bright neon purple outline */
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.25); /* Soft ambient neon glow */
+  pointer-events: auto; 
+  margin: 0;
 }
 
-/* The Vercel/Apple style text gradient */
-.sticky-section-header .rich-text {
-  background: linear-gradient(135deg, #ffffff 0%, #a855f7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent; 
-  /* Adds a very subtle glow behind the text to make it pop off the dark background */
-  text-shadow: 0px 4px 24px rgba(168, 85, 247, 0.2); 
-}
-
-/* Upgrades the subtext to match the premium feel */
-.sticky-section-header .section-subtext {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+/* The Subtext (Scrolls normally, centered below the pill) */
+.cert-subtext {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px auto;
   font-size: 1.1rem;
-  font-weight: 400;
-  color: #94a3b8; /* Slate gray for high contrast against the bright header */
-  letter-spacing: -0.01em;
-}
-
-/* Ensure the Lucide icon matches the rich purple theme */
-.sticky-section-header .section-headline i {
-  color: #a855f7;
-  width: 32px;
-  height: 32px;
+  color: #94a3b8;
 }
