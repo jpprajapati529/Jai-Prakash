@@ -1572,16 +1572,35 @@ h2 {
    JETBRAINS STICKY SEGMENTED CONTROL (About / Certs)
    ========================================================= */
 
+/* =========================================================
+   JETBRAINS FIXED SLIDE-IN NAV (About / Certs)
+   ========================================================= */
+
 .sticky-section-nav {
-  position: sticky;
+  /* Changed from sticky to fixed so it floats independently of the page */
+  position: fixed;
   top: 15px; 
+  left: 50%; /* Centers the fixed element */
   z-index: 120;
   display: flex;
   justify-content: center;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  pointer-events: none; /* Allows scrolling clicks to pass through the invisible full-width box */
+  pointer-events: none;
+  
+  /* THE MAGIC: Starts invisible and pushed 50px upward */
+  transform: translateX(-50%) translateY(-50px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* JavaScript will add this class to slide it down into view */
+.sticky-section-nav.is-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* (Keep your existing .nav-pill-group and .nav-pill styles exactly as they are below this!) */
 
 /* The dark pill box holding the individual options */
 .nav-pill-group {

@@ -939,23 +939,37 @@ if (scrollBlocks.length > 0 && ideWindows.length > 0) {
 // =========================================================
 // STICKY NAV SCROLLSPY (JetBrains Segmented Control)
 // =========================================================
+// =========================================================
+// STICKY NAV SCROLLSPY & SLIDE-IN LOGIC
+// =========================================================
 const navPills = document.querySelectorAll('.nav-pill');
 const scrollSections = document.querySelectorAll('.scroll-section');
+const stickyNav = document.querySelector('.sticky-section-nav'); // Target the nav wrapper
 
-if (navPills.length > 0 && scrollSections.length > 0) {
+if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
   window.addEventListener('scroll', () => {
     let currentId = '';
     
-    // Check which section is currently in the viewport
+    // 1. SLIDE-IN LOGIC: Check how close we are to the About section
+    const firstSectionTop = scrollSections[0].offsetTop;
+    
+    // If we scroll within 350px of the About section, slide the nav down
+    if (window.scrollY >= (firstSectionTop - 350)) { 
+      stickyNav.classList.add('is-visible');
+    } else {
+      // If we scroll back up to the hero banner, hide it again
+      stickyNav.classList.remove('is-visible');
+    }
+
+    // 2. HIGHLIGHT LOGIC: Check which section is currently in the viewport
     scrollSections.forEach(section => {
       const sectionTop = section.offsetTop;
-      // The 250px offset ensures it triggers a bit before you hit the exact top
-      if (scrollY >= (sectionTop - 250)) { 
+      if (window.scrollY >= (sectionTop - 250)) { 
         currentId = section.getAttribute('id');
       }
     });
 
-    // Remove active class from all, then apply to the current section's pill
+    // Remove active class from all, then apply to the current section
     navPills.forEach(pill => {
       pill.classList.remove('active');
       if (pill.getAttribute('href') === `#${currentId}`) {
