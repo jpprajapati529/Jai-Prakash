@@ -1653,13 +1653,13 @@ h2 {
 .jetbrains-about-header {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(3rem, 5vw, 4.5rem); /* Massive on desktop, scales down cleanly for mobile */
-  font-weight: 600;
+  font-weight: 300;
   color: #9d80ff; /* The exact soft periwinkle/purple from the JetBrains site */
   letter-spacing: -0.04em; /* Tight letter spacing creates that premium tech brand feel */
   
   /* Spacing */
   margin-top: 60px; /* Gives breathing room below the horizon curve */
-  margin-bottom: 40px; /* Pushes the 4 cards down perfectly */
+  margin-bottom: 20px; /* Pushes the 4 cards down perfectly */
   text-align: left; /* Aligns perfectly with the left edge of your cards */
   width: 100%;
 }
