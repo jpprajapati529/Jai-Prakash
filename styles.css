@@ -1615,8 +1615,9 @@ h2 {
   /* 1. COMPLETELY TRANSPARENT BACKGROUND */
   background-color: transparent; 
   
-  /* 2. FAINT OUTLINE JUST LIKE JETBRAINS */
-  border: 1px solid rgba(255, 255, 255, 0.15); 
+  /* --- NEW PURPLE GLOW OUTLINE --- */
+  border: 1px solid rgba(124, 58, 237, 0.35); /* Semi-transparent neon purple border */
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.15); /* Very soft ambient purple glow */
   
   border-radius: 100px;
   padding: 6px;
