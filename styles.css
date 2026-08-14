@@ -1508,42 +1508,35 @@ h2 {
 
 
 /* =========================================================
-   JETBRAINS NEON PILL HEADER (Sticky)
+   JETBRAINS NEON PILL HEADER (Smaller & Higher)
    ========================================================= */
 
-/* Container ensures the pill stays centered while pinned to the top */
 .sticky-pill-container {
   position: sticky;
-  top: 70px; /* Sits cleanly below your navigation bar */
+  /* Pulls the pill right to the top edge of the screen */
+  top: 15px; 
   z-index: 110;
   display: flex;
   justify-content: center;
   margin-bottom: 24px;
-  pointer-events: none; /* Allows user to click things behind the invisible container box */
+  pointer-events: none; 
 }
 
-/* The actual JetBrains-style glowing outline button */
 .neon-pill-header {
   display: inline-flex;
   align-items: center;
-  background-color: var(--bg-main, #0b0f17); /* Matches your deep background */
-  color: #ffffff; /* Crisp, readable white */
+  background-color: var(--bg-main, #0b0f17); 
+  color: #ffffff; 
   font-family: 'Inter', -apple-system, sans-serif;
-  font-size: 1.5rem; /* Much larger and readable */
+  
+  /* SHRUNK: Smaller font, tighter padding, thinner border */
+  font-size: 1.1rem; 
   font-weight: 500;
-  padding: 14px 40px;
-  border-radius: 100px; /* Perfect pill shape */
-  border: 3px solid #7c3aed; /* The rich, bright neon purple outline */
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.25); /* Soft ambient neon glow */
+  padding: 8px 24px; 
+  border-radius: 100px; 
+  border: 2px solid #7c3aed; 
+  
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.25); 
   pointer-events: auto; 
   margin: 0;
-}
-
-/* The Subtext (Scrolls normally, centered below the pill) */
-.cert-subtext {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 60px auto;
-  font-size: 1.1rem;
-  color: #94a3b8;
 }
