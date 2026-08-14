@@ -1697,14 +1697,14 @@ h2 {
 
 .jetbrains-skills-header {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(1.5rem, 3vw, 1.8rem) !important; 
-  font-weight: 600 !important; 
+  font-size: clamp(2rem, 4vw, 2.75rem) !important; 
+  font-weight: 500 !important; 
   
   /* The exact JetBrains "For Teams" cyan/teal color */
   color: #9d80ff !important; 
   
-  letter-spacing: -0.02em; 
-  line-height: 1 !important;        
+  letter-spacing: -0.04em; 
+  /* line-height: 1 !important;         */
   margin-bottom: 24px !important;   
   
   /* Flexbox ensures the text and icon align perfectly */
