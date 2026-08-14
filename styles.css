@@ -1682,7 +1682,7 @@ h2 {
   
   letter-spacing: -0.02em; 
   line-height: 1 !important;        
-  margin-top: -10px !important;     
+  margin-top: 20px !important;     
   
   /* THE FIX: Replaced -140px with a normal 24px gap */
   margin-bottom: 24px !important;   
