@@ -1552,12 +1552,30 @@ h2 {
   max-width: 1200px;   /* Matches the standard width of your Skills/About sections */
   margin: 0 auto;      /* Centers the invisible container on the screen */
   width: 100%;
-  padding: 0 20px;     /* Keeps it aligned with the AWS card */
-  margin-bottom: -50px; /* Adds nice breathing room before the AWS card starts */
-  
-  /* Ensures the flex layout of your H2 doesn't stretch weirdly */
+  /* UPDATED: Added 20px bottom padding to create a gap between the text and the line */
+  padding: 0 20px 20px 20px;     
+  margin-bottom: 40px; 
   display: flex;
   justify-content: flex-start; 
+  
+  /* NEW: Required to anchor the neon line to this container */
+  position: relative;
+}
+
+/* NEW: The glowing fading neon line */
+.cert-header-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20px; /* Aligns perfectly with the start of your "My" text */
+  width: calc(100% - 40px); /* Spans the length of the grid */
+  height: 1px; /* Ultra-thin, sleek line */
+  
+  /* Creates a line that starts solid purple and fades to invisible on the right */
+  background: linear-gradient(90deg, #a855f7, transparent); 
+  
+  /* The neon spotlight glow effect */
+  box-shadow: 0 1px 10px rgba(168, 85, 247, 0.8); 
 }
 
 /* The Scrolling Subtext */
