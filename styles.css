@@ -102,14 +102,12 @@ html {
 
 /* Intense Purple Neon Glow for "SSH" */
 .neon-ssh {
-  color: #ffffff; 
-
-  /* 2. The Layered Neon Aura: Tight bright core, spreading out to deep purple */
+  color: #c084fc; 
+  
+  /* 2. Tight, controlled glow + physical depth */
   text-shadow: 
-    0 0 4px rgba(255, 255, 255, 0.5),    /* Slight white inner halo */
-    0 0 12px rgba(168, 85, 247, 0.9),    /* Intense primary purple glow */
-    0 0 24px rgba(168, 85, 247, 0.6),    /* Outer purple ambient spread */
-    0 0 36px rgba(168, 85, 247, 0.2);    /* Softest deep fade into the background */
+    0 0 8px rgba(192, 132, 252, 0.6),  /* Very tight, subtle purple light */
+    0 4px 6px rgba(0, 0, 0, 0.9);      /* Heavy dark shadow to make it "pop" off the screen */
     
   font-weight: 800;
 }
