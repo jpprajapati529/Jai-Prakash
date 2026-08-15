@@ -946,57 +946,26 @@ const stickyNav = document.querySelector('.sticky-section-nav');
 const navSlider = document.querySelector('.nav-slider'); 
 
 // Function to move the slider behind the active text
+// Updates the purple background slider to wrap the active pill smoothly across all nav bars
 function updateSliderPosition() {
-  const activePill = document.querySelector('.nav-pill.active');
-  if (activePill && navSlider) {
-    navSlider.style.width = `${activePill.offsetWidth}px`;
-    navSlider.style.height = `${activePill.offsetHeight}px`;
-    navSlider.style.left = `${activePill.offsetLeft}px`;
-    navSlider.style.top = `${activePill.offsetTop}px`;
-  }
-}
-
-if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
+  // Find all nav pill groups (both top header and sticky header)
+  const pillGroups = document.querySelectorAll('.nav-pill-group');
   
-  updateSliderPosition(); 
-  window.addEventListener('resize', updateSliderPosition);
-
-window.addEventListener('scroll', () => {
-    let currentId = '';
+  pillGroups.forEach(group => {
+    const activePill = group.querySelector('.nav-pill.active');
+    const slider = group.querySelector('.nav-slider');
     
-    // CHANGED: The bar will now drop down as soon as you scroll 100 pixels from the very top!
-    if (window.scrollY > 100) { 
-      stickyNav.classList.add('is-visible');
-    } else {
-      stickyNav.classList.remove('is-visible');
-    }
-
-    // Identifies which section you are currently looking at
-    scrollSections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      if (window.scrollY >= (sectionTop - 250)) { 
-        currentId = section.getAttribute('id');
-      }
-    });
-
-    // Moves the active purple pill to match the current section
-    let changed = false;
-    navPills.forEach(pill => {
-      if (pill.getAttribute('href') === `#${currentId}`) {
-        if (!pill.classList.contains('active')) {
-          pill.classList.add('active');
-          changed = true; 
-        }
-      } else {
-        pill.classList.remove('active');
-      }
-    });
-
-    if (changed) {
-      updateSliderPosition();
+    if (activePill && slider) {
+      slider.style.left = `${activePill.offsetLeft}px`;
+      slider.style.width = `${activePill.offsetWidth}px`;
     }
   });
 }
+
+// Run on window load and resize to keep positions pixel-perfect
+window.addEventListener('load', updateSliderPosition);
+window.addEventListener('resize', updateSliderPosition);
+
 
 // =========================================================
 // JETBRAINS AUTO-COLOR CYCLING ENGINE (PAUSE & KEEP COLOR)

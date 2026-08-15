@@ -974,12 +974,15 @@ body {
 
 .nav-slider {
   position: absolute;
+  top: 4px;
+  height: calc(100% - 8px);
+  background: rgb(var(--theme-rgb));
   border-radius: 100px;
-  background-color: var(--card-bg);
-  border: 2px solid rgb(var(--theme-rgb));
-  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.25);
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
-  z-index: 0; 
+  /* Smooth hardware-accelerated glide */
+  transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1), width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+  box-shadow: 0 4px 15px rgba(var(--theme-rgb), 0.3);
+  pointer-events: none;
 }
 
 .nav-pill {
