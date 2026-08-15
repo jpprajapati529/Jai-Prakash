@@ -955,10 +955,12 @@ body {
 /* NOTE: Keep your existing .nav-pill-group and .nav-pill CSS exactly as it is below this! */
 
 .nav-pill-group {
-  /* THE MAGIC: Forces the pill bar to the absolute center of the container */
-  position: absolute !important; 
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative !important;
+  left: auto;
+  transform: none;
+  
+  /* Pushes the pill bar away from the logo */
+  margin-left: 60px; 
   
   display: inline-flex;
   align-items: center;
