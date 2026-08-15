@@ -174,30 +174,100 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0 8px 0; 
+  padding: 16px 0 12px 0; 
   background-color: transparent;
   border: none;
   border-radius: 0;
   backdrop-filter: none;
   margin-bottom: 12px; 
+  position: relative; /* REQUIRED: Anchor for the centered links */
 } 
 
-.navbar nav { 
+/* CENTER: Navigation Links */
+.navbar-links { 
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* This guarantees perfect dead-center alignment */
   display: flex; 
   align-items: center; 
-  gap: 24px; 
+  gap: 28px; 
 }
 
-.navbar nav > a {
+.navbar-links > a,
+.dropdown-trigger {
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   font-weight: 500;
   transition: color 0.2s ease;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
+.navbar-links a:hover,
+.dropdown-trigger:hover { 
+  color: var(--text-primary); 
+}
+
+/* RIGHT: Action & Theme Controls */
+.navbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-deploy-btn {
+  background: rgb(var(--theme-rgb));
+  color: #000;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 8px;
+}
+
+.nav-deploy-btn:hover {
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(var(--theme-rgb), 0.4);
+  transform: translateY(-2px);
+}
+
+.nav-deploy-btn i { width: 16px; height: 16px; }
+
+/* Square Theme Buttons */
+.nav-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-icon-btn:hover {
+  background: rgba(var(--theme-rgb), 0.1);
+  border-color: rgba(var(--theme-rgb), 0.4);
+  color: rgb(var(--theme-rgb));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--theme-rgb), 0.15);
+}
+
+.nav-icon-btn i { width: 18px; height: 18px; }
+
+/* DROPDOWN MENU */
 .nav-dropdown {
   position: relative;
   display: flex;
@@ -205,27 +275,11 @@ body {
   height: 100%;
 }
 
-.dropdown-trigger {
-  display: flex !important;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.dropdown-trigger:hover {
-  color: var(--text-primary);
-}
-
 .dropdown-icon {
-  width: 14px;
-  height: 14px;
+  width: 14px; height: 14px;
   transition: transform 0.3s ease;
   margin-top: 2px;
+  margin-left: 4px;
 }
 
 .nav-dropdown:hover .dropdown-icon {
@@ -254,7 +308,7 @@ body {
 .nav-dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(8px);
+  transform: translateX(-50%) translateY(10px);
 }
 
 .dropdown-menu a {
@@ -280,72 +334,6 @@ body {
   height: 16px;
   color: rgb(var(--theme-rgb));
 }
-
-/* COMBINED LOGO & STATUS RING */
-/* COMBINED LOGO & STATUS RING */
-.system-status-icon {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* REDUCED: Shrunk the circle from 38px down to 28px */
-  width: 28px; 
-  height: 28px; 
-  border-radius: 50%;
-  background: rgba(var(--theme-rgb), 0.1);
-  border: 1px solid rgba(var(--theme-rgb), 0.4);
-  color: rgb(var(--theme-rgb));
-  box-shadow: 0 0 10px rgba(var(--theme-rgb), 0.2);
-  transition: all 0.3s ease;
-}
-
-/* NEW: Forces the activity wave icon to fit inside the smaller circle */
-.system-status-icon i {
-  width: 14px !important;
-  height: 14px !important;
-}
-
-.logo:hover .system-status-icon {
-  background: rgba(var(--theme-rgb), 0.25);
-  border-color: rgba(var(--theme-rgb), 0.9);
-  color: #ffffff;
-  box-shadow: 0 0 25px rgba(var(--theme-rgb), 0.6);
-  transform: scale(1.05);
-}
-
-.neon-ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1px solid rgba(var(--theme-rgb), 0.8);
-  animation: pulseRing 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-  pointer-events: none; 
-}
-
-@keyframes pulseRing {
-  0% { transform: scale(0.9); opacity: 1; }
-  100% { transform: scale(1.6); opacity: 0; }
-}
-
-.theme-switch {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  cursor: pointer;
-  padding: 6px;
-  margin-left: 16px;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-
-.theme-switch:hover {
-  color: rgb(var(--theme-rgb));
-  background: rgba(var(--theme-rgb), 0.1);
-  transform: scale(1.1);
-}
-
-.navbar nav a:hover { color: var(--text-primary); }
 
 /* =========================================================
    1. HERO BANNER TILE (Split Layout per Mockup)
