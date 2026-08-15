@@ -1087,46 +1087,61 @@ function resetColorTheme() {
 
 
 // =========================================================
-// CUSTOM UI HOVER SOUND ENGINE (Using Audio File)
+// CUSTOM UI SOUND ENGINE (Hover, Select, Close)
 // =========================================================
 
-// 1. Point this to the exact name of your audio file
-// If your file is a .wav, change this to 'hover.wav'
+// 1. Define your three audio files
 const hoverSound = new Audio('hover.mp3'); 
+const selectSound = new Audio('select.mp3'); 
+const closeSound = new Audio('close.mp3'); 
 
-// Set volume (0.0 is muted, 0.5 is half, 1.0 is max)
-hoverSound.volume = 0.4; 
+// Adjust volumes to mix perfectly (Hover should be quietest, Select loudest)
+hoverSound.volume = 0.3; 
+selectSound.volume = 0.5; 
+closeSound.volume = 0.4;
 
 let isSoundUnlocked = false;
 
-// 2. Browsers block sound until the user clicks the page. 
-// This waits for any click to silently unlock the audio.
+// 2. Unlock all audio on the user's first click
 document.addEventListener('click', () => {
   isSoundUnlocked = true;
 }, { once: true });
 
-// 3. The Play Function
-function playCustomHoverSound() {
-  // Stay silent if the user hasn't clicked the page yet
+// 3. Universal play function (with the overlapping cloning trick)
+function playAudio(audioElement) {
   if (!isSoundUnlocked) return;
-  
-  // CLONING TRICK: By cloning the audio node, the sound can overlap itself.
-  // If you hover over 3 cards very fast, you will hear 3 overlapping blips 
-  // instead of the sound abruptly cutting off and restarting!
-  const soundClone = hoverSound.cloneNode();
-  soundClone.volume = hoverSound.volume;
-  
-  // Play the sound, and quietly catch any browser policy errors
-  soundClone.play().catch(error => {
-    // Fails silently if the browser is still blocking it
-  });
+  const soundClone = audioElement.cloneNode();
+  soundClone.volume = audioElement.volume;
+  soundClone.play().catch(err => { /* Fails silently if browser blocks */ });
 }
 
-// 4. Attach the sound to every interactive element on your page
+// 4. Attach Hover and Select sounds
 const interactiveElements = document.querySelectorAll(
   'a, button, .card, .tech-item, .ide-window, .nav-pill, .logo, .theme-switch, .jb-skill-card, .clickable-card'
 );
 
 interactiveElements.forEach(el => {
-  el.addEventListener('mouseenter', playCustomHoverSound);
+  // Play HOVER sound when mouse enters
+  el.addEventListener('mouseenter', () => playAudio(hoverSound));
+  
+  // Play SELECT sound on click... EXCEPT if it's the close button!
+  if (!el.classList.contains('modal-close-btn')) {
+    el.addEventListener('click', () => playAudio(selectSound));
+  }
 });
+
+// 5. Attach CLOSE sound specifically to dismiss actions
+const closeBtn = document.querySelector('.modal-close-btn');
+if (closeBtn) {
+  closeBtn.addEventListener('click', () => playAudio(closeSound));
+}
+
+const modalOverlay = document.getElementById('modal-overlay');
+if (modalOverlay) {
+  modalOverlay.addEventListener('click', (e) => {
+    // Only play the close sound if they clicked the dark background, not the modal box itself
+    if (e.target.id === 'modal-overlay') {
+      playAudio(closeSound);
+    }
+  });
+}
