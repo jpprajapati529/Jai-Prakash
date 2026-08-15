@@ -1204,40 +1204,56 @@ const lifecycleData = {
   }
 };
 
-function setLifecycleStage(stageKey, btnElement) {
-  // 1. Play the "Select" sound if the audio engine is active
-  if (typeof playAudio === 'function' && typeof selectSound !== 'undefined') {
-    playAudio(selectSound);
-  }
-
-  // 2. Remove 'active' class from all tabs, add to the clicked one
-  if (btnElement) {
-    document.querySelectorAll('.lifecycle-tab').forEach(btn => btn.classList.remove('active'));
-    btnElement.classList.add('active');
-  }
-
-  // 3. Retrieve the data for the clicked stage
+// Shows the floating pane directly over the infinity loop image on hover
+function showLifecycleSpec(stageKey) {
   const data = lifecycleData[stageKey];
-  const contentDiv = document.getElementById('lifecycle-content');
+  const overlay = document.getElementById('lifecycle-overlay');
   
-  if (!contentDiv || !data) return;
+  // Grab the footer elements
+  const footer = document.querySelector('.cicd-footer');
+  const footerText = document.getElementById('cicd-footer-text');
+  const footerStatus = document.querySelector('.cicd-footer-status');
+  
+  if (!overlay || !data) return;
 
-  // 4. Generate the HTML for the tool pills
   const toolsHTML = data.tools.map(tool => `<span class="tool-pill">${tool}</span>`).join('');
 
-  // 5. Inject the compiled HTML directly into the UI
-  contentDiv.innerHTML = `
-    <div class="lifecycle-content-header">
-      <span class="lifecycle-title">${data.title}</span>
-      <span class="lifecycle-metric">${data.metric}</span>
-    </div>
+  overlay.innerHTML = `
+    <div class="lifecycle-title">${data.title}</div>
+    <div class="lifecycle-metric">${data.metric}</div>
     <p class="lifecycle-desc">${data.desc}</p>
     <div class="lifecycle-tools">${toolsHTML}</div>
   `;
+  
+  overlay.classList.add('active');
+
+  // NEW: Morph the footer into a data box
+  if (footer) footer.classList.add('active-box');
+  if (footerText) {
+    footerText.innerText = `Stage: ${stageKey.toUpperCase()}`;
+    footerText.style.color = "#fff";
+  }
+  if (footerStatus) {
+    // Dynamically displays the tool stack separated by commas
+    footerStatus.innerText = data.tools.join(", "); 
+  }
 }
 
-// Automatically load the 'PLAN' stage when the webpage finishes loading
-document.addEventListener("DOMContentLoaded", () => {
-  const firstTab = document.querySelector('.lifecycle-tab');
-  if (firstTab) setLifecycleStage('plan', firstTab);
-});
+function hideLifecycleSpec() {
+  const overlay = document.getElementById('lifecycle-overlay');
+  const footer = document.querySelector('.cicd-footer');
+  const footerText = document.getElementById('cicd-footer-text');
+  const footerStatus = document.querySelector('.cicd-footer-status');
+  
+  if (overlay) overlay.classList.remove('active');
+  
+  // NEW: Revert the footer to default state
+  if (footer) footer.classList.remove('active-box');
+  if (footerText) {
+    footerText.innerText = "Hover stage for specs";
+    footerText.style.color = "var(--text-muted)";
+  }
+  if (footerStatus) {
+    footerStatus.innerText = "Continuous Loop Active";
+  }
+}

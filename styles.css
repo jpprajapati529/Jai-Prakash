@@ -641,19 +641,38 @@ body {
   box-shadow: 0 4px 12px rgba(var(--theme-rgb), 0.15);
 }
 
-/* 5. Footer (SHRUNK) */
+/* 5. Footer (SHRUNK & DYNAMIC) */
 .cicd-footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-family: var(--font-mono);
-  font-size: 0.7rem; /* Smaller text */
+  font-size: 0.75rem;
   color: var(--text-muted);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 12px;
+  margin-top: 16px;
+  
+  /* Adds baseline padding so the box doesn't jump when hovered */
+  padding: 12px 16px; 
+  border-radius: 8px;
+  
+  /* Default state: Invisible borders except for the top line */
+  border: 1px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.05); 
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+/* THE MAGIC: Triggers when hovered via JavaScript */
+.cicd-footer.active-box {
+  background: rgba(255, 255, 255, 0.02); 
+  border-color: rgba(255, 255, 255, 0.08); 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
 }
 
 .cicd-footer-status {
   color: rgb(var(--theme-rgb));
+  text-align: right;
+  font-weight: 600; /* Makes the tools pop */
 }
 
 /* 6. Hover Specifications Overlay (SHRUNK) */
