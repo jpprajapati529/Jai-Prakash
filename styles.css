@@ -346,7 +346,7 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 40px 0;
+  padding: 0 0 40px 0;
   margin: 0 0 40px 0 !important;
   
   /* Removes the old background to match the clean split mockup */
