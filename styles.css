@@ -594,20 +594,23 @@ body {
   animation: blink 1.5s infinite;
 }
 
-/* 3. The Infinity Loop Image Container (SHRUNK) */
+/* 3. The Infinity Loop Image Container (FLUSH RIGHT) */
 .loop-wrapper {
   position: relative;
-  width: 100%;
+  /* Expands the wrapper to completely bypass the card's 24px right padding */
+  width: calc(100% + 24px);
+  margin-right: -24px;
   display: flex;
-  justify-content: center;
+  /* Snaps the image to the far right edge instead of the center */
+  justify-content: flex-end; 
 }
 
 .loop-wrapper img {
   width: 100%;
-  /* REDUCED: Image scaled down from 550px to 420px to fit the smaller box */
   max-width: 420px; 
   height: auto;
-  transform-origin: center center;
+  /* THE MAGIC: Anchors the levitation scale to the right edge so the cutout stays perfectly flush with the wall */
+  transform-origin: right center;
   filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3));
   animation: levitateLoop 6s ease-in-out infinite;
 }
