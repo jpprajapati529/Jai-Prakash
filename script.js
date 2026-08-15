@@ -961,16 +961,17 @@ if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
   updateSliderPosition(); 
   window.addEventListener('resize', updateSliderPosition);
 
-  window.addEventListener('scroll', () => {
+window.addEventListener('scroll', () => {
     let currentId = '';
-    const firstSectionTop = scrollSections[0].offsetTop;
     
-    if (window.scrollY >= (firstSectionTop - 150)) { 
+    // CHANGED: The bar will now drop down as soon as you scroll 100 pixels from the very top!
+    if (window.scrollY > 100) { 
       stickyNav.classList.add('is-visible');
     } else {
       stickyNav.classList.remove('is-visible');
     }
 
+    // Identifies which section you are currently looking at
     scrollSections.forEach(section => {
       const sectionTop = section.offsetTop;
       if (window.scrollY >= (sectionTop - 250)) { 
@@ -978,6 +979,7 @@ if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
       }
     });
 
+    // Moves the active purple pill to match the current section
     let changed = false;
     navPills.forEach(pill => {
       if (pill.getAttribute('href') === `#${currentId}`) {
