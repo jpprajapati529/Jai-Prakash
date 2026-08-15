@@ -431,7 +431,10 @@ body {
   color: #94a3b8; 
   line-height: 1.6;
   margin-bottom: 32px;
-  max-width: 95%;
+  
+  /* EXPANDED: Allows the text to utilize the full width of the left column */
+  width: 100%;
+  max-width: 100%; 
 }
 
 /* BUTTON GROUP */
