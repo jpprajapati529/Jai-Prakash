@@ -519,37 +519,137 @@ body {
 }
 
 /* 3. THE AURA: A pulsing ambient backlight behind the loop */
-.hero-image-right::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(var(--theme-rgb), 0.2) 0%, transparent 65%);
-  border-radius: 50%;
-  z-index: 1; /* Sits behind the image */
-  pointer-events: none;
-  animation: pulseAura 4s ease-in-out infinite alternate;
+/* =========================================================
+   RIGHT HERO SECTION (Levitating Loop + DevOps Widget)
+   ========================================================= */
+.hero-image-right {
+  flex: 0 0 45%;
+  max-width: 45%;
+  display: flex;
+  flex-direction: column; /* Stacks the image on top of the widget */
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  gap: 30px; /* Space between the loop and the widget */
+}
+
+/* 1. The Levitation Image Container */
+.loop-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loop-wrapper img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  transform-origin: center center;
+  filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3));
+  animation: levitateLoop 6s ease-in-out infinite;
 }
 
 @keyframes levitateLoop {
-  0% { 
-    /* Base position */
-    transform: scale(1.15) translateY(0); 
-    filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3));
-  }
-  50% { 
-    /* Floats up slightly, glow intensifies and widens, slightly brighter */
-    transform: scale(1.15) translateY(-15px); 
-    filter: drop-shadow(0 30px 45px rgba(var(--theme-rgb), 0.6)) brightness(1.1);
-  }
-  100% { 
-    /* Returns to base */
-    transform: scale(1.15) translateY(0); 
-    filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3));
-  }
+  0% { transform: scale(1.15) translateY(0); filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3)); }
+  50% { transform: scale(1.15) translateY(-15px); filter: drop-shadow(0 30px 45px rgba(var(--theme-rgb), 0.6)) brightness(1.1); }
+  100% { transform: scale(1.15) translateY(0); filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3)); }
+}
+
+/* 2. The DevOps Lifecycle Widget */
+.devops-widget {
+  width: 100%;
+  max-width: 550px;
+  background: rgba(11, 15, 23, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.lifecycle-tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  overflow-x: auto; /* Allows scrolling on tiny mobile screens */
+}
+
+/* Hide scrollbar for a clean look */
+.lifecycle-tabs::-webkit-scrollbar { display: none; }
+
+.lifecycle-tab {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.lifecycle-tab:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Binds the active tab to your Color Engine! */
+.lifecycle-tab.active {
+  color: rgb(var(--theme-rgb));
+  background: rgba(var(--theme-rgb), 0.1);
+}
+
+/* Content Area Formatting */
+.lifecycle-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.lifecycle-title {
+  font-size: 0.9rem;
+  color: rgb(var(--theme-rgb)); /* Binds title to Color Engine */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lifecycle-metric {
+  font-size: 0.75rem;
+  color: var(--accent-green);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.lifecycle-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.lifecycle-tools {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tool-pill {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 4px;
 }
 
 @media (max-width: 960px) {

@@ -1145,3 +1145,98 @@ if (modalOverlay) {
     }
   });
 }
+
+
+// =========================================================
+// DEVOPS LIFECYCLE WIDGET ENGINE
+// =========================================================
+
+// The data structure holding the info for each DevOps stage
+const lifecycleData = {
+  plan: {
+    title: "Stage: PLAN (Agile)",
+    metric: "Lead Time: 2.1d",
+    desc: "Sprint Architecture, Jira Backlog & Git Branching Strategy",
+    tools: ["Jira", "Confluence", "Miro", "Lucidchart"]
+  },
+  code: {
+    title: "Stage: CODE (Source)",
+    metric: "PR Velocity: 3.4h",
+    desc: "Trunk-Based Development, Conventional Commits & Peer Review",
+    tools: ["Git", "GitHub", "VS Code", "IntelliJ"]
+  },
+  build: {
+    title: "Stage: BUILD (Artifacts)",
+    metric: "Build Avg: 42s",
+    desc: "Multi-Arch Container Builds, Dependency Management & Caching",
+    tools: ["Docker", "Maven", "Gradle", "GitHub Actions"]
+  },
+  test: {
+    title: "Stage: TEST (QA & Sec)",
+    metric: "Coverage: 91.4%",
+    desc: "Automated Unit/Integration Testing, SonarQube & Trivy Scans",
+    tools: ["JUnit", "SonarQube", "Trivy", "Selenium"]
+  },
+  release: {
+    title: "Stage: RELEASE (Registry)",
+    metric: "Zero-CVE Signed",
+    desc: "Semantic Versioning, Image Tagging & Immutable Artifact Signing",
+    tools: ["Harbor", "Docker Hub", "AWS ECR", "GCP Artifact Registry"]
+  },
+  deploy: {
+    title: "Stage: DEPLOY (GitOps)",
+    metric: "Sync: Instant",
+    desc: "ArgoCD Sync, Blue/Green Rollouts & Helm Chart Orchestration",
+    tools: ["Kubernetes", "Helm", "ArgoCD", "Terraform"]
+  },
+  operate: {
+    title: "Stage: OPERATE (Cloud)",
+    metric: "Uptime: 99.99%",
+    desc: "AWS EKS, GCP GKE, Azure AKS Multi-Cloud Cluster Management",
+    tools: ["AWS", "GCP", "Azure", "OpenShift"]
+  },
+  monitor: {
+    title: "Stage: MONITOR (SRE)",
+    metric: "MTTR: < 4 min",
+    desc: "Prometheus Metrics, Grafana Dashboards & PagerDuty Alerts",
+    tools: ["Prometheus", "Grafana", "Datadog", "ELK Stack"]
+  }
+};
+
+function setLifecycleStage(stageKey, btnElement) {
+  // 1. Play the "Select" sound if the audio engine is active
+  if (typeof playAudio === 'function' && typeof selectSound !== 'undefined') {
+    playAudio(selectSound);
+  }
+
+  // 2. Remove 'active' class from all tabs, add to the clicked one
+  if (btnElement) {
+    document.querySelectorAll('.lifecycle-tab').forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+  }
+
+  // 3. Retrieve the data for the clicked stage
+  const data = lifecycleData[stageKey];
+  const contentDiv = document.getElementById('lifecycle-content');
+  
+  if (!contentDiv || !data) return;
+
+  // 4. Generate the HTML for the tool pills
+  const toolsHTML = data.tools.map(tool => `<span class="tool-pill">${tool}</span>`).join('');
+
+  // 5. Inject the compiled HTML directly into the UI
+  contentDiv.innerHTML = `
+    <div class="lifecycle-content-header">
+      <span class="lifecycle-title">${data.title}</span>
+      <span class="lifecycle-metric">${data.metric}</span>
+    </div>
+    <p class="lifecycle-desc">${data.desc}</p>
+    <div class="lifecycle-tools">${toolsHTML}</div>
+  `;
+}
+
+// Automatically load the 'PLAN' stage when the webpage finishes loading
+document.addEventListener("DOMContentLoaded", () => {
+  const firstTab = document.querySelector('.lifecycle-tab');
+  if (firstTab) setLifecycleStage('plan', firstTab);
+});

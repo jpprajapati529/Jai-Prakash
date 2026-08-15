@@ -103,10 +103,36 @@
     </div>
 
     <!-- Right Side: 3D Image -->
+    <!-- Right Side: 3D Image & Lifecycle Widget -->
     <div class="hero-image-right">
-      <img src="./infinity-loop.png" alt="CI/CD Infinity Loop">
+      
+      <!-- 1. The Levitation Image (Wrapped so it floats independently) -->
+      <div class="loop-wrapper">
+        <img src="./infinity-loop.png" alt="CI/CD Infinity Loop">
+      </div>
+
+      <!-- 2. The Interactive DevOps Lifecycle Widget -->
+      <div class="devops-widget">
+        
+        <!-- The Navigation Pills -->
+        <div class="lifecycle-tabs">
+          <button class="lifecycle-tab active" onclick="setLifecycleStage('plan', this)" onmouseenter="playAudio(hoverSound)">PLAN</button>
+          <button class="lifecycle-tab" onclick="setLifecycleStage('code', this)" onmouseenter="playAudio(hoverSound)">CODE</button>
+          <button class="lifecycle-tab" onclick="setLifecycleStage('build', this)" onmouseenter="playAudio(hoverSound)">BUILD</button>
+          <button class="lifecycle-tab" onclick="setLifecycleStage('test', this)" onmouseenter="playAudio(hoverSound)">TEST</button>
+          <button class="lifecycle-tab" onclick="setLifecycleStage('release', this)" onmouseenter="playAudio(hoverSound)">RELEASE</button>
+          <button class="lifecycle-tab" onclick="setLifecycleStage('deploy', this)" onmouseenter="playAudio(hoverSound)">DEPLOY</button>
+          <button class="lifecycle-tab" onclick="setLifecycleStage('operate', this)" onmouseenter="playAudio(hoverSound)">OPERATE</button>
+          <button class="lifecycle-tab" onclick="setLifecycleStage('monitor', this)" onmouseenter="playAudio(hoverSound)">MONITOR</button>
+        </div>
+        
+        <!-- The Dynamic Content Area -->
+        <div class="lifecycle-content" id="lifecycle-content">
+          <!-- JavaScript will inject the data here automatically -->
+        </div>
+
+      </div>
     </div>
-  </div>
 
   <!-- =========================================================
        2. TECH STACK MARQUEE (Infinite Scroll)
