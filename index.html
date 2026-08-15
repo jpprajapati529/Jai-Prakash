@@ -11,12 +11,50 @@
 </head>
 <body>
   
+  <!-- ==========================================
+       UNIFIED STICKY SECTION NAVIGATION (Full Width Bar)
+       ========================================== -->
   <div class="sticky-section-nav">
-    <div class="nav-pill-group">
-      <div class="nav-slider"></div>
-      <a href="#section-about" class="nav-pill active">About</a>
-      <a href="#section-skills" class="nav-pill">Skills</a>
-      <a href="#section-certs" class="nav-pill">Certifications</a>
+    <div class="sticky-nav-content">
+
+      <!-- 1. LEFT: Logo -->
+      <div class="logo" onclick="triggerPipelineRun()" title="Cluster Operational">
+        <div class="system-status-icon">
+          <i data-lucide="activity"></i>
+          <span class="neon-ring"></span>
+        </div>
+        <div class="brand-logo-cli">
+          ja<span class="cli-accent">~ssh</span>board<span class="cli-cursor">_</span>
+        </div>
+      </div>
+
+      <!-- 2. CENTER: Navigation Pills (Preserved exactly as requested) -->
+      <div class="nav-pill-group">
+        <div class="nav-slider"></div>
+        <a href="#section-about" class="nav-pill active">About</a>
+        <a href="#section-skills" class="nav-pill">Skills</a>
+        <a href="#section-certs" class="nav-pill">Certifications</a>
+        <a href="#pipeline-sim" class="nav-pill">Pipeline</a>
+        <a href="#projects" class="nav-pill">Projects</a>
+        <a href="#terminal" class="nav-pill">Terminal</a>
+      </div>
+
+      <!-- 3. RIGHT: Controls & Theme Switches -->
+      <div class="navbar-controls">
+        <button class="nav-deploy-btn" onclick="triggerPipelineRun()">
+          <i data-lucide="play-circle"></i> Deploy
+        </button>
+        <div class="nav-icon-btn" onclick="toggleColorCycle()" title="Toggle Auto-Color Cycle">
+          <i data-lucide="palette"></i>
+        </div>
+        <div class="nav-icon-btn" onclick="resetColorTheme()" title="Reset to Primary Purple">
+          <i data-lucide="rotate-ccw"></i>
+        </div>
+        <div class="nav-icon-btn" title="Toggle Light/Dark Theme">
+          <i data-lucide="sun"></i>
+        </div>
+      </div>
+
     </div>
   </div>
 
