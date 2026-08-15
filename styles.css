@@ -913,12 +913,22 @@ body {
 /* Inner container to align everything perfectly with your site width */
 .sticky-nav-content {
   width: 100%;
-  max-width: 1280px; /* Matches your website's body max-width */
+  max-width: 1280px; 
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  
+  /* CHANGED: Pushes the logo and the pill group to the left side */
+  justify-content: flex-start; 
   align-items: center;
   padding: 12px 24px;
+  
+  /* ADDED: Creates a clean gap between your logo and the "About" pill */
+  gap: 36px; 
+}
+
+/* NEW: Forces the theme switches and deploy button to stay pinned to the far right */
+.sticky-nav-content .navbar-controls {
+  margin-left: auto; 
 }
 
 /* NOTE: Keep your existing .nav-pill-group and .nav-pill CSS exactly as it is below this! */
