@@ -108,7 +108,7 @@ html {
 .brand-logo-neon {
   font-family: 'Satisfy', cursive;
   font-size: 2.2rem; /* Cursive fonts need to be larger to read well */
-  color: #ffffff;    /* The bright white core of the neon tube */
+  color: #b52ef8;    /* The bright white core of the neon tube */
   
   /* Layered white text-shadow to create a blooming light effect */
   text-shadow: 
