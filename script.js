@@ -945,10 +945,7 @@ const scrollSections = document.querySelectorAll('.scroll-section');
 const stickyNav = document.querySelector('.sticky-section-nav'); 
 const navSlider = document.querySelector('.nav-slider'); 
 
-// Function to move the slider behind the active text
-// Updates the purple background slider to wrap the active pill smoothly across all nav bars
 function updateSliderPosition() {
-  // Find all nav pill groups (both top header and sticky header)
   const pillGroups = document.querySelectorAll('.nav-pill-group');
   
   pillGroups.forEach(group => {
@@ -956,15 +953,50 @@ function updateSliderPosition() {
     const slider = group.querySelector('.nav-slider');
     
     if (activePill && slider) {
-      slider.style.left = `${activePill.offsetLeft}px`;
       slider.style.width = `${activePill.offsetWidth}px`;
+      slider.style.height = `${activePill.offsetHeight}px`;
+      slider.style.left = `${activePill.offsetLeft}px`;
+      slider.style.top = `${activePill.offsetTop}px`;
     }
   });
 }
 
-// Run on window load and resize to keep positions pixel-perfect
 window.addEventListener('load', updateSliderPosition);
 window.addEventListener('resize', updateSliderPosition);
+
+// RESTORED: Triggers the sticky bar on scroll and syncs active pills
+window.addEventListener('scroll', () => {
+  let currentId = '';
+  
+  if (window.scrollY > 100) { 
+    stickyNav.classList.add('is-visible');
+  } else {
+    stickyNav.classList.remove('is-visible');
+  }
+
+  scrollSections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    if (window.scrollY >= (sectionTop - 250)) { 
+      currentId = section.getAttribute('id');
+    }
+  });
+
+  let changed = false;
+  navPills.forEach(pill => {
+    if (pill.getAttribute('href') === `#${currentId}`) {
+      if (!pill.classList.contains('active')) {
+        pill.classList.add('active');
+        changed = true; 
+      }
+    } else {
+      pill.classList.remove('active');
+    }
+  });
+
+  if (changed) {
+    updateSliderPosition();
+  }
+});
 
 
 // =========================================================
