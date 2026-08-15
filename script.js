@@ -996,7 +996,7 @@ if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
 }
 
 // =========================================================
-// JETBRAINS AUTO-COLOR CYCLING ENGINE
+// JETBRAINS AUTO-COLOR CYCLING ENGINE (PAUSE & KEEP COLOR)
 // =========================================================
 const jbColors = [
   { r: 168, g: 85, b: 247 },  // 0. Primary Purple (Base)
@@ -1013,39 +1013,33 @@ let colorProgress = 0;
 let isColorCycling = false;
 let colorAnimFrame;
 
+// Calculates the exact color blend between two points
 function lerpColor(start, end, t) {
   return Math.round(start + (end - start) * t);
 }
 
 function colorLoop() {
-  if (!isColorCycling && nextColorIndex !== 0) {
-    nextColorIndex = 0;
-  }
-
   const current = jbColors[colorIndex];
   const next = jbColors[nextColorIndex];
 
+  // Calculate the current frame's mixed RGB value
   const r = lerpColor(current.r, next.r, colorProgress);
   const g = lerpColor(current.g, next.g, colorProgress);
   const b = lerpColor(current.b, next.b, colorProgress);
 
+  // Push the color to the website
   document.documentElement.style.setProperty('--theme-rgb', `${r}, ${g}, ${b}`);
 
   colorProgress += 0.003; 
 
+  // When a color transition finishes, queue up the next one
   if (colorProgress >= 1) {
     colorProgress = 0;
     colorIndex = nextColorIndex;
-    
-    if (isColorCycling) {
-      nextColorIndex = (colorIndex + 1) % jbColors.length;
-    } else if (colorIndex === 0) {
-      cancelAnimationFrame(colorAnimFrame);
-      colorAnimFrame = null;
-      return;
-    }
+    nextColorIndex = (colorIndex + 1) % jbColors.length;
   }
   
+  // Keep the loop running
   colorAnimFrame = requestAnimationFrame(colorLoop);
 }
 
@@ -1054,12 +1048,17 @@ function toggleColorCycle() {
   const icon = document.getElementById('color-cycle-icon');
   
   if (isColorCycling) {
+    // TURN ON: Start spinning and resume color loop where it left off
     icon.classList.add('color-spinning'); 
     if (!colorAnimFrame) {
-      nextColorIndex = (colorIndex + 1) % jbColors.length;
       colorLoop();
     }
   } else {
+    // TURN OFF: Stop spinning and instantly FREEZE the color right where it is
     icon.classList.remove('color-spinning');
+    if (colorAnimFrame) {
+      cancelAnimationFrame(colorAnimFrame);
+      colorAnimFrame = null;
+    }
   }
 }
