@@ -955,6 +955,11 @@ body {
 /* NOTE: Keep your existing .nav-pill-group and .nav-pill CSS exactly as it is below this! */
 
 .nav-pill-group {
+  /* THE MAGIC: Forces the pill bar to the absolute center of the container */
+  position: absolute !important; 
+  left: 50%;
+  transform: translateX(-50%);
+  
   display: inline-flex;
   align-items: center;
   background-color: rgba(11, 13, 20, 0.85); 
@@ -963,12 +968,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.08); 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
   border-radius: 100px;
-  
-  /* REDUCED: Padding shrunk from 6px to 4px */
   padding: 4px;
-  
   pointer-events: auto; 
-  position: relative; 
 }
 
 .nav-slider {
