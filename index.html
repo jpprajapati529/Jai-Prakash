@@ -11,22 +11,15 @@
 </head>
 <body>
   
-  <!-- ==========================================
-       UNIFIED STICKY SECTION NAVIGATION
-       ========================================== -->
   <div class="sticky-section-nav">
     <div class="nav-pill-group">
       <div class="nav-slider"></div>
       <a href="#section-about" class="nav-pill active">About</a>
       <a href="#section-skills" class="nav-pill">Skills</a>
       <a href="#section-certs" class="nav-pill">Certifications</a>
-      <a href="#pipeline-sim" class="nav-pill">Pipeline</a>
-      <a href="#projects" class="nav-pill">Projects</a>
-      <a href="#terminal" class="nav-pill">Terminal</a>
     </div>
   </div>
 
-  <!-- Ambient Cursor Glow -->
   <div id="cursor-glow-bg"></div>
 
   <!-- Navbar -->
@@ -43,18 +36,33 @@
       </div>
     </div>
 
-    <!-- 2. CENTER: Translucent Navigation Pill -->
+    <!-- 2. CENTER: Navigation Links (Absolutely Centered) -->
     <nav class="navbar-links">
       <a href="#section-about">About</a>
       <a href="#section-skills">Skills</a>
-      <a href="#section-certs">Certifications</a>
       <a href="#pipeline-sim">Pipeline</a>
       <a href="#projects">Projects</a>
       <a href="#terminal">Terminal</a>
+      
+      <!-- Certifications Dropdown -->
+      <div class="nav-dropdown">
+        <a href="#certifications" class="dropdown-trigger">
+          Certifications <i data-lucide="chevron-down" class="dropdown-icon"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#certs-aws"><i data-lucide="cloud"></i> AWS</a>
+          <a href="#certs-gcp"><i data-lucide="cloud-lightning"></i> GCP</a>
+          <a href="#certs-azure"><i data-lucide="cloud-snow"></i> Azure</a>
+          <a href="#certs-iac"><i data-lucide="layers"></i> Containers & IaC</a>
+        </div>
+      </div>
+      
+      <a href="#contact">Contact</a>
     </nav>
 
     <!-- 3. RIGHT: Controls & Theme Switches -->
     <div class="navbar-controls">
+      
       <button class="nav-deploy-btn" onclick="triggerPipelineRun()">
         <i data-lucide="play-circle"></i> Deploy
       </button>
@@ -62,13 +70,17 @@
       <div class="nav-icon-btn" onclick="toggleColorCycle()" title="Toggle Auto-Color Cycle">
         <i id="color-cycle-icon" data-lucide="palette"></i>
       </div>
+      
       <div class="nav-icon-btn" onclick="resetColorTheme()" title="Reset to Primary Purple">
         <i data-lucide="rotate-ccw"></i>
       </div>
+
       <div class="nav-icon-btn" title="Toggle Light/Dark Theme">
         <i data-lucide="sun"></i>
       </div>
+      
     </div>
+
   </header>
 
   <!-- =========================================================
@@ -291,15 +303,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Add 'scroll-section' to the Pipeline section -->
-<section id="pipeline-sim" class="dashboard-section scroll-section">
-
-<!-- Add 'scroll-section' to the Projects section -->
-<section id="projects" class="dashboard-section scroll-section">
-
-<!-- Add 'scroll-section' to the Terminal section -->
-<section id="terminal" class="terminal-container scroll-section">
 
   <!-- =========================================================
        CERTIFICATIONS (JetBrains Sticky Scroll)
