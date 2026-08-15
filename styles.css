@@ -468,7 +468,7 @@ body {
 }
 
 /* =========================================================
-   LIVE 3D INFINITY LOOP (Energy Pulse & Flow)
+   LIVE 3D INFINITY LOOP (Levitation & Shape Glow)
    ========================================================= */
 .hero-image-right {
   flex: 0 0 45%;
@@ -477,21 +477,21 @@ body {
   justify-content: flex-end;
   align-items: center;
   box-sizing: border-box;
-  position: relative; /* REQUIRED: To contain the light pulses */
+  position: relative;
 }
 
-/* 1. The Image Itself (Breathing & Color Shifting) */
+/* 1. The Image - Levitation & True Outline Glow */
 .hero-image-right img {
   width: 100%;
   max-width: 650px;
   height: auto;
-  mix-blend-mode: screen;
-  transform: scale(1.15);
-  transform-origin: right center;
-  position: relative;
-  z-index: 2;
-  /* Makes the iridescent metal slightly shift colors and breathe */
-  animation: iridescentFlow 5s ease-in-out infinite alternate;
+  transform-origin: center center;
+  
+  /* Applies a dynamic glow specifically to the exact shape of the loop */
+  filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3));
+  
+  /* Premium slow floating animation */
+  animation: levitateLoop 6s ease-in-out infinite;
 }
 
 /* 2. THE ENERGY PULSE: Sweeping light beam that interacts with 3D highlights */
@@ -534,26 +534,22 @@ body {
   animation: pulseAura 4s ease-in-out infinite alternate;
 }
 
-/* --- ANIMATION KEYFRAMES FOR THE LOOP --- */
-
-/* Gently shifts the hues so the metal looks alive */
-@keyframes iridescentFlow {
-  0% { filter: hue-rotate(-10deg) brightness(1); }
-  100% { filter: hue-rotate(10deg) brightness(1.2); }
-}
-
-/* Shoots the gradient across the 3D surface */
-@keyframes sweepEnergy {
-  0% { background-position: 250% 50%; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { background-position: -150% 50%; opacity: 0; }
-}
-
-/* Breathes the ambient backlight in and out */
-@keyframes pulseAura {
-  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.4; }
-  100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+@keyframes levitateLoop {
+  0% { 
+    /* Base position */
+    transform: scale(1.15) translateY(0); 
+    filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3));
+  }
+  50% { 
+    /* Floats up slightly, glow intensifies and widens, slightly brighter */
+    transform: scale(1.15) translateY(-15px); 
+    filter: drop-shadow(0 30px 45px rgba(var(--theme-rgb), 0.6)) brightness(1.1);
+  }
+  100% { 
+    /* Returns to base */
+    transform: scale(1.15) translateY(0); 
+    filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3));
+  }
 }
 
 @media (max-width: 960px) {
