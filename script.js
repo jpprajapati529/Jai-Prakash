@@ -4,25 +4,25 @@ lucide.createIcons();
 // =========================================================
 // LIGHT/DARK MODE TOGGLE (FIXED LUCIDE ICON SWAP)
 // =========================================================
-function toggleTheme() {
-  const body = document.body;
-  const themeContainer = document.querySelector(".theme-switch");
+// function toggleTheme() {
+//   const body = document.body;
+//   const themeContainer = document.querySelector(".theme-switch");
   
-  if (body.getAttribute("data-theme") === "light") {
-    // Switch to Dark Mode
-    body.removeAttribute("data-theme");
-    // Inject fresh sun icon
-    themeContainer.innerHTML = '<i id="theme-icon" data-lucide="sun"></i>';
-  } else {
-    // Switch to Light Mode
-    body.setAttribute("data-theme", "light");
-    // Inject fresh moon icon
-    themeContainer.innerHTML = '<i id="theme-icon" data-lucide="moon"></i>';
-  }
+//   if (body.getAttribute("data-theme") === "light") {
+//     // Switch to Dark Mode
+//     body.removeAttribute("data-theme");
+//     // Inject fresh sun icon
+//     themeContainer.innerHTML = '<i id="theme-icon" data-lucide="sun"></i>';
+//   } else {
+//     // Switch to Light Mode
+//     body.setAttribute("data-theme", "light");
+//     // Inject fresh moon icon
+//     themeContainer.innerHTML = '<i id="theme-icon" data-lucide="moon"></i>';
+//   }
   
-  // Force Lucide to render the newly injected icon
-  lucide.createIcons();
-}
+//   // Force Lucide to render the newly injected icon
+//   lucide.createIcons();
+// }
 
 // Mouse Tracking for JetBrains Cursor Spotlight
 document.addEventListener("mousemove", (e) => {
