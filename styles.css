@@ -350,16 +350,21 @@ body {
 /* =========================================================
    1. HERO BANNER TILE (Split Layout per Mockup)
    ========================================================= */
+/* =========================================================
+   1. HERO BANNER TILE (Split Layout per Mockup)
+   ========================================================= */
 .hero-card {
   display: flex !important;
   flex-direction: row !important;
-  align-items: center;
+  /* CHANGED: Forces both left text and right image columns to equal height */
+  align-items: stretch; 
   justify-content: space-between;
   width: 100%;
-  padding: 0 0 40px 0;
-  margin: 0 0 40px 0 !important;
   
-  /* Removes the old background to match the clean split mockup */
+  /* ADDED: 30px top padding to push the name pill down from the navbar */
+  padding: 30px 0 40px 0; 
+  
+  margin: 0 0 40px 0 !important;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -492,12 +497,16 @@ body {
 }
 
 /* METRICS ROW */
+/* METRICS ROW */
 .hero-divider {
   width: 100%;
-  max-width: 500px;
+  max-width: 650px; 
   height: 1px;
   background: rgba(255, 255, 255, 0.1);
   margin-bottom: 30px;
+  
+  /* THE MAGIC FIX: Pushes this line and everything below it to the absolute bottom of the container */
+  margin-top: auto; 
 }
 
 .hero-metrics {
