@@ -183,31 +183,37 @@ body {
   position: relative; /* REQUIRED: Anchor for the centered links */
 } 
 
-/* CENTER: Navigation Links */
 .navbar-links { 
   position: absolute;
   left: 50%;
-  transform: translateX(-50%); /* This guarantees perfect dead-center alignment */
+  transform: translateX(-50%); 
   display: flex; 
   align-items: center; 
-  gap: 28px; 
+  
+  /* The frosted, translucent background */
+  background-color: rgba(11, 13, 20, 0.85); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08); 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+  border-radius: 100px;
+  padding: 6px;
 }
 
-.navbar-links > a,
-.dropdown-trigger {
+.navbar-links > a {
   color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.95rem;
+  font-family: var(--font-mono); /* Switched to monospace for tech feel */
+  font-size: 0.85rem;
   font-weight: 500;
-  transition: color 0.2s ease;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+  padding: 8px 18px; /* Tighter padding */
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.navbar-links a:hover,
-.dropdown-trigger:hover { 
-  color: var(--text-primary); 
+.navbar-links > a:hover { 
+  color: #ffffff; 
+  background: rgba(255, 255, 255, 0.05); /* Subtle frosted hover */
 }
 
 /* RIGHT: Action & Theme Controls */
