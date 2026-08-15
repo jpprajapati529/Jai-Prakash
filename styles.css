@@ -958,10 +958,7 @@ body {
   position: relative !important;
   left: auto;
   transform: none;
-  
-  /* Pushes the pill bar away from the logo */
   margin-left: 60px; 
-  
   display: inline-flex;
   align-items: center;
   background-color: rgba(11, 13, 20, 0.85); 
@@ -975,16 +972,7 @@ body {
 }
 
 .nav-slider {
-  position: absolute;
-  top: 4px;
-  height: calc(100% - 8px);
-  background: rgb(var(--theme-rgb));
-  border-radius: 100px;
-  /* Smooth hardware-accelerated glide */
-  transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1), width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 0;
-  box-shadow: 0 4px 15px rgba(var(--theme-rgb), 0.3);
-  pointer-events: none;
+  display: none !important;
 }
 
 .nav-pill {
@@ -992,18 +980,26 @@ body {
   z-index: 1; 
   color: #94a3b8;
   font-family: var(--font-mono);
-  
-  /* REDUCED: Font size down to 0.75rem for that compact terminal feel */
   font-size: 0.75rem !important; 
   font-weight: 500;
-  
-  /* REDUCED: Tighter padding inside the pills */
   padding: 6px 14px !important; 
-  
   border-radius: 100px;
   text-decoration: none;
-  transition: color 0.3s ease; 
-  border: 2px solid transparent;
+  transition: all 0.3s ease; 
+  border: 1px solid transparent; /* Default state: no border */
+  background: transparent;
+}
+
+.nav-pill:hover {
+  color: #ffffff;
+}
+
+/* THE ORIGINAL STYLE: Dark pill with a glowing purple outline */
+.nav-pill.active {
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgb(var(--theme-rgb));
+  box-shadow: 0 0 12px rgba(var(--theme-rgb), 0.4);
 }
 
 .nav-pill:hover, .nav-pill.active {

@@ -945,20 +945,9 @@ const scrollSections = document.querySelectorAll('.scroll-section');
 const stickyNav = document.querySelector('.sticky-section-nav'); 
 const navSlider = document.querySelector('.nav-slider'); 
 
+// Slider replaced by bordered active pill style
 function updateSliderPosition() {
-  const pillGroups = document.querySelectorAll('.nav-pill-group');
-  
-  pillGroups.forEach(group => {
-    const activePill = group.querySelector('.nav-pill.active');
-    const slider = group.querySelector('.nav-slider');
-    
-    if (activePill && slider) {
-      slider.style.width = `${activePill.offsetWidth}px`;
-      slider.style.height = `${activePill.offsetHeight}px`;
-      slider.style.left = `${activePill.offsetLeft}px`;
-      slider.style.top = `${activePill.offsetTop}px`;
-    }
-  });
+  // No-op
 }
 
 window.addEventListener('load', updateSliderPosition);
