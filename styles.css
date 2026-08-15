@@ -916,17 +916,17 @@ body {
   max-width: 1280px; 
   margin: 0 auto;
   display: flex;
-  
-  /* CHANGED: Pushes the logo and the pill group to the left side */
   justify-content: flex-start; 
   align-items: center;
-  padding: 12px 24px;
   
-  /* ADDED: Creates a clean gap between your logo and the "About" pill */
-  gap: 36px; 
+  /* REDUCED: Vertical padding changed from 12px to 8px to slim the bar */
+  padding: 8px 24px;
+  
+  /* REDUCED: Gap changed from 36px to 16px so the right side doesn't get pushed off screen */
+  gap: 16px; 
+  box-sizing: border-box;
 }
 
-/* NEW: Forces the theme switches and deploy button to stay pinned to the far right */
 .sticky-nav-content .navbar-controls {
   margin-left: auto; 
 }
@@ -936,11 +936,16 @@ body {
 .nav-pill-group {
   display: inline-flex;
   align-items: center;
-  background-color: transparent; 
-  border: 1px solid rgba(var(--theme-rgb), 0.35); 
-  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.15); 
+  background-color: rgba(11, 13, 20, 0.85); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08); 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
   border-radius: 100px;
-  padding: 6px;
+  
+  /* REDUCED: Padding shrunk from 6px to 4px */
+  padding: 4px;
+  
   pointer-events: auto; 
   position: relative; 
 }
@@ -959,10 +964,13 @@ body {
   position: relative; 
   z-index: 1; 
   color: #94a3b8;
-  font-family: var(--font-sans);
-  font-size: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   font-weight: 500;
-  padding: 8px 24px;
+  
+  /* REDUCED: Padding shrunk from 8px 18px down to 6px 14px */
+  padding: 6px 14px;
+  
   border-radius: 100px;
   text-decoration: none;
   transition: color 0.3s ease; 
