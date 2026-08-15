@@ -26,7 +26,8 @@ lucide.createIcons();
 
 // Mouse Tracking for JetBrains Cursor Spotlight
 document.addEventListener("mousemove", (e) => {
-  const card = e.target.closest(".card, .project-card, .dashboard-section, .rich-content-container, .ide-window, .hero-cta-btn, .summary-card, .jb-skill-card, .jb-skill-card");
+  // ADDED: .hero-btn-primary, .hero-btn-outline, and .lifecycle-btn
+  const card = e.target.closest(".card, .project-card, .dashboard-section, .rich-content-container, .ide-window, .summary-card, .jb-skill-card, .hero-btn-primary, .hero-btn-outline, .lifecycle-btn");
   if (card) {
     const rect = card.getBoundingClientRect();
     card.style.setProperty("--x", `${e.clientX - rect.left}px`);
