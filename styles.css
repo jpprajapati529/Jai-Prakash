@@ -1244,3 +1244,80 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
     transparent 100%
   );
 }
+
+
+/* =========================================================
+   BUTTON & GRID CURSOR GLOW UPGRADES (Matches CI/CD Skill Card)
+   ========================================================= */
+/* 1. Prepare buttons for inner light and layered z-index */
+.hero-btn-primary,
+.hero-btn-outline,
+.lifecycle-btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Elevate text and icons above the background glow */
+.hero-btn-primary *,
+.hero-btn-outline *,
+.lifecycle-btn * {
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* 2. Create the invisible tracking light layer */
+.hero-btn-primary::before,
+.hero-btn-outline::before,
+.lifecycle-btn::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+/* 3. Apply the exact CI/CD Skill Card borders & shadows on hover */
+.hero-btn-outline:hover,
+.lifecycle-btn:hover {
+  background: #08080a !important; /* Forces the deep dark background */
+  border-color: rgb(var(--theme-rgb)) !important;
+  box-shadow:
+    0 10px 20px rgba(var(--theme-rgb), 0.25),
+    inset 0 0 12px rgba(var(--theme-rgb), 0.2) !important; /* Inner glowing ring */
+}
+
+/* Turn on the internal spotlight */
+.hero-btn-primary:hover::before,
+.hero-btn-outline:hover::before,
+.lifecycle-btn:hover::before {
+  opacity: 1;
+}
+
+/* 4. Configure the tracking spotlight (Scaled for smaller buttons) */
+.hero-btn-primary::before {
+  background: radial-gradient(120px circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.4), transparent 100%);
+}
+
+.hero-btn-outline::before,
+.lifecycle-btn::before {
+  background: radial-gradient(120px circle at var(--x, 50%) var(--y, 50%), rgba(var(--theme-rgb), 0.35), transparent 100%);
+}
+
+/* 5. Add the CI/CD Skill Card Text & Icon Glow! */
+.hero-btn-outline:hover,
+.lifecycle-btn:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.8) !important; /* Text glow */
+}
+
+.hero-btn-outline:hover i,
+.hero-btn-outline:hover svg,
+.lifecycle-btn:hover i,
+.lifecycle-btn:hover svg {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) !important; /* Icon glow */
+}
