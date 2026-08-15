@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap'); */
 
 /* =========================================================
    1. GLOBAL RESETS & JETBRAINS DARK VARIABLES
@@ -8,7 +7,13 @@
   --bg-dark: #08080a;
   --card-bg: #000000; 
   --card-border: #22252d;
-  --accent-purple: #a855f7;
+  
+  /* NEW: The Master Dynamic Color (Starts as your signature Purple) */
+  --theme-rgb: 168, 85, 247; 
+  
+  /* UPDATED: Forces your accent purple to follow the master color */
+  --accent-purple: rgb(var(--theme-rgb)); 
+  
   --accent-green: #22c55e;
   --accent-blue: #3b82f6;
   --text-primary: #ffffff;
@@ -24,16 +29,10 @@
   padding: 0;
 }
 
-/* Enables smooth scrolling across the entire site instead of aggressive jumping */
 html {
   scroll-behavior: smooth;
 }
 
-/* 
-  Ensures that when a user clicks an anchor link, the browser stops scrolling 
-  150px early so the text sits perfectly centered next to the IDE window, 
-  rather than hiding under the top navigation bar.
-*/
 .scroll-block {
   scroll-margin-top: 150px; 
 }
@@ -43,23 +42,64 @@ body {
   color: var(--text-primary);
   font-family: var(--font-sans);
   line-height: 1.6;
-  
-  /* Strictly 0 top padding to ensure the nav hits the absolute ceiling */
   padding: 0 24px 32px 24px; 
   margin: 0 auto;
-  
   max-width: 1280px;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Enable smooth scrolling for the anchor link jump */
-html {
-  scroll-behavior: smooth;
+/* =========================================================
+   COMMAND LINE CLI LOGO (ja~sshboard_)
+   ========================================================= */
+.brand-logo-cli {
+  display: flex;
+  align-items: center;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace; 
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -1px;
+  cursor: pointer;
+  padding-left: 8px; 
 }
 
+.cli-accent {
+  color: #00d2b4; 
+}
 
-/* --- JETBRAINS TECH WORDMARK LOGO --- */
-/* --- CYBERPUNK NEON LOGO EMBLEM --- */
+.cli-cursor {
+  color: rgb(var(--theme-rgb)); /* Syncs with dynamic theme */
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.brand-ja {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.brand-ssh {
+  background: linear-gradient(135deg, rgb(var(--theme-rgb)) 0%, #00d2b4 100%); 
+  color: #08080a; 
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin: 0 4px; 
+  font-size: 1.05rem; 
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(var(--theme-rgb), 0.2); 
+}
+
+.brand-board {
+  color: #a1a1aa; 
+  font-weight: 500;
+}
+
 .logo {
   display: flex !important;
   align-items: center;
@@ -70,23 +110,22 @@ html {
   cursor: pointer;
   padding: 6px 14px;
   border-radius: 12px;
-  background: rgba(168, 85, 247, 0.04);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  background: rgba(var(--theme-rgb), 0.04);
+  border: 1px solid rgba(var(--theme-rgb), 0.3);
   box-shadow: 
-    0 0 15px rgba(168, 85, 247, 0.15),
-    inset 0 0 10px rgba(168, 85, 247, 0.05);
+    0 0 15px rgba(var(--theme-rgb), 0.15),
+    inset 0 0 10px rgba(var(--theme-rgb), 0.05);
   transition: all 0.3s ease;
 }
 
 .logo:hover {
-  border-color: rgba(168, 85, 247, 0.8);
+  border-color: rgba(var(--theme-rgb), 0.8);
   box-shadow: 
-    0 0 25px rgba(168, 85, 247, 0.4),
-    inset 0 0 15px rgba(168, 85, 247, 0.15);
+    0 0 25px rgba(var(--theme-rgb), 0.4),
+    inset 0 0 15px rgba(var(--theme-rgb), 0.15);
   transform: translateY(-1px);
 }
 
-/* Neon Green Pulsing Hardware Icon */
 .logo-emblem {
   display: flex;
   align-items: center;
@@ -101,80 +140,9 @@ html {
   letter-spacing: -0.5px;
 }
 
-/* Intense Purple Neon Glow for "SSH" */
-/* =========================================================
-   CURSIVE WHITE NEON LOGO (Satisfy Font)
-   ========================================================= */
-/* =========================================================
-   JETBRAINS BADGE LOGO (jaSSHboard)
-   ========================================================= */
-/* =========================================================
-   TERMINAL PATH LOGO (ja/ssh/board)
-   ========================================================= */
-/* =========================================================
-   COMMAND LINE CLI LOGO (ja~sshboard_)
-   ========================================================= */
-.brand-logo-cli {
-  display: flex;
-  align-items: center;
-  /* Uses the authentic code editor font you already imported */
-  font-family: 'JetBrains Mono', 'Fira Code', monospace; 
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -1px;
-  cursor: pointer;
-  padding-left: 8px; /* Breathing room from the pulse icon */
-}
-
-/* The directory path accent */
-.cli-accent {
-  color: #00d2b4; /* JetBrains bright cyan to make the "ssh" pop */
-}
-
-/* The Blinking Terminal Cursor */
-.cli-cursor {
-  color: #a855f7; /* Signature JetBrains purple */
-  margin-left: 2px;
-  animation: blink 1s step-end infinite;
-}
-
-/* Authentic terminal blink animation */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.brand-ja {
-  color: #ffffff;
-  font-weight: 700;
-}
-
-/* The Solid JetBrains Product Block */
-.brand-ssh {
-  background: linear-gradient(135deg, #a855f7 0%, #00d2b4 100%); /* Purple fading to Cyan */
-  color: #08080a; /* Deep dark text inside the bright block */
-  font-weight: 800;
-  padding: 2px 6px;
-  border-radius: 6px;
-  margin: 0 4px; /* Gap between 'ja' and 'board' */
-  font-size: 1.05rem; /* Slightly smaller to fit neatly in the badge */
-  text-transform: uppercase;
-  box-shadow: 0 4px 10px rgba(168, 85, 247, 0.2); /* Very subtle premium depth */
-}
-
-.brand-board {
-  color: #a1a1aa; /* Muted grey so it doesn't fight the badge for attention */
-  font-weight: 500;
-}
-
 @keyframes pulseNeonGreen {
   0% { filter: drop-shadow(0 0 5px rgba(34, 197, 94, 0.6)); }
   100% { filter: drop-shadow(0 0 14px rgba(34, 197, 94, 1)); }
-}
-
-.logo:hover {
-  opacity: 0.9;
 }
 
 .logo-prompt {
@@ -182,45 +150,32 @@ html {
   font-family: var(--font-mono);
   font-size: 1rem;
   font-weight: 600;
-  text-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
-}
-
-.logo-text {
-  color: #ffffff;
+  text-shadow: 0 0 12px rgba(var(--theme-rgb), 0.8);
 }
 
 .logo-highlight {
-  background: linear-gradient(135deg, #ffffff 30%, #a855f7 100%);
+  background: linear-gradient(135deg, #ffffff 30%, rgb(var(--theme-rgb)) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.35));
+  filter: drop-shadow(0 0 12px rgba(var(--theme-rgb), 0.35));
 }
 
 /* =========================================================
-   2. NAVBAR & HERO BANNER TILE
-   ========================================================= */
-/* =========================================================
-   2. NAVBAR (Seamless & Tight Spacing)
+   2. NAVBAR
    ========================================================= */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
-  /* Drastically reduced top padding to push nav up, and reduced bottom padding */
   padding: 12px 0 8px 0; 
-  
   background-color: transparent;
   border: none;
   border-radius: 0;
   backdrop-filter: none;
-  
-  /* Shrunk the bottom margin to snap the hero card right underneath the nav */
   margin-bottom: 12px; 
-} /* <--- THIS CLOSING BRACE WAS MISSING! */
+} 
 
-/* Alignment fix for the navigation links */
 .navbar nav { 
   display: flex; 
   align-items: center; 
@@ -237,9 +192,7 @@ html {
   align-items: center;
 }
 
-/* =========================================================
-   NAVIGATION DROPDOWN MENU
-   ========================================================= */
+/* NAVIGATION DROPDOWN MENU */
 .nav-dropdown {
   position: relative;
   display: flex;
@@ -270,45 +223,37 @@ html {
   margin-top: 2px;
 }
 
-/* Rotates the arrow smoothly when hovered */
 .nav-dropdown:hover .dropdown-icon {
   transform: rotate(180deg);
   color: var(--text-primary);
 }
 
-/* The hidden menu box */
 .dropdown-menu {
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(15px);
   background-color: var(--nav-bg);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  border: 1px solid rgba(var(--theme-rgb), 0.3);
   border-radius: 12px;
   padding: 8px;
   min-width: 170px;
-  
-  /* Creates a floating shadow and blurred glass background */
   box-shadow: 
     0 15px 35px rgba(0, 0, 0, 0.6), 
-    0 0 20px rgba(168, 85, 247, 0.15);
+    0 0 20px rgba(var(--theme-rgb), 0.15);
   backdrop-filter: blur(16px);
-  
-  /* Hidden by default with a soft fade-in transition */
   opacity: 0;
   visibility: hidden;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 100;
 }
 
-/* Reveals the menu when hovering over the parent */
 .nav-dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(8px);
 }
 
-/* Styling the links inside the dropdown */
 .dropdown-menu a {
   display: flex !important;
   align-items: center;
@@ -325,34 +270,26 @@ html {
   margin-bottom: 0;
 }
 
-/* Hover effect on individual dropdown items */
 .dropdown-menu a:hover {
-  background-color: rgba(168, 85, 247, 0.1);
+  background-color: rgba(var(--theme-rgb), 0.1);
   color: var(--text-primary);
   transform: translateX(4px);
 }
 
-/* Coloring the Lucide icons inside the dropdown */
 .dropdown-menu a i {
   width: 16px;
   height: 16px;
   color: var(--accent-purple);
 }
 
-/* =========================================================
-   TECH-STYLE HERO CTA BUTTON / CARD
-   ========================================================= */
 .hero-cta-btn {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  
-  /* Matches the dark card background and border from your Helm box */
   background-color: var(--card-bg, #111216);
   color: var(--text-primary, #ffffff);
-  border: 1px solid var(--card-border, rgba(168, 85, 247, 0.3));
-  
+  border: 1px solid var(--card-border, rgba(var(--theme-rgb), 0.3));
   padding: 14px 28px;
   border-radius: 16px;
   font-size: 0.95rem;
@@ -363,7 +300,6 @@ html {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* The Cursor-Tracking Spotlight (Matches image_422458.png) */
 .hero-cta-btn::before {
   content: "";
   position: absolute;
@@ -373,7 +309,7 @@ html {
   height: 100%;
   background: radial-gradient(
     500px circle at var(--x) var(--y),
-    rgba(168, 85, 247, 0.25),
+    rgba(var(--theme-rgb), 0.25),
     transparent 50%
   );
   pointer-events: none;
@@ -387,57 +323,17 @@ html {
 }
 
 .hero-cta-btn:hover {
-  border-color: rgba(168, 85, 247, 0.8);
+  border-color: rgba(var(--theme-rgb), 0.8);
   transform: translateY(-2px);
-  box-shadow: 0 15px 35px rgba(168, 85, 247, 0.2);
+  box-shadow: 0 15px 35px rgba(var(--theme-rgb), 0.2);
 }
 
-/* Ensures text and icons stay above the background glow layer */
 .hero-cta-btn > * {
   position: relative;
   z-index: 2;
 }
 
-/* =========================================================
-   COMBINED NEON LOGO & STATUS RING
-   ========================================================= */
-.logo {
-  display: flex !important;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  
-  /* Removes the outer box, borders, and backgrounds entirely */
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-}
-
-.logo:hover {
-  transform: translateY(-1px);
-}
-
-.logo-text {
-  color: var(--text-primary);
-  letter-spacing: -0.5px;
-}
-
-.neon-ssh {
-  color: #d8b4fe;
-  text-shadow: 
-    0 0 6px rgba(168, 85, 247, 0.9),
-    0 0 15px rgba(168, 85, 247, 0.7),
-    0 0 30px rgba(168, 85, 247, 0.4);
-  font-weight: 800;
-}
-
-/* The Pulsing Ring acts as the Logo Icon */
+/* COMBINED LOGO & STATUS RING */
 .system-status-icon {
   position: relative;
   display: flex;
@@ -446,18 +342,18 @@ html {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: rgba(168, 85, 247, 0.1);
-  border: 1px solid rgba(168, 85, 247, 0.4);
+  background: rgba(var(--theme-rgb), 0.1);
+  border: 1px solid rgba(var(--theme-rgb), 0.4);
   color: var(--accent-purple);
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.2);
   transition: all 0.3s ease;
 }
 
 .logo:hover .system-status-icon {
-  background: rgba(168, 85, 247, 0.25);
-  border-color: rgba(168, 85, 247, 0.9);
+  background: rgba(var(--theme-rgb), 0.25);
+  border-color: rgba(var(--theme-rgb), 0.9);
   color: #ffffff;
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+  box-shadow: 0 0 25px rgba(var(--theme-rgb), 0.6);
   transform: scale(1.05);
 }
 
@@ -465,7 +361,7 @@ html {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px solid rgba(168, 85, 247, 0.8);
+  border: 1px solid rgba(var(--theme-rgb), 0.8);
   animation: pulseRing 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
   pointer-events: none; 
 }
@@ -489,23 +385,13 @@ html {
 
 .theme-switch:hover {
   color: var(--accent-purple);
-  background: rgba(168, 85, 247, 0.1);
+  background: rgba(var(--theme-rgb), 0.1);
   transform: scale(1.1);
 }
 
-.navbar nav { display: flex; gap: 20px; }
-.navbar nav a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
 .navbar nav a:hover { color: var(--text-primary); }
 
-/* --- JETBRAINS EXACT HERO TILE --- */
-/* --- JETBRAINS PURPLE NEON HERO TILE --- */
-/* --- JETBRAINS PURPLE NEON HERO TILE --- */
+/* HERO BANNER */
 .hero-card {
   display: flex !important;
   flex-direction: row !important;
@@ -513,26 +399,19 @@ html {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  
   background-color: var(--card-bg); 
-  background-image: radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 65%);
+  background-image: radial-gradient(circle at 85% 30%, rgba(var(--theme-rgb), 0.15) 0%, transparent 65%);
   border-radius: 24px;
-  
-  /* THE FIX: Reduced top and bottom padding from 60px to 36px */
   padding: 36px 0 36px 60px;
-  
-  /* THE FIX: Reduced the gap below the hero card from 60px to 24px */
   margin-bottom: 24px;
-  
   box-sizing: border-box;
-  border: 1px solid rgba(168, 85, 247, 0.45);
+  border: 1px solid rgba(var(--theme-rgb), 0.45);
   box-shadow: 
-    0 0 35px rgba(168, 85, 247, 0.2),
-    inset 0 0 25px rgba(168, 85, 247, 0.05);
+    0 0 35px rgba(var(--theme-rgb), 0.2),
+    inset 0 0 25px rgba(var(--theme-rgb), 0.05);
   overflow: hidden; 
 }
 
-/* 55% width for text so titles fit cleanly */
 .hero-content-left {
   flex: 0 0 55%;
   max-width: 55%;
@@ -571,9 +450,8 @@ html {
   max-width: 95%;
 }
 
-/* Exact White Pill Button with forced overriding */
 .hero-btn {
-  background-color: #992df8 !important;
+  background-color: rgb(var(--theme-rgb)) !important;
   color: #000000 !important;
   font-weight: 600 !important;
   font-size: 0.95rem !important;
@@ -589,7 +467,6 @@ html {
   transform: scale(1.02);
 }
 
-/* 45% width for the right-side image */
 .hero-image-right {
   flex: 0 0 45%;
   max-width: 45%;
@@ -608,7 +485,6 @@ html {
   transform-origin: right center;
 }
 
-/* Responsive Mobile Layout */
 @media (max-width: 960px) {
   .hero-card {
     flex-direction: column !important;
@@ -627,49 +503,18 @@ html {
     transform: scale(1);
   }
 }
-/* =========================================================
-   2.6 TECH STACK MARQUEE (JetBrains "Trusted By" Style)
-   ========================================================= */
-/* .tech-marquee-section {
-  position: relative;
-  width: 100%;
-  padding: 60px 0; /* Reduced vertical padding for tighter look */
-  /* margin-bottom: 40px; 
-  overflow: hidden;
-  border: none;
-  
-  /* Deep Purple Horizon Gradient */
-  /* background: linear-gradient(to bottom, var(--bg-dark) 0%, rgba(168, 85, 247, 0.15) 100%);
-  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
-/* } */
 
-/* 1. The Container */
-/* 1. The Container */
-/* 1. The Container */
-/* 1. The Container */
+/* TECH STACK MARQUEE */
 .tech-marquee-section {
   position: relative;
   width: 100%;
-  
-  /* THE FIX: Drastically reduced top padding from 60px to 10px, pulling the logos up */
   padding: 10px 0 100px 0; 
-  
-  /* THE FIX: Reduced bottom margin to pull the metric cards below it closer */
   margin-bottom: 20px; 
-  
   overflow: hidden; 
   border: none !important; 
   background: transparent !important; 
 }
 
-/* 2. Curvy Horizon Glow
-   The old design used a separate radial-gradient box above the curve.
-   That creates a soft rectangular/oval hotspot that can visually drift away
-   from the actual horizon. The glow now comes ONLY from the same curved
-   ellipse that draws the horizon line, so the light always follows the arc. */
-/* 2. THE ATMOSPHERIC GLOW (Pushed Down) */
-/* 2. THE ATMOSPHERIC GLOW (The Massive Upward Aura) */
-/* 2. THE ATMOSPHERIC FOG (The Massive Upward Aura) */
 .tech-marquee-section::before {
   content: "";
   position: absolute;
@@ -678,17 +523,11 @@ html {
   width: 140%;
   height: 400px;
   border-radius: 50%;
-  
-  /* THE FIX: We completely removed the 'mask-image' from this layer! 
-     Now the shadow can freely bleed outside the box and shoot upwards. 
-     Increased the spread to 40px to make it thick and volumetric. */
-  box-shadow: 0 -30px 60px 10px rgba(168, 85, 247, 0.25);
-  
+  box-shadow: 0 -30px 60px 10px rgba(var(--theme-rgb), 0.25);
   z-index: 0;
   pointer-events: none;
 }
 
-/* 3. The Curvy Horizon Line & Core Glow */
 .tech-marquee-section::after {
   content: "";
   position: absolute;
@@ -697,21 +536,13 @@ html {
   width: 140%;
   height: 400px;
   border-radius: 50%;
-  
-  /* The bright, solid neon horizon line */
-  border-top: 2px solid rgba(168, 85, 247, 0.8); 
-  
-  /* The hot core sitting directly on the line */
+  border-top: 2px solid rgba(var(--theme-rgb), 0.8); 
   box-shadow: 
-    0 -5px 10px 0 rgba(168, 85, 247, 0.5),
-    0 -15px 30px 0 rgba(168, 85, 247, 0.25);
-    
+    0 -5px 10px 0 rgba(var(--theme-rgb), 0.5),
+    0 -15px 30px 0 rgba(var(--theme-rgb), 0.25);
   background: transparent !important;
-  
-  /* The mask stays HERE ONLY just to fade the left/right ends of the solid line */
   -webkit-mask-image: linear-gradient(to right, transparent 10%, black 50%, transparent 90%);
   mask-image: linear-gradient(to right, transparent 10%, black 50%, transparent 90%);
-  
   z-index: 0;
   pointer-events: none;
 }
@@ -722,7 +553,6 @@ html {
   display: flex;
   width: 100%;  
   overflow: hidden;
-  /* THE FIX: Added 30px of bottom padding (previously "10px 0") to lift the cards away from the line */
   padding: 10px 0 30px 0; 
   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
@@ -735,8 +565,8 @@ html {
 }
 
 .tile {
-    background-color: rgba(255, 255, 255, 0.05); /* Just a 5% wash of white */
-    backdrop-filter: blur(10px); /* Optional: adds a frosted glass look */
+    background-color: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(10px); 
 }
 
 .tech-track:hover {
@@ -746,28 +576,22 @@ html {
 .tech-group {
   display: flex;
   align-items: center;
-  gap: 20px; /* Much tighter spacing between pills */
-  padding-right: 20px; /* Must match gap exactly! */
+  gap: 20px; 
+  padding-right: 20px; 
 }
 
-/* JetBrains Pill Card Style */
 .tech-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  
   background-color: rgba(31, 3, 57, 0.12); 
-  border: 1px solid rgba(168, 85, 247, 0.25);
-  
-  /* THE FIX: Adds the subtle ambient edge glow matching the IDE window */
+  border: 1px solid rgba(var(--theme-rgb), 0.25);
   box-shadow: 
-    3px 3px 0px rgba(168, 85, 247, 0.8),
-    3px 3px 12px rgba(168, 85, 247, 0.4);
-  
+    3px 3px 0px rgba(var(--theme-rgb), 0.8),
+    3px 3px 12px rgba(var(--theme-rgb), 0.4);
   border-radius: 12px;
   padding: 16px 24px; 
   min-width: 260px; 
-  
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -776,25 +600,19 @@ html {
   height: 75px;
   width: 200px;
   object-fit: contain;
-  
-  /* Forces every pixel of the logo to become pure white */
   filter: brightness(0) invert(1);
-  
-  /* THE FIX: Turned up to 1 so they are bold, bright white by default */
   opacity: 1; 
-  
   transition: all 0.3s ease;
 }
 
 .tech-item:hover {
   transform: translateY(-4px);
-  background-color: rgba(168, 85, 247, 0.2); /* Slightly brighter purple on hover */
-  box-shadow: 0 12px 24px rgba(168, 85, 247, 0.3);
+  background-color: rgba(var(--theme-rgb), 0.2); 
+  box-shadow: 0 12px 24px rgba(var(--theme-rgb), 0.3);
   border-color: var(--accent-purple);
 }
 
 .tech-item:hover .brand-wordmark {
-  /* Since they are already full brightness, we add a subtle white glow and slight zoom on hover */
   filter: brightness(0) invert(1) drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.5));
   transform: scale(1.05); 
 }
@@ -804,14 +622,11 @@ html {
   100% { transform: translateX(-50%); } 
 }
 
-
-/* =========================================================
-   PROFESSIONAL SUMMARY CARD (Cursor Spotlight Effect)
-   ========================================================= */
+/* PROFESSIONAL SUMMARY CARD */
 .summary-card {
   position: relative;
   background-color: var(--card-bg, #111216);
-  border: 1px solid var(--card-border, rgba(168, 85, 247, 0.3));
+  border: 1px solid var(--card-border, rgba(var(--theme-rgb), 0.3));
   border-radius: 20px;
   padding: 40px;
   overflow: hidden;
@@ -819,7 +634,6 @@ html {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* The Cursor-Tracking Spotlight Layer */
 .summary-card::before {
   content: "";
   position: absolute;
@@ -829,7 +643,7 @@ html {
   height: 100%;
   background: radial-gradient(
     700px circle at var(--x) var(--y),
-    rgba(168, 85, 247, 0.18),
+    rgba(var(--theme-rgb), 0.18),
     transparent 50%
   );
   pointer-events: none;
@@ -843,61 +657,42 @@ html {
 }
 
 .summary-card:hover {
-  border-color: rgba(168, 85, 247, 0.7);
-  box-shadow: 0 20px 45px rgba(168, 85, 247, 0.15);
+  border-color: rgba(var(--theme-rgb), 0.7);
+  box-shadow: 0 20px 45px rgba(var(--theme-rgb), 0.15);
 }
 
-/* Ensures content stays above the spotlight glow layer */
 .summary-card > * {
   position: relative;
   z-index: 2;
 }
 
-
-/* =========================================================
-   CENTERED & STICKY CERTIFICATIONS HEADER
-   ========================================================= */
 .sticky-section-header {
-  /* 1. Perfect Centering */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  
-  /* 2. Sticky Pinning Behavior */
   position: sticky;
-  top: 55px; /* Sits right underneath your top navigation bar */
-  z-index: 110; /* Ensures it stays above all scrolling text and IDE windows */
-  
-  /* 3. Glassmorphism Background (Hides scrolling text smoothly) */
-  background: rgba(11, 15, 23, 0.85); /* Matches your deep dark theme */
+  top: 55px; 
+  z-index: 110; 
+  background: rgba(11, 15, 23, 0.85); 
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  
-  /* 4. Spacing & Bottom Border */
   padding: 25px 24px;
-  margin: 0 -24px 60px -24px; /* Pulls the background edge-to-edge */
-  border-bottom: 1px solid rgba(168, 85, 247, 0.2); /* Soft purple divider line */
+  margin: 0 -24px 60px -24px; 
+  border-bottom: 1px solid rgba(var(--theme-rgb), 0.2); 
 }
 
-/* Centers the Lucide icon with the text */
 .sticky-section-header .section-headline {
   justify-content: center; 
   margin-bottom: 12px;
 }
 
-/* Keeps the paragraph clean and readable */
 .sticky-section-header .section-subtext {
   max-width: 700px;
   margin: 0 auto;
 }
 
-/* =========================================================
-   JETBRAINS STICKY SCROLL SECTION
-   ========================================================= */
-/* =========================================================
-   CERTIFICATIONS JETBRAINS STICKY SCROLL STYLES
-   ========================================================= */
+/* JETBRAINS STICKY SCROLL SECTION */
 .jetbrains-sticky-section {
   max-width: 1280px;
   margin: 120px auto;
@@ -913,7 +708,6 @@ html {
   margin-bottom: 8px;
 }
 
-/* Reuses the site's existing .sticky-container, .scroll-blocks-col, and .ide-windows-col layout classes */
 .sticky-container {
   display: flex;
   gap: 60px;
@@ -925,7 +719,7 @@ html {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 160px; /* Generous spacing so each block triggers the observer neatly */
+  gap: 160px; 
   padding-bottom: 100px;
 }
 
@@ -953,11 +747,10 @@ html {
   margin: 0;
 }
 
-/* Right Column Sticky Wrapper */
 .ide-windows-col {
   flex: 1.1;
   position: sticky;
-  top: 120px; /* Locks the IDE window container in place on scroll */
+  top: 120px; 
   height: fit-content;
 }
 
@@ -967,7 +760,6 @@ html {
   min-height: 380px;
 }
 
-/* Stacked IDE Windows that fade in and out via JavaScript */
 .ide-window {
   position: absolute;
   top: 0;
@@ -977,8 +769,6 @@ html {
   visibility: hidden;
   transform: translateY(20px);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  
-  /* THE FIX: Solid dark/black background */
   background-color: #0b0f17; 
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
@@ -995,7 +785,7 @@ html {
   height: 100%;
   background: radial-gradient(
     800px circle at var(--x) var(--y),
-    rgba(168, 85, 247, 0.15),
+    rgba(var(--theme-rgb), 0.15),
     transparent 40%
   );
   pointer-events: none;
@@ -1015,13 +805,12 @@ html {
   position: relative;
 }
 
-/* Center stage layout for the certification badge inside the IDE frame */
 .ide-body-badge {
   padding: 50px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at center, rgba(168, 85, 247, 0.22) 0%, rgba(11, 15, 23, 1) 70%);
+  background: radial-gradient(circle at center, rgba(var(--theme-rgb), 0.22) 0%, rgba(11, 15, 23, 1) 70%);
   min-height: 280px;
   position: relative;
   overflow: hidden;
@@ -1039,7 +828,6 @@ html {
   transform: scale(1.06);
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 900px) {
   .sticky-container {
     flex-direction: column;
@@ -1058,9 +846,7 @@ html {
   }
 }
 
-/* =========================================================
-   3. METRICS GRID & JETBRAINS SPOTLIGHT CARDS
-   ========================================================= */
+/* METRICS GRID */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1086,8 +872,6 @@ html {
 .cert-card { border-left: 4px solid var(--accent-purple); }
 .clickable-card { cursor: pointer; z-index: 10; }
 
-/* Perfected JetBrains Purple Cursor Spotlight */
-/* Perfected JetBrains Purple Cursor Spotlight with a "Hot Core" */
 .card::before, 
 .dashboard-section::before, 
 .project-card::before,
@@ -1095,14 +879,11 @@ html {
   content: "";
   position: absolute;
   inset: 0;
-  
-  /* THE FIX: A multi-stop gradient with a bright, high-opacity center */
   background: radial-gradient(
     circle at var(--x, -500px) var(--y, -500px), 
-    rgb(183, 74, 247) 0%, 
-    rgba(183, 74, 247, 0) 100px
+    rgb(var(--theme-rgb)) 0%, 
+    rgba(var(--theme-rgb), 0) 100px
   );
-  
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -1115,7 +896,7 @@ html {
 .rich-content-container:hover::before { opacity: 1; }
 
 .card:hover, .project-card:hover, .cert-card:hover {
-  border-color: rgba(168, 85, 247, 0.5);
+  border-color: rgba(var(--theme-rgb), 0.5);
   transform: translateY(-2px);
 }
 
@@ -1150,13 +931,11 @@ html {
   margin-top: auto; 
 }
 
-/* =========================================================
-   CERTIFICATIONS STICKY SCROLL
-   ========================================================= */
+/* CERTIFICATIONS STICKY SCROLL */
 .cert-section-container {
-  max-width: 1000px; /* Keeps the cards from getting too wide/unreadable */
+  max-width: 1000px; 
   margin: 100px auto;
-  padding-top: 40px; /* Buffer for dropdown anchors */
+  padding-top: 40px; 
 }
 
 .section-title-wrapper {
@@ -1179,7 +958,6 @@ html {
   font-size: 1.05rem;
 }
 
-/* The Grid Layout */
 .cert-group {
   display: flex;
   gap: 60px;
@@ -1187,14 +965,13 @@ html {
   position: relative;
 }
 
-/* Left Column: The Sticky Zone */
 .cert-sidebar {
   flex: 0 0 240px;
 }
 
 .sticky-header {
   position: sticky;
-  top: 100px; /* Locks it 100px from the top of the screen */
+  top: 100px; 
   background-color: rgba(17, 18, 22, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 30px;
@@ -1229,7 +1006,6 @@ html {
   letter-spacing: 0.5px;
 }
 
-/* Right Column: The Scrolling Cards */
 .cert-content {
   flex: 1;
   display: flex;
@@ -1240,10 +1016,8 @@ html {
 .cert-card {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
-  padding: 30px; /* Slightly more breathing room */
+  padding: 30px; 
   border-radius: 16px;
-  
-  /* THE FIX: Forces the card into a row, spreading text left and image right */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1255,11 +1029,10 @@ html {
 .cert-card:hover {
   transform: translateX(5px);
   background-color: rgba(255, 255, 255, 0.03);
-  border-color: rgba(168, 85, 247, 0.4);
-  box-shadow: -5px 10px 30px rgba(168, 85, 247, 0.05);
+  border-color: rgba(var(--theme-rgb), 0.4);
+  box-shadow: -5px 10px 30px rgba(var(--theme-rgb), 0.05);
 }
 
-/* Forces the text to stay on the left and take up available space */
 .cert-card-text {
   flex: 1;
   text-align: left;
@@ -1278,9 +1051,8 @@ html {
   line-height: 1.6;
 }
 
-/* Creates a strict bounding box for the badge image on the right */
 .cert-card-image {
-  flex: 0 0 110px; /* Fixed width so the badge never shrinks or grows awkwardly */
+  flex: 0 0 110px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1291,37 +1063,29 @@ html {
   max-width: 110px;
   height: auto;
   object-fit: contain;
-  /* Adds a subtle high-end shadow to the transparent PNG badges */
   filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.25)); 
   transition: transform 0.3s ease;
 }
 
 .cert-card:hover .cert-card-image img {
-  transform: scale(1.05); /* Slight pop effect on the badge when the card is hovered */
+  transform: scale(1.05); 
 }
 
-/* Mobile Responsiveness for the Cards */
 @media (max-width: 900px) {
-  /* ... your existing media query for .cert-group and .sticky-header ... */
-  
   .cert-card {
-    flex-direction: column-reverse; /* Stacks image on top, text on bottom for mobile */
+    flex-direction: column-reverse; 
     align-items: flex-start;
     gap: 20px;
   }
-  
   .cert-card-image {
     flex: 0 0 auto;
   }
-  
   .cert-card-image img {
-    max-width: 80px; /* Smaller badge on mobile screens */
+    max-width: 80px; 
   }
 }
 
-/* =========================================================
-   4. DASHBOARD SECTIONS
-   ========================================================= */
+/* DASHBOARD SECTIONS */
 .dashboard-section {
   position: relative;
   background-color: var(--card-bg);
@@ -1356,7 +1120,7 @@ h2 {
 }
 
 .btn-primary, button {
-  background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+  background: linear-gradient(135deg, rgb(var(--theme-rgb)) 0%, #7e22ce 100%);
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -1365,19 +1129,17 @@ h2 {
   font-size: 0.875rem;
   font-family: var(--font-sans);
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.3);
+  box-shadow: 0 4px 14px rgba(var(--theme-rgb), 0.3);
   transition: all 0.2s ease;
 }
 
 .btn-primary:hover, button:hover {
   opacity: 0.95;
   transform: scale(1.02);
-  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+  box-shadow: 0 6px 20px rgba(var(--theme-rgb), 0.4);
 }
 
-/* =========================================================
-   5. CI/CD PIPELINE & TERMINAL
-   ========================================================= */
+/* PIPELINE TERMINAL */
 .pipeline-stepper {
   display: flex;
   align-items: center;
@@ -1451,7 +1213,6 @@ h2 {
 .text-cyan { color: var(--accent-blue); }
 .text-green { color: var(--accent-green); }
 
-/* Tag Badges */
 .tag-badge {
   display: inline-flex;
   align-items: center;
@@ -1465,11 +1226,9 @@ h2 {
   backdrop-filter: blur(4px);
   transition: all 0.2s ease;
 }
-.tag-badge:hover { border-color: var(--accent-purple); color: var(--text-primary); background: rgba(168, 85, 247, 0.1); }
+.tag-badge:hover { border-color: var(--accent-purple); color: var(--text-primary); background: rgba(var(--theme-rgb), 0.1); }
 
-/* =========================================================
-   6. INTERACTIVE MODALS & RICH UI
-   ========================================================= */
+/* MODALS & RICH UI */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -1495,7 +1254,7 @@ h2 {
   max-height: 85vh;
   overflow-y: auto;
   padding: 24px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(168, 85, 247, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(var(--theme-rgb), 0.15);
   transform: scale(0.95);
   transition: transform 0.3s ease;
 }
@@ -1525,7 +1284,7 @@ h2 {
   font-family: var(--font-mono);
   cursor: pointer;
 }
-.tab-btn.active { background: rgba(168, 85, 247, 0.15); border-color: var(--accent-purple); color: var(--text-primary); }
+.tab-btn.active { background: rgba(var(--theme-rgb), 0.15); border-color: var(--accent-purple); color: var(--text-primary); }
 
 .code-preview-container { background: #050507; border: 1px solid var(--card-border); border-radius: 10px; overflow: hidden; }
 .code-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--card-border); }
@@ -1534,11 +1293,8 @@ h2 {
 .code-content { display: block; padding: 16px; font-family: var(--font-mono); font-size: 0.825rem; color: #a7f3d0; overflow-x: auto; white-space: pre; }
 
 .rich-content-container {
-  /* THE FIX: These lock the absolute glowing pseudo-element inside this exact box */
   position: relative;
   overflow: hidden;
-  
-  /* Your existing styles */
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--card-border);
   border-radius: 10px;
@@ -1561,17 +1317,11 @@ h2 {
 #cursor-glow-bg {
   position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   pointer-events: none; z-index: 0;
-  background: radial-gradient(600px circle at var(--bg-x, 50%) var(--bg-y, 50%), rgba(168, 85, 247, 0.05), transparent 80%);
+  background: radial-gradient(600px circle at var(--bg-x, 50%) var(--bg-y, 50%), rgba(var(--theme-rgb), 0.05), transparent 80%);
 }
-
-
-/* =========================================================
-   JETBRAINS NEON PILL HEADER (Smaller & Higher)
-   ========================================================= */
 
 .sticky-pill-container {
   position: sticky;
-  /* Pulls the pill right to the top edge of the screen */
   top: 15px; 
   z-index: 110;
   display: flex;
@@ -1586,139 +1336,91 @@ h2 {
   background-color: var(--bg-main, #0b0f17); 
   color: #ffffff; 
   font-family: 'Inter', -apple-system, sans-serif;
-  
-  /* SHRUNK: Smaller font, tighter padding, thinner border */
   font-size: 1.1rem; 
   font-weight: 500;
   padding: 8px 24px; 
   border-radius: 100px; 
-  border: 2px solid #7c3aed; 
-  
-  box-shadow: 0 0 15px rgba(124, 58, 237, 0.25); 
+  border: 2px solid rgb(var(--theme-rgb)); 
+  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.25); 
   pointer-events: auto; 
   margin: 0;
 }
 
-/* =========================================================
-   CERTIFICATIONS HEADER WRAPPER & SUBTEXT
-   ========================================================= */
-
-/* =========================================================
-   CERTIFICATIONS HEADER ALIGNMENT FIX
-   ========================================================= */
 .cert-header-wrapper {
-  max-width: 1200px;   /* Matches the standard width of your Skills/About sections */
-  margin: 0 auto;      /* Centers the invisible container on the screen */
+  max-width: 1200px;   
+  margin: 0 auto;      
   width: 100%;
-  /* UPDATED: Added 20px bottom padding to create a gap between the text and the line */
   padding: 0 20px 20px 20px;     
   margin-bottom: 40px; 
   display: flex;
   justify-content: flex-start; 
-  
-  /* NEW: Required to anchor the neon line to this container */
   position: relative;
 }
 
-/* NEW: The glowing fading neon line */
 .cert-header-wrapper::after {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 20px; /* Aligns perfectly with the start of your "My" text */
-  width: calc(100% - 40px); /* Spans the length of the grid */
-  height: 1px; /* Ultra-thin, sleek line */
-  
-  /* Creates a line that starts solid purple and fades to invisible on the right */
-  background: linear-gradient(90deg, #a855f7, transparent); 
-  
-  /* The neon spotlight glow effect */
-  box-shadow: 0 1px 10px rgba(168, 85, 247, 0.8); 
+  left: 20px; 
+  width: calc(100% - 40px); 
+  height: 1px; 
+  background: linear-gradient(90deg, rgb(var(--theme-rgb)), transparent); 
+  box-shadow: 0 1px 10px rgba(var(--theme-rgb), 0.8); 
 }
 
-/* The Scrolling Subtext */
 .cert-subtext {
   text-align: center;
   max-width: 700px;
-  /* Adds a small 15px gap below the pill, no bottom margin needed here since wrapper handles it */
   margin: 15px auto 0 auto; 
   font-size: 1.1rem;
   color: #94a3b8;
 }
 
-/* =========================================================
-   JETBRAINS STICKY SEGMENTED CONTROL (About / Certs)
-   ========================================================= */
-
-/* =========================================================
-   JETBRAINS FIXED SLIDE-IN NAV (About / Certs)
-   ========================================================= */
-
 .sticky-section-nav {
-  /* Changed from sticky to fixed so it floats independently of the page */
   position: fixed;
   top: 15px; 
-  left: 50%; /* Centers the fixed element */
+  left: 50%; 
   z-index: 120;
   display: flex;
   justify-content: center;
   pointer-events: none;
-  
-  /* THE MAGIC: Starts invisible and pushed 50px upward */
   transform: translateX(-50%) translateY(-50px);
   opacity: 0;
   visibility: hidden;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* JavaScript will add this class to slide it down into view */
 .sticky-section-nav.is-visible {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
   visibility: visible;
 }
 
-/* (Keep your existing .nav-pill-group and .nav-pill styles exactly as they are below this!) */
-
-/* The dark pill box holding the individual options */
-/* =========================================================
-   JETBRAINS STICKY SEGMENTED CONTROL (About / Certs)
-   ========================================================= */
-/* ... keep your .sticky-section-nav fixed code exactly the same ... */
-
 .nav-pill-group {
   display: inline-flex;
   align-items: center;
-  
-  /* 1. COMPLETELY TRANSPARENT BACKGROUND */
   background-color: transparent; 
-  
-  /* --- NEW PURPLE GLOW OUTLINE --- */
-  border: 1px solid rgba(124, 58, 237, 0.35); /* Semi-transparent neon purple border */
-  box-shadow: 0 0 15px rgba(124, 58, 237, 0.15); /* Very soft ambient purple glow */
-  
+  border: 1px solid rgba(var(--theme-rgb), 0.35); 
+  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.15); 
   border-radius: 100px;
   padding: 6px;
   pointer-events: auto; 
-  position: relative; /* REQUIRED: Keeps the slider trapped inside */
-  
-  /* (Removed the box-shadow and backdrop-filter blur completely!) */
+  position: relative; 
 }
 
-/* THE NEW MOVING SLIDER */
 .nav-slider {
   position: absolute;
   border-radius: 100px;
   background-color: var(--bg-main, #0b0f17);
-  border: 2px solid #7c3aed;
-  box-shadow: 0 0 15px rgba(124, 58, 237, 0.25);
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* JetBrains-style smooth snap */
-  z-index: 0; /* Stays behind the text */
+  border: 2px solid rgb(var(--theme-rgb));
+  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.25);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
+  z-index: 0; 
 }
 
 .nav-pill {
-  position: relative; /* REQUIRED: Allows z-index to work */
-  z-index: 1; /* Puts the text on top of the glowing slider */
+  position: relative; 
+  z-index: 1; 
   color: #94a3b8;
   font-family: 'Inter', -apple-system, sans-serif;
   font-size: 1rem;
@@ -1726,7 +1428,7 @@ h2 {
   padding: 8px 24px;
   border-radius: 100px;
   text-decoration: none;
-  transition: color 0.3s ease; /* We only transition the text color now */
+  transition: color 0.3s ease; 
   border: 2px solid transparent;
 }
 
@@ -1734,66 +1436,40 @@ h2 {
   color: #ffffff;
 }
 
-/* We removed the border/box-shadow from here because the slider handles it! */
 .nav-pill.active {
   color: #ffffff;
 }
 
-/* Gives the jumping anchor links perfect spacing below the sticky nav */
 .scroll-section {
   scroll-margin-top: 120px;
 }
 
-
-/* =========================================================
-   JETBRAINS "ABOUT {ME}" HEADER
-   ========================================================= */
 .jetbrains-about-header {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  
-  /* Matches JetBrains smaller kicker size */
   font-size: clamp(2rem, 4vw, 2.75rem) !important; 
   font-weight: 500 !important; 
-  
-  /* Deeper JetBrains Indigo */
-  color: #9d80ff !important; 
-  
+  color: rgb(var(--theme-rgb)) !important; 
   letter-spacing: -0.04em; 
-  /* line-height: 1 !important;         */
   margin-top: 50px !important;     
-  
-  /* THE FIX: Replaced -140px with a normal 24px gap */
   margin-bottom: 5px !important;   
-  
   text-align: left; 
   width: 100%;
 }
-
-/* =========================================================
-   JETBRAINS SKILLS GRID
-   ========================================================= */
 
 .jetbrains-skills-header {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(2rem, 4vw, 2.75rem) !important; 
   font-weight: 500 !important; 
-  
-  /* The exact JetBrains "For Teams" cyan/teal color */
-  color: #9d80ff !important; 
-  
+  color: rgb(var(--theme-rgb)) !important; 
   letter-spacing: -0.04em; 
-  /* line-height: 1 !important;         */
   margin-bottom: 24px !important;   
-  
-  /* Flexbox ensures the text and icon align perfectly */
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 8px; /* Space between words and icon */
+  gap: 8px; 
   width: 100%;
 }
 
-/* Forces the Lucide gear icon to scale perfectly with the text */
 .jetbrains-skills-header i {
   width: 1em;
   height: 1em;
@@ -1812,12 +1488,11 @@ h2 {
 
 .jetbrains-skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
+  grid-template-columns: repeat(3, 1fr); 
   gap: 20px;
-  margin-bottom: 100px; /* Space before certifications start */
+  margin-bottom: 100px; 
 }
 
-/* Responsive grid for smaller screens */
 @media (max-width: 900px) {
   .jetbrains-skills-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1829,12 +1504,6 @@ h2 {
   }
 }
 
-/* The Deep Purple JetBrains Card */
-/* =========================================================
-   JETBRAINS SKILLS GRID CARDS (Gradle Base / Docker Hover)
-   ========================================================= */
-
-/* BASE STATE: Sleek dark background like Gradle/Zynex */
 .jb-skill-card {
   background-color: #08080a; 
   border: 1px solid rgba(255, 255, 255, 0.08); 
@@ -1845,13 +1514,10 @@ h2 {
   align-items: center;
   gap: 24px;
   transition: all 0.3s ease;
-  
-  /* REQUIRED FOR CURSOR GLOW: Keeps the spotlight trapped inside the borders */
   position: relative; 
   overflow: hidden;
 }
 
-/* The dynamic cursor spotlight layer */
 .jb-skill-card::before {
   content: "";
   position: absolute;
@@ -1859,14 +1525,11 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  
-  /* Creates a soft purple circle at the exact coordinates of your mouse pointer */
   background: radial-gradient(
     600px circle at var(--x, -500px) var(--y, -500px),
-    rgba(168, 85, 247, 0.15),
+    rgba(var(--theme-rgb), 0.15),
     transparent 40%
   );
-  
   pointer-events: none;
   z-index: 1;
   opacity: 0;
@@ -1874,44 +1537,32 @@ h2 {
 }
 
 .jb-skill-card:hover::before {
-  opacity: 1; /* Makes the spotlight visible only on hover */
+  opacity: 1; 
 }
 
-/* Forces the text and icons to float safely ABOVE the spotlight layer */
 .jb-skill-logo, 
 .jb-skill-info {
   position: relative;
   z-index: 2;
 }
 
-/* HOVER STATE: Docker Marquee Neon Glow */
 .jb-skill-card:hover {
-  background-color: #08080a; /* Stays dark! No grey or light background */
-  transform: translateY(-4px); /* Slightly higher lift */
-  
-  /* The purple neon bounding box from your Docker screenshot */
-  border-color: #a855f7; 
+  background-color: #08080a; 
+  transform: translateY(-4px); 
+  border-color: rgb(var(--theme-rgb)); 
   box-shadow: 
-    0 10px 30px rgba(168, 85, 247, 0.25),
-    inset 0 0 15px rgba(168, 85, 247, 0.1); 
+    0 10px 30px rgba(var(--theme-rgb), 0.25),
+    inset 0 0 15px rgba(var(--theme-rgb), 0.1); 
 }
 
-/* The White Neon Glow on the internal text and logo when hovered */
 .jb-skill-card:hover .jb-skill-title,
 .jb-skill-card:hover .jb-skill-logo {
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
 }
 
-/* The Iconic Blocky Logos */
-/* =========================================================
-   MONOCHROME WHITE ICONS
-   ========================================================= */
-/* =========================================================
-   MONOCHROME WHITE ICONS (Large & Solid Fill)
-   ========================================================= */
 .jb-skill-logo {
-  min-width: 80px; /* Keeping the large container space */
+  min-width: 80px; 
   height: 80px;
   display: flex;
   align-items: center;       
@@ -1919,21 +1570,16 @@ h2 {
   background: transparent;   
 }
 
-/* Targeting the SVG generated by Lucide */
 .jb-skill-logo i,
 .jb-skill-logo svg {
-  width: 56px !important;      /* Keeping the large icon size */
+  width: 56px !important;      
   height: 56px !important;
-  
-  /* THE REVERT: Back to thin lines and hollow shapes! */
   stroke-width: 1.5 !important; 
   fill: none !important;        
   color: #ffffff;            
-  
   transition: all 0.3s ease;
 }
 
-/* Text Styling */
 .jb-skill-info {
   display: flex;
   flex-direction: column;
@@ -1952,8 +1598,19 @@ h2 {
 .jb-skill-desc {
   font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
-  color: #b4a8e5; /* The soft lavender secondary text */
+  color: #b4a8e5; 
   margin: 0;
   line-height: 1.4;
 }
 
+/* =========================================================
+   PALETTE TOGGLE SPIN ANIMATION
+   ========================================================= */
+@keyframes slowSpin {
+  100% { transform: rotate(360deg); }
+}
+
+.color-spinning {
+  animation: slowSpin 4s linear infinite;
+  color: rgb(var(--theme-rgb)) !important;
+}

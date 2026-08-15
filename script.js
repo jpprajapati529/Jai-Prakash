@@ -942,7 +942,7 @@ if (scrollBlocks.length > 0 && ideWindows.length > 0) {
 const navPills = document.querySelectorAll('.nav-pill');
 const scrollSections = document.querySelectorAll('.scroll-section');
 const stickyNav = document.querySelector('.sticky-section-nav'); 
-const navSlider = document.querySelector('.nav-slider'); // Target the slider
+const navSlider = document.querySelector('.nav-slider'); 
 
 // Function to move the slider behind the active text
 function updateSliderPosition() {
@@ -957,23 +957,19 @@ function updateSliderPosition() {
 
 if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
   
-  // 1. Run it once on page load so it starts in the right spot
   updateSliderPosition(); 
   window.addEventListener('resize', updateSliderPosition);
 
-  // 2. The scroll listener
   window.addEventListener('scroll', () => {
     let currentId = '';
     const firstSectionTop = scrollSections[0].offsetTop;
     
-    // Slide-in visibility logic
     if (window.scrollY >= (firstSectionTop - 150)) { 
       stickyNav.classList.add('is-visible');
     } else {
       stickyNav.classList.remove('is-visible');
     }
 
-    // Highlight logic
     scrollSections.forEach(section => {
       const sectionTop = section.offsetTop;
       if (window.scrollY >= (sectionTop - 250)) { 
@@ -981,13 +977,12 @@ if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
       }
     });
 
-    // Update active class AND move the slider
     let changed = false;
     navPills.forEach(pill => {
       if (pill.getAttribute('href') === `#${currentId}`) {
         if (!pill.classList.contains('active')) {
           pill.classList.add('active');
-          changed = true; // Only move slider if the active section actually changed
+          changed = true; 
         }
       } else {
         pill.classList.remove('active');
@@ -998,4 +993,73 @@ if (navPills.length > 0 && scrollSections.length > 0 && stickyNav) {
       updateSliderPosition();
     }
   });
+}
+
+// =========================================================
+// JETBRAINS AUTO-COLOR CYCLING ENGINE
+// =========================================================
+const jbColors = [
+  { r: 168, g: 85, b: 247 },  // 0. Primary Purple (Base)
+  { r: 8,   g: 124, b: 250 }, // 1. IntelliJ Blue
+  { r: 33,  g: 215, b: 137 }, // 2. PyCharm Green
+  { r: 255, g: 115, b: 0 },   // 3. Fleet Orange
+  { r: 225, g: 31, b: 113 },  // 4. Rider Magenta
+  { r: 0,   g: 204, b: 205 }  // 5. WebStorm Cyan
+];
+
+let colorIndex = 0;
+let nextColorIndex = 1;
+let colorProgress = 0;
+let isColorCycling = false;
+let colorAnimFrame;
+
+function lerpColor(start, end, t) {
+  return Math.round(start + (end - start) * t);
+}
+
+function colorLoop() {
+  if (!isColorCycling && nextColorIndex !== 0) {
+    nextColorIndex = 0;
+  }
+
+  const current = jbColors[colorIndex];
+  const next = jbColors[nextColorIndex];
+
+  const r = lerpColor(current.r, next.r, colorProgress);
+  const g = lerpColor(current.g, next.g, colorProgress);
+  const b = lerpColor(current.b, next.b, colorProgress);
+
+  document.documentElement.style.setProperty('--theme-rgb', `${r}, ${g}, ${b}`);
+
+  colorProgress += 0.003; 
+
+  if (colorProgress >= 1) {
+    colorProgress = 0;
+    colorIndex = nextColorIndex;
+    
+    if (isColorCycling) {
+      nextColorIndex = (colorIndex + 1) % jbColors.length;
+    } else if (colorIndex === 0) {
+      cancelAnimationFrame(colorAnimFrame);
+      colorAnimFrame = null;
+      return;
+    }
+  }
+  
+  colorAnimFrame = requestAnimationFrame(colorLoop);
+}
+
+function toggleColorCycle() {
+  isColorCycling = !isColorCycling;
+  const icon = document.getElementById('color-cycle-icon');
+  
+  if (isColorCycling) {
+    icon.classList.add('color-spinning'); 
+    if (!colorAnimFrame) {
+      nextColorIndex = (colorIndex + 1) % jbColors.length;
+      colorLoop();
+    }
+  } else {
+    icon.classList.remove('color-spinning');
+  }
 }

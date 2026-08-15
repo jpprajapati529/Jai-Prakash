@@ -26,24 +26,22 @@
   <div id="cursor-glow-bg"></div>
 
   <!-- Navbar -->
-  <!-- Navbar -->
   <header class="navbar">
    <div class="logo" onclick="triggerPipelineRun()" title="Cluster Operational - Click to Trigger Pipeline">
       
       <div class="system-status-icon">
         <i data-lucide="activity"></i>
         <span class="neon-ring"></span>
-      </div> <!-- MISSING TAG 1: Closes the pulsing ring -->
+      </div>
 
-      <!-- Structural Terminal Path Logo -->
       <!-- Command Line CLI Logo -->
       <div class="brand-logo-cli">
         ja<span class="cli-accent">~ssh</span>board<span class="cli-cursor">_</span>
       </div>
       
-    </div> <!-- MISSING TAG 2: Closes the clickable logo container -->
+    </div>
 
-    <!-- 2. Navigation & Theme Toggle -->
+    <!-- Navigation & Theme Toggles -->
     <nav>
       <a href="#section-about">About</a>
       <a href="#section-skills">Skills</a>
@@ -61,22 +59,28 @@
           <a href="#certs-gcp"><i data-lucide="cloud-lightning"></i> GCP</a>
           <a href="#certs-azure"><i data-lucide="cloud-snow"></i> Azure</a>
           <a href="#certs-iac"><i data-lucide="layers"></i> Containers & IaC</a>
-          <!-- <a href="#certs-terraform"><i data-lucide="box"></i> Terraform</a> -->
         </div>
       </div>
       
       <a href="#contact">Contact</a>
       
-      <!-- Dedicated Theme Switcher -->
-      <div class="theme-switch" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
-        <i id="theme-icon" data-lucide="sun"></i>
+      <!-- Dedicated Theme & Color Switchers -->
+      <div style="display: flex; align-items: center; gap: 8px; margin-left: 10px;">
+        
+        <!-- NEW: Auto-Color Toggle -->
+        <div class="theme-switch" onclick="toggleColorCycle()" title="Toggle Auto-Color Cycle">
+          <i id="color-cycle-icon" data-lucide="palette"></i>
+        </div>
+        
+        <!-- EXISTING: Light/Dark Mode -->
+        <div class="theme-switch" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
+          <i id="theme-icon" data-lucide="sun"></i>
+        </div>
+        
       </div>
     </nav>
   </header>
 
-  <!-- =========================================================
-       1. HERO BANNER TILE
-       ========================================================= -->
   <!-- =========================================================
        1. HERO BANNER TILE
        ========================================================= -->
@@ -88,8 +92,8 @@
       <p class="hero-subtext">Automating CI/CD pipelines, optimizing multi-cloud infrastructures, and enforcing resilient Site Reliability engineering practices.</p>
       
       <a href="#certifications" class="hero-cta-btn">
-  View Professional Details <i data-lucide="arrow-down"></i>
-</a>
+        View Professional Details <i data-lucide="arrow-down"></i>
+      </a>
     </div>
 
     <!-- Right Side: 3D Image -->
@@ -143,16 +147,6 @@
     </div>
   </section>
 
-  <!-- ==========================================
-         UNIFIED STICKY SECTION NAVIGATION
-         ========================================== -->
-    <!-- <div class="sticky-section-nav">
-      <div class="nav-pill-group">
-        <a href="#section-about" class="nav-pill active">About</a>
-        <a href="#section-certs" class="nav-pill">Certifications</a>
-      </div>
-    </div> -->
-
 <!-- ==========================================
          1. ABOUT SECTION
          ========================================== -->
@@ -160,7 +154,6 @@
       
       <h2 class="jetbrains-about-header">About {me}</h2>
 
-      <!-- Your 4 Metrics Cards safely moved under the header -->
       <section class="metrics-grid">
         <div class="card clickable-card" onclick="openMetricModal('experience')">
           <h3><i data-lucide="briefcase"></i> EXPERIENCE</h3>
@@ -184,7 +177,6 @@
         </div>
       </section>
 
-      <!-- Professional Summary safely moved inside the About Section -->
       <section class="dashboard-section" style="margin-bottom: 80px;">
         <div class="summary-card">
           <div class="section-header">
@@ -208,13 +200,11 @@
          ========================================== -->
     <div id="section-skills" class="scroll-section" style="margin-bottom: 100px;">
       
-      <!-- NEW: JetBrains Style Header with Inline Gear Icon -->
       <h2 class="jetbrains-skills-header">
         My <i data-lucide="settings"></i> Skills
       </h2>
 
       <div class="jetbrains-skills-grid">
-        
         <!-- CARD 1: Cloud -->
         <div class="jb-skill-card">
           <div class="jb-skill-logo">
@@ -283,56 +273,17 @@
       </div>
       </div>
 
-
-  
-  <!-- =========================================================
-       4. CERTIFICATIONS
-       ========================================================= -->
-  <!-- <section id="certs" class="dashboard-section">
-    <div class="section-header">
-      <h2><i data-lucide="award"></i> Certifications & Credentials</h2>
-    </div>
-    <div class="skills-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
-      <div class="card cert-card">
-        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="cloud"></i> AWS Certifications</h4>
-        <p style="font-size: 0.85rem; color: #fff;">• AWS Certified Cloud Practitioner</p>
-        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• AWS Certified DevOps Engineer - Professional</p>
-      </div>
-      <div class="card cert-card">
-        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="cloud"></i> Microsoft Azure Certifications</h4>
-        <p style="font-size: 0.85rem; color: #fff;">• Azure Developer Associate</p>
-        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• Azure DevOps Expert</p>
-      </div>
-      <div class="card cert-card">
-        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="cloud"></i> GCP & CNCF Certifications</h4>
-        <p style="font-size: 0.85rem; color: #fff;">• GCP Associate Cloud Engineer</p>
-        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• GCP Professional Cloud DevOps Engineer</p>
-        <p style="font-size: 0.85rem; color: #fff; margin-top: 4px;">• KCNA (Kubernetes and Cloud Native Associate)</p>
-      </div>
-      <div class="card cert-card">
-        <h4 style="color: var(--accent-purple); font-size: 0.95rem; margin-bottom: 6px;"><i data-lucide="layers"></i> IaC & Automation</h4>
-        <p style="font-size: 0.85rem; color: #fff;">• HashiCorp Certified Terraform Associate</p>
-      </div>
-    </div>
-  </section> -->
-
-
-  <!-- =========================================================
-       CERTIFICATIONS & CREDENTIALS (Sticky Scroll)
-       ========================================================= -->
   <!-- =========================================================
        CERTIFICATIONS (JetBrains Sticky Scroll & Badge IDE Layout)
        ========================================================= -->
   <section id="certifications" class="jetbrains-sticky-section">
-    <!-- 1. The Sticky Neon Pill Container -->
-    <!-- 1. The Sticky Neon Pill Container MUST be first -->
      <div id="section-certs" class="scroll-section certifications-master-wrapper">
       <div class="cert-header-wrapper">
       <h2 class="jetbrains-about-header" style="display: flex; align-items: center; gap: 8px;">
           My <i data-lucide="award" style="width: 1em; height: 1em; stroke-width: 2.5;"></i> Certifications
         </h2>
-      
     </div>
+    
     <div class="jetbrains-sticky-section">
     <div class="sticky-container">
       
@@ -407,7 +358,6 @@
               <span class="dot" style="background:#FF5F56;"></span>
               <span class="dot" style="background:#FFBD2E;"></span>
               <span class="dot" style="background:#27C93F;"></span>
-              <!-- <span class="ide-title">aws-solutions-architect.cert</span> -->
             </div>
             <div class="ide-body-badge">
               <img src="./assets/aws-cp-badge.png" alt="AWS SAA Badge">
@@ -420,7 +370,6 @@
               <span class="dot" style="background:#FF5F56;"></span>
               <span class="dot" style="background:#FFBD2E;"></span>
               <span class="dot" style="background:#27C93F;"></span>
-              <!-- <span class="ide-title">aws-devops-pro.cert</span> -->
             </div>
             <div class="ide-body-badge">
               <img src="./assets/aws-devops-badge.png" alt="AWS DevOps Pro Badge">
@@ -433,7 +382,6 @@
               <span class="dot" style="background:#FF5F56;"></span>
               <span class="dot" style="background:#FFBD2E;"></span>
               <span class="dot" style="background:#27C93F;"></span>
-              <!-- <span class="ide-title">gcp-associate-cloud-engineer.cert</span> -->
             </div>
             <div class="ide-body-badge">
               <img src="./assets/gcp-ace-badge.png" alt="GCP ACE Badge">
@@ -446,7 +394,6 @@
               <span class="dot" style="background:#FF5F56;"></span>
               <span class="dot" style="background:#FFBD2E;"></span>
               <span class="dot" style="background:#27C93F;"></span>
-              <!-- <span class="ide-title">gcp-devops-pro.cert</span> -->
             </div>
             <div class="ide-body-badge">
               <img src="./assets/gcp-devops-pro-badge.png" alt="GCP DevOps Pro Badge">
@@ -459,7 +406,6 @@
               <span class="dot" style="background:#FF5F56;"></span>
               <span class="dot" style="background:#FFBD2E;"></span>
               <span class="dot" style="background:#27C93F;"></span>
-              <!-- <span class="ide-title">azure-developer-associate.cert</span> -->
             </div>
             <div class="ide-body-badge">
               <img src="./assets/azure-developer-badge.png" alt="Azure Developer Badge">
@@ -472,7 +418,6 @@
               <span class="dot" style="background:#FF5F56;"></span>
               <span class="dot" style="background:#FFBD2E;"></span>
               <span class="dot" style="background:#27C93F;"></span>
-              <!-- <span class="ide-title">azure-devops-expert.cert</span> -->
             </div>
             <div class="ide-body-badge">
               <img src="./assets/azure-devops-badge.png" alt="Azure DevOps Expert Badge">
@@ -485,7 +430,6 @@
               <span class="dot" style="background:#FF5F56;"></span>
               <span class="dot" style="background:#FFBD2E;"></span>
               <span class="dot" style="background:#27C93F;"></span>
-              <!-- <span class="ide-title">kubernetes-kcna.cert</span> -->
             </div>
             <div class="ide-body-badge">
               <img src="./assets/kcna-badge.png" alt="KCNA Badge">
@@ -498,7 +442,6 @@
               <span class="dot" style="background:#FF5F56;"></span>
               <span class="dot" style="background:#FFBD2E;"></span>
               <span class="dot" style="background:#27C93F;"></span>
-              <!-- <span class="ide-title">terraform-associate.cert</span> -->
             </div>
             <div class="ide-body-badge">
               <img src="./assets/terraform-associate-badge.png" alt="Terraform Badge">
