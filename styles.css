@@ -423,7 +423,7 @@ body {
 .hero-btn-group {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 40px;
   flex-wrap: wrap;
 }
@@ -431,13 +431,14 @@ body {
 .hero-btn-primary {
   background: rgb(var(--theme-rgb));
   color: #000;
-  font-weight: 700;
-  padding: 14px 28px;
-  border-radius: 8px; 
+  font-weight: 600; /* Slightly lighter weight for smaller text */
+  font-size: 0.85rem; /* Much smaller, professional font size */
+  padding: 10px 18px; /* Tighter vertical and horizontal padding */
+  border-radius: 6px; /* Sharper corners */
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   transition: all 0.3s ease;
 }
 
@@ -451,12 +452,13 @@ body {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
-  font-weight: 600;
-  padding: 14px 24px;
-  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.85rem; /* Matches primary button */
+  padding: 10px 18px; /* Matches primary button */
+  border-radius: 6px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -467,7 +469,17 @@ body {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-.term-btn { font-family: var(--font-mono); }
+/* Scales the Lucide icons inside the buttons down so they don't overpower the text */
+.hero-btn-primary i, 
+.hero-btn-outline i {
+  width: 16px;
+  height: 16px;
+}
+
+.term-btn { 
+  font-family: var(--font-mono); 
+  letter-spacing: 0.5px;
+}
 
 /* METRICS ROW */
 .hero-divider {
