@@ -1084,3 +1084,52 @@ function resetColorTheme() {
   const primary = jbColors[0];
   document.documentElement.style.setProperty('--theme-rgb', `${primary.r}, ${primary.g}, ${primary.b}`);
 }
+
+
+// =========================================================
+// PS5-STYLE UI HOVER SOUND ENGINE (Web Audio API)
+// =========================================================
+let audioCtx;
+
+// 1. Unlock the audio engine on the user's very first click anywhere on the site
+document.addEventListener('click', () => {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+}, { once: true }); // "once: true" ensures this setup only runs exactly one time
+
+// 2. The Synthesizer Function
+function playUIHoverSound() {
+  // If the user hasn't clicked anything yet, stay silent (prevents browser console errors)
+  if (!audioCtx || audioCtx.state !== 'running') return;
+
+  // Create the digital sound waves
+  const oscillator = audioCtx.createOscillator();
+  const gainNode = audioCtx.createGain();
+
+  // THE PS5 SOUND DESIGN: A pure sine wave that starts high and drops rapidly
+  oscillator.type = 'sine';
+  oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime); // High pitch
+  oscillator.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.08); // Quick drop
+
+  // THE VOLUME ENVELOPE: Extremely soft (3% max volume) so it isn't annoying
+  gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+  gainNode.gain.linearRampToValueAtTime(0.03, audioCtx.currentTime + 0.01); // Quick attack
+  gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08); // Smooth fade out
+
+  // Connect the wires and play
+  oscillator.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+
+  oscillator.start();
+  oscillator.stop(audioCtx.currentTime + 0.1); // Kill the sound totally after 0.1 seconds
+}
+
+// 3. Attach the sound to all interactive elements on the page
+const interactiveElements = document.querySelectorAll(
+  'a, button, .card, .tech-item, .ide-window, .nav-pill, .logo, .theme-switch, .jb-skill-card, .clickable-card'
+);
+
+interactiveElements.forEach(el => {
+  el.addEventListener('mouseenter', playUIHoverSound);
+});
