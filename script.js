@@ -1087,49 +1087,46 @@ function resetColorTheme() {
 
 
 // =========================================================
-// PS5-STYLE UI HOVER SOUND ENGINE (Web Audio API)
+// CUSTOM UI HOVER SOUND ENGINE (Using Audio File)
 // =========================================================
-let audioCtx;
 
-// 1. Unlock the audio engine on the user's very first click anywhere on the site
+// 1. Point this to the exact name of your audio file
+// If your file is a .wav, change this to 'hover.wav'
+const hoverSound = new Audio('hover.mp3'); 
+
+// Set volume (0.0 is muted, 0.5 is half, 1.0 is max)
+hoverSound.volume = 0.4; 
+
+let isSoundUnlocked = false;
+
+// 2. Browsers block sound until the user clicks the page. 
+// This waits for any click to silently unlock the audio.
 document.addEventListener('click', () => {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-}, { once: true }); // "once: true" ensures this setup only runs exactly one time
+  isSoundUnlocked = true;
+}, { once: true });
 
-// 2. The Synthesizer Function
-function playUIHoverSound() {
-  // If the user hasn't clicked anything yet, stay silent (prevents browser console errors)
-  if (!audioCtx || audioCtx.state !== 'running') return;
-
-  // Create the digital sound waves
-  const oscillator = audioCtx.createOscillator();
-  const gainNode = audioCtx.createGain();
-
-  // THE PS5 SOUND DESIGN: A pure sine wave that starts high and drops rapidly
-  oscillator.type = 'sine';
-  oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime); // High pitch
-  oscillator.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.08); // Quick drop
-
-  // THE VOLUME ENVELOPE: Extremely soft (3% max volume) so it isn't annoying
-  gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-  gainNode.gain.linearRampToValueAtTime(0.03, audioCtx.currentTime + 0.01); // Quick attack
-  gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08); // Smooth fade out
-
-  // Connect the wires and play
-  oscillator.connect(gainNode);
-  gainNode.connect(audioCtx.destination);
-
-  oscillator.start();
-  oscillator.stop(audioCtx.currentTime + 0.1); // Kill the sound totally after 0.1 seconds
+// 3. The Play Function
+function playCustomHoverSound() {
+  // Stay silent if the user hasn't clicked the page yet
+  if (!isSoundUnlocked) return;
+  
+  // CLONING TRICK: By cloning the audio node, the sound can overlap itself.
+  // If you hover over 3 cards very fast, you will hear 3 overlapping blips 
+  // instead of the sound abruptly cutting off and restarting!
+  const soundClone = hoverSound.cloneNode();
+  soundClone.volume = hoverSound.volume;
+  
+  // Play the sound, and quietly catch any browser policy errors
+  soundClone.play().catch(error => {
+    // Fails silently if the browser is still blocking it
+  });
 }
 
-// 3. Attach the sound to all interactive elements on the page
+// 4. Attach the sound to every interactive element on your page
 const interactiveElements = document.querySelectorAll(
   'a, button, .card, .tech-item, .ide-window, .nav-pill, .logo, .theme-switch, .jb-skill-card, .clickable-card'
 );
 
 interactiveElements.forEach(el => {
-  el.addEventListener('mouseenter', playUIHoverSound);
+  el.addEventListener('mouseenter', playCustomHoverSound);
 });
