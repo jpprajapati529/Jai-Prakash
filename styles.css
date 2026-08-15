@@ -433,8 +433,8 @@ body {
   margin-bottom: 32px;
   
   /* EXPANDED: Allows the text to utilize the full width of the left column */
-  width: 100%;
-  max-width: 100%; 
+  width: 110%;
+  max-width: 110%; 
 }
 
 /* BUTTON GROUP */
