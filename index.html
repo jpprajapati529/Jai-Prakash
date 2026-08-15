@@ -65,11 +65,17 @@
       <a href="#contact">Contact</a>
       
       <!-- Dedicated Theme & Color Switchers -->
+      <!-- Dedicated Theme & Color Switchers -->
       <div style="display: flex; align-items: center; gap: 8px; margin-left: 10px;">
         
-        <!-- NEW: Auto-Color Toggle -->
+        <!-- Auto-Color Toggle (Play/Pause) -->
         <div class="theme-switch" onclick="toggleColorCycle()" title="Toggle Auto-Color Cycle">
           <i id="color-cycle-icon" data-lucide="palette"></i>
+        </div>
+        
+        <!-- NEW: Reset to Primary Purple -->
+        <div class="theme-switch" onclick="resetColorTheme()" title="Reset to Primary Purple">
+          <i data-lucide="rotate-ccw"></i>
         </div>
         
         <!-- EXISTING: Light/Dark Mode -->

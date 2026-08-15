@@ -1062,3 +1062,25 @@ function toggleColorCycle() {
     }
   }
 }
+
+// Immediately stops any animation and snaps the site back to Base Purple
+function resetColorTheme() {
+  // 1. Stop the animation engine if it's currently running
+  if (colorAnimFrame) {
+    cancelAnimationFrame(colorAnimFrame);
+    colorAnimFrame = null;
+  }
+  
+  // 2. Turn off the spinning state
+  isColorCycling = false;
+  document.getElementById('color-cycle-icon').classList.remove('color-spinning');
+  
+  // 3. Reset the engine's internal memory back to the start
+  colorIndex = 0;
+  nextColorIndex = 1;
+  colorProgress = 0;
+  
+  // 4. Instantly push the Base Purple (Index 0) to the entire website
+  const primary = jbColors[0];
+  document.documentElement.style.setProperty('--theme-rgb', `${primary.r}, ${primary.g}, ${primary.b}`);
+}
