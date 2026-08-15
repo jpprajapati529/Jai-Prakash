@@ -1189,3 +1189,58 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
 /* PALETTE SPIN */
 @keyframes slowSpin { 100% { transform: rotate(360deg); } }
 .color-spinning { animation: slowSpin 4s linear infinite; color: rgb(var(--theme-rgb)) !important; }
+
+/* =========================================================
+   BUTTON CURSOR GLOW UPGRADES
+   ========================================================= */
+/* 1. Prepare buttons to contain the light beam */
+.hero-btn-primary, 
+.hero-btn-outline, 
+.lifecycle-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 2. Override the old solid white hover so the light beam is visible */
+.hero-btn-primary:hover {
+  background: rgb(var(--theme-rgb)); 
+}
+
+/* 3. Create the invisible light layer */
+.hero-btn-primary::before, 
+.hero-btn-outline::before, 
+.lifecycle-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1; /* Keeps it strictly above the background but below text if needed */
+}
+
+/* 4. Turn the light on when hovering */
+.hero-btn-primary:hover::before, 
+.hero-btn-outline:hover::before, 
+.lifecycle-btn:hover::before {
+  opacity: 1;
+}
+
+/* 5. Primary Button: Bright White Spotlight */
+.hero-btn-primary::before {
+  background: radial-gradient(
+    100px circle at var(--x, 50%) var(--y, 50%), 
+    rgba(255, 255, 255, 0.4), 
+    transparent 100%
+  );
+}
+
+/* 6. Dark Buttons: Dynamic Theme Spotlight */
+.hero-btn-outline::before, 
+.lifecycle-btn::before {
+  background: radial-gradient(
+    100px circle at var(--x, 50%) var(--y, 50%), 
+    rgba(var(--theme-rgb), 0.4), 
+    transparent 100%
+  );
+}
