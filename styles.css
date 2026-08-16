@@ -18,6 +18,30 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+/* =========================================================
+   LIGHT MODE OVERRIDES
+   ========================================================= */
+[data-theme="light"] {
+  --bg-dark: #f0f2f5;        /* Soft light gray background */
+  --card-bg: #ffffff;        /* Pure white cards */
+  --card-border: #e5e7eb;    /* Light gray borders */
+  --text-primary: #111827;   /* Nearly black text */
+  --text-secondary: #4b5563; /* Dark gray text */
+  --text-muted: #9ca3af;     /* Medium gray text */
+}
+
+/* Force specific hard-coded white elements to turn dark in Light Mode */
+[data-theme="light"] .hero-headline,
+[data-theme="light"] .jb-skill-title,
+[data-theme="light"] .brand-ja {
+  color: #111827 !important;
+}
+
+/* Reverts the white logos in the scrolling marquee back to their original brand colors */
+[data-theme="light"] .tech-item .brand-wordmark {
+  filter: none !important; 
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
