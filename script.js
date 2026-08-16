@@ -4,25 +4,26 @@ lucide.createIcons();
 // =========================================================
 // LIGHT/DARK MODE TOGGLE (FIXED LUCIDE ICON SWAP)
 // =========================================================
-// function toggleTheme() {
-//   const body = document.body;
-//   const themeContainer = document.querySelector(".theme-switch");
+function toggleTheme() {
+  const body = document.body;
+  const isLightMode = body.getAttribute("data-theme") === "light";
   
-//   if (body.getAttribute("data-theme") === "light") {
-//     // Switch to Dark Mode
-//     body.removeAttribute("data-theme");
-//     // Inject fresh sun icon
-//     themeContainer.innerHTML = '<i id="theme-icon" data-lucide="sun"></i>';
-//   } else {
-//     // Switch to Light Mode
-//     body.setAttribute("data-theme", "light");
-//     // Inject fresh moon icon
-//     themeContainer.innerHTML = '<i id="theme-icon" data-lucide="moon"></i>';
-//   }
+  // Grab BOTH theme toggle buttons (Main Nav and Sticky Nav)
+  const themeBtns = document.querySelectorAll('[title="Toggle Light/Dark Theme"]');
+
+  if (isLightMode) {
+    // Switch back to Dark Mode
+    body.removeAttribute("data-theme");
+    themeBtns.forEach(btn => btn.innerHTML = '<i data-lucide="sun"></i>');
+  } else {
+    // Switch to Light Mode
+    body.setAttribute("data-theme", "light");
+    themeBtns.forEach(btn => btn.innerHTML = '<i data-lucide="moon"></i>');
+  }
   
-//   // Force Lucide to render the newly injected icon
-//   lucide.createIcons();
-// }
+  // Force Lucide to re-render the newly injected icons on both nav bars
+  lucide.createIcons();
+}
 
 // Mouse Tracking for JetBrains Cursor Spotlight
 document.addEventListener("mousemove", (e) => {
