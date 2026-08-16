@@ -18,6 +18,47 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+/* =========================================================
+   LIGHT MODE OVERRIDES
+   ========================================================= */
+[data-theme="light"] {
+  --bg-dark: #f0f2f5;        /* Soft light gray background */
+  --card-bg: #ffffff;        /* Pure white cards */
+  --card-border: #e5e7eb;    /* Light gray borders */
+  --text-primary: #111827;   /* Nearly black text */
+  --text-secondary: #4b5563; /* Dark gray text */
+  --text-muted: #9ca3af;     /* Medium gray text */
+}
+
+/* Force specific hard-coded dark elements to turn light */
+[data-theme="light"] .cicd-engine-card,
+[data-theme="light"] .pipeline-logs-console, 
+[data-theme="light"] .terminal-container,
+[data-theme="light"] .ide-window,
+[data-theme="light"] .modal-content,
+[data-theme="light"] .dropdown-menu {
+  background-color: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+[data-theme="light"] .terminal-body,
+[data-theme="light"] .ide-body-badge {
+  background: var(--bg-dark) !important;
+}
+
+/* Force specific hard-coded white text to turn dark */
+[data-theme="light"] .hero-headline,
+[data-theme="light"] .jb-skill-title,
+[data-theme="light"] .brand-ja,
+[data-theme="light"] .text-white {
+  color: #111827 !important;
+}
+
+/* Reverts the white logos in the scrolling marquee back to their original colors */
+[data-theme="light"] .tech-item .brand-wordmark {
+  filter: none !important; 
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
