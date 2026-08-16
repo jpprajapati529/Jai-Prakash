@@ -18,201 +18,6 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* =========================================================
-   LIGHT MODE FULL UI OVERRIDES (Premium Clean Aesthetic)
-   ========================================================= */
-body[data-theme="light"] {
-  --bg-dark: #f8fafc;        /* Clean slate background */
-  --card-bg: #ffffff;        /* Pure white cards */
-  --card-border: #e2e8f0;    /* Crisp slate borders */
-  --text-primary: #0f172a;   /* Deep charcoal text */
-  --text-secondary: #475569; /* Slate gray text */
-  --text-muted: #64748b;     /* Medium gray text */
-}
-
-/* 1. Global Typography & Gradients */
-body[data-theme="light"] .text-white,
-body[data-theme="light"] .hero-headline,
-body[data-theme="light"] .brand-ja,
-body[data-theme="light"] .brand-board,
-body[data-theme="light"] .jb-skill-title,
-body[data-theme="light"] .cicd-title,
-body[data-theme="light"] .terminal-title,
-body[data-theme="light"] .lifecycle-title {
-  color: #0f172a !important; /* Forces all pure white headers to deep charcoal */
-}
-
-/* Fixes the "Engineer" text from fading into invisible white */
-body[data-theme="light"] .gradient-text {
-  background: linear-gradient(135deg, #0f172a 0%, rgb(var(--theme-rgb)) 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-/* Subtitles and descriptive text */
-body[data-theme="light"] .hero-subtext,
-body[data-theme="light"] .jb-skill-desc,
-body[data-theme="light"] .lifecycle-desc,
-body[data-theme="light"] .term-output,
-body[data-theme="light"] #cicd-footer-text,
-body[data-theme="light"] .metric-label,
-body[data-theme="light"] .exp-text {
-  color: #475569 !important;
-}
-
-/* 2. Kills the muddy dark mode glows & Fixes Shadows */
-body[data-theme="light"] #cursor-glow-bg,
-body[data-theme="light"] .card::before, 
-body[data-theme="light"] .jb-skill-card::before, 
-body[data-theme="light"] .dashboard-section::before,
-body[data-theme="light"] .ide-window::before,
-body[data-theme="light"] .hero-btn-primary::before,
-body[data-theme="light"] .hero-btn-outline::before,
-body[data-theme="light"] .lifecycle-btn::before {
-  display: none !important; /* Turns off all glowing radial orbs */
-}
-
-body[data-theme="light"] .card,
-body[data-theme="light"] .jb-skill-card,
-body[data-theme="light"] .dashboard-section,
-body[data-theme="light"] .cicd-engine-card,
-body[data-theme="light"] .ide-window,
-body[data-theme="light"] .modal-content,
-body[data-theme="light"] .dropdown-menu {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04), 0 4px 6px rgba(0, 0, 0, 0.02) !important; /* Clean, modern drop shadow */
-}
-
-/* 3. Buttons (Outline, Terminal, Lifecycle Grid) */
-body[data-theme="light"] .hero-btn-outline,
-body[data-theme="light"] .lifecycle-btn,
-body[data-theme="light"] .nav-icon-btn,
-body[data-theme="light"] .tab-btn {
-  background-color: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #334155 !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
-  text-shadow: none !important;
-}
-
-body[data-theme="light"] .hero-btn-outline:hover,
-body[data-theme="light"] .lifecycle-btn:hover,
-body[data-theme="light"] .nav-icon-btn:hover,
-body[data-theme="light"] .tab-btn.active {
-  background-color: #f8fafc !important;
-  border-color: rgb(var(--theme-rgb)) !important;
-  color: rgb(var(--theme-rgb)) !important;
-  box-shadow: 0 4px 12px rgba(var(--theme-rgb), 0.1) !important;
-}
-
-/* Force button icons to match the text color */
-body[data-theme="light"] .hero-btn-outline *,
-body[data-theme="light"] .lifecycle-btn * {
-  color: inherit !important;
-  filter: none !important;
-}
-
-/* 4. Navbar & Pills */
-body[data-theme="light"] .navbar-links a,
-body[data-theme="light"] .dropdown-trigger {
-  color: #475569 !important;
-}
-body[data-theme="light"] .navbar-links a:hover,
-body[data-theme="light"] .dropdown-trigger:hover {
-  color: #0f172a !important;
-}
-
-body[data-theme="light"] .sticky-section-nav {
-  background-color: rgba(255, 255, 255, 0.85) !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-}
-body[data-theme="light"] .nav-pill-group {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
-}
-body[data-theme="light"] .nav-pill {
-  color: #64748b !important;
-}
-body[data-theme="light"] .nav-pill:hover {
-  color: #0f172a !important;
-}
-body[data-theme="light"] .nav-pill.active {
-  background-color: #f8fafc !important;
-  color: rgb(var(--theme-rgb)) !important;
-  border-color: rgb(var(--theme-rgb)) !important;
-  box-shadow: none !important;
-}
-
-/* 5. Terminal, Logs & Code UI */
-body[data-theme="light"] .terminal-container,
-body[data-theme="light"] .pipeline-logs-console,
-body[data-theme="light"] .code-preview-container {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-}
-body[data-theme="light"] .terminal-header,
-body[data-theme="light"] .code-header {
-  background-color: #f1f5f9 !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-}
-body[data-theme="light"] .terminal-body,
-body[data-theme="light"] .code-content {
-  background-color: #ffffff !important;
-  color: #0f172a !important;
-}
-body[data-theme="light"] .terminal-input-line {
-  background-color: #f1f5f9 !important;
-  border-top: 1px solid #e2e8f0 !important;
-}
-body[data-theme="light"] #cli-input {
-  color: #0f172a !important;
-}
-body[data-theme="light"] .prompt,
-body[data-theme="light"] .text-green,
-body[data-theme="light"] .step.passed {
-  color: #16a34a !important; /* Vibrant readable green */
-}
-body[data-theme="light"] .term-output.text-cyan {
-  color: #0284c7 !important; /* Vibrant readable blue */
-}
-body[data-theme="light"] .highlight {
-  color: rgb(var(--theme-rgb)) !important;
-}
-
-/* 6. Specific Card Overrides */
-body[data-theme="light"] .tech-item {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.04) !important;
-}
-body[data-theme="light"] .tech-item .brand-wordmark {
-  filter: none !important; /* Reverts logos to original brand colors */
-}
-body[data-theme="light"] .jb-skill-logo i,
-body[data-theme="light"] .jb-skill-logo svg {
-  color: rgb(var(--theme-rgb)) !important; 
-}
-body[data-theme="light"] .tag-badge,
-body[data-theme="light"] .tool-pill {
-  background: #f8fafc !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #475569 !important;
-}
-body[data-theme="light"] .tag-badge:hover {
-  border-color: rgb(var(--theme-rgb)) !important;
-  color: rgb(var(--theme-rgb)) !important;
-  background: rgba(var(--theme-rgb), 0.05) !important;
-}
-body[data-theme="light"] .ide-body-badge {
-  background: radial-gradient(circle at center, rgba(147, 51, 234, 0.05) 0%, #f8fafc 70%) !important;
-}
-body[data-theme="light"] .cicd-footer.active-box {
-  background: #f8fafc !important;
-  border-color: #cbd5e1 !important;
-}
-
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -1589,4 +1394,195 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
 .lifecycle-btn:hover i,
 .lifecycle-btn:hover svg {
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) !important; /* Icon glow */
+}
+
+/* =========================================================
+   LIGHT MODE FULL UI OVERRIDES (Premium Clean Aesthetic)
+   *MUST STAY AT THE BOTTOM OF THE FILE TO WORK*
+   ========================================================= */
+body[data-theme="light"] {
+  --bg-dark: #f8fafc;        /* Clean slate background */
+  --card-bg: #ffffff;        /* Pure white cards */
+  --card-border: #e2e8f0;    /* Crisp slate borders */
+  --text-primary: #0f172a;   /* Deep charcoal text */
+  --text-secondary: #475569; /* Slate gray text */
+  --text-muted: #64748b;     /* Medium gray text */
+}
+
+/* 1. Global Typography & Gradients */
+body[data-theme="light"] .text-white,
+body[data-theme="light"] .hero-headline,
+body[data-theme="light"] .brand-logo-cli, 
+body[data-theme="light"] .brand-board,
+body[data-theme="light"] .jb-skill-title,
+body[data-theme="light"] .cicd-title,
+body[data-theme="light"] .terminal-title,
+body[data-theme="light"] .lifecycle-title {
+  color: #0f172a !important; /* Forces all pure white headers to deep charcoal */
+}
+
+/* Fixes the "Engineer" text from fading into invisible white */
+body[data-theme="light"] .gradient-text {
+  background: linear-gradient(135deg, #0f172a 0%, rgb(var(--theme-rgb)) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Subtitles and descriptive text */
+body[data-theme="light"] .hero-subtext,
+body[data-theme="light"] .jb-skill-desc,
+body[data-theme="light"] .lifecycle-desc,
+body[data-theme="light"] .term-output,
+body[data-theme="light"] #cicd-footer-text,
+body[data-theme="light"] .metric-label,
+body[data-theme="light"] .exp-text {
+  color: #475569 !important;
+}
+
+/* 2. Kills the muddy dark mode glows & Fixes Shadows */
+body[data-theme="light"] #cursor-glow-bg,
+body[data-theme="light"] .card::before, 
+body[data-theme="light"] .jb-skill-card::before, 
+body[data-theme="light"] .dashboard-section::before,
+body[data-theme="light"] .ide-window::before,
+body[data-theme="light"] .hero-btn-primary::before,
+body[data-theme="light"] .hero-btn-outline::before,
+body[data-theme="light"] .lifecycle-btn::before {
+  display: none !important; /* Turns off all glowing radial orbs */
+}
+
+body[data-theme="light"] .card,
+body[data-theme="light"] .jb-skill-card,
+body[data-theme="light"] .dashboard-section,
+body[data-theme="light"] .cicd-engine-card,
+body[data-theme="light"] .ide-window,
+body[data-theme="light"] .modal-content,
+body[data-theme="light"] .dropdown-menu {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04), 0 4px 6px rgba(0, 0, 0, 0.02) !important; 
+}
+
+/* 3. Buttons (Outline, Terminal, Lifecycle Grid) */
+body[data-theme="light"] .hero-btn-outline,
+body[data-theme="light"] .lifecycle-btn {
+  background-color: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+  text-shadow: none !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
+}
+
+/* Fixes Outline Buttons on Hover so the text remains visible */
+body[data-theme="light"] .hero-btn-outline:hover,
+body[data-theme="light"] .lifecycle-btn:hover {
+  background-color: #e2e8f0 !important;
+  border-color: rgb(var(--theme-rgb)) !important;
+  color: rgb(var(--theme-rgb)) !important;
+  box-shadow: 0 4px 12px rgba(var(--theme-rgb), 0.1) !important;
+  text-shadow: none !important;
+}
+
+body[data-theme="light"] .hero-btn-outline:hover i,
+body[data-theme="light"] .hero-btn-outline:hover svg,
+body[data-theme="light"] .lifecycle-btn:hover i,
+body[data-theme="light"] .lifecycle-btn:hover svg {
+  filter: none !important; /* Kills dark mode icon glow */
+}
+
+/* 4. Navbars & Theme Buttons */
+body[data-theme="light"] .navbar-links a,
+body[data-theme="light"] .dropdown-trigger { color: #475569 !important; }
+body[data-theme="light"] .navbar-links a:hover,
+body[data-theme="light"] .dropdown-trigger:hover { color: #0f172a !important; }
+
+body[data-theme="light"] .nav-icon-btn,
+body[data-theme="light"] .tab-btn {
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+body[data-theme="light"] .nav-icon-btn:hover,
+body[data-theme="light"] .tab-btn.active {
+  background-color: rgba(var(--theme-rgb), 0.1) !important;
+  border-color: rgb(var(--theme-rgb)) !important;
+  color: rgb(var(--theme-rgb)) !important;
+}
+
+body[data-theme="light"] .sticky-section-nav {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+body[data-theme="light"] .nav-pill-group {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+body[data-theme="light"] .nav-pill { color: #64748b !important; }
+body[data-theme="light"] .nav-pill:hover { color: #0f172a !important; }
+body[data-theme="light"] .nav-pill.active {
+  background-color: #f8fafc !important;
+  color: rgb(var(--theme-rgb)) !important;
+  border-color: rgb(var(--theme-rgb)) !important;
+  box-shadow: none !important;
+}
+
+/* 5. Terminal, Logs & Code UI */
+body[data-theme="light"] .terminal-container,
+body[data-theme="light"] .pipeline-logs-console,
+body[data-theme="light"] .code-preview-container {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+}
+body[data-theme="light"] .terminal-header,
+body[data-theme="light"] .code-header {
+  background-color: #f1f5f9 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+body[data-theme="light"] .terminal-body,
+body[data-theme="light"] .code-content {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+body[data-theme="light"] .terminal-input-line {
+  background-color: #f1f5f9 !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+body[data-theme="light"] #cli-input { color: #0f172a !important; }
+body[data-theme="light"] .prompt,
+body[data-theme="light"] .text-green,
+body[data-theme="light"] .step.passed { color: #16a34a !important; }
+body[data-theme="light"] .term-output.text-cyan { color: #0284c7 !important; }
+body[data-theme="light"] .highlight { color: rgb(var(--theme-rgb)) !important; }
+
+/* 6. Specific Badges & Tools */
+body[data-theme="light"] .tech-item {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04) !important;
+}
+body[data-theme="light"] .tech-item .brand-wordmark {
+  filter: none !important; 
+}
+body[data-theme="light"] .jb-skill-logo i,
+body[data-theme="light"] .jb-skill-logo svg {
+  color: rgb(var(--theme-rgb)) !important; 
+}
+body[data-theme="light"] .tag-badge,
+body[data-theme="light"] .tool-pill {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+body[data-theme="light"] .tag-badge:hover {
+  border-color: rgb(var(--theme-rgb)) !important;
+  color: rgb(var(--theme-rgb)) !important;
+  background: rgba(var(--theme-rgb), 0.05) !important;
+}
+body[data-theme="light"] .ide-body-badge {
+  background: radial-gradient(circle at center, rgba(147, 51, 234, 0.05) 0%, #f8fafc 70%) !important;
+}
+body[data-theme="light"] .cicd-footer.active-box {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
 }
