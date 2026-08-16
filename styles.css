@@ -30,14 +30,31 @@
   --text-muted: #9ca3af;     /* Medium gray text */
 }
 
-/* Force specific hard-coded white elements to turn dark in Light Mode */
+/* Force specific hard-coded dark elements to turn light */
+[data-theme="light"] .cicd-engine-card,
+[data-theme="light"] .pipeline-logs-console, 
+[data-theme="light"] .terminal-container,
+[data-theme="light"] .ide-window,
+[data-theme="light"] .modal-content,
+[data-theme="light"] .dropdown-menu {
+  background-color: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+[data-theme="light"] .terminal-body,
+[data-theme="light"] .ide-body-badge {
+  background: var(--bg-dark) !important;
+}
+
+/* Force specific hard-coded white text to turn dark */
 [data-theme="light"] .hero-headline,
 [data-theme="light"] .jb-skill-title,
-[data-theme="light"] .brand-ja {
+[data-theme="light"] .brand-ja,
+[data-theme="light"] .text-white {
   color: #111827 !important;
 }
 
-/* Reverts the white logos in the scrolling marquee back to their original brand colors */
+/* Reverts the white logos in the scrolling marquee back to their original colors */
 [data-theme="light"] .tech-item .brand-wordmark {
   filter: none !important; 
 }
