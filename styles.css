@@ -1397,20 +1397,21 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
 }
 
 /* =========================================================
-   LIGHT MODE FULL UI OVERRIDES (Premium High-Engagement)
+   HIGH-CONTRAST LIGHT MODE (Fully Unified UI)
    *MUST STAY AT THE BOTTOM OF THE FILE TO WORK*
    ========================================================= */
 body[data-theme="light"] {
-  --bg-dark: #f0f4f8;        /* Soft cool gray background for depth */
+  --bg-dark: #f4f7fb;        /* Crisp, cool light gray background */
   --card-bg: #ffffff;        /* Pure white cards */
-  --card-border: #cbd5e1;    /* Stronger slate border */
-  --text-primary: #0f172a;   /* Deep charcoal text */
-  --text-secondary: #334155; /* Slate gray text */
-  --text-muted: #64748b;     /* Medium gray text */
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --card-border: #cbd5e1;    /* Stronger, high-contrast borders */
+  --text-primary: #020617;   /* Almost pure black for max readability */
+  --text-secondary: #334155; /* Deep slate gray */
+  --text-muted: #64748b;     /* Medium gray */
+  background: #f4f7fb !important;
 }
 
-/* 1. Global Typography (Deep Charcoals) */
+/* 1. Global High-Contrast Typography */
+body[data-theme="light"] .text-white,
 body[data-theme="light"] .hero-headline,
 body[data-theme="light"] .brand-ja,
 body[data-theme="light"] .brand-board,
@@ -1418,10 +1419,14 @@ body[data-theme="light"] .jb-skill-title,
 body[data-theme="light"] .jetbrains-about-header,
 body[data-theme="light"] .jetbrains-skills-header,
 body[data-theme="light"] .section-header h2,
-body[data-theme="light"] .metric-val.text-white,
+body[data-theme="light"] .metric-val,
 body[data-theme="light"] .scroll-block h3,
-body[data-theme="light"] #modal-title {
-  color: #0f172a !important; 
+body[data-theme="light"] #modal-title,
+body[data-theme="light"] .cicd-title,
+body[data-theme="light"] .cicd-status,
+body[data-theme="light"] .terminal-title,
+body[data-theme="light"] .lifecycle-title {
+  color: #020617 !important; /* Forces all headers to pure dark charcoal */
 }
 
 body[data-theme="light"] .hero-subtext,
@@ -1431,123 +1436,155 @@ body[data-theme="light"] .exp-text,
 body[data-theme="light"] .card p,
 body[data-theme="light"] .dashboard-section p,
 body[data-theme="light"] .scroll-block p,
-body[data-theme="light"] #modal-description {
-  color: #475569 !important;
+body[data-theme="light"] #modal-description,
+body[data-theme="light"] #cicd-footer-text,
+body[data-theme="light"] .lifecycle-desc {
+  color: #334155 !important;
+  font-weight: 500 !important; /* Thicker text for better contrast */
 }
 
-body[data-theme="light"] .text-green { color: #16a34a !important; }
-
-/* Engaging Vibrant Gradient for the word "Engineer" */
+/* Vibrant Gradient for the word "Engineer" */
 body[data-theme="light"] .gradient-text {
-  background: linear-gradient(135deg, rgb(var(--theme-rgb)) 0%, #3b82f6 100%) !important;
+  background: linear-gradient(135deg, rgb(var(--theme-rgb)) 0%, #2563eb 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   filter: drop-shadow(0 2px 4px rgba(168, 85, 247, 0.2));
 }
 
-/* 2. Engaging Card Design (Soft purple shadows instead of flat gray) */
+/* 2. FORCE ALL DARK CARDS TO WHITE (Fixes the right-side Engine Card) */
 body[data-theme="light"] .card,
 body[data-theme="light"] .jb-skill-card,
 body[data-theme="light"] .dashboard-section,
-body[data-theme="light"] .modal-content {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 15px 35px rgba(168, 85, 247, 0.06), 0 5px 15px rgba(0,0,0,0.03) !important; 
+body[data-theme="light"] .modal-content,
+body[data-theme="light"] .cicd-engine-card,
+body[data-theme="light"] .terminal-container,
+body[data-theme="light"] .pipeline-logs-console,
+body[data-theme="light"] .ide-window,
+body[data-theme="light"] .terminal-body,
+body[data-theme="light"] .ide-body-badge {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important; 
 }
 
-body[data-theme="light"] .card:hover,
-body[data-theme="light"] .jb-skill-card:hover {
-  box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15), 0 5px 15px rgba(0,0,0,0.05) !important;
-  border-color: rgb(var(--theme-rgb)) !important;
-  transform: translateY(-4px) !important;
-}
-
-/* 3. Bring Back the Interactive Cursor Glows! (Lighter & more elegant) */
-body[data-theme="light"] #cursor-glow-bg {
-  display: block !important;
-  background: radial-gradient(800px circle at var(--bg-x, 50%) var(--bg-y, 50%), rgba(168, 85, 247, 0.08), transparent 80%) !important;
-}
+/* Kills muddy dark mode glows */
+body[data-theme="light"] #cursor-glow-bg,
 body[data-theme="light"] .card::before, 
 body[data-theme="light"] .jb-skill-card::before, 
-body[data-theme="light"] .dashboard-section::before {
-  display: block !important;
-  background: radial-gradient(600px circle at var(--x, -500px) var(--y, -500px), rgba(168, 85, 247, 0.1), transparent 60%) !important;
+body[data-theme="light"] .dashboard-section::before,
+body[data-theme="light"] .ide-window::before {
+  display: none !important; 
 }
 
-/* 4. Fix Outline Buttons (High Contrast & Legible) */
+/* 3. High-Contrast Buttons & CI/CD Grid */
 body[data-theme="light"] .hero-btn-primary {
   color: #ffffff !important;
   box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3) !important;
 }
-body[data-theme="light"] .hero-btn-primary * { color: #ffffff !important; }
 
-body[data-theme="light"] .hero-btn-outline {
-  background-color: #ffffff !important;
-  border: 1px solid #94a3b8 !important;
-  color: #0f172a !important; /* Force dark text */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.02) !important;
-  text-shadow: none !important;
-}
-body[data-theme="light"] .hero-btn-outline * { color: #0f172a !important; filter: none !important; }
-
-body[data-theme="light"] .hero-btn-outline:hover {
-  background-color: #ffffff !important;
-  border-color: rgb(var(--theme-rgb)) !important;
-  color: rgb(var(--theme-rgb)) !important;
-  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.2) !important;
-}
-body[data-theme="light"] .hero-btn-outline:hover * { color: rgb(var(--theme-rgb)) !important; }
-
-/* Theme Switches / Nav Icons */
+body[data-theme="light"] .hero-btn-outline,
+body[data-theme="light"] .lifecycle-btn,
 body[data-theme="light"] .nav-icon-btn,
 body[data-theme="light"] .tab-btn {
-  background-color: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #475569 !important;
-}
-body[data-theme="light"] .nav-icon-btn:hover,
-body[data-theme="light"] .tab-btn.active {
-  background-color: rgba(var(--theme-rgb), 0.1) !important;
-  border-color: rgb(var(--theme-rgb)) !important;
-  color: rgb(var(--theme-rgb)) !important;
+  background: #f8fafc !important;
+  border: 1px solid #94a3b8 !important; /* Strong border */
+  color: #020617 !important; /* Pure black text */
+  font-weight: 600 !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
+  text-shadow: none !important;
 }
 
-/* 5. Sticky Nav & Pills (High Contrast) */
+body[data-theme="light"] .hero-btn-outline:hover,
+body[data-theme="light"] .lifecycle-btn:hover,
+body[data-theme="light"] .nav-icon-btn:hover,
+body[data-theme="light"] .tab-btn.active {
+  background: rgb(var(--theme-rgb)) !important;
+  border-color: rgb(var(--theme-rgb)) !important;
+  color: #ffffff !important; /* White text on hover */
+  box-shadow: 0 6px 15px rgba(168, 85, 247, 0.3) !important;
+}
+
+body[data-theme="light"] .hero-btn-outline *,
+body[data-theme="light"] .lifecycle-btn *,
+body[data-theme="light"] .nav-icon-btn * {
+  color: inherit !important;
+  filter: none !important; /* Kills dark mode icon glow */
+}
+
+/* 4. Fix Hover Overlays (CI/CD Popup) */
+body[data-theme="light"] .lifecycle-overlay {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+}
+body[data-theme="light"] .tool-pill {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #020617 !important;
+  font-weight: 600 !important;
+}
+
+/* 5. Terminal Text Readability */
+body[data-theme="light"] .terminal-header,
+body[data-theme="light"] .code-header {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #cbd5e1 !important;
+}
+body[data-theme="light"] .terminal-input-line {
+  background: #f8fafc !important;
+  border-top: 1px solid #cbd5e1 !important;
+}
+body[data-theme="light"] #cli-input,
+body[data-theme="light"] .term-output,
+body[data-theme="light"] .log-line {
+  color: #020617 !important;
+  font-weight: 500 !important;
+}
+body[data-theme="light"] .prompt,
+body[data-theme="light"] .text-green,
+body[data-theme="light"] .step.passed {
+  color: #059669 !important; /* Deep, readable green */
+  font-weight: 700 !important;
+}
+body[data-theme="light"] .term-output.text-cyan {
+  color: #0284c7 !important; /* Deep, readable blue */
+}
+body[data-theme="light"] .highlight {
+  color: rgb(var(--theme-rgb)) !important;
+  font-weight: 700 !important;
+}
+
+/* 6. Sticky Nav & Pills */
 body[data-theme="light"] .sticky-section-nav {
-  background-color: rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
   border-bottom: 1px solid #cbd5e1 !important;
 }
 body[data-theme="light"] .nav-pill-group {
-  background-color: #f1f5f9 !important; /* Soft gray container */
+  background: #ffffff !important;
   border: 1px solid #cbd5e1 !important;
-  padding: 6px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
 }
-body[data-theme="light"] .nav-pill { color: #475569 !important; text-shadow: none !important; }
-body[data-theme="light"] .nav-pill:hover { color: #0f172a !important; }
+body[data-theme="light"] .nav-pill { color: #475569 !important; text-shadow: none !important; font-weight: 600 !important; }
+body[data-theme="light"] .nav-pill:hover { color: #020617 !important; }
 body[data-theme="light"] .nav-pill.active {
-  background-color: #ffffff !important; /* Pure white active pill */
+  background: #f1f5f9 !important; 
   color: rgb(var(--theme-rgb)) !important;
-  border-color: #cbd5e1 !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
+  border-color: rgb(var(--theme-rgb)) !important;
 }
-body[data-theme="light"] .navbar-links a { color: #475569 !important; }
-body[data-theme="light"] .navbar-links a:hover { color: #0f172a !important; }
+body[data-theme="light"] .navbar-links a { color: #475569 !important; font-weight: 600 !important; }
+body[data-theme="light"] .navbar-links a:hover { color: #020617 !important; }
 
-/* 6. Fix Tech Marquee & Skill Logos */
+/* 7. Marquee Logos & Skill Icons */
 body[data-theme="light"] .tech-item {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.05) !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
 }
 body[data-theme="light"] .tech-item .brand-wordmark { filter: none !important; }
 body[data-theme="light"] .jb-skill-logo i,
 body[data-theme="light"] .jb-skill-logo svg { color: rgb(var(--theme-rgb)) !important; }
 body[data-theme="light"] .tag-badge {
-  background: #f1f5f9 !important;
+  background: #f8fafc !important;
   border: 1px solid #cbd5e1 !important;
-  color: #334155 !important;
+  color: #020617 !important;
+  font-weight: 600 !important;
 }
-
-/* 7. REVERT ENGINE & TERMINAL TO DARK (The visual secret) */
-/* Notice we INTENTIONALLY omitted .cicd-engine-card, .terminal-container, and .ide-window from the white backgrounds. 
-   Leaving them native dark creates stunning premium contrast! */
