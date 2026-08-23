@@ -393,7 +393,7 @@ body {
   
   /* THE FIX: Forces all text, pills, and buttons to align to the RIGHT */
   align-items: flex-end !important; 
-  text-align: right !important;
+  text-align: left !important;
   justify-content: center !important;
 }
 
