@@ -384,8 +384,8 @@ body {
 /* LEFT SIDE TYPOGRAPHY */
 .hero-content-left {
   /* Safe width that prevents it from pushing the right card down */
-  flex: 0 0 46%; 
-  max-width: 46%;
+  flex: 0 0 40%; 
+  max-width: 40%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
