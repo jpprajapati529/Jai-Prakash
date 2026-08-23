@@ -367,39 +367,46 @@ body {
 /* =========================================================
    ULTIMATE HERO SIDE-BY-SIDE FIX
    ========================================================= */
+/* =========================================================
+   ULTIMATE HERO SIDE-BY-SIDE FIX (Mirrored Layout)
+   ========================================================= */
 .hero-card {
   display: flex !important;
-  flex-direction: row !important; 
+  
+  /* THE MAGIC FIX: This mirror-flips the layout instantly! */
+  flex-direction: row-reverse !important; 
+  
   flex-wrap: nowrap !important; 
   align-items: center !important; 
-  
-  /* Keeps the entire dual-column block perfectly centered on the screen */
   justify-content: center !important; 
   
   width: 100% !important;
   max-width: 1100px !important; 
   margin: 0 auto 80px auto !important; 
   
-  /* THIS GAP NOW WORKS PERFECTLY: 
-     Lower this number (e.g., 10px) to pull them closer. 
-     Raise it (e.g., 80px) to push them apart. */
-  gap: 30px !important;
+  /* Gave them a nice 60px gap so they breathe perfectly in the middle */
+  gap: 60px !important;
   padding-top: 40px !important; 
   padding-bottom: 40px !important;
 }
 
 .hero-content-left {
   flex: 0 0 auto !important; 
-  width: 420px !important; /* Controls exactly how wide the text wraps */
+  width: 420px !important; 
   padding-right: 0 !important;
   
   display: flex;
   flex-direction: column;
+  
+  /* Keeps your typography cleanly left-aligned for maximum readability */
   align-items: flex-start !important; 
   text-align: left !important;
+  
   justify-content: center !important;
-  margin-top: -40px !important;
-  margin-left: 20px !important;
+  
+  /* Reset the nudging margins so it centers flawlessly */
+  margin-top: 0 !important;
+  margin-left: 0 !important;
 }
 
 .hero-overline-group {
