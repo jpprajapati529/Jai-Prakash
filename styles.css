@@ -400,59 +400,46 @@ body {
 }
 
 .hero-overline-group {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-  font-family: var(--font-mono);
+  display: none !important; /* Hides the top pill for a clean MS-style start */
 }
 
 .name-pill {
-  font-size: 0.75rem;
-  color: rgb(var(--theme-rgb));
-  border: 1px solid rgba(var(--theme-rgb), 0.4);
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: rgba(var(--theme-rgb), 0.05);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  animation: textGlowPulse 2s infinite alternate;
-}
-
-@keyframes textGlowPulse {
-  0% { box-shadow: 0 0 5px rgba(var(--theme-rgb), 0.2); }
-  100% { box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.6); }
+  display: none;
 }
 
 .exp-text {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+  display: none;
 }
 
 .hero-headline {
-  font-size: clamp(3rem, 4.5vw, 4.5rem);
-  font-weight: 800;
+  /* Scaled down to match Microsoft's elegant sizing */
+  font-size: clamp(2.4rem, 3vw, 3.2rem); 
+  font-weight: 600; /* Lighter, cleaner weight */
   color: #ffffff;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  margin-bottom: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px; 
 }
 
+/* Removed the gradient to match solid MS typography */
 .gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, rgb(var(--theme-rgb)) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  color: inherit;
+  filter: none !important;
 }
 
 .hero-subtext {
-  font-size: 1.1rem;
+  /* Crisp, standard paragraph size */
+  font-size: 1.05rem; 
+  font-weight: 400;
   color: #94a3b8; 
   line-height: 1.6;
   margin-bottom: 32px;
   
-  /* EXPANDED: Allows the text to utilize the full width of the left column */
-  width: 110%;
-  max-width: 110%; 
+  /* Restricts width so it naturally wraps like the MS paragraph */
+  width: 100%;
+  max-width: 90%; 
 }
 
 /* BUTTON GROUP */
@@ -464,24 +451,34 @@ body {
   flex-wrap: wrap;
 }
 
+/* The Microsoft 365 Flat Button Clone */
 .hero-btn-primary {
-  background: rgb(var(--theme-rgb));
-  color: #000;
-  font-weight: 600; /* Slightly lighter weight for smaller text */
-  font-size: 0.85rem; /* Much smaller, professional font size */
-  padding: 10px 18px; /* Tighter vertical and horizontal padding */
-  border-radius: 6px; /* Sharper corners */
+  background: rgb(var(--theme-rgb)) !important; /* Keeps your theme active */
+  color: #ffffff !important;
+  font-family: var(--font-sans);
+  font-weight: 600; 
+  font-size: 0.95rem; /* Standard readable button size */
+  padding: 10px 24px; /* MS exact padding ratio */
+  border-radius: 4px; /* Sharp, clean corners like MS */
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  transition: all 0.3s ease;
+  gap: 8px;
+  transition: opacity 0.2s ease;
+  box-shadow: none !important; /* Pure flat design, no shadow */
+  border: none;
 }
 
+/* Flat hover effect, no jumping or floating */
 .hero-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(var(--theme-rgb), 0.3);
-  background: #fff;
+  opacity: 0.85; /* Subtle fade, no movement */
+  transform: none !important; 
+  box-shadow: none !important;
+}
+
+/* Turns off the glowing spotlight effect for this specific button */
+.hero-btn-primary::before {
+  display: none !important;
 }
 
 .hero-btn-outline {
@@ -2014,4 +2011,16 @@ body[data-theme="light"] .cicd-engine-card {
 body[data-theme="light"] .cicd-header,
 body[data-theme="light"] .cicd-footer {
   display: none !important;
+}
+
+/* =========================================================
+   MICROSOFT LIGHT MODE TYPOGRAPHY OVERRIDES
+   ========================================================= */
+body[data-theme="light"] .gradient-text {
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  filter: none !important;
+}
+body[data-theme="light"] .hero-subtext {
+  font-weight: 400 !important; /* Removes the heavy bolding */
 }
