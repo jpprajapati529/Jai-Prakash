@@ -1995,3 +1995,23 @@ body[data-theme="light"] .ms-bg-pane {
   border: 1px solid rgba(255, 255, 255, 0.8) !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
 }
+
+/* =========================================================
+   REMOVE ENGINE CARD BOX (Pure Floating Constellation)
+   ========================================================= */
+/* Strips the background, border, and shadows in ALL themes */
+.cicd-engine-card,
+body[data-theme="light"] .cicd-engine-card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* Hides the "Pipeline Online" header and footer text completely */
+.cicd-header,
+.cicd-footer,
+body[data-theme="light"] .cicd-header,
+body[data-theme="light"] .cicd-footer {
+  display: none !important;
+}
