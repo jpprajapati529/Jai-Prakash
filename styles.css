@@ -406,7 +406,7 @@ body {
   
   /* Reset the nudging margins so it centers flawlessly */
   margin-top: -50px !important;
-  margin-left: 40px !important;
+  margin-left: 0px !important;
 }
 
 .hero-overline-group {
