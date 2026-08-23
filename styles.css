@@ -2096,3 +2096,19 @@ body[data-theme="light"] .nav-icon-btn {
 .color-cycle-btn.active-cycling i {
   color: rgb(var(--theme-rgb)) !important;
 }
+
+
+/* =========================================================
+   FIX ACTIVE PALETTE BUTTON IN LIGHT MODE
+   ========================================================= */
+body[data-theme="light"] .color-cycle-btn.active-cycling {
+  border-color: rgb(var(--theme-rgb)) !important;
+  background: rgba(var(--theme-rgb), 0.12) !important;
+  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.25), inset 0 0 8px rgba(var(--theme-rgb), 0.1) !important;
+}
+
+body[data-theme="light"] .color-cycle-btn.active-cycling i,
+body[data-theme="light"] .color-cycle-btn.active-cycling svg {
+  color: rgb(var(--theme-rgb)) !important;
+  stroke: rgb(var(--theme-rgb)) !important;
+}
