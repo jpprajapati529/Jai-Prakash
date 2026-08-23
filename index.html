@@ -154,53 +154,90 @@
         </div>
 
         <!-- ==========================================
-             GLASSMORPHISM DEVOPS ORBIT CONSTELLATION 
+             MICROSOFT-STYLE DEVOPS CONSTELLATION 
              ========================================== -->
-        <div class="devops-orbit-wrapper">
+        <div class="ms-orbit-wrapper">
           
-          <!-- Center Infinity Core -->
-          <div class="orbit-center">
+          <!-- Glowing Center Core (Infinity) -->
+          <div class="ms-center-core">
             <i data-lucide="infinity"></i>
           </div>
 
-          <!-- Orbiting Glass Nodes (8 Stages) -->
-          <div class="orbit-node node-1" onmouseenter="showLifecycleSpec('plan')" onmouseleave="hideLifecycleSpec()">
-            <div class="glass-panel color-1"><i data-lucide="clipboard-list"></i></div>
-            <span>Plan</span>
+          <!-- Orbiting MS-Style Nodes -->
+          <div class="ms-node ms-node-1" onmouseenter="showLifecycleSpec('plan')" onmouseleave="hideLifecycleSpec()">
+            <div class="ms-bg-pane ms-color-1-glass"></div>
+            <div class="ms-logo-wrapper">
+              <div class="ms-logo-bg ms-color-1-solid"></div>
+              <div class="ms-logo-badge ms-color-1-dark"><i data-lucide="clipboard-list"></i></div>
+            </div>
+            <span class="ms-label">Plan</span>
           </div>
-          <div class="orbit-node node-2" onmouseenter="showLifecycleSpec('code')" onmouseleave="hideLifecycleSpec()">
-            <div class="glass-panel color-2"><i data-lucide="terminal-square"></i></div>
-            <span>Code</span>
+
+          <div class="ms-node ms-node-2" onmouseenter="showLifecycleSpec('code')" onmouseleave="hideLifecycleSpec()">
+            <div class="ms-bg-pane ms-color-2-glass"></div>
+            <div class="ms-logo-wrapper">
+              <div class="ms-logo-bg ms-color-2-solid"></div>
+              <div class="ms-logo-badge ms-color-2-dark"><i data-lucide="terminal-square"></i></div>
+            </div>
+            <span class="ms-label">Code</span>
           </div>
-          <div class="orbit-node node-3" onmouseenter="showLifecycleSpec('build')" onmouseleave="hideLifecycleSpec()">
-            <div class="glass-panel color-3"><i data-lucide="package"></i></div>
-            <span>Build</span>
+
+          <div class="ms-node ms-node-3" onmouseenter="showLifecycleSpec('build')" onmouseleave="hideLifecycleSpec()">
+            <div class="ms-bg-pane ms-color-3-glass"></div>
+            <div class="ms-logo-wrapper">
+              <div class="ms-logo-bg ms-color-3-solid"></div>
+              <div class="ms-logo-badge ms-color-3-dark"><i data-lucide="package"></i></div>
+            </div>
+            <span class="ms-label">Build</span>
           </div>
-          <div class="orbit-node node-4" onmouseenter="showLifecycleSpec('test')" onmouseleave="hideLifecycleSpec()">
-            <div class="glass-panel color-4"><i data-lucide="test-tube"></i></div>
-            <span>Test</span>
+
+          <div class="ms-node ms-node-4" onmouseenter="showLifecycleSpec('test')" onmouseleave="hideLifecycleSpec()">
+            <div class="ms-bg-pane ms-color-4-glass"></div>
+            <div class="ms-logo-wrapper">
+              <div class="ms-logo-bg ms-color-4-solid"></div>
+              <div class="ms-logo-badge ms-color-4-dark"><i data-lucide="test-tube"></i></div>
+            </div>
+            <span class="ms-label">Test</span>
           </div>
-          <div class="orbit-node node-5" onmouseenter="showLifecycleSpec('release')" onmouseleave="hideLifecycleSpec()">
-            <div class="glass-panel color-5"><i data-lucide="tag"></i></div>
-            <span>Release</span>
+
+          <div class="ms-node ms-node-5" onmouseenter="showLifecycleSpec('release')" onmouseleave="hideLifecycleSpec()">
+            <div class="ms-bg-pane ms-color-5-glass"></div>
+            <div class="ms-logo-wrapper">
+              <div class="ms-logo-bg ms-color-5-solid"></div>
+              <div class="ms-logo-badge ms-color-5-dark"><i data-lucide="tag"></i></div>
+            </div>
+            <span class="ms-label">Release</span>
           </div>
-          <div class="orbit-node node-6" onmouseenter="showLifecycleSpec('deploy')" onmouseleave="hideLifecycleSpec()">
-            <div class="glass-panel color-6"><i data-lucide="rocket"></i></div>
-            <span>Deploy</span>
+
+          <div class="ms-node ms-node-6" onmouseenter="showLifecycleSpec('deploy')" onmouseleave="hideLifecycleSpec()">
+            <div class="ms-bg-pane ms-color-6-glass"></div>
+            <div class="ms-logo-wrapper">
+              <div class="ms-logo-bg ms-color-6-solid"></div>
+              <div class="ms-logo-badge ms-color-6-dark"><i data-lucide="rocket"></i></div>
+            </div>
+            <span class="ms-label">Deploy</span>
           </div>
-          <div class="orbit-node node-7" onmouseenter="showLifecycleSpec('operate')" onmouseleave="hideLifecycleSpec()">
-            <div class="glass-panel color-7"><i data-lucide="settings-2"></i></div>
-            <span>Operate</span>
+
+          <div class="ms-node ms-node-7" onmouseenter="showLifecycleSpec('operate')" onmouseleave="hideLifecycleSpec()">
+            <div class="ms-bg-pane ms-color-7-glass"></div>
+            <div class="ms-logo-wrapper">
+              <div class="ms-logo-bg ms-color-7-solid"></div>
+              <div class="ms-logo-badge ms-color-7-dark"><i data-lucide="settings-2"></i></div>
+            </div>
+            <span class="ms-label">Operate</span>
           </div>
-          <div class="orbit-node node-8" onmouseenter="showLifecycleSpec('monitor')" onmouseleave="hideLifecycleSpec()">
-            <div class="glass-panel color-8"><i data-lucide="activity"></i></div>
-            <span>Monitor</span>
+
+          <div class="ms-node ms-node-8" onmouseenter="showLifecycleSpec('monitor')" onmouseleave="hideLifecycleSpec()">
+            <div class="ms-bg-pane ms-color-8-glass"></div>
+            <div class="ms-logo-wrapper">
+              <div class="ms-logo-bg ms-color-8-solid"></div>
+              <div class="ms-logo-badge ms-color-8-dark"><i data-lucide="activity"></i></div>
+            </div>
+            <span class="ms-label">Monitor</span>
           </div>
 
           <!-- Hover Data Overlay (Pops up in the center!) -->
-          <div id="lifecycle-overlay" class="lifecycle-overlay">
-            <!-- JS dynamically injects hover text here -->
-          </div>
+          <div id="lifecycle-overlay" class="lifecycle-overlay"></div>
           
         </div>
 

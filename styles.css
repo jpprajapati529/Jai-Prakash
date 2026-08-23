@@ -1402,135 +1402,6 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
 }
 
 /* =========================================================
-   DEVOPS GLASS ORBIT CONSTELLATION 
-   ========================================================= */
-.devops-orbit-wrapper {
-  position: relative;
-  width: 100%;
-  height: 340px; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0 20px 0;
-}
-
-/* Center Infinity Logo */
-.orbit-center {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  background: linear-gradient(135deg, rgb(var(--theme-rgb)) 0%, #3b82f6 100%);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 30px rgba(var(--theme-rgb), 0.4);
-  z-index: 5;
-  animation: pulseCore 3s infinite alternate;
-}
-
-.orbit-center i {
-  color: #fff;
-  width: 34px; 
-  height: 34px;
-}
-
-@keyframes pulseCore {
-  0% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.3); transform: scale(1); }
-  100% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.7), 0 0 20px rgba(59, 130, 246, 0.5); transform: scale(1.05); }
-}
-
-/* Floating Glass Nodes */
-.orbit-node {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  z-index: 2;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.glass-panel {
-  position: relative;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  color: #fff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* This creates the overlapping "shadow shape" behind the glass like Microsoft's logo */
-.glass-panel::before {
-  content: "";
-  position: absolute;
-  top: -8px; right: -8px;
-  width: 36px; height: 36px;
-  background: inherit;
-  border-radius: 10px;
-  opacity: 0.4;
-  z-index: -1;
-  filter: blur(6px);
-}
-
-.glass-panel i { width: 22px; height: 22px; }
-
-.orbit-node:hover .glass-panel {
-  transform: scale(1.15) translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-}
-
-.orbit-node span {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  background: rgba(0, 0, 0, 0.4);
-  padding: 2px 8px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.orbit-node:hover span {
-  color: #fff;
-  background: rgba(var(--theme-rgb), 0.4);
-  border-color: rgb(var(--theme-rgb));
-}
-
-/* Perfect Circular Math (Radius: 115px) */
-.node-1 { top: calc(50% - 115px); left: 50%; transform: translate(-50%, -50%); animation: floatNode 3.2s ease-in-out infinite alternate 0s; }
-.node-2 { top: calc(50% - 81px); left: calc(50% + 81px); transform: translate(-50%, -50%); animation: floatNode 2.8s ease-in-out infinite alternate 0.4s; }
-.node-3 { top: 50%; left: calc(50% + 115px); transform: translate(-50%, -50%); animation: floatNode 3.5s ease-in-out infinite alternate 0.8s; }
-.node-4 { top: calc(50% + 81px); left: calc(50% + 81px); transform: translate(-50%, -50%); animation: floatNode 3s ease-in-out infinite alternate 1.2s; }
-.node-5 { top: calc(50% + 115px); left: 50%; transform: translate(-50%, -50%); animation: floatNode 3.3s ease-in-out infinite alternate 1.6s; }
-.node-6 { top: calc(50% + 81px); left: calc(50% - 81px); transform: translate(-50%, -50%); animation: floatNode 2.9s ease-in-out infinite alternate 2.0s; }
-.node-7 { top: 50%; left: calc(50% - 115px); transform: translate(-50%, -50%); animation: floatNode 3.4s ease-in-out infinite alternate 2.4s; }
-.node-8 { top: calc(50% - 81px); left: calc(50% - 81px); transform: translate(-50%, -50%); animation: floatNode 3.1s ease-in-out infinite alternate 2.8s; }
-
-@keyframes floatNode {
-  0% { transform: translate(-50%, -50%) translateY(0px); }
-  100% { transform: translate(-50%, -50%) translateY(-10px); }
-}
-
-/* Microsoft-Style Gradients */
-.color-1 { background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(96, 165, 250, 0.5)); } /* Blue */
-.color-2 { background: linear-gradient(135deg, rgba(168, 85, 247, 0.8), rgba(192, 132, 252, 0.5)); } /* Purple */
-.color-3 { background: linear-gradient(135deg, rgba(249, 115, 22, 0.8), rgba(251, 146, 60, 0.5)); } /* Orange */
-.color-4 { background: linear-gradient(135deg, rgba(239, 68, 68, 0.8), rgba(248, 113, 113, 0.5)); } /* Red */
-.color-5 { background: linear-gradient(135deg, rgba(20, 184, 166, 0.8), rgba(45, 212, 191, 0.5)); } /* Teal */
-.color-6 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.8), rgba(74, 222, 128, 0.5)); } /* Green */
-.color-7 { background: linear-gradient(135deg, rgba(234, 179, 8, 0.8), rgba(250, 204, 21, 0.5)); } /* Yellow */
-.color-8 { background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(129, 140, 248, 0.5)); } /* Indigo */
-
-/* =========================================================
    HIGH-CONTRAST LIGHT MODE (Fully Unified UI)
    *MUST STAY AT THE BOTTOM OF THE FILE TO WORK*
    ========================================================= */
@@ -1914,4 +1785,208 @@ body[data-theme="light"] .term-icon-trigger {
   .hero-image-right {
     margin-top: 40px !important;
   }
+}
+
+
+/* =========================================================
+   MICROSOFT-STYLE DEVOPS CONSTELLATION 
+   ========================================================= */
+.ms-orbit-wrapper {
+  position: relative;
+  width: 100%;
+  height: 440px; /* Gives the organic layout room to breathe */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+/* Infinity Copilot-Style Core */
+.ms-center-core {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px; height: 64px;
+  border-radius: 18px;
+  /* Multi-color gradient matching the MS Copilot vibe */
+  background: linear-gradient(135deg, #fcd34d 0%, #f43f5e 30%, #8b5cf6 70%, #3b82f6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4), inset 2px 2px 6px rgba(255, 255, 255, 0.4);
+  z-index: 5;
+  animation: pulseCore 3s infinite alternate;
+}
+.ms-center-core i { color: #ffffff; width: 32px; height: 32px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+
+@keyframes pulseCore {
+  0% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.3); transform: translate(-50%, -50%) scale(1); }
+  100% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.7); transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* The Interactive Node Container */
+.ms-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+/* 1. The Skewed Glass Pane (The soft background shadow) */
+.ms-bg-pane {
+  position: absolute;
+  top: -20px; left: -15px;
+  width: 85px; height: 105px;
+  border-radius: 18px;
+  /* The exact angle from the MS graphics */
+  transform: skewX(-12deg) rotate(-4deg); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1;
+  opacity: 0.85;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 2. The Foreground 3D Logo Construct */
+.ms-logo-wrapper {
+  position: relative;
+  width: 54px; height: 54px;
+  z-index: 2;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ms-logo-bg {
+  position: absolute;
+  top: 0; right: 0;
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  box-shadow: inset 2px 2px 4px rgba(255,255,255,0.4), 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* 3. The Overlapping Badge (Mimics the P, W, X letter squares) */
+.ms-logo-badge {
+  position: absolute;
+  bottom: -4px; left: -4px;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 1px 1px 2px rgba(255,255,255,0.4), 2px 4px 8px rgba(0,0,0,0.3);
+}
+.ms-logo-badge i { width: 15px; height: 15px; color: #ffffff; }
+
+/* 4. Text Label */
+.ms-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 14px;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* Hover Interactions */
+.ms-node:hover .ms-logo-wrapper { transform: scale(1.15) translateY(-5px); }
+.ms-node:hover .ms-bg-pane { transform: skewX(-12deg) rotate(-4deg) scale(1.1) translate(-2px, -4px); opacity: 1; filter: brightness(1.2); }
+.ms-node:hover .ms-label { color: rgb(var(--theme-rgb)); transform: translateY(-2px); }
+
+/* Organic Scattered Positioning (Matching the MS 365 Layout) */
+.ms-node-1 { top: 12%; left: 32%; animation: floatMS 3.5s ease-in-out infinite alternate 0s; }
+.ms-node-2 { top: 20%; left: 75%; animation: floatMS 3.2s ease-in-out infinite alternate 0.5s; }
+.ms-node-3 { top: 50%; left: 88%; animation: floatMS 3.8s ease-in-out infinite alternate 1s; }
+.ms-node-4 { top: 85%; left: 78%; animation: floatMS 3.1s ease-in-out infinite alternate 1.5s; }
+.ms-node-5 { top: 92%; left: 50%; animation: floatMS 3.6s ease-in-out infinite alternate 2s; }
+.ms-node-6 { top: 82%; left: 22%; animation: floatMS 3.3s ease-in-out infinite alternate 2.5s; }
+.ms-node-7 { top: 50%; left: 10%; animation: floatMS 3.7s ease-in-out infinite alternate 3s; }
+.ms-node-8 { top: 28%; left: 12%; animation: floatMS 3.4s ease-in-out infinite alternate 3.5s; }
+
+@keyframes floatMS {
+  0% { margin-top: 0px; }
+  100% { margin-top: -10px; }
+}
+
+/* =========================================================
+   MICROSOFT OFFICE THEME GRADIENTS
+   ========================================================= */
+/* 1. Plan (Word Blue) */
+.ms-color-1-glass { background: linear-gradient(135deg, rgba(37, 99, 235, 0.4), rgba(96, 165, 250, 0.1)); }
+.ms-color-1-solid { background: linear-gradient(135deg, #1d4ed8, #60a5fa); }
+.ms-color-1-dark  { background: #1e3a8a; }
+
+/* 2. Code (Teams Purple) */
+.ms-color-2-glass { background: linear-gradient(135deg, rgba(124, 58, 237, 0.4), rgba(167, 139, 250, 0.1)); }
+.ms-color-2-solid { background: linear-gradient(135deg, #6d28d9, #a78bfa); }
+.ms-color-2-dark  { background: #4c1d95; }
+
+/* 3. Build (PowerPoint Orange/Red) */
+.ms-color-3-glass { background: linear-gradient(135deg, rgba(234, 88, 12, 0.4), rgba(251, 146, 60, 0.1)); }
+.ms-color-3-solid { background: linear-gradient(135deg, #c2410c, #fb923c); }
+.ms-color-3-dark  { background: #9a3412; }
+
+/* 4. Test (Excel Green) */
+.ms-color-4-glass { background: linear-gradient(135deg, rgba(22, 163, 74, 0.4), rgba(74, 222, 128, 0.1)); }
+.ms-color-4-solid { background: linear-gradient(135deg, #15803d, #4ade80); }
+.ms-color-4-dark  { background: #14532d; }
+
+/* 5. Release (OneNote Violet) */
+.ms-color-5-glass { background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(192, 132, 252, 0.1)); }
+.ms-color-5-solid { background: linear-gradient(135deg, #7e22ce, #c084fc); }
+.ms-color-5-dark  { background: #581c87; }
+
+/* 6. Deploy (OneDrive Sky) */
+.ms-color-6-glass { background: linear-gradient(135deg, rgba(2, 132, 199, 0.4), rgba(56, 189, 248, 0.1)); }
+.ms-color-6-solid { background: linear-gradient(135deg, #0369a1, #38bdf8); }
+.ms-color-6-dark  { background: #0c4a6e; }
+
+/* 7. Operate (SharePoint Teal) */
+.ms-color-7-glass { background: linear-gradient(135deg, rgba(13, 148, 136, 0.4), rgba(45, 212, 191, 0.1)); }
+.ms-color-7-solid { background: linear-gradient(135deg, #0f766e, #2dd4bf); }
+.ms-color-7-dark  { background: #115e59; }
+
+/* 8. Monitor (Forms Emerald) */
+.ms-color-8-glass { background: linear-gradient(135deg, rgba(5, 150, 105, 0.4), rgba(52, 211, 153, 0.1)); }
+.ms-color-8-solid { background: linear-gradient(135deg, #047857, #34d399); }
+.ms-color-8-dark  { background: #064e3b; }
+
+/* Central Overlay Popup Override */
+.ms-orbit-wrapper .lifecycle-overlay {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 240px; 
+  background: rgba(11, 13, 20, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(var(--theme-rgb), 0.5);
+  border-radius: 16px;
+  padding: 16px; 
+  text-align: center;
+  z-index: 20; 
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 30px rgba(var(--theme-rgb), 0.3);
+  pointer-events: none; 
+}
+
+.ms-orbit-wrapper .lifecycle-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1); 
+}
+
+/* Light Mode Overrides for Labels */
+body[data-theme="light"] .ms-label {
+  color: #334155 !important;
+  font-weight: 700 !important;
+}
+body[data-theme="light"] .ms-bg-pane {
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
 }
