@@ -2081,3 +2081,18 @@ body[data-theme="light"] .nav-icon-btn {
   box-shadow: 0 2px 5px rgba(0,0,0,0.02) !important;
   color: #475569 !important;
 }
+
+
+/* =========================================================
+   ACTIVE COLOR CYCLE DYNAMIC THEME GLOW
+   ========================================================= */
+.color-cycle-btn.active-cycling {
+  border-color: rgb(var(--theme-rgb)) !important;
+  color: rgb(var(--theme-rgb)) !important;
+  background: rgba(var(--theme-rgb), 0.1) !important;
+  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.4), inset 0 0 8px rgba(var(--theme-rgb), 0.2) !important;
+}
+
+.color-cycle-btn.active-cycling i {
+  color: rgb(var(--theme-rgb)) !important;
+}

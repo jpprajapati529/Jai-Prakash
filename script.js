@@ -867,15 +867,18 @@ function colorLoop() {
 
 function toggleColorCycle() {
   isColorCycling = !isColorCycling;
-  const icon = document.getElementById('color-cycle-icon');
+  const icons = document.querySelectorAll('.color-cycle-icon');
+  const buttons = document.querySelectorAll('.color-cycle-btn');
   
   if (isColorCycling) {
-    icon.classList.add('color-spinning'); 
+    icons.forEach(icon => icon.classList.add('color-spinning'));
+    buttons.forEach(btn => btn.classList.add('active-cycling'));
     if (!colorAnimFrame) {
       colorLoop();
     }
   } else {
-    icon.classList.remove('color-spinning');
+    icons.forEach(icon => icon.classList.remove('color-spinning'));
+    buttons.forEach(btn => btn.classList.remove('active-cycling'));
     if (colorAnimFrame) {
       cancelAnimationFrame(colorAnimFrame);
       colorAnimFrame = null;
@@ -890,7 +893,8 @@ function resetColorTheme() {
   }
   
   isColorCycling = false;
-  document.getElementById('color-cycle-icon').classList.remove('color-spinning');
+  document.querySelectorAll('.color-cycle-icon').forEach(icon => icon.classList.remove('color-spinning'));
+  document.querySelectorAll('.color-cycle-btn').forEach(btn => btn.classList.remove('active-cycling'));
   
   colorIndex = 0;
   nextColorIndex = 1;
