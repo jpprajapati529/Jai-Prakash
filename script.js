@@ -143,11 +143,313 @@ const moduleData = {
         name: "Bash Automation",
         type: "code",
         filename: "cluster-backup.sh",
-        content: `#!/bin/bash\nset -e\n\nBACKUP_DIR="/var/backups/etcd"\nDATE=$(date +%Y-%m-%d-%H-%M)\n\necho "[INFO] Starting etcd snapshot..."\nETCDCTL_API=3 etcdctl snapshot save \${BACKUP_DIR}/snapshot-\${DATE}.db \\
-  --endpoints=https://127.0.0.1:2379 \\
-  --cacert=/etc/kubernetes/pki/etcd/ca.crt \\
-  --cert=/etc/kubernetes/pki/etcd/server.crt \\
-  --key=/etc/kubernetes/pki/etcd/server.key\n\necho "[INFO] Snapshot successful. Syncing to S3..."\naws s3 cp \${BACKUP_DIR}/snapshot-\${DATE}.db s3://company-k8s-backups/etcd/`
+        content: `#!/bin/bash\nset -e\n\nBACKUP_DIR="/var/backups/etcd"\nDATE=$(date +%Y-%m-%d-%H-%M)\n\necho "[INFO] Starting etcd snapshot..."\nETCDCTL_API=3 etcdctl snapshot save \${BACKUP_DIR}/snapshot-\${DATE}.db \\\n  --endpoints=https://127.0.0.1:2379 \\\n  --cacert=/etc/kubernetes/pki/etcd/ca.crt \\\n  --cert=/etc/kubernetes/pki/etcd/server.crt \\\n  --key=/etc/kubernetes/pki/etcd/server.key\n\necho "[INFO] Snapshot successful. Syncing to S3..."\naws s3 cp \${BACKUP_DIR}/snapshot-\${DATE}.db s3://company-k8s-backups/etcd/`
+      }
+    ]
+  },
+
+  // ----------------------------------------------------
+  // TECH STACK MARQUEE MODALS (RESTORED)
+  // ----------------------------------------------------
+  "aws": {
+    title: "Amazon Web Services (AWS)",
+    description: "AWS is a comprehensive cloud platform offering compute, storage, database, and networking services.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Built and maintained resilient multi-tenant environments to enable reliable operations and effortless scaling of applications.</p>
+              <ul class="rich-list">
+                <li>Managed EC2, S3, RDS, DynamoDB, Lambda, and EKS deployments across the cloud infrastructure.</li>
+                <li>Migrated on-premises applications to AWS, ensuring minimal downtime and seamless integration.</li>
+                <li>Established IAM roles, policies, and security groups to mitigate breaches and exceed compliance audit requirements.</li>
+                <li>Implemented comprehensive monitoring and alerting using AWS CloudWatch, CloudTrail, and Prometheus.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "IaC Example",
+        type: "code",
+        filename: "aws_iam_policy.tf",
+        content: `resource "aws_iam_policy" "strict_s3_access" {\n  name        = "RestrictedS3Access"\n  description = "Enforces least privilege based on audit requirements"\n\n  policy = jsonencode({\n    Version = "2012-10-17"\n    Statement = [{\n      Action   = ["s3:GetObject", "s3:ListBucket"]\n      Effect   = "Allow"\n      Resource = ["arn:aws:s3:::prod-app-data", "arn:aws:s3:::prod-app-data/*"]\n    }]\n  })\n}`
+      }
+    ]
+  },
+  "azure": {
+    title: "Microsoft Azure",
+    description: "Azure is a public cloud computing platform providing scalable computing, analytics, storage, and IAM networking.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Engineered automated deployments and maintained infrastructure across hybrid environments, including Azure resources and on-premises OpenShift clusters.</p>
+              <ul class="rich-list">
+                <li>Provisioned and managed Azure Compute, Blob, Cosmos DB, and Azure Kubernetes Service (AKS).</li>
+                <li>Configured Azure Entra ID, RBAC policies, and security groups to strictly control access to critical services.</li>
+                <li>Migrated legacy applications to the Azure cloud, improving application responsiveness and reliability.</li>
+                <li>Utilized Azure Monitor and Prometheus to analyze performance bottlenecks and usage trends for cost optimization.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "IaC Example",
+        type: "code",
+        filename: "azure_rbac.tf",
+        content: `resource "azurerm_role_assignment" "aks_monitoring" {\n  scope                = azurerm_kubernetes_cluster.aks_prod.id\n  role_definition_name = "Monitoring Metrics Publisher"\n  principal_id         = azuread_service_principal.monitor_sp.object_id\n}`
+      }
+    ]
+  },
+  "gcp": {
+    title: "Google Cloud Platform (GCP)",
+    description: "GCP is a suite of cloud services that runs on the same infrastructure Google uses internally, offering high-performance compute and data analytics.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Managed containerized microservices and automated cloud deployments while strictly enforcing Site Reliability Engineering (SRE) practices.</p>
+              <ul class="rich-list">
+                <li>Provisioned multi-tenant GCP environments including GCS, Compute Engine, Cloud SQL, and GKE.</li>
+                <li>Implemented SRE practices by defining SLIs/SLOs and error budgets to maintain system reliability.</li>
+                <li>Established GCP Projects, Service Accounts, and IAM roles to exceed industry security compliance standards.</li>
+                <li>Unified observability and incident response using GCP Stackdriver and Prometheus.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "SRE Config",
+        type: "code",
+        filename: "gcp_slo.yaml",
+        content: `apiVersion: monitoring.googleapis.com/v3\nkind: ServiceLevelObjective\nmetadata:\n  name: gke-api-latency-slo\nspec:\n  goal: 0.99\n  rollingPeriod: 2592000s\n  serviceLevelIndicator:\n    requestBased:\n      distributionCut:\n        distributionFilter: metric.type="loadbalancing.googleapis.com/https/request_latencies"\n        range:\n          max: 250`
+      }
+    ]
+  },
+  "docker": {
+    title: "Docker",
+    description: "Docker is a software platform that allows developers to package applications into lightweight, standardized executable components called containers.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Leveraged Docker to decouple applications from underlying infrastructure, ensuring consistency across development and production.</p>
+              <ul class="rich-list">
+                <li>Deployed and managed containerized microservices across diverse cloud environments.</li>
+                <li>Reduced infrastructure costs through highly efficient resource utilization and optimized container footprints.</li>
+                <li>Integrated Docker builds seamlessly into enterprise CI/CD pipelines.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "Dockerfile",
+        type: "code",
+        filename: "Dockerfile",
+        content: `FROM python:3.9-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\nCOPY . .\nUSER 1001 \nCMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:main"]`
+      }
+    ]
+  },
+  "kubernetes": {
+    title: "Kubernetes (K8s)",
+    description: "Kubernetes is an open-source container orchestration system for automating application deployment, scaling, and operational management.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Administered large-scale, high-availability Kubernetes clusters (AKS, EKS, GKE) to ensure reliable microservice operations.</p>
+              <ul class="rich-list">
+                <li>Enhanced system reliability through self-healing configurations and automated scaling.</li>
+                <li>Implemented stringent K8s security best practices, utilizing IAM, HashiCorp Vault, and Secrets Manager.</li>
+                <li>Successfully reduced security incidents by 60% through rigorous policy enforcement.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "Security Manifest",
+        type: "code",
+        filename: "k8s_security.yaml",
+        content: `apiVersion: rbac.authorization.k8s.io/v1\nkind: Role\nmetadata:\n  namespace: prod-namespace\n  name: secrets-reader\nrules:\n- apiGroups: [""]\n  resources: ["secrets"]\n  verbs: ["get", "watch", "list"]`
+      }
+    ]
+  },
+  "helm": {
+    title: "Helm",
+    description: "Helm is the package manager for Kubernetes, used to define, install, and upgrade complex Kubernetes applications using Charts.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Utilized Helm and Kustomize to standardize microservice deployments and simplify cluster configuration management.</p>
+              <ul class="rich-list">
+                <li>Packaged microservices into reusable Helm Charts for rapid, repeatable deployments across multiple environments.</li>
+                <li>Managed complex YAML templating to ensure environment-specific configurations were securely injected at runtime.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "Values YAML",
+        type: "code",
+        filename: "values.yaml",
+        content: `replicaCount: 3\nimage:\n  repository: my-enterprise-repo/core-api\n  tag: "v2.4.1"`
+      }
+    ]
+  },
+  "openshift": {
+    title: "Red Hat OpenShift",
+    description: "OpenShift is an enterprise-grade Kubernetes platform built for a hybrid cloud strategy, offering enhanced security and developer tools.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Administered enterprise on-premises container platforms, ensuring seamless interoperability with public cloud resources.</p>
+            </div>
+          </div>
+        `
+      }
+    ]
+  },
+  "terraform": {
+    title: "Terraform",
+    description: "Terraform is an Infrastructure as Code (IaC) tool by HashiCorp used to provision and manage cloud resources safely and predictably.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Acted as the primary IaC architect to enforce infrastructure consistency and prevent manual configuration drift.</p>
+            </div>
+          </div>
+        `
+      }
+    ]
+  },
+  "github": {
+    title: "GitHub Actions",
+    description: "GitHub Actions is a CI/CD platform that automates software workflows.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Engineered automated, event-driven workflows to standardize the software delivery process.</p>
+            </div>
+          </div>
+        `
+      }
+    ]
+  },
+  "jenkins": {
+    title: "Jenkins",
+    description: "Jenkins is a widely used open-source automation server.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Designed and maintained enterprise-grade automation pipelines.</p>
+            </div>
+          </div>
+        `
+      }
+    ]
+  },
+  "gitlab": {
+    title: "GitLab",
+    description: "GitLab is a comprehensive DevSecOps platform.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Facilitated secure version control and integrated pipeline automation.</p>
+            </div>
+          </div>
+        `
+      }
+    ]
+  },
+  "python": {
+    title: "Python & Shell Scripting",
+    description: "Python and BASH are versatile scripting languages essential for system administration.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Developed robust operational scripts to eliminate manual toil.</p>
+            </div>
+          </div>
+        `
+      }
+    ]
+  },
+  "java": {
+    title: "Java Ecosystem",
+    description: "Java is an object-oriented programming language for building robust backend services.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Supported developers by standardizing build and deployment processes.</p>
+            </div>
+          </div>
+        `
       }
     ]
   },
@@ -192,17 +494,7 @@ const moduleData = {
         name: "Raw Code",
         type: "code",
         filename: "experience_profile.yaml",
-        content: `role: "Senior Analyst / Platform Engineer"
-company: "Capgemini"
-experience_years: 4
-domain_focus:
-  - "Fintech"
-  - "Banking Operations"
-cloud_providers: ["AWS", "Azure", "GCP"]
-orchestration: ["Kubernetes", "OpenShift", "Docker", "Helm"]
-education:
-  institute: "BIST, Bhopal"
-  graduation_year: 2022`
+        content: `role: "Senior Analyst / Platform Engineer"\ncompany: "Capgemini"\nexperience_years: 4\ndomain_focus:\n  - "Fintech"\n  - "Banking Operations"\ncloud_providers: ["AWS", "Azure", "GCP"]\norchestration: ["Kubernetes", "OpenShift", "Docker", "Helm"]\neducation:\n  institute: "BIST, Bhopal"\n  graduation_year: 2022`
       }
     ]
   },
@@ -218,28 +510,9 @@ education:
             <div class="rich-section">
               <h4 class="rich-heading"><i data-lucide="cloud"></i> Provider Strategy</h4>
               <p class="rich-text">Unified management of multi-cloud environments to prevent vendor lock-in and ensure high availability.</p>
-              <ul class="rich-list">
-                <li><strong>AWS:</strong> EC2, EKS, RDS, S3, CloudWatch, IAM.</li>
-                <li><strong>Azure:</strong> Azure DevOps, AKS, Resource Manager.</li>
-                <li><strong>GCP:</strong> GKE, Compute Engine, Cloud Storage.</li>
-              </ul>
             </div>
           </div>
         `
-      },
-      {
-        name: "Raw Code",
-        type: "code",
-        filename: "provider_setup.tf",
-        content: `terraform {
-  required_providers {
-    aws     = { source = "hashicorp/aws", version = "~> 5.0" }
-    google  = { source = "hashicorp/google", version = "~> 4.0" }
-    azurerm = { source = "hashicorp/azurerm", version = "~> 3.0" }
-  }
-}
-
-# Unified Cloud Resource Management via Terraform`
       }
     ]
   },
@@ -254,29 +527,10 @@ education:
           <div class="rich-layout">
             <div class="rich-section">
               <h4 class="rich-heading"><i data-lucide="shield-check"></i> Compliance & Security</h4>
-              <p class="rich-text">Maintaining strict regulatory compliance for banking clients through infrastructure-as-code and GitOps.</p>
-              <ul class="rich-list">
-                <li>Enforcing strict Pod Security Policies (PSP) in Kubernetes clusters.</li>
-                <li>Managing IAM roles with Principle of Least Privilege (PoLP).</li>
-                <li>Implementing end-to-end monitoring using Prometheus & Grafana.</li>
-              </ul>
+              <p class="rich-text">Maintaining strict regulatory compliance for banking clients.</p>
             </div>
           </div>
         `
-      },
-      {
-        name: "Raw Code",
-        type: "code",
-        filename: "cluster_policy.yaml",
-        content: `apiVersion: policy/v1
-kind: PodSecurityPolicy
-metadata:
-  name: banking-restricted-psp
-spec:
-  privileged: false
-  allowPrivilegeEscalation: false
-  runAsUser:
-    rule: 'MustRunAsNonRoot'`
       }
     ]
   },
@@ -292,27 +546,9 @@ spec:
             <div class="rich-section">
               <h4 class="rich-heading"><i data-lucide="folder-git-2"></i> Architecture Overview</h4>
               <p class="rich-text">A comprehensive repository showcasing a production-ready DevOps pipeline.</p>
-              <ul class="rich-list">
-                <li>Automated testing and linting via <strong>GitHub Actions</strong>.</li>
-                <li>Containerization strategies using <strong>Docker Compose</strong>.</li>
-                <li>Infrastructure provisioning using <strong>Terraform</strong>.</li>
-                <li>Deployment orchestration via <strong>Kubernetes Manifests</strong>.</li>
-              </ul>
             </div>
           </div>
         `
-      },
-      {
-        name: "Raw Code",
-        type: "code",
-        filename: "main.tf",
-        content: `# Multi-Cloud Infrastructure Provisioning
-module "gcp_gke_cluster" {
-  source     = "terraform-google-modules/kubernetes-engine/google"
-  project_id = "business-mgmt-prod"
-  name       = "gke-production-cluster"
-  region     = "asia-south1"
-}`
       }
     ]
   }
@@ -352,7 +588,6 @@ function openModuleModal(moduleId) {
   lucide.createIcons();
 }
 
-// Hybrid Code/UI Renderer
 function selectModalTab(data, index, targetBtn) {
   document.querySelectorAll(".tab-btn").forEach(t => t.classList.remove("active"));
   if (targetBtn) targetBtn.classList.add("active");
@@ -496,7 +731,7 @@ if (cliInput) {
 
       const respLine = document.createElement("p");
       respLine.className = "term-output";
-      respLine.innerHTML = response;
+      respLine.innerHTML =- response;
       terminalBody.appendChild(respLine);
       terminalBody.scrollTop = terminalBody.scrollHeight;
     }
@@ -546,7 +781,6 @@ const scrollSections = document.querySelectorAll('.scroll-section');
 const stickyNav = document.querySelector('.sticky-section-nav'); 
 const navSlider = document.querySelector('.nav-slider'); 
 
-// Slider replaced by bordered active pill style
 function updateSliderPosition() {
   // No-op
 }
@@ -554,7 +788,6 @@ function updateSliderPosition() {
 window.addEventListener('load', updateSliderPosition);
 window.addEventListener('resize', updateSliderPosition);
 
-// RESTORED: Triggers the sticky bar on scroll and syncs active pills
 window.addEventListener('scroll', () => {
   let currentId = '';
   
@@ -672,7 +905,6 @@ function resetColorTheme() {
 // CUSTOM UI SOUND ENGINE (Hover, Select, Close)
 // =========================================================
 
-// 1. Define your three audio files
 const hoverSound = new Audio('hover.mp3'); 
 const selectSound = new Audio('select.mp3'); 
 const closeSound = new Audio('close.mp3'); 
@@ -725,67 +957,65 @@ if (modalOverlay) {
 // DEVOPS LIFECYCLE WIDGET ENGINE
 // =========================================================
 
-// The data structure holding the info for each DevOps stage
 const lifecycleData = {
   plan: {
     title: "Stage: PLAN (Agile)",
     metric: "Lead Time: 2.1d",
     desc: "Sprint Architecture, Jira Backlog & Git Branching Strategy",
     tools: ["Jira", "Confluence", "Miro", "Lucidchart"],
-    color: "#2563eb" /* Word Blue */
+    color: "#2563eb"
   },
   code: {
     title: "Stage: CODE (Source)",
     metric: "PR Velocity: 3.4h",
     desc: "Trunk-Based Development, Conventional Commits & Peer Review",
     tools: ["Git", "GitHub", "VS Code", "IntelliJ"],
-    color: "#7c3aed" /* Teams Purple */
+    color: "#7c3aed"
   },
   build: {
     title: "Stage: BUILD (Artifacts)",
     metric: "Build Avg: 42s",
     desc: "Multi-Arch Container Builds, Dependency Management & Caching",
     tools: ["Docker", "Maven", "Gradle", "GitHub Actions"],
-    color: "#ea580c" /* PowerPoint Orange */
+    color: "#ea580c"
   },
   test: {
     title: "Stage: TEST (QA & Sec)",
     metric: "Coverage: 91.4%",
     desc: "Automated Unit/Integration Testing, SonarQube & Trivy Scans",
     tools: ["JUnit", "SonarQube", "Trivy", "Selenium"],
-    color: "#16a34a" /* Excel Green */
+    color: "#16a34a"
   },
   release: {
-    title: "Stage: RELEASE (Registry)",
+    title: "Key: RELEASE (Registry)",
     metric: "Zero-CVE Signed",
     desc: "Semantic Versioning, Image Tagging & Immutable Artifact Signing",
     tools: ["Harbor", "Docker Hub", "AWS ECR", "GCP Artifact Registry"],
-    color: "#9333ea" /* OneNote Violet */
+    color: "#9333ea"
   },
   deploy: {
     title: "Stage: DEPLOY (GitOps)",
     metric: "Sync: Instant",
     desc: "ArgoCD Sync, Blue/Green Rollouts & Helm Chart Orchestration",
     tools: ["Kubernetes", "Helm", "ArgoCD", "Terraform"],
-    color: "#0284c7" /* OneDrive Sky */
+    color: "#0284c7"
   },
   operate: {
     title: "Stage: OPERATE (Cloud)",
-    metric: "Uptime: 99.99%",
+    metric: "Upime: 99.99%",
     desc: "AWS EKS, GCP GKE, Azure AKS Multi-Cloud Cluster Management",
     tools: ["AWS", "GCP", "Azure", "OpenShift"],
-    color: "#0d9488" /* SharePoint Teal */
+    color: "#0d9488"
   },
   monitor: {
     title: "Stage: MONITOR (SRE)",
     metric: "MTTR: < 4 min",
     desc: "Prometheus Metrics, Grafana Dashboards & PagerDuty Alerts",
     tools: ["Prometheus", "Grafana", "Datadog", "ELK Stack"],
-    color: "#059669" /* Forms Emerald */
+    color: "#059669"
   }
 };
 
-// Shows the floating pane directly over the infinity loop image on hover
 function showLifecycleSpec(stageKey) {
   const data = lifecycleData[stageKey];
   const overlay = document.getElementById('lifecycle-overlay');
@@ -817,7 +1047,7 @@ function showLifecycleSpec(stageKey) {
   }
 }
 
-function hideLifecycleSpec() {
+function clearLifecycleSpec() {
   const overlay = document.getElementById('lifecycle-overlay');
   const footer = document.querySelector('.cicd-footer');
   const footerText = document.getElementById('cicd-footer-text');
@@ -825,7 +1055,7 @@ function hideLifecycleSpec() {
   
   if (overlay) overlay.classList.remove('active');
   
-  if (footer) footer.classList.remove('active-box');
+  if (footer) footer.classList.remove('action-box');
   if (footerText) {
     footerText.innerText = "Hover stage for specs";
     footerText.style.color = "var(--text-muted)";
