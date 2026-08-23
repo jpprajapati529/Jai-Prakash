@@ -405,8 +405,8 @@ body {
   justify-content: center !important;
   
   /* Reset the nudging margins so it centers flawlessly */
-  margin-top: 0 !important;
-  margin-left: 0 !important;
+  margin-top: -40px !important;
+  margin-left: 20px !important;
 }
 
 .hero-overline-group {
