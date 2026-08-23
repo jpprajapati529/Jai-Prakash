@@ -388,7 +388,7 @@ body {
 
 .hero-content-left {
   flex: 1 1 45% !important; 
-  max-width: 500px !important; 
+  max-width: 550px !important; 
   padding-right: 0 !important;
   display: flex;
   flex-direction: column;
