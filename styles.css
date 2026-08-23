@@ -1506,11 +1506,14 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 100px;
   height: 50px;
-  width: 50px; /* Collapsed state: just a small circle */
+  width: 50px; 
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   cursor: pointer;
+  
+  /* THE FIX: Re-enables the mouse ONLY for the visible button circle */
+  pointer-events: auto; 
 }
 
 /* Expand into a full input line! */
