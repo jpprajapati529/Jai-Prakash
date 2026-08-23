@@ -388,7 +388,7 @@ body {
 
 .hero-content-left {
   flex: 1 1 45% !important; 
-  max-width: 550px !important; 
+  max-width: 480px !important; 
   padding-right: 0 !important;
   display: flex;
   flex-direction: column;
@@ -398,7 +398,7 @@ body {
   text-align: left !important;
   justify-content: center !important;
   margin-top: -40px !important;
-  margin-left: 40px !important;
+  margin-left: 20px !important;
 }
 
 .hero-overline-group {
