@@ -372,14 +372,16 @@ body {
   flex-direction: row !important; 
   flex-wrap: nowrap !important; 
   align-items: center !important; 
+  
+  /* Keeps the entire dual-column block perfectly centered on the screen */
   justify-content: center !important; 
   
   width: 100% !important;
   max-width: 1050px !important; 
   margin: 0 auto 80px auto !important; 
   
-  /* THE FIX: Shrunk the gap drastically to pull them close together */
-  gap: 30px !important; 
+  /* Keeps the text and the logos comfortably close together */
+  gap: 50px !important; 
   padding-top: 40px !important; 
   padding-bottom: 40px !important;
 }
@@ -391,8 +393,8 @@ body {
   display: flex;
   flex-direction: column;
   
-  /* THE FIX: Forces all text, pills, and buttons to align to the RIGHT */
-  align-items: flex-end !important; 
+  /* THE FIX: Reverts everything back to a clean left-alignment */
+  align-items: flex-start !important; 
   text-align: left !important;
   justify-content: center !important;
 }
@@ -568,12 +570,14 @@ body {
    RIGHT HERO SECTION (Levitating Loop + DevOps Widget)
    ========================================================= */
 .hero-image-right {
-  /* This is now visually the image on the LEFT side */
   flex: 1 1 50% !important; 
   max-width: 500px !important;
   margin-top: 0 !important; 
-  justify-content: flex-start !important; 
-  display: flex;}
+  
+  /* Centers the constellation inside its respective half */
+  justify-content: center !important; 
+  display: flex;
+}
 
 /* 1. The Main Engine Card (SHRUNK) */
 .cicd-engine-card {
