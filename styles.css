@@ -1799,7 +1799,7 @@ body[data-theme="light"] .ms-bg-pane {
 /* =========================================================
    REMOVE ENGINE CARD BOX (Pure Floating Constellation)
    ========================================================= */
-/* Strips the background, border, and shadows in ALL themes */
+/* 10. REMOVE ENGINE CARD BOX & OLD GRID (Pure Floating Constellation) */
 .cicd-engine-card,
 body[data-theme="light"] .cicd-engine-card {
   background: transparent !important;
@@ -1808,11 +1808,13 @@ body[data-theme="light"] .cicd-engine-card {
   padding: 0 !important;
 }
 
-/* Hides the "Pipeline Online" header and footer text completely */
+/* Hides the old header, footer, AND the old 8-button grid */
 .cicd-header,
 .cicd-footer,
+.lifecycle-grid,
 body[data-theme="light"] .cicd-header,
-body[data-theme="light"] .cicd-footer {
+body[data-theme="light"] .cicd-footer,
+body[data-theme="light"] .lifecycle-grid {
   display: none !important;
 }
 
@@ -1884,20 +1886,19 @@ body[data-theme="light"] .gradient-text {
   filter: drop-shadow(0 2px 4px rgba(168, 85, 247, 0.2));
 }
 
-/* 2. FORCE ALL DARK CARDS TO WHITE (Fixes the right-side Engine Card) */
+/* 4. FORCE ALL DARK CARDS TO WHITE */
 body[data-theme="light"] .card,
 body[data-theme="light"] .jb-skill-card,
 body[data-theme="light"] .dashboard-section,
 body[data-theme="light"] .modal-content,
-body[data-theme="light"] .cicd-engine-card,
 body[data-theme="light"] .terminal-container,
 body[data-theme="light"] .pipeline-logs-console,
 body[data-theme="light"] .ide-window,
 body[data-theme="light"] .terminal-body,
 body[data-theme="light"] .ide-body-badge {
   background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important; 
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03) !important; 
 }
 
 /* Kills muddy dark mode glows */
