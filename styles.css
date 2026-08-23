@@ -2114,22 +2114,22 @@ body[data-theme="light"] .color-cycle-btn.active-cycling svg {
 }
 
 /* =========================================================
-   MICROSOFT-STYLE CARD ELEVATION SHADOWS (Light Mode Only)
+   TRUE MICROSOFT-STYLE CARD ELEVATION SHADOW (Light Mode)
    ========================================================= */
 body[data-theme="light"] .card,
 body[data-theme="light"] .jb-skill-card,
 body[data-theme="light"] .dashboard-section {
   background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.05) !important; /* Extremely faint, elegant border */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07) !important; /* Soft, rich ambient Microsoft shadow */
+  border: 1px solid rgba(0, 0, 0, 0.07) !important; 
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12) !important; /* Rich, distinct floating shadow */
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Smooth lift and richer shadow when hovering over cards in Light Mode */
+/* Smooth lift and richer shadow when hovering */
 body[data-theme="light"] .card:hover,
 body[data-theme="light"] .jb-skill-card:hover,
 body[data-theme="light"] .dashboard-section:hover {
   transform: translateY(-4px) !important;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12) !important;
-  border-color: rgba(var(--theme-rgb), 0.3) !important;
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.17) !important;
+  border-color: rgba(var(--theme-rgb), 0.4) !important;
 }
