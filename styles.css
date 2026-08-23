@@ -446,7 +446,7 @@ body {
 
 .hero-subtext {
   /* Crisp, standard paragraph size */
-  font-size: 1.05rem; 
+  font-size: 0.85rem; 
   font-weight: 400;
   color: #94a3b8; 
   line-height: 1.6;
@@ -454,7 +454,7 @@ body {
   
   /* Restricts width so it naturally wraps like the MS paragraph */
   width: 100%;
-  max-width: 90%; 
+  max-width: 100%; 
 }
 
 /* BUTTON GROUP */
