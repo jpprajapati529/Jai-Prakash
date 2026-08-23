@@ -397,15 +397,28 @@ body {
 }
 
 .hero-overline-group {
-  display: none !important; /* Hides the top pill for a clean MS-style start */
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
 }
 
 .name-pill {
-  display: none;
+  font-size: 0.75rem;
+  color: rgb(var(--theme-rgb));
+  border: 1px solid rgba(var(--theme-rgb), 0.4);
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(var(--theme-rgb), 0.05);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  animation: textGlowPulse 2s infinite alternate;
 }
 
+/* We will leave the [4+ Yrs Multi-Cloud] bracket text hidden to maintain the clean layout */
 .exp-text {
-  display: none;
+  display: none; 
 }
 
 .hero-headline {
