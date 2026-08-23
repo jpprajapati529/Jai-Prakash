@@ -1452,6 +1452,9 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
   align-items: flex-start;
   justify-content: flex-end;
   font-family: var(--font-mono);
+  
+  /* THE FIX: Tells the mouse to completely ignore this invisible box */
+  pointer-events: none; 
 }
 
 .floating-term-body {
