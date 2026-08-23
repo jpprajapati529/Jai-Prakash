@@ -1738,3 +1738,46 @@ body[data-theme="light"] .term-icon-trigger {
   color: rgb(var(--theme-rgb)) !important;
 }
 
+/* =========================================================
+   ULTIMATE HERO SIDE-BY-SIDE FIX
+   ========================================================= */
+.hero-card {
+  display: flex !important;
+  flex-direction: row !important;
+  
+  /* THE MAGIC FIX: Physically prevents the right side from ever dropping down */
+  flex-wrap: nowrap !important; 
+  
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  gap: 5% !important; /* Uses a fluid 5% gap instead of rigid pixels */
+}
+
+.hero-content-left {
+  flex: 1 1 45% !important; /* Allows it to smoothly shrink if needed */
+  max-width: 50% !important;
+  padding-right: 0 !important;
+}
+
+.hero-image-right {
+  flex: 1 1 50% !important; /* Allows it to smoothly shrink if needed */
+  max-width: 550px !important;
+  margin-top: 0 !important; /* Kills any lingering drop-down margins */
+  justify-content: flex-end !important;
+}
+
+/* Only allow stacking on true mobile/tablet screens */
+@media (max-width: 850px) {
+  .hero-card {
+    flex-direction: column !important;
+    flex-wrap: wrap !important;
+  }
+  .hero-content-left, .hero-image-right {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
+  .hero-image-right {
+    margin-top: 40px !important;
+  }
+}
