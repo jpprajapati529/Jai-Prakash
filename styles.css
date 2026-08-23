@@ -186,6 +186,15 @@ body {
   filter: drop-shadow(0 0 12px rgba(var(--theme-rgb), 0.35));
 }
 
+/* Fix the CLI Logo visibility and richness in Light Mode */
+body[data-theme="light"] .brand-logo-cli {
+  color: #0f172a !important; /* Deep, rich slate (almost black) for 'ja' and 'board' */
+}
+
+body[data-theme="light"] .cli-accent {
+  color: #0d9488 !important; /* A deeper, richer teal for '~ssh' that pops on white */
+}
+
 /* =========================================================
    2. NAVBAR
    ========================================================= */
