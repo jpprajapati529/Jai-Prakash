@@ -387,7 +387,7 @@ body {
 }
 
 .hero-content-left {
-  flex: 1 1 55% !important; 
+  flex: 1 1 45% !important; 
   max-width: 600px !important; 
   padding-right: 0 !important;
   display: flex;
