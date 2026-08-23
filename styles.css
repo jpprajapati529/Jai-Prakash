@@ -1863,21 +1863,25 @@ body[data-theme="light"] .hero-subtext {
    *MUST STAY AT THE BOTTOM OF THE FILE TO WORK*
    ========================================================= */
 body[data-theme="light"] {
-  --bg-dark: #ffffff;        /* Restores the rest of the site to pure white */
-  --card-bg: #ffffff;
-  --card-border: #e2e8f0;    
-  --text-primary: #0f172a;   
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  background: #ffffff !important;
+  overflow-x: hidden !important;
 }
 
+/* THE FIX: Forces the hero background to stretch 100% edge-to-edge */
 body[data-theme="light"] .hero-card {
-  background-color: #f6f5f0 !important; /* Authentic Microsoft beige */
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 24px !important;
-  padding: 40px !important;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.03) !important;
+  background-color: #f6f5f0 !important; /* Authentic Microsoft warm beige */
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  
+  /* Breakout trick to span full viewport width */
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50.5vw !important;
+  
+  padding: 60px 80px !important;
   margin-bottom: 60px !important;
 }
 
