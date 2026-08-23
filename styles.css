@@ -582,7 +582,7 @@ body {
 .hero-image-right {
   /* THE FIX: Replaced the % wall with a strict shrink-wrap width */
   flex: 0 0 auto !important; 
-  width: 450px !important; /* Fits the constellation perfectly */
+  width: 550px !important; /* Fits the constellation perfectly */
   margin-top: 0 !important; 
   
   display: flex;
