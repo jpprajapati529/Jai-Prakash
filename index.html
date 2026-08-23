@@ -153,13 +153,55 @@
           <span class="cicd-status"><span class="status-dot"></span> PIPELINE ONLINE</span>
         </div>
 
-        <div class="loop-wrapper">
-          <img src="./infinity-loop.png" alt="CI/CD Infinity Loop">
+        <!-- ==========================================
+             GLASSMORPHISM DEVOPS ORBIT CONSTELLATION 
+             ========================================== -->
+        <div class="devops-orbit-wrapper">
           
-          <!-- Hover Data Overlay -->
+          <!-- Center Infinity Core -->
+          <div class="orbit-center">
+            <i data-lucide="infinity"></i>
+          </div>
+
+          <!-- Orbiting Glass Nodes (8 Stages) -->
+          <div class="orbit-node node-1" onmouseenter="showLifecycleSpec('plan')" onmouseleave="hideLifecycleSpec()">
+            <div class="glass-panel color-1"><i data-lucide="clipboard-list"></i></div>
+            <span>Plan</span>
+          </div>
+          <div class="orbit-node node-2" onmouseenter="showLifecycleSpec('code')" onmouseleave="hideLifecycleSpec()">
+            <div class="glass-panel color-2"><i data-lucide="terminal-square"></i></div>
+            <span>Code</span>
+          </div>
+          <div class="orbit-node node-3" onmouseenter="showLifecycleSpec('build')" onmouseleave="hideLifecycleSpec()">
+            <div class="glass-panel color-3"><i data-lucide="package"></i></div>
+            <span>Build</span>
+          </div>
+          <div class="orbit-node node-4" onmouseenter="showLifecycleSpec('test')" onmouseleave="hideLifecycleSpec()">
+            <div class="glass-panel color-4"><i data-lucide="test-tube"></i></div>
+            <span>Test</span>
+          </div>
+          <div class="orbit-node node-5" onmouseenter="showLifecycleSpec('release')" onmouseleave="hideLifecycleSpec()">
+            <div class="glass-panel color-5"><i data-lucide="tag"></i></div>
+            <span>Release</span>
+          </div>
+          <div class="orbit-node node-6" onmouseenter="showLifecycleSpec('deploy')" onmouseleave="hideLifecycleSpec()">
+            <div class="glass-panel color-6"><i data-lucide="rocket"></i></div>
+            <span>Deploy</span>
+          </div>
+          <div class="orbit-node node-7" onmouseenter="showLifecycleSpec('operate')" onmouseleave="hideLifecycleSpec()">
+            <div class="glass-panel color-7"><i data-lucide="settings-2"></i></div>
+            <span>Operate</span>
+          </div>
+          <div class="orbit-node node-8" onmouseenter="showLifecycleSpec('monitor')" onmouseleave="hideLifecycleSpec()">
+            <div class="glass-panel color-8"><i data-lucide="activity"></i></div>
+            <span>Monitor</span>
+          </div>
+
+          <!-- Hover Data Overlay (Pops up in the center!) -->
           <div id="lifecycle-overlay" class="lifecycle-overlay">
             <!-- JS dynamically injects hover text here -->
           </div>
+          
         </div>
 
         <!-- Interactive 4x2 Hover Grid -->
