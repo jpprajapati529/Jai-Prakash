@@ -374,6 +374,9 @@ body[data-theme="light"] .cli-accent {
    1. HERO BANNER TILE (Split Layout per Mockup)
    ========================================================= */
 /* =========================================================
+   ULTIMATE HERO SIDE-BY-SIDE FIX
+   ========================================================= */
+/* =========================================================
    ULTIMATE HERO SIDE-BY-SIDE FIX (Mirrored Layout)
    ========================================================= */
 .hero-card {
@@ -544,6 +547,7 @@ body[data-theme="light"] .cli-accent {
 }
 
 /* METRICS ROW */
+/* METRICS ROW */
 .hero-divider {
   width: 100%;
   max-width: 650px; 
@@ -654,6 +658,21 @@ body[data-theme="light"] .cli-accent {
   /* Snaps the image to the far right edge instead of the center */
   justify-content: flex-end; 
 }
+
+/* .loop-wrapper img {
+  width: 100%;
+  max-width: 420px; 
+  height: auto;
+  transform-origin: right center;
+  filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3));
+  animation: levitateLoop 6s ease-in-out infinite;
+} */
+
+/* @keyframes levitateLoop {
+  0% { transform: scale(1.15) translateY(0); filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3)); }
+  50% { transform: scale(1.15) translateY(-12px); filter: drop-shadow(0 25px 35px rgba(var(--theme-rgb), 0.6)) brightness(1.1); }
+  100% { transform: scale(1.15) translateY(0); filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3)); }
+} */
 
 /* 4. 4x2 Hover Grid (SHRUNK) */
 .lifecycle-grid {
@@ -1345,6 +1364,66 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
   );
 }
 
+
+/* =========================================================
+   BUTTON & GRID CURSOR GLOW UPGRADES (Matches CI/CD Skill Card)
+   ========================================================= */
+/* 1. Prepare buttons for inner light and layered z-index */
+/* =========================================================
+   BUTTON CURSOR GLOW UPGRADES
+   ========================================================= */
+/* 1. Prepare buttons to contain the light beam */
+.hero-btn-primary, 
+.hero-btn-outline, 
+.lifecycle-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 2. Override the old solid white hover so the light beam is visible */
+.hero-btn-primary:hover {
+  background: rgb(var(--theme-rgb)); 
+}
+
+/* 3. Create the invisible light layer */
+.hero-btn-primary::before, 
+.hero-btn-outline::before, 
+.lifecycle-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1; /* Keeps it strictly above the background but below text if needed */
+}
+
+/* 4. Turn the light on when hovering */
+.hero-btn-primary:hover::before, 
+.hero-btn-outline:hover::before, 
+.lifecycle-btn:hover::before {
+  opacity: 1;
+}
+
+/* 5. Primary Button: Bright White Spotlight */
+.hero-btn-primary::before {
+  background: radial-gradient(
+    100px circle at var(--x, 50%) var(--y, 50%), 
+    rgba(255, 255, 255, 0.4), 
+    transparent 100%
+  );
+}
+
+/* 6. Dark Buttons: Dynamic Theme Spotlight */
+.hero-btn-outline::before, 
+.lifecycle-btn::before {
+  background: radial-gradient(
+    100px circle at var(--x, 50%) var(--y, 50%), 
+    rgba(var(--theme-rgb), 0.4), 
+    transparent 100%
+  );
+}
+
 /* 5. Add the CI/CD Skill Card Text & Icon Glow! */
 .hero-btn-outline:hover,
 .lifecycle-btn:hover {
@@ -1358,6 +1437,7 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
 .lifecycle-btn:hover svg {
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) !important; /* Icon glow */
 }
+
 
 /* =========================================================
    FLOATING CLI TERMINAL (Bottom Left)
@@ -1491,6 +1571,28 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
   transition-delay: 0.15s; 
 }
 
+/* 8. Floating CLI Terminal (Light Mode) */
+body[data-theme="light"] .floating-term-body,
+body[data-theme="light"] .floating-term-input,
+body[data-theme="light"] .term-header-mini {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
+}
+body[data-theme="light"] .floating-cli-container:hover .floating-term-input,
+body[data-theme="light"] .floating-cli-container:focus-within .floating-term-input {
+  border-color: rgb(var(--theme-rgb)) !important;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.15) !important;
+}
+body[data-theme="light"] .floating-term-input input,
+body[data-theme="light"] .terminal-title,
+body[data-theme="light"] .term-output {
+  color: #020617 !important;
+}
+body[data-theme="light"] .term-icon-trigger {
+  color: rgb(var(--theme-rgb)) !important;
+}
+
 
 /* =========================================================
    MICROSOFT-STYLE DEVOPS CONSTELLATION 
@@ -1498,7 +1600,7 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
 .ms-orbit-wrapper {
   position: relative;
   width: 100%;
-  height: 500px; /* Gives the organic layout room to breathe */
+  height: 440px; /* Gives the organic layout room to breathe */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1690,6 +1792,37 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
   transform: translate(-50%, -50%) scale(1); 
 }
 
+/* 3. Constellation Fixes (Making the glass pop on white) */
+body[data-theme="light"] .ms-bg-pane {
+  border: 1px solid rgba(0, 0, 0, 0.05) !important; 
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06) !important; 
+}
+
+/* THE FIX: Removes the white box and syncs the text to your active theme color (Yellow, Purple, etc.) */
+body[data-theme="light"] .ms-label {
+  background: transparent !important; 
+  border: none !important;
+  box-shadow: none !important;
+  color: rgb(var(--theme-rgb)) !important; 
+  font-weight: 700 !important;
+}
+
+/* Force the inner icons to be pure white, matching Microsoft */
+body[data-theme="light"] .ms-logo-badge i,
+body[data-theme="light"] .ms-logo-badge svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* THE FIX: Color-coordinate each label text to its matching stage theme */
+body[data-theme="light"] .ms-node-1 .ms-label { color: #1d4ed8 !important; } /* Word Blue */
+body[data-theme="light"] .ms-node-2 .ms-label { color: #6d28d9 !important; } /* Teams Purple */
+body[data-theme="light"] .ms-node-3 .ms-label { color: #c2410c !important; } /* PowerPoint Orange */
+body[data-theme="light"] .ms-node-4 .ms-label { color: #15803d !important; } /* Excel Green */
+body[data-theme="light"] .ms-node-5 .ms-label { color: #7e22ce !important; } /* OneNote Violet */
+body[data-theme="light"] .ms-node-6 .ms-label { color: #0369a1 !important; } /* OneDrive Sky */
+body[data-theme="light"] .ms-node-7 .ms-label { color: #0f766e !important; } /* SharePoint Teal */
+body[data-theme="light"] .ms-node-8 .ms-label { color: #047857 !important; } /* Forms Emerald */
 /* =========================================================
    REMOVE ENGINE CARD BOX (Pure Floating Constellation)
    ========================================================= */
@@ -1713,17 +1846,30 @@ body[data-theme="light"] .lifecycle-grid {
 }
 
 /* =========================================================
+   MICROSOFT LIGHT MODE TYPOGRAPHY OVERRIDES
+   ========================================================= */
+body[data-theme="light"] .gradient-text {
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  filter: none !important;
+}
+body[data-theme="light"] .hero-subtext {
+  font-weight: 400 !important; /* Removes the heavy bolding */
+}
+
+
+/* =========================================================
    HIGH-CONTRAST LIGHT MODE (Fully Unified UI)
    *MUST STAY AT THE BOTTOM OF THE FILE TO WORK*
    ========================================================= */
 body[data-theme="light"] {
-  --bg-dark: #ffffff;        /* Pure white for maximum premium feel */
-  --card-bg: #ffffff;
-  --card-border: #e2e8f0;    /* Softer, more elegant silver borders */
-  --text-primary: #0f172a;   /* Deep slate for crisp text */
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  background: #ffffff !important;
+  --bg-dark: #f4f7fb;        /* Crisp, cool light gray background */
+  --card-bg: #ffffff;        /* Pure white cards */
+  --card-border: #cbd5e1;    /* Stronger, high-contrast borders */
+  --text-primary: #020617;   /* Almost pure black for max readability */
+  --text-secondary: #334155; /* Deep slate gray */
+  --text-muted: #64748b;     /* Medium gray */
+  background: #f4f7fb !important;
 }
 
 /* 1. Global High-Contrast Typography */
@@ -1742,7 +1888,7 @@ body[data-theme="light"] .cicd-title,
 body[data-theme="light"] .cicd-status,
 body[data-theme="light"] .terminal-title,
 body[data-theme="light"] .lifecycle-title {
-  color: #0f172a !important; 
+  color: #020617 !important; /* Forces all headers to pure dark charcoal */
 }
 
 body[data-theme="light"] .hero-subtext,
@@ -1755,80 +1901,16 @@ body[data-theme="light"] .scroll-block p,
 body[data-theme="light"] #modal-description,
 body[data-theme="light"] #cicd-footer-text,
 body[data-theme="light"] .lifecycle-desc {
-  color: #475569 !important;
-  font-weight: 400 !important; 
+  color: #334155 !important;
+  font-weight: 500 !important; /* Thicker text for better contrast */
 }
 
-/* Kills gradient text for flat premium look */
+/* Vibrant Gradient for the word "Engineer" */
 body[data-theme="light"] .gradient-text {
-  background: none !important;
-  -webkit-text-fill-color: initial !important;
-  filter: none !important;
-}
-
-/* 2. Premium Light Elements (Pills & Top Nav) */
-body[data-theme="light"] .name-pill {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  color: rgb(var(--theme-rgb)) !important;
-  box-shadow: none !important;
-}
-
-body[data-theme="light"] .logo,
-body[data-theme="light"] .nav-icon-btn {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.02) !important;
-  color: #475569 !important;
-}
-
-body[data-theme="light"] .nav-icon-btn:hover {
-  background: #f1f5f9 !important;
-  color: rgb(var(--theme-rgb)) !important;
-}
-
-/* Fix the CLI Logo visibility and richness in Light Mode */
-body[data-theme="light"] .brand-logo-cli {
-  color: #0f172a !important; 
-}
-
-body[data-theme="light"] .cli-accent {
-  color: #0d9488 !important; 
-}
-
-/* Gives the Logo a stronger, much more visible border and crisp shadow */
-body[data-theme="light"] .logo {
-  background: #ffffff !important;
-  border: 1px solid #94a3b8 !important; 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important; 
-}
-
-/* Adds a beautiful purple glow to the logo when you hover over it in Light Mode */
-body[data-theme="light"] .logo:hover {
-  border-color: rgb(var(--theme-rgb)) !important;
-  box-shadow: 0 6px 15px rgba(var(--theme-rgb), 0.2) !important;
-}
-
-/* 3. Constellation Fixes (Making the glass pop on white) */
-body[data-theme="light"] .ms-bg-pane {
-  border: 1px solid rgba(0, 0, 0, 0.05) !important; 
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06) !important; 
-}
-
-/* THE FIX: Removes the white box and syncs the text to your active theme color (Yellow, Purple, etc.) */
-body[data-theme="light"] .ms-label {
-  background: transparent !important; 
-  border: none !important;
-  box-shadow: none !important;
-  color: rgb(var(--theme-rgb)) !important; 
-  font-weight: 700 !important;
-}
-
-/* Force the inner icons to be pure white, matching Microsoft */
-body[data-theme="light"] .ms-logo-badge i,
-body[data-theme="light"] .ms-logo-badge svg {
-  color: #ffffff !important;
-  stroke: #ffffff !important;
+  background: linear-gradient(135deg, rgb(var(--theme-rgb)) 0%, #2563eb 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 2px 4px rgba(168, 85, 247, 0.2));
 }
 
 /* 4. FORCE ALL DARK CARDS TO WHITE */
@@ -1855,20 +1937,19 @@ body[data-theme="light"] .ide-window::before {
   display: none !important; 
 }
 
-/* 5. High-Contrast Buttons */
-body[data-theme="light"] .hero-btn-primary,
-body[data-theme="light"] .nav-deploy-btn {
+/* 3. High-Contrast Buttons & CI/CD Grid */
+body[data-theme="light"] .hero-btn-primary {
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(var(--theme-rgb), 0.2) !important; 
-  border: 1px solid rgba(var(--theme-rgb), 0.1) !important;
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3) !important;
 }
 
 body[data-theme="light"] .hero-btn-outline,
 body[data-theme="light"] .lifecycle-btn,
+body[data-theme="light"] .nav-icon-btn,
 body[data-theme="light"] .tab-btn {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #0f172a !important; 
+  background: #f8fafc !important;
+  border: 1px solid #94a3b8 !important; /* Strong border */
+  color: #020617 !important; /* Pure black text */
   font-weight: 600 !important;
   box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
   text-shadow: none !important;
@@ -1876,105 +1957,85 @@ body[data-theme="light"] .tab-btn {
 
 body[data-theme="light"] .hero-btn-outline:hover,
 body[data-theme="light"] .lifecycle-btn:hover,
+body[data-theme="light"] .nav-icon-btn:hover,
 body[data-theme="light"] .tab-btn.active {
   background: rgb(var(--theme-rgb)) !important;
   border-color: rgb(var(--theme-rgb)) !important;
-  color: #ffffff !important;
+  color: #ffffff !important; /* White text on hover */
   box-shadow: 0 6px 15px rgba(168, 85, 247, 0.3) !important;
 }
 
 body[data-theme="light"] .hero-btn-outline *,
-body[data-theme="light"] .lifecycle-btn * {
+body[data-theme="light"] .lifecycle-btn *,
+body[data-theme="light"] .nav-icon-btn * {
   color: inherit !important;
-  filter: none !important; 
+  filter: none !important; /* Kills dark mode icon glow */
 }
 
-/* 6. Hover Overlays (CI/CD Popup) */
+/* 4. Fix Hover Overlays (CI/CD Popup) */
 body[data-theme="light"] .lifecycle-overlay {
   background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
 }
 body[data-theme="light"] .tool-pill {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #0f172a !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #020617 !important;
   font-weight: 600 !important;
 }
 
-/* 7. Terminal Text Readability */
+/* 5. Terminal Text Readability */
 body[data-theme="light"] .terminal-header,
 body[data-theme="light"] .code-header {
   background: #f8fafc !important;
-  border-bottom: 1px solid #e2e8f0 !important;
+  border-bottom: 1px solid #cbd5e1 !important;
 }
 body[data-theme="light"] .terminal-input-line {
   background: #f8fafc !important;
-  border-top: 1px solid #e2e8f0 !important;
+  border-top: 1px solid #cbd5e1 !important;
 }
 body[data-theme="light"] #cli-input,
 body[data-theme="light"] .term-output,
 body[data-theme="light"] .log-line {
-  color: #0f172a !important;
+  color: #020617 !important;
   font-weight: 500 !important;
 }
 body[data-theme="light"] .prompt,
 body[data-theme="light"] .text-green,
 body[data-theme="light"] .step.passed {
-  color: #059669 !important; 
+  color: #059669 !important; /* Deep, readable green */
   font-weight: 700 !important;
 }
 body[data-theme="light"] .term-output.text-cyan {
-  color: #0284c7 !important; 
+  color: #0284c7 !important; /* Deep, readable blue */
 }
 body[data-theme="light"] .highlight {
   color: rgb(var(--theme-rgb)) !important;
   font-weight: 700 !important;
 }
 
-/* 8. Sticky Nav & Pills */
+/* 6. Sticky Nav & Pills */
 body[data-theme="light"] .sticky-section-nav {
   background: rgba(255, 255, 255, 0.9) !important;
-  border-bottom: 1px solid #e2e8f0 !important;
+  border-bottom: 1px solid #cbd5e1 !important;
 }
 body[data-theme="light"] .nav-pill-group {
   background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
 }
 body[data-theme="light"] .nav-pill { color: #475569 !important; text-shadow: none !important; font-weight: 600 !important; }
-body[data-theme="light"] .nav-pill:hover { color: #0f172a !important; }
+body[data-theme="light"] .nav-pill:hover { color: #020617 !important; }
 body[data-theme="light"] .nav-pill.active {
-  background: #f8fafc !important; 
+  background: #f1f5f9 !important; 
   color: rgb(var(--theme-rgb)) !important;
   border-color: rgb(var(--theme-rgb)) !important;
 }
 body[data-theme="light"] .navbar-links a { color: #475569 !important; font-weight: 600 !important; }
-body[data-theme="light"] .navbar-links a:hover { color: #0f172a !important; }
+body[data-theme="light"] .navbar-links a:hover { color: #020617 !important; }
 
-/* 9. Floating CLI Terminal (Bottom Left) */
-body[data-theme="light"] .floating-term-body,
-body[data-theme="light"] .floating-term-input,
-body[data-theme="light"] .term-header-mini {
-  background: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
-}
-body[data-theme="light"] .floating-cli-container:hover .floating-term-input,
-body[data-theme="light"] .floating-cli-container:focus-within .floating-term-input {
-  border-color: rgb(var(--theme-rgb)) !important;
-  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.15) !important;
-}
-body[data-theme="light"] .floating-term-input input,
-body[data-theme="light"] .terminal-title,
-body[data-theme="light"] .term-output {
-  color: #0f172a !important;
-}
-body[data-theme="light"] .term-icon-trigger {
-  color: rgb(var(--theme-rgb)) !important;
-}
-
-/* 10. Marquee Logos & Skill Icons */
+/* 7. Marquee Logos & Skill Icons */
 body[data-theme="light"] .tech-item {
   background: #ffffff !important;
   border: 1px solid #cbd5e1 !important;
@@ -1987,4 +2048,25 @@ body[data-theme="light"] .tag-badge {
   border: 1px solid #cbd5e1 !important;
   color: #020617 !important;
   font-weight: 600 !important;
+}
+
+/* Gives the Logo a stronger, much more visible border and crisp shadow */
+body[data-theme="light"] .logo {
+  background: #ffffff !important;
+  border: 1px solid #94a3b8 !important; /* Stronger, darker slate border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important; /* Crisper drop shadow */
+}
+
+/* Adds a beautiful purple glow to the logo when you hover over it in Light Mode */
+body[data-theme="light"] .logo:hover {
+  border-color: rgb(var(--theme-rgb)) !important;
+  box-shadow: 0 6px 15px rgba(var(--theme-rgb), 0.2) !important;
+}
+
+/* Keeps the smaller square navigation icons subtle */
+body[data-theme="light"] .nav-icon-btn {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02) !important;
+  color: #475569 !important;
 }
