@@ -369,27 +369,23 @@ body {
    ========================================================= */
 .hero-card {
   display: flex !important;
-  
-  /* THE FIX: Reverses the layout so Constellation is on the LEFT, Text on the RIGHT */
-  flex-direction: row-reverse !important; 
+  flex-direction: row !important; /* Text on Left, Orbit on Right */
   flex-wrap: nowrap !important; 
-  align-items: center !important; /* Perfectly vertically centers the text to the image */
-  justify-content: space-between !important;
+  align-items: center !important; 
+  justify-content: center !important; /* Brings both items together in the middle */
   
-  /* THE FIX: Constrains the width and centers the entire block on the page */
   width: 100% !important;
-  max-width: 1050px !important; /* Creates the massive gaps on the left and right */
-  margin: 0 auto 80px auto !important; /* 'auto' perfectly centers it */
+  max-width: 1100px !important; 
+  margin: 0 auto 80px auto !important; 
   
-  gap: 6% !important; 
+  gap: 60px !important; /* Controls exactly how close they are */
   padding-top: 40px !important; 
   padding-bottom: 40px !important;
 }
 
 .hero-content-left {
-  /* This is now visually the text on the RIGHT side */
   flex: 1 1 45% !important; 
-  max-width: 480px !important; /* Keeps paragraph narrow and highly readable */
+  max-width: 480px !important; 
   padding-right: 0 !important;
   display: flex;
   flex-direction: column;
@@ -569,7 +565,7 @@ body {
 .hero-image-right {
   /* This is now visually the image on the LEFT side */
   flex: 1 1 50% !important; 
-  max-width: 550px !important;
+  max-width: 500px !important;
   margin-top: 0 !important; 
   justify-content: center !important; 
 }
@@ -784,6 +780,7 @@ body {
   .hero-card {
     flex-direction: column !important; 
     text-align: center;
+    gap: 40px !important;
   }
   .hero-content-left {
     align-items: center;
@@ -797,7 +794,6 @@ body {
     justify-content: center;
   }
   .hero-image-right {
-    margin-top: 40px !important;
     max-width: 100% !important;
   }
 }
@@ -1107,8 +1103,9 @@ body {
 
 .card:hover, .jb-skill-card:hover {
   transform: translateY(-4px); 
-  border-color: rgb(var(--theme-rgb)); 
-  box-shadow: 0 10px 30px rgba(var(--theme-rgb), 0.25), inset 0 0 15px rgba(var(--theme-rgb), 0.1); 
+  border-color: rgb(var(--theme-rgb)) !important; 
+  /* Enhanced vibrant purple glow matching your screenshot */
+  box-shadow: 0 0 30px rgba(var(--theme-rgb), 0.4), inset 0 0 15px rgba(var(--theme-rgb), 0.15) !important; 
 }
 
 .card *, .jb-skill-logo, .jb-skill-info { position: relative; z-index: 2; }
