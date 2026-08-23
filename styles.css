@@ -2021,3 +2021,24 @@ body[data-theme="light"] .tag-badge {
   color: #020617 !important;
   font-weight: 600 !important;
 }
+
+/* Gives the Logo a stronger, much more visible border and crisp shadow */
+body[data-theme="light"] .logo {
+  background: #ffffff !important;
+  border: 1px solid #94a3b8 !important; /* Stronger, darker slate border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important; /* Crisper drop shadow */
+}
+
+/* Adds a beautiful purple glow to the logo when you hover over it in Light Mode */
+body[data-theme="light"] .logo:hover {
+  border-color: rgb(var(--theme-rgb)) !important;
+  box-shadow: 0 6px 15px rgba(var(--theme-rgb), 0.2) !important;
+}
+
+/* Keeps the smaller square navigation icons subtle */
+body[data-theme="light"] .nav-icon-btn {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02) !important;
+  color: #475569 !important;
+}
