@@ -405,7 +405,7 @@ body {
   justify-content: center !important;
   
   /* Reset the nudging margins so it centers flawlessly */
-  margin-top: -40px !important;
+  margin-top: -50px !important;
   margin-left: 20px !important;
 }
 
