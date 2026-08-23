@@ -1792,29 +1792,23 @@ body[data-theme="light"] .ms-bg-pane {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06) !important; 
 }
 
+/* THE FIX: Removes the white box and syncs the text to your active theme color (Yellow, Purple, etc.) */
 body[data-theme="light"] .ms-label {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
+  background: transparent !important; 
+  border: none !important;
+  box-shadow: none !important;
+  color: rgb(var(--theme-rgb)) !important; 
   font-weight: 700 !important;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
 }
 
-/* THE FIX: Force the inner icons to be pure white, matching Microsoft */
+/* Force the inner icons to be pure white, matching Microsoft */
 body[data-theme="light"] .ms-logo-badge i,
 body[data-theme="light"] .ms-logo-badge svg {
   color: #ffffff !important;
   stroke: #ffffff !important;
 }
 
-/* THE FIX: Color-coordinate each label text to its matching stage theme */
-body[data-theme="light"] .ms-node-1 .ms-label { color: #1d4ed8 !important; } /* Word Blue */
-body[data-theme="light"] .ms-node-2 .ms-label { color: #6d28d9 !important; } /* Teams Purple */
-body[data-theme="light"] .ms-node-3 .ms-label { color: #c2410c !important; } /* PowerPoint Orange */
-body[data-theme="light"] .ms-node-4 .ms-label { color: #15803d !important; } /* Excel Green */
-body[data-theme="light"] .ms-node-5 .ms-label { color: #7e22ce !important; } /* OneNote Violet */
-body[data-theme="light"] .ms-node-6 .ms-label { color: #0369a1 !important; } /* OneDrive Sky */
-body[data-theme="light"] .ms-node-7 .ms-label { color: #0f766e !important; } /* SharePoint Teal */
-body[data-theme="light"] .ms-node-8 .ms-label { color: #047857 !important; } /* Forms Emerald */
+
 /* =========================================================
    REMOVE ENGINE CARD BOX (Pure Floating Constellation)
    ========================================================= */
