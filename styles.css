@@ -454,7 +454,7 @@ body {
   
   /* Restricts width so it naturally wraps like the MS paragraph */
   width: 100%;
-  max-width: 100%; 
+  max-width: 90%; 
 }
 
 /* BUTTON GROUP */
