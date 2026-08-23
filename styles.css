@@ -367,16 +367,21 @@ body {
 /* =========================================================
    1. HERO BANNER TILE (Split Layout per Mockup)
    ========================================================= */
+/* =========================================================
+   1. HERO BANNER TILE (Ultra-Clean Spacing)
+   ========================================================= */
 .hero-card {
   display: flex !important;
   flex-direction: row !important;
-  /* CHANGED: Forces both left text and right image columns to equal height */
-  align-items: stretch; 
+  
+  /* CHANGED: Centers the columns vertically so the whitespace flows perfectly around them */
+  align-items: center; 
   justify-content: space-between;
   width: 100%;
   
-  /* ADDED: 30px top padding to push the name pill down from the navbar */
-  padding: 30px 0 40px 0; 
+  /* CHANGED: Massive top padding and column gap to mimic Microsoft's negative space */
+  padding: 80px 0 60px 0; 
+  gap: 80px; 
   
   margin: 0 0 40px 0 !important;
   background: transparent;
@@ -386,13 +391,14 @@ body {
 
 /* LEFT SIDE TYPOGRAPHY */
 .hero-content-left {
-  flex: 0 0 50%;
-  max-width: 50%;
+  /* CHANGED: Constrains the left column to exactly 45% so text naturally breaks and doesn't run into the image */
+  flex: 0 0 45%;
+  max-width: 45%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  padding-right: 40px;
+  padding-right: 0;
 }
 
 .hero-overline-group {
@@ -427,9 +433,11 @@ body {
 
 .hero-headline {
   font-size: clamp(3rem, 4.5vw, 4.5rem);
-  font-weight: 800;
+  /* CHANGED: Dropped font-weight from 800 to 700 for a cleaner, more elegant look */
+  font-weight: 700;
   color: #ffffff;
-  line-height: 1.1;
+  /* CHANGED: Increased line height so the massive text can breathe */
+  line-height: 1.15;
   letter-spacing: -1px;
   margin-bottom: 24px;
 }
@@ -443,30 +451,34 @@ body {
 .hero-subtext {
   font-size: 1.1rem;
   color: #94a3b8; 
-  line-height: 1.6;
-  margin-bottom: 32px;
+  line-height: 1.7;
   
-  /* EXPANDED: Allows the text to utilize the full width of the left column */
-  width: 110%;
-  max-width: 110%; 
+  /* CHANGED: Increased margin to push the buttons further down */
+  margin-bottom: 40px;
+  
+  /* CHANGED: Stopped the text from trying to stretch to 110% width */
+  width: 100%;
+  max-width: 100%; 
 }
 
 /* BUTTON GROUP */
 .hero-btn-group {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 40px;
+  gap: 16px; /* Slightly wider button spacing */
+  
+  /* CHANGED: Pushes the metrics row way down to avoid feeling crowded */
+  margin-bottom: 50px;
   flex-wrap: wrap;
 }
 
 .hero-btn-primary {
   background: rgb(var(--theme-rgb));
   color: #000;
-  font-weight: 600; /* Slightly lighter weight for smaller text */
-  font-size: 0.85rem; /* Much smaller, professional font size */
-  padding: 10px 18px; /* Tighter vertical and horizontal padding */
-  border-radius: 6px; /* Sharper corners */
+  font-weight: 600; 
+  font-size: 0.85rem; 
+  padding: 10px 18px; 
+  border-radius: 6px; 
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -485,8 +497,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
   font-weight: 500;
-  font-size: 0.85rem; /* Matches primary button */
-  padding: 10px 18px; /* Matches primary button */
+  font-size: 0.85rem; 
+  padding: 10px 18px; 
   border-radius: 6px;
   display: inline-flex;
   align-items: center;
@@ -501,7 +513,6 @@ body {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Scales the Lucide icons inside the buttons down so they don't overpower the text */
 .hero-btn-primary i, 
 .hero-btn-outline i {
   width: 16px;
@@ -514,21 +525,14 @@ body {
 }
 
 /* METRICS ROW */
-/* METRICS ROW */
 .hero-divider {
-  width: 100%;
-  max-width: 650px; 
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  margin-bottom: 30px;
-  
-  /* THE MAGIC FIX: Pushes this line and everything below it to the absolute bottom of the container */
-  margin-top: auto; 
+  /* CHANGED: Completely deleted the horizontal line to remove UI clutter */
+  display: none !important; 
 }
 
 .hero-metrics {
   display: flex;
-  gap: 40px;
+  gap: 50px; /* Spread the metrics out further */
 }
 
 .hero-metric {
@@ -539,8 +543,9 @@ body {
 
 .metric-val {
   font-family: var(--font-mono);
-  font-size: 1.5rem;
-  font-weight: 700;
+  /* CHANGED: Scaled the numbers down slightly so they don't compete with your headline */
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .metric-label {
