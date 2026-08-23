@@ -377,23 +377,24 @@ body {
   justify-content: center !important; 
   
   width: 100% !important;
-  max-width: 1050px !important; 
+  max-width: 1100px !important; 
   margin: 0 auto 80px auto !important; 
   
-  /* Keeps the text and the logos comfortably close together */
-  gap: 50px !important; 
+  /* THIS GAP NOW WORKS PERFECTLY: 
+     Lower this number (e.g., 10px) to pull them closer. 
+     Raise it (e.g., 80px) to push them apart. */
+  gap: 30px !important;
   padding-top: 40px !important; 
   padding-bottom: 40px !important;
 }
 
 .hero-content-left {
-  flex: 1 1 45% !important; 
-  max-width: 480px !important; 
+  flex: 0 0 auto !important; 
+  width: 420px !important; /* Controls exactly how wide the text wraps */
   padding-right: 0 !important;
+  
   display: flex;
   flex-direction: column;
-  
-  /* THE FIX: Reverts everything back to a clean left-alignment */
   align-items: flex-start !important; 
   text-align: left !important;
   justify-content: center !important;
@@ -572,13 +573,14 @@ body {
    RIGHT HERO SECTION (Levitating Loop + DevOps Widget)
    ========================================================= */
 .hero-image-right {
-  flex: 1 1 50% !important; 
-  max-width: 500px !important;
+  /* THE FIX: Replaced the % wall with a strict shrink-wrap width */
+  flex: 0 0 auto !important; 
+  width: 450px !important; /* Fits the constellation perfectly */
   margin-top: 0 !important; 
   
-  /* Centers the constellation inside its respective half */
-  justify-content: center !important; 
   display: flex;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 /* 1. The Main Engine Card (SHRUNK) */
@@ -792,20 +794,17 @@ body {
     flex-direction: column !important; 
     gap: 40px !important;
   }
-  .hero-content-left {
+  .hero-content-left, 
+  .hero-image-right {
+    width: 100% !important;
     align-items: center !important;
     text-align: center !important;
-    max-width: 100% !important;
   }
   .hero-subtext {
     text-align: center !important;
     margin: 0 auto 32px auto !important;
   }
   .hero-btn-group {
-    justify-content: center !important;
-  }
-  .hero-image-right {
-    max-width: 100% !important;
     justify-content: center !important;
   }
 }
@@ -1354,62 +1353,59 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
    BUTTON & GRID CURSOR GLOW UPGRADES (Matches CI/CD Skill Card)
    ========================================================= */
 /* 1. Prepare buttons for inner light and layered z-index */
-.hero-btn-primary,
-.hero-btn-outline,
+/* =========================================================
+   BUTTON CURSOR GLOW UPGRADES
+   ========================================================= */
+/* 1. Prepare buttons to contain the light beam */
+.hero-btn-primary, 
+.hero-btn-outline, 
 .lifecycle-btn {
   position: relative;
   overflow: hidden;
-  z-index: 1;
 }
 
-/* Elevate text and icons above the background glow */
-.hero-btn-primary *,
-.hero-btn-outline *,
-.lifecycle-btn * {
-  position: relative;
-  z-index: 2;
-  transition: all 0.3s ease;
+/* 2. Override the old solid white hover so the light beam is visible */
+.hero-btn-primary:hover {
+  background: rgb(var(--theme-rgb)); 
 }
 
-/* 2. Create the invisible tracking light layer */
-.hero-btn-primary::before,
-.hero-btn-outline::before,
+/* 3. Create the invisible light layer */
+.hero-btn-primary::before, 
+.hero-btn-outline::before, 
 .lifecycle-btn::before {
   content: "";
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  inset: 0;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
-  z-index: 0;
+  z-index: 1; /* Keeps it strictly above the background but below text if needed */
 }
 
-/* 3. Apply the exact CI/CD Skill Card borders & shadows on hover */
-.hero-btn-outline:hover,
-.lifecycle-btn:hover {
-  background: #08080a !important; /* Forces the deep dark background */
-  border-color: rgb(var(--theme-rgb)) !important;
-  box-shadow:
-    0 10px 20px rgba(var(--theme-rgb), 0.25),
-    inset 0 0 12px rgba(var(--theme-rgb), 0.2) !important; /* Inner glowing ring */
-}
-
-/* Turn on the internal spotlight */
-.hero-btn-primary:hover::before,
-.hero-btn-outline:hover::before,
+/* 4. Turn the light on when hovering */
+.hero-btn-primary:hover::before, 
+.hero-btn-outline:hover::before, 
 .lifecycle-btn:hover::before {
   opacity: 1;
 }
 
-/* 4. Configure the tracking spotlight (Scaled for smaller buttons) */
+/* 5. Primary Button: Bright White Spotlight */
 .hero-btn-primary::before {
-  background: radial-gradient(120px circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.4), transparent 100%);
+  background: radial-gradient(
+    100px circle at var(--x, 50%) var(--y, 50%), 
+    rgba(255, 255, 255, 0.4), 
+    transparent 100%
+  );
 }
 
-.hero-btn-outline::before,
+/* 6. Dark Buttons: Dynamic Theme Spotlight */
+.hero-btn-outline::before, 
 .lifecycle-btn::before {
-  background: radial-gradient(120px circle at var(--x, 50%) var(--y, 50%), rgba(var(--theme-rgb), 0.35), transparent 100%);
+  background: radial-gradient(
+    100px circle at var(--x, 50%) var(--y, 50%), 
+    rgba(var(--theme-rgb), 0.4), 
+    transparent 100%
+  );
 }
 
 /* 5. Add the CI/CD Skill Card Text & Icon Glow! */
@@ -1766,50 +1762,6 @@ body[data-theme="light"] .term-output {
 }
 body[data-theme="light"] .term-icon-trigger {
   color: rgb(var(--theme-rgb)) !important;
-}
-
-/* =========================================================
-   ULTIMATE HERO SIDE-BY-SIDE FIX
-   ========================================================= */
-.hero-card {
-  display: flex !important;
-  flex-direction: row !important;
-  
-  /* THE MAGIC FIX: Physically prevents the right side from ever dropping down */
-  flex-wrap: nowrap !important; 
-  
-  align-items: center !important;
-  justify-content: space-between !important;
-  width: 100% !important;
-  gap: 5% !important; /* Uses a fluid 5% gap instead of rigid pixels */
-}
-
-.hero-content-left {
-  flex: 1 1 45% !important; /* Allows it to smoothly shrink if needed */
-  max-width: 50% !important;
-  padding-right: 0 !important;
-}
-
-.hero-image-right {
-  flex: 1 1 50% !important; /* Allows it to smoothly shrink if needed */
-  max-width: 550px !important;
-  margin-top: 0 !important; /* Kills any lingering drop-down margins */
-  justify-content: flex-end !important;
-}
-
-/* Only allow stacking on true mobile/tablet screens */
-@media (max-width: 850px) {
-  .hero-card {
-    flex-direction: column !important;
-    flex-wrap: wrap !important;
-  }
-  .hero-content-left, .hero-image-right {
-    flex: 1 1 100% !important;
-    max-width: 100% !important;
-  }
-  .hero-image-right {
-    margin-top: 40px !important;
-  }
 }
 
 
