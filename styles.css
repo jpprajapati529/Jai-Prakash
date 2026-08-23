@@ -1897,20 +1897,25 @@ body[data-theme="light"] .term-icon-trigger {
 .ms-node:hover .ms-bg-pane { transform: skewX(-12deg) rotate(-4deg) scale(1.1) translate(-2px, -4px); opacity: 1; filter: brightness(1.2); }
 .ms-node:hover .ms-label { color: rgb(var(--theme-rgb)); transform: translateY(-2px); }
 
-/* Organic Scattered Positioning (Matching the MS 365 Layout) */
-.ms-node-1 { top: 12%; left: 32%; animation: floatMS 3.5s ease-in-out infinite alternate 0s; }
-.ms-node-2 { top: 20%; left: 75%; animation: floatMS 3.2s ease-in-out infinite alternate 0.5s; }
-.ms-node-3 { top: 50%; left: 88%; animation: floatMS 3.8s ease-in-out infinite alternate 1s; }
-.ms-node-4 { top: 85%; left: 78%; animation: floatMS 3.1s ease-in-out infinite alternate 1.5s; }
-.ms-node-5 { top: 92%; left: 50%; animation: floatMS 3.6s ease-in-out infinite alternate 2s; }
-.ms-node-6 { top: 82%; left: 22%; animation: floatMS 3.3s ease-in-out infinite alternate 2.5s; }
-.ms-node-7 { top: 50%; left: 10%; animation: floatMS 3.7s ease-in-out infinite alternate 3s; }
-.ms-node-8 { top: 28%; left: 12%; animation: floatMS 3.4s ease-in-out infinite alternate 3.5s; }
+/* =========================================================
+   STATIC, PAIRED ANTI-CLOCKWISE CONSTELLATION
+   ========================================================= */
+/* Group 1: Top-Left (Plan & Code) */
+.ms-node-1 { top: 18%; left: 34%; } /* Plan */
+.ms-node-2 { top: 35%; left: 21%; } /* Code */
 
-@keyframes floatMS {
-  0% { margin-top: 0px; }
-  100% { margin-top: -10px; }
-}
+/* Group 2: Bottom-Left (Build & Test) */
+.ms-node-3 { top: 65%; left: 21%; } /* Build */
+.ms-node-4 { top: 82%; left: 34%; } /* Test */
+
+/* Group 3: Bottom-Right (Release & Deploy) */
+.ms-node-5 { top: 82%; left: 66%; } /* Release */
+.ms-node-6 { top: 65%; left: 79%; } /* Deploy */
+
+/* Group 4: Top-Right (Operate & Monitor) */
+.ms-node-7 { top: 35%; left: 79%; } /* Operate */
+.ms-node-8 { top: 18%; left: 66%; } /* Monitor */
+
 
 /* =========================================================
    MICROSOFT OFFICE THEME GRADIENTS
