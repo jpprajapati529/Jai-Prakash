@@ -27,7 +27,6 @@ function toggleTheme() {
 
 // Mouse Tracking for JetBrains Cursor Spotlight
 document.addEventListener("mousemove", (e) => {
-  // ADDED: .hero-btn-primary, .hero-btn-outline, and .lifecycle-btn
   const card = e.target.closest(".card, .project-card, .dashboard-section, .rich-content-container, .ide-window, .summary-card, .jb-skill-card, .hero-btn-primary, .hero-btn-outline, .lifecycle-btn");
   if (card) {
     const rect = card.getBoundingClientRect();
@@ -39,519 +38,120 @@ document.addEventListener("mousemove", (e) => {
 // Modal Module Data Strategy
 const moduleData = {
   // ----------------------------------------------------
-  // CLOUD PROVIDERS
+  // SKILLS SECTION MODALS
   // ----------------------------------------------------
-  "aws": {
-    title: "Amazon Web Services (AWS)",
-    description: "AWS is a comprehensive cloud platform offering compute, storage, database, and networking services.",
+  "skill-cloud": {
+    title: "Multi-Cloud Architectures",
+    description: "Multi-tier cloud deployment utilizing Kubernetes, VPC Peering, and high-availability managed databases.",
     tabs: [
       {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Built and maintained resilient multi-tenant environments to enable reliable operations and effortless scaling of applications.</p>
-              <ul class="rich-list">
-                <li>Managed EC2, S3, RDS, DynamoDB, Lambda, and EKS deployments across the cloud infrastructure.</li>
-                <li>Migrated on-premises applications to AWS, ensuring minimal downtime and seamless integration.</li>
-                <li>Established IAM roles, policies, and security groups to mitigate breaches and exceed compliance audit requirements.</li>
-                <li>Implemented comprehensive monitoring and alerting using AWS CloudWatch, CloudTrail, and Prometheus.</li>
-              </ul>
-            </div>
-          </div>
-        `
+        name: "AWS (Terraform)",
+        type: "code",
+        filename: "aws-eks-cluster.tf",
+        content: `provider "aws" {\n  region = "ap-south-1"\n}\n\nmodule "eks" {\n  source          = "terraform-aws-modules/eks/aws"\n  cluster_name    = "prod-fintech-cluster"\n  cluster_version = "1.27"\n  vpc_id          = module.vpc.vpc_id\n  subnet_ids      = module.vpc.private_subnets\n\n  eks_managed_node_groups = {\n    default = {\n      min_size     = 2\n      max_size     = 10\n      desired_size = 3\n      instance_types = ["t3.large"]\n    }\n  }\n}`
       },
       {
-        name: "IaC Example",
+        name: "Azure (Terraform)",
         type: "code",
-        filename: "aws_iam_policy.tf",
-        content: `resource "aws_iam_policy" "strict_s3_access" {
-  name        = "RestrictedS3Access"
-  description = "Enforces least privilege based on audit requirements"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [{
-      Action   = ["s3:GetObject", "s3:ListBucket"]
-      Effect   = "Allow"
-      Resource = ["arn:aws:s3:::prod-app-data", "arn:aws:s3:::prod-app-data/*"]
-    }]
-  })
-}`
+        filename: "azure-aks-cluster.tf",
+        content: `provider "azurerm" {\n  features {}\n}\n\nresource "azurerm_kubernetes_cluster" "aks" {\n  name                = "prod-banking-aks"\n  location            = azurerm_resource_group.rg.location\n  resource_group_name = azurerm_resource_group.rg.name\n  dns_prefix          = "prodaks"\n\n  default_node_pool {\n    name       = "system"\n    node_count = 3\n    vm_size    = "Standard_DS2_v2"\n  }\n\n  identity {\n    type = "SystemAssigned"\n  }\n}`
+      },
+      {
+        name: "GCP (Terraform)",
+        type: "code",
+        filename: "gcp-gke-cluster.tf",
+        content: `provider "google" {\n  project = "capgemini-fintech-prod"\n  region  = "asia-south1"\n}\n\nresource "google_container_cluster" "primary" {\n  name     = "prod-gke-cluster"\n  location = "asia-south1"\n\n  remove_default_node_pool = true\n  initial_node_count       = 1\n\n  private_cluster_config {\n    enable_private_nodes    = true\n    enable_private_endpoint = false\n  }\n}`
       }
     ]
   },
-  "azure": {
-    title: "Microsoft Azure",
-    description: "Azure is a public cloud computing platform providing scalable computing, analytics, storage, and IAM networking.",
+  "skill-cicd": {
+    title: "CI/CD Pipeline Automation",
+    description: "Event-driven pipelines enforcing strict quality gates, security scanning, and automated artifact promotion.",
     tabs: [
       {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Engineered automated deployments and maintained infrastructure across hybrid environments, including Azure resources and on-premises OpenShift clusters.</p>
-              <ul class="rich-list">
-                <li>Provisioned and managed Azure Compute, Blob, Cosmos DB, and Azure Kubernetes Service (AKS).</li>
-                <li>Configured Azure Entra ID, RBAC policies, and security groups to strictly control access to critical services.</li>
-                <li>Migrated legacy applications to the Azure cloud, improving application responsiveness and reliability.</li>
-                <li>Utilized Azure Monitor and Prometheus to analyze performance bottlenecks and usage trends for cost optimization.</li>
-              </ul>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "IaC Example",
+        name: "GitHub Actions",
         type: "code",
-        filename: "azure_rbac.tf",
-        content: `resource "azurerm_role_assignment" "aks_monitoring" {
-  scope                = azurerm_kubernetes_cluster.aks_prod.id
-  role_definition_name = "Monitoring Metrics Publisher"
-  principal_id         = azuread_service_principal.monitor_sp.object_id
-}`
-      }
-    ]
-  },
-  "gcp": {
-    title: "Google Cloud Platform (GCP)",
-    description: "GCP is a suite of cloud services that runs on the same infrastructure Google uses internally, offering high-performance compute and data analytics.",
-    tabs: [
-      {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Managed containerized microservices and automated cloud deployments while strictly enforcing Site Reliability Engineering (SRE) practices.</p>
-              <ul class="rich-list">
-                <li>Provisioned multi-tenant GCP environments including GCS, Compute Engine, Cloud SQL, and GKE.</li>
-                <li>Implemented SRE practices by defining SLIs/SLOs and error budgets to maintain system reliability.</li>
-                <li>Established GCP Projects, Service Accounts, and IAM roles to exceed industry security compliance standards.</li>
-                <li>Unified observability and incident response using GCP Stackdriver and Prometheus.</li>
-              </ul>
-            </div>
-          </div>
-        `
+        filename: "deploy-workflow.yml",
+        content: `name: Prod Release\non:\n  push:\n    branches: [ "main" ]\n\njobs:\n  security-scan:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3\n      - name: Run Trivy vulnerability scanner\n        uses: aquasecurity/trivy-action@master\n        with:\n          image-ref: 'my-app:latest'\n          format: 'table'\n          exit-code: '1'\n          severity: 'CRITICAL,HIGH'`
       },
       {
-        name: "SRE Config",
-        type: "code",
-        filename: "gcp_slo.yaml",
-        content: `apiVersion: monitoring.googleapis.com/v3
-kind: ServiceLevelObjective
-metadata:
-  name: gke-api-latency-slo
-spec:
-  goal: 0.99
-  rollingPeriod: 2592000s # 30 days
-  serviceLevelIndicator:
-    requestBased:
-      distributionCut:
-        distributionFilter: metric.type="loadbalancing.googleapis.com/https/request_latencies"
-        range:
-          max: 250 # 99% of requests under 250ms`
-      }
-    ]
-  },
-
-  // ----------------------------------------------------
-  // ORCHESTRATION & CONTAINERS
-  // ----------------------------------------------------
-  "docker": {
-    title: "Docker",
-    description: "Docker is a software platform that allows developers to package applications into lightweight, standardized executable components called containers.",
-    tabs: [
-      {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Leveraged Docker to decouple applications from underlying infrastructure, ensuring consistency across development and production.</p>
-              <ul class="rich-list">
-                <li>Deployed and managed containerized microservices across diverse cloud environments.</li>
-                <li>Reduced infrastructure costs through highly efficient resource utilization and optimized container footprints.</li>
-                <li>Integrated Docker builds seamlessly into enterprise CI/CD pipelines.</li>
-              </ul>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Dockerfile",
-        type: "code",
-        filename: "Dockerfile",
-        content: `FROM python:3.9-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
-# Running securely as non-root
-USER 1001 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:main"]`
-      }
-    ]
-  },
-  "kubernetes": {
-    title: "Kubernetes (K8s)",
-    description: "Kubernetes is an open-source container orchestration system for automating application deployment, scaling, and operational management.",
-    tabs: [
-      {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Administered large-scale, high-availability Kubernetes clusters (AKS, EKS, GKE) to ensure reliable microservice operations.</p>
-              <ul class="rich-list">
-                <li>Enhanced system reliability through self-healing configurations and automated scaling.</li>
-                <li>Implemented stringent K8s security best practices, utilizing IAM, HashiCorp Vault, and Secrets Manager.</li>
-                <li>Successfully reduced security incidents by 60% through rigorous policy enforcement.</li>
-              </ul>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Security Manifest",
-        type: "code",
-        filename: "k8s_security.yaml",
-        content: `apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  namespace: prod-namespace
-  name: secrets-reader
-rules:
-- apiGroups: [""]
-  resources: ["secrets"]
-  verbs: ["get", "watch", "list"]`
-      }
-    ]
-  },
-  "helm": {
-    title: "Helm",
-    description: "Helm is the package manager for Kubernetes, used to define, install, and upgrade complex Kubernetes applications using Charts.",
-    tabs: [
-      {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Utilized Helm and Kustomize to standardize microservice deployments and simplify cluster configuration management.</p>
-              <ul class="rich-list">
-                <li>Packaged microservices into reusable Helm Charts for rapid, repeatable deployments across multiple environments.</li>
-                <li>Managed complex YAML templating to ensure environment-specific configurations were securely injected at runtime.</li>
-              </ul>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Values YAML",
-        type: "code",
-        filename: "values.yaml",
-        content: `replicaCount: 3
-image:
-  repository: my-enterprise-repo/core-api
-  pullPolicy: IfNotPresent
-  tag: "v2.4.1"
-
-resources:
-  limits:
-    cpu: 500m
-    memory: 512Mi`
-      }
-    ]
-  },
-  "openshift": {
-    title: "Red Hat OpenShift",
-    description: "OpenShift is an enterprise-grade Kubernetes platform built for a hybrid cloud strategy, offering enhanced security and developer tools.",
-    tabs: [
-      {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Administered enterprise on-premises container platforms, ensuring seamless interoperability with public cloud resources.</p>
-              <ul class="rich-list">
-                <li>Managed the commissioning and decommissioning of on-premises OpenShift clusters within hybrid-cloud ecosystems.</li>
-                <li>Ensured optimal resource utilization and strict cost control across physical and cloud hardware.</li>
-              </ul>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Route Config",
-        type: "code",
-        filename: "route.yaml",
-        content: `apiVersion: route.openshift.io/v1
-kind: Route
-metadata:
-  name: internal-banking-api
-spec:
-  host: api.internal.banking.local
-  to:
-    kind: Service
-    name: banking-core-service
-  tls:
-    termination: edge`
-      }
-    ]
-  },
-
-  // ----------------------------------------------------
-  // IAC, CI/CD & SCRIPTING
-  // ----------------------------------------------------
-  "terraform": {
-    title: "Terraform",
-    description: "Terraform is an Infrastructure as Code (IaC) tool by HashiCorp used to provision and manage cloud resources safely and predictably.",
-    tabs: [
-      {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Acted as the primary IaC architect to enforce infrastructure consistency and prevent manual configuration drift.</p>
-              <ul class="rich-list">
-                <li>Built and maintained resilient multi-tenant environments across AWS, Azure, and GCP using modular Terraform code.</li>
-                <li>Automated the provisioning of networking (VPCs), computing, databases, and IAM access controls.</li>
-              </ul>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Terraform Module",
-        type: "code",
-        filename: "modules.tf",
-        content: `module "multi_tenant_cluster" {
-  source              = "./modules/k8s-engine"
-  cluster_name        = "prod-hybrid-cluster"
-  kubernetes_version  = "1.27"
-  enable_auto_scaling = true
-  min_count           = 3
-  max_count           = 10
-}`
-      }
-    ]
-  },
-  "github": {
-    title: "GitHub Actions",
-    description: "GitHub Actions is a CI/CD platform that automates software workflows, allowing for build, test, and deployment pipelines directly within GitHub.",
-    tabs: [
-      {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Engineered automated, event-driven workflows to standardize the software delivery process.</p>
-              <ul class="rich-list">
-                <li>Built and optimized CI/CD pipelines to drastically improve deployment speed, frequency, and overall reliability.</li>
-                <li>Automated security scans, linting, and container builds triggered by repository pull requests.</li>
-              </ul>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Workflow YAML",
-        type: "code",
-        filename: "deploy.yml",
-        content: `name: Production Rollout
-on:
-  push:
-    branches: [ "main" ]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Run SonarQube Analysis
-      run: bash scripts/sonar-scan.sh`
-      }
-    ]
-  },
-  "jenkins": {
-    title: "Jenkins",
-    description: "Jenkins is a widely used open-source automation server that enables developers to reliably build, test, and deploy their software.",
-    tabs: [
-      {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Designed and maintained enterprise-grade automation pipelines to support agile development cycles.</p>
-              <ul class="rich-list">
-                <li>Optimized legacy CI/CD pipelines using Jenkins to improve deployment speed and release reliability.</li>
-                <li>Integrated Jenkins with diverse toolchains including Docker, SonarQube, and Kubernetes deployment scripts.</li>
-              </ul>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Jenkinsfile",
+        name: "Jenkins Pipeline",
         type: "code",
         filename: "Jenkinsfile",
-        content: `pipeline {
-    agent any
-    stages {
-        stage('Security Scan') {
-            steps {
-                sh 'trivy fs --severity HIGH,CRITICAL .'
-            }
-        }
-        stage('Build & Push') {
-            steps {
-                sh 'docker build -t app:v1 .'
-                sh 'docker push myregistry/app:v1'
-            }
-        }
-    }
-}`
+        content: `pipeline {\n    agent any\n    environment {\n        DOCKER_CREDS = credentials('dockerhub-id')\n    }\n    stages {\n        stage('Build & Test') {\n            steps {\n                sh 'mvn clean package'\n                sh 'docker build -t my-app:\${env.BUILD_ID} .'\n            }\n        }\n        stage('Deploy to K8s') {\n            steps {\n                sh 'kubectl apply -f k8s/deployment.yaml'\n            }\n        }\n    }\n}`
       }
     ]
   },
-  "gitlab": {
-    title: "GitLab",
-    description: "GitLab is a comprehensive DevSecOps platform delivered as a single application, providing source code management and CI/CD.",
+  "skill-container": {
+    title: "Containerization & Orchestration",
+    description: "Packaging microservices for immutability and managing them at scale across distributed nodes.",
     tabs: [
       {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Facilitated secure version control and integrated pipeline automation for development teams.</p>
-              <ul class="rich-list">
-                <li>Managed source code repositories and enforced version control best practices across agile sprints.</li>
-                <li>Utilized integrated pipelines to automate testing and code-quality enforcement prior to cloud deployments.</li>
-              </ul>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "GitLab CI",
+        name: "Kubernetes",
         type: "code",
-        filename: ".gitlab-ci.yml",
-        content: `stages:
-  - test
-  - deploy
-
-run_unit_tests:
-  stage: test
-  image: python:3.9
-  script:
-    - pip install pytest
-    - pytest tests/
-
-deploy_production:
-  stage: deploy
-  script:
-    - bash scripts/deploy_to_k8s.sh
-  only:
-    - main`
-      }
-    ]
-  },
-  "python": {
-    title: "Python & Shell Scripting",
-    description: "Python and BASH are versatile scripting languages essential for system administration, automation, and infrastructure operations.",
-    tabs: [
-      {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Developed robust operational scripts to eliminate manual toil and streamline complex processes.</p>
-              <ul class="rich-list">
-                <li>Engineered advanced Python, Shell, and Bash scripts to automate cloud deployments.</li>
-                <li>Enabled quicker release cycles and a more responsive development process by scripting repetitive administrative tasks.</li>
-              </ul>
-            </div>
-          </div>
-        `
+        filename: "deployment.yaml",
+        content: `apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: core-api\n  namespace: production\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: core-api\n  template:\n    metadata:\n      labels:\n        app: core-api\n    spec:\n      containers:\n      - name: api\n        image: registry.internal/core-api:v2.1.0\n        resources:\n          limits:\n            cpu: "500m"\n            memory: "512Mi"\n        readinessProbe:\n          httpGet:\n            path: /health\n            port: 8080`
       },
       {
-        name: "Automation Script",
-        type: "code",
-        filename: "cleanup.py",
-        content: `import boto3
-from datetime import datetime, timezone
-
-def cleanup_stale_snapshots():
-    ec2 = boto3.client('ec2')
-    snapshots = ec2.describe_snapshots(OwnerIds=['self'])['Snapshots']
-    
-    for snap in snapshots:
-        age_days = (datetime.now(timezone.utc) - snap['StartTime']).days
-        if age_days > 30:
-            ec2.delete_snapshot(SnapshotId=snap['SnapshotId'])
-            print(f"Deleted stale snapshot: {snap['SnapshotId']}")`
-      }
-    ]
-  },
-  "java": {
-    title: "Java Ecosystem",
-    description: "Java is a widely-used object-oriented programming language popular for building robust, enterprise-grade backend services.",
-    tabs: [
-      {
-        name: "My Responsibilities",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Supported developers by standardizing the build and deployment processes for enterprise Java applications.</p>
-              <ul class="rich-list">
-                <li>Optimized build systems using Maven/Gradle to integrate seamlessly into CI/CD pipelines.</li>
-                <li>Securely containerized Java backend microservices (e.g., Spring Boot) to ensure reliable, scalable operations on Kubernetes.</li>
-              </ul>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Java Dockerfile",
+        name: "Docker",
         type: "code",
         filename: "Dockerfile",
-        content: `FROM maven:3.8-eclipse-temurin-17 AS build
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-RUN mvn clean package -DskipTests
-
-FROM eclipse-temurin:17-jre-alpine
-WORKDIR /app
-COPY --from=build /app/target/api-service.jar .
-ENTRYPOINT ["java", "-jar", "api-service.jar"]`
+        content: `FROM node:18-alpine AS builder\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci\nCOPY . .\nRUN npm run build\n\nFROM nginx:alpine\nCOPY --from=builder /app/dist /usr/share/nginx/html\nEXPOSE 80\nCMD ["nginx", "-g", "daemon off;"]`
       }
     ]
   },
-  
+  "skill-iac": {
+    title: "Infrastructure as Code (IaC)",
+    description: "Managing stateful infrastructure safely using declarative code, preventing drift, and scaling rapidly.",
+    tabs: [
+      {
+        name: "Architecture",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="layers"></i> IaC Strategy</h4>
+              <p class="rich-text">Treating infrastructure entirely as software to achieve rapid disaster recovery and identical staging environments.</p>
+              <ul class="rich-list">
+                <li>Modular Terraform design keeping state files remote (S3/GCS) with DynamoDB state locking.</li>
+                <li>Executing \`terraform plan\` via CI/CD for peer review before any cloud modifications.</li>
+                <li>Utilizing Terragrunt to keep configurations DRY across multiple environments.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      }
+    ]
+  },
+  "skill-prog": {
+    title: "Programming",
+    description: "Developing robust automation frameworks and understanding developer workflows to build better platforms.",
+    tabs: [
+      {
+        name: "Python API",
+        type: "code",
+        filename: "metrics_collector.py",
+        content: `import requests\nfrom prometheus_client import Gauge, start_http_server\nimport time\n\nAPI_STATUS = Gauge('api_status', 'Status of external API (1=Up, 0=Down)')\n\ndef check_api():\n    try:\n        response = requests.get('https://api.internal/health', timeout=5)\n        if response.status_code == 200:\n            API_STATUS.set(1)\n        else:\n            API_STATUS.set(0)\n    except:\n        API_STATUS.set(0)\n\nif __name__ == '__main__':\n    start_http_server(8000)\n    while True:\n        check_api()\n        time.sleep(60)`
+      }
+    ]
+  },
+  "skill-script": {
+    title: "Systems Scripting",
+    description: "Eliminating manual toil through automated BASH and Python scripts for cluster maintenance and log parsing.",
+    tabs: [
+      {
+        name: "Bash Automation",
+        type: "code",
+        filename: "cluster-backup.sh",
+        content: `#!/bin/bash\nset -e\n\nBACKUP_DIR="/var/backups/etcd"\nDATE=$(date +%Y-%m-%d-%H-%M)\n\necho "[INFO] Starting etcd snapshot..."\nETCDCTL_API=3 etcdctl snapshot save \${BACKUP_DIR}/snapshot-\${DATE}.db \\
+  --endpoints=https://127.0.0.1:2379 \\
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \\
+  --cert=/etc/kubernetes/pki/etcd/server.crt \\
+  --key=/etc/kubernetes/pki/etcd/server.key\n\necho "[INFO] Snapshot successful. Syncing to S3..."\naws s3 cp \${BACKUP_DIR}/snapshot-\${DATE}.db s3://company-k8s-backups/etcd/`
+      }
+    ]
+  },
+
   // ----------------------------------------------------
   // METRIC CARD MODULES
   // ----------------------------------------------------
@@ -1007,7 +607,6 @@ let colorProgress = 0;
 let isColorCycling = false;
 let colorAnimFrame;
 
-// Calculates the exact color blend between two points
 function lerpColor(start, end, t) {
   return Math.round(start + (end - start) * t);
 }
@@ -1016,24 +615,20 @@ function colorLoop() {
   const current = jbColors[colorIndex];
   const next = jbColors[nextColorIndex];
 
-  // Calculate the current frame's mixed RGB value
   const r = lerpColor(current.r, next.r, colorProgress);
   const g = lerpColor(current.g, next.g, colorProgress);
   const b = lerpColor(current.b, next.b, colorProgress);
 
-  // Push the color to the website
   document.documentElement.style.setProperty('--theme-rgb', `${r}, ${g}, ${b}`);
 
   colorProgress += 0.003; 
 
-  // When a color transition finishes, queue up the next one
   if (colorProgress >= 1) {
     colorProgress = 0;
     colorIndex = nextColorIndex;
     nextColorIndex = (colorIndex + 1) % jbColors.length;
   }
   
-  // Keep the loop running
   colorAnimFrame = requestAnimationFrame(colorLoop);
 }
 
@@ -1042,13 +637,11 @@ function toggleColorCycle() {
   const icon = document.getElementById('color-cycle-icon');
   
   if (isColorCycling) {
-    // TURN ON: Start spinning and resume color loop where it left off
     icon.classList.add('color-spinning'); 
     if (!colorAnimFrame) {
       colorLoop();
     }
   } else {
-    // TURN OFF: Stop spinning and instantly FREEZE the color right where it is
     icon.classList.remove('color-spinning');
     if (colorAnimFrame) {
       cancelAnimationFrame(colorAnimFrame);
@@ -1057,24 +650,19 @@ function toggleColorCycle() {
   }
 }
 
-// Immediately stops any animation and snaps the site back to Base Purple
 function resetColorTheme() {
-  // 1. Stop the animation engine if it's currently running
   if (colorAnimFrame) {
     cancelAnimationFrame(colorAnimFrame);
     colorAnimFrame = null;
   }
   
-  // 2. Turn off the spinning state
   isColorCycling = false;
   document.getElementById('color-cycle-icon').classList.remove('color-spinning');
   
-  // 3. Reset the engine's internal memory back to the start
   colorIndex = 0;
   nextColorIndex = 1;
   colorProgress = 0;
   
-  // 4. Instantly push the Base Purple (Index 0) to the entire website
   const primary = jbColors[0];
   document.documentElement.style.setProperty('--theme-rgb', `${primary.r}, ${primary.g}, ${primary.b}`);
 }
@@ -1089,42 +677,35 @@ const hoverSound = new Audio('hover.mp3');
 const selectSound = new Audio('select.mp3'); 
 const closeSound = new Audio('close.mp3'); 
 
-// Adjust volumes to mix perfectly (Hover should be quietest, Select loudest)
 hoverSound.volume = 0.3; 
 selectSound.volume = 0.5; 
 closeSound.volume = 0.4;
 
 let isSoundUnlocked = false;
 
-// 2. Unlock all audio on the user's first click
 document.addEventListener('click', () => {
   isSoundUnlocked = true;
 }, { once: true });
 
-// 3. Universal play function (with the overlapping cloning trick)
 function playAudio(audioElement) {
   if (!isSoundUnlocked) return;
   const soundClone = audioElement.cloneNode();
   soundClone.volume = audioElement.volume;
-  soundClone.play().catch(err => { /* Fails silently if browser blocks */ });
+  soundClone.play().catch(err => { /* Fails silently */ });
 }
 
-// 4. Attach Hover and Select sounds
 const interactiveElements = document.querySelectorAll(
   'a, button, .card, .tech-item, .ide-window, .nav-pill, .logo, .theme-switch, .jb-skill-card, .clickable-card'
 );
 
 interactiveElements.forEach(el => {
-  // Play HOVER sound when mouse enters
   el.addEventListener('mouseenter', () => playAudio(hoverSound));
   
-  // Play SELECT sound on click... EXCEPT if it's the close button!
   if (!el.classList.contains('modal-close-btn')) {
     el.addEventListener('click', () => playAudio(selectSound));
   }
 });
 
-// 5. Attach CLOSE sound specifically to dismiss actions
 const closeBtn = document.querySelector('.modal-close-btn');
 if (closeBtn) {
   closeBtn.addEventListener('click', () => playAudio(closeSound));
@@ -1133,7 +714,6 @@ if (closeBtn) {
 const modalOverlay = document.getElementById('modal-overlay');
 if (modalOverlay) {
   modalOverlay.addEventListener('click', (e) => {
-    // Only play the close sound if they clicked the dark background, not the modal box itself
     if (e.target.id === 'modal-overlay') {
       playAudio(closeSound);
     }
@@ -1151,49 +731,57 @@ const lifecycleData = {
     title: "Stage: PLAN (Agile)",
     metric: "Lead Time: 2.1d",
     desc: "Sprint Architecture, Jira Backlog & Git Branching Strategy",
-    tools: ["Jira", "Confluence", "Miro", "Lucidchart"]
+    tools: ["Jira", "Confluence", "Miro", "Lucidchart"],
+    color: "#2563eb" /* Word Blue */
   },
   code: {
     title: "Stage: CODE (Source)",
     metric: "PR Velocity: 3.4h",
     desc: "Trunk-Based Development, Conventional Commits & Peer Review",
-    tools: ["Git", "GitHub", "VS Code", "IntelliJ"]
+    tools: ["Git", "GitHub", "VS Code", "IntelliJ"],
+    color: "#7c3aed" /* Teams Purple */
   },
   build: {
     title: "Stage: BUILD (Artifacts)",
     metric: "Build Avg: 42s",
     desc: "Multi-Arch Container Builds, Dependency Management & Caching",
-    tools: ["Docker", "Maven", "Gradle", "GitHub Actions"]
+    tools: ["Docker", "Maven", "Gradle", "GitHub Actions"],
+    color: "#ea580c" /* PowerPoint Orange */
   },
   test: {
     title: "Stage: TEST (QA & Sec)",
     metric: "Coverage: 91.4%",
     desc: "Automated Unit/Integration Testing, SonarQube & Trivy Scans",
-    tools: ["JUnit", "SonarQube", "Trivy", "Selenium"]
+    tools: ["JUnit", "SonarQube", "Trivy", "Selenium"],
+    color: "#16a34a" /* Excel Green */
   },
   release: {
     title: "Stage: RELEASE (Registry)",
     metric: "Zero-CVE Signed",
     desc: "Semantic Versioning, Image Tagging & Immutable Artifact Signing",
-    tools: ["Harbor", "Docker Hub", "AWS ECR", "GCP Artifact Registry"]
+    tools: ["Harbor", "Docker Hub", "AWS ECR", "GCP Artifact Registry"],
+    color: "#9333ea" /* OneNote Violet */
   },
   deploy: {
     title: "Stage: DEPLOY (GitOps)",
     metric: "Sync: Instant",
     desc: "ArgoCD Sync, Blue/Green Rollouts & Helm Chart Orchestration",
-    tools: ["Kubernetes", "Helm", "ArgoCD", "Terraform"]
+    tools: ["Kubernetes", "Helm", "ArgoCD", "Terraform"],
+    color: "#0284c7" /* OneDrive Sky */
   },
   operate: {
     title: "Stage: OPERATE (Cloud)",
     metric: "Uptime: 99.99%",
     desc: "AWS EKS, GCP GKE, Azure AKS Multi-Cloud Cluster Management",
-    tools: ["AWS", "GCP", "Azure", "OpenShift"]
+    tools: ["AWS", "GCP", "Azure", "OpenShift"],
+    color: "#0d9488" /* SharePoint Teal */
   },
   monitor: {
     title: "Stage: MONITOR (SRE)",
     metric: "MTTR: < 4 min",
     desc: "Prometheus Metrics, Grafana Dashboards & PagerDuty Alerts",
-    tools: ["Prometheus", "Grafana", "Datadog", "ELK Stack"]
+    tools: ["Prometheus", "Grafana", "Datadog", "ELK Stack"],
+    color: "#059669" /* Forms Emerald */
   }
 };
 
@@ -1202,7 +790,6 @@ function showLifecycleSpec(stageKey) {
   const data = lifecycleData[stageKey];
   const overlay = document.getElementById('lifecycle-overlay');
   
-  // Grab the footer elements
   const footer = document.querySelector('.cicd-footer');
   const footerText = document.getElementById('cicd-footer-text');
   const footerStatus = document.querySelector('.cicd-footer-status');
@@ -1213,21 +800,19 @@ function showLifecycleSpec(stageKey) {
 
   overlay.innerHTML = `
     <div class="lifecycle-title">${data.title}</div>
-    <div class="lifecycle-metric">${data.metric}</div>
+    <div class="lifecycle-metric" style="color: ${data.color} !important;">${data.metric}</div>
     <p class="lifecycle-desc">${data.desc}</p>
     <div class="lifecycle-tools">${toolsHTML}</div>
   `;
   
   overlay.classList.add('active');
 
-  // NEW: Morph the footer into a data box
   if (footer) footer.classList.add('active-box');
   if (footerText) {
     footerText.innerText = `Stage: ${stageKey.toUpperCase()}`;
     footerText.style.color = "#fff";
   }
   if (footerStatus) {
-    // Dynamically displays the tool stack separated by commas
     footerStatus.innerText = data.tools.join(", "); 
   }
 }
@@ -1240,7 +825,6 @@ function hideLifecycleSpec() {
   
   if (overlay) overlay.classList.remove('active');
   
-  // NEW: Revert the footer to default state
   if (footer) footer.classList.remove('active-box');
   if (footerText) {
     footerText.innerText = "Hover stage for specs";
