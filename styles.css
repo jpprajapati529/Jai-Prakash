@@ -397,6 +397,7 @@ body {
   align-items: flex-start !important; 
   text-align: left !important;
   justify-content: center !important;
+  margin-top: -40px !important;
 }
 
 .hero-overline-group {
