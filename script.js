@@ -1047,7 +1047,7 @@ function showLifecycleSpec(stageKey) {
   }
 }
 
-function clearLifecycleSpec() {
+function hideLifecycleSpec() {
   const overlay = document.getElementById('lifecycle-overlay');
   const footer = document.querySelector('.cicd-footer');
   const footerText = document.getElementById('cicd-footer-text');
