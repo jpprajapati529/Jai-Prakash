@@ -627,21 +627,20 @@ body {
   justify-content: flex-end; 
 }
 
-.loop-wrapper img {
+/* .loop-wrapper img {
   width: 100%;
   max-width: 420px; 
   height: auto;
-  /* THE MAGIC: Anchors the levitation scale to the right edge so the cutout stays perfectly flush with the wall */
   transform-origin: right center;
   filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3));
   animation: levitateLoop 6s ease-in-out infinite;
-}
+} */
 
-@keyframes levitateLoop {
+/* @keyframes levitateLoop {
   0% { transform: scale(1.15) translateY(0); filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3)); }
   50% { transform: scale(1.15) translateY(-12px); filter: drop-shadow(0 25px 35px rgba(var(--theme-rgb), 0.6)) brightness(1.1); }
   100% { transform: scale(1.15) translateY(0); filter: drop-shadow(0 15px 25px rgba(var(--theme-rgb), 0.3)); }
-}
+} */
 
 /* 4. 4x2 Hover Grid (SHRUNK) */
 .lifecycle-grid {
@@ -1401,6 +1400,135 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
 .lifecycle-btn:hover svg {
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) !important; /* Icon glow */
 }
+
+/* =========================================================
+   DEVOPS GLASS ORBIT CONSTELLATION 
+   ========================================================= */
+.devops-orbit-wrapper {
+  position: relative;
+  width: 100%;
+  height: 340px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 20px 0;
+}
+
+/* Center Infinity Logo */
+.orbit-center {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: linear-gradient(135deg, rgb(var(--theme-rgb)) 0%, #3b82f6 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(var(--theme-rgb), 0.4);
+  z-index: 5;
+  animation: pulseCore 3s infinite alternate;
+}
+
+.orbit-center i {
+  color: #fff;
+  width: 34px; 
+  height: 34px;
+}
+
+@keyframes pulseCore {
+  0% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.3); transform: scale(1); }
+  100% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.7), 0 0 20px rgba(59, 130, 246, 0.5); transform: scale(1.05); }
+}
+
+/* Floating Glass Nodes */
+.orbit-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.glass-panel {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* This creates the overlapping "shadow shape" behind the glass like Microsoft's logo */
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  top: -8px; right: -8px;
+  width: 36px; height: 36px;
+  background: inherit;
+  border-radius: 10px;
+  opacity: 0.4;
+  z-index: -1;
+  filter: blur(6px);
+}
+
+.glass-panel i { width: 22px; height: 22px; }
+
+.orbit-node:hover .glass-panel {
+  transform: scale(1.15) translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.orbit-node span {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.orbit-node:hover span {
+  color: #fff;
+  background: rgba(var(--theme-rgb), 0.4);
+  border-color: rgb(var(--theme-rgb));
+}
+
+/* Perfect Circular Math (Radius: 115px) */
+.node-1 { top: calc(50% - 115px); left: 50%; transform: translate(-50%, -50%); animation: floatNode 3.2s ease-in-out infinite alternate 0s; }
+.node-2 { top: calc(50% - 81px); left: calc(50% + 81px); transform: translate(-50%, -50%); animation: floatNode 2.8s ease-in-out infinite alternate 0.4s; }
+.node-3 { top: 50%; left: calc(50% + 115px); transform: translate(-50%, -50%); animation: floatNode 3.5s ease-in-out infinite alternate 0.8s; }
+.node-4 { top: calc(50% + 81px); left: calc(50% + 81px); transform: translate(-50%, -50%); animation: floatNode 3s ease-in-out infinite alternate 1.2s; }
+.node-5 { top: calc(50% + 115px); left: 50%; transform: translate(-50%, -50%); animation: floatNode 3.3s ease-in-out infinite alternate 1.6s; }
+.node-6 { top: calc(50% + 81px); left: calc(50% - 81px); transform: translate(-50%, -50%); animation: floatNode 2.9s ease-in-out infinite alternate 2.0s; }
+.node-7 { top: 50%; left: calc(50% - 115px); transform: translate(-50%, -50%); animation: floatNode 3.4s ease-in-out infinite alternate 2.4s; }
+.node-8 { top: calc(50% - 81px); left: calc(50% - 81px); transform: translate(-50%, -50%); animation: floatNode 3.1s ease-in-out infinite alternate 2.8s; }
+
+@keyframes floatNode {
+  0% { transform: translate(-50%, -50%) translateY(0px); }
+  100% { transform: translate(-50%, -50%) translateY(-10px); }
+}
+
+/* Microsoft-Style Gradients */
+.color-1 { background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(96, 165, 250, 0.5)); } /* Blue */
+.color-2 { background: linear-gradient(135deg, rgba(168, 85, 247, 0.8), rgba(192, 132, 252, 0.5)); } /* Purple */
+.color-3 { background: linear-gradient(135deg, rgba(249, 115, 22, 0.8), rgba(251, 146, 60, 0.5)); } /* Orange */
+.color-4 { background: linear-gradient(135deg, rgba(239, 68, 68, 0.8), rgba(248, 113, 113, 0.5)); } /* Red */
+.color-5 { background: linear-gradient(135deg, rgba(20, 184, 166, 0.8), rgba(45, 212, 191, 0.5)); } /* Teal */
+.color-6 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.8), rgba(74, 222, 128, 0.5)); } /* Green */
+.color-7 { background: linear-gradient(135deg, rgba(234, 179, 8, 0.8), rgba(250, 204, 21, 0.5)); } /* Yellow */
+.color-8 { background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(129, 140, 248, 0.5)); } /* Indigo */
 
 /* =========================================================
    HIGH-CONTRAST LIGHT MODE (Fully Unified UI)
