@@ -200,6 +200,7 @@ body {
   backdrop-filter: none;
   margin-bottom: 12px; 
   position: relative; /* REQUIRED: Anchor for the centered links */
+  z-index: 200; /* ADDED: Forces the entire navbar and dropdown above the hero section */
 } 
 
 /* CENTER: Navigation Links */
@@ -1737,3 +1738,4 @@ body[data-theme="light"] .term-output {
 body[data-theme="light"] .term-icon-trigger {
   color: rgb(var(--theme-rgb)) !important;
 }
+
