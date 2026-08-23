@@ -369,16 +369,17 @@ body {
    ========================================================= */
 .hero-card {
   display: flex !important;
-  flex-direction: row !important; /* Text on Left, Orbit on Right */
+  flex-direction: row !important; 
   flex-wrap: nowrap !important; 
   align-items: center !important; 
-  justify-content: center !important; /* Brings both items together in the middle */
+  justify-content: center !important; 
   
   width: 100% !important;
-  max-width: 1100px !important; 
+  max-width: 1050px !important; 
   margin: 0 auto 80px auto !important; 
   
-  gap: 60px !important; /* Controls exactly how close they are */
+  /* THE FIX: Shrunk the gap drastically to pull them close together */
+  gap: 30px !important; 
   padding-top: 40px !important; 
   padding-bottom: 40px !important;
 }
@@ -389,6 +390,10 @@ body {
   padding-right: 0 !important;
   display: flex;
   flex-direction: column;
+  
+  /* THE FIX: Forces all text, pills, and buttons to align to the RIGHT */
+  align-items: flex-end !important; 
+  text-align: right !important;
   justify-content: center !important;
 }
 
@@ -567,8 +572,8 @@ body {
   flex: 1 1 50% !important; 
   max-width: 500px !important;
   margin-top: 0 !important; 
-  justify-content: center !important; 
-}
+  justify-content: flex-start !important; 
+  display: flex;}
 
 /* 1. The Main Engine Card (SHRUNK) */
 .cicd-engine-card {
@@ -779,22 +784,23 @@ body {
 @media (max-width: 900px) {
   .hero-card {
     flex-direction: column !important; 
-    text-align: center;
     gap: 40px !important;
   }
   .hero-content-left {
-    align-items: center;
+    align-items: center !important;
+    text-align: center !important;
     max-width: 100% !important;
   }
   .hero-subtext {
-    text-align: center;
+    text-align: center !important;
     margin: 0 auto 32px auto !important;
   }
   .hero-btn-group {
-    justify-content: center;
+    justify-content: center !important;
   }
   .hero-image-right {
     max-width: 100% !important;
+    justify-content: center !important;
   }
 }
 
