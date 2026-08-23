@@ -1863,13 +1863,22 @@ body[data-theme="light"] .hero-subtext {
    *MUST STAY AT THE BOTTOM OF THE FILE TO WORK*
    ========================================================= */
 body[data-theme="light"] {
-  --bg-dark: #f6f5f0;        /* Microsoft signature warm beige background */
-  --card-bg: #ffffff;        /* Cards stay pure white to pop against the beige */
-  --card-border: #e2e8f0;    /* Softer, more elegant silver borders */
-  --text-primary: #0f172a;   /* Deep slate for crisp text */
+  --bg-dark: #ffffff;        /* Restores the rest of the site to pure white */
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;    
+  --text-primary: #0f172a;   
   --text-secondary: #475569;
   --text-muted: #94a3b8;
-  background: #f6f5f0 !important;
+  background: #ffffff !important;
+}
+
+body[data-theme="light"] .hero-card {
+  background-color: #f6f5f0 !important; /* Authentic Microsoft beige */
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 24px !important;
+  padding: 40px !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.03) !important;
+  margin-bottom: 60px !important;
 }
 
 /* 1. Global High-Contrast Typography */
