@@ -36,8 +36,7 @@
         <a href="#section-certs" class="nav-pill">Certifications</a>
         <a href="#pipeline-sim" class="nav-pill">Pipeline</a>
         <a href="#projects" class="nav-pill">Projects</a>
-        <a href="#terminal" class="nav-pill">Terminal</a>
-        <a href="#contact" class="nav-pill">Contact</a>
+        <a href="javascript:void(0)" onclick="document.getElementById('cli-input').focus()" class="nav-pill">Terminal</a>        <a href="#contact" class="nav-pill">Contact</a>
       </div>
 
       <!-- 3. RIGHT: Controls & Theme Switches -->
@@ -81,8 +80,7 @@
       <a href="#section-skills">Skills</a>
       <a href="#pipeline-sim">Pipeline</a>
       <a href="#projects">Projects</a>
-      <a href="#terminal">Terminal</a>
-      
+      <a href="javascript:void(0)" onclick="document.getElementById('cli-input').focus()" class="nav-pill">Terminal</a>      
       <!-- Certifications Dropdown -->
       <div class="nav-dropdown">
         <a href="#certifications" class="dropdown-trigger">
@@ -517,23 +515,32 @@
     </div>
   </section>
 
-  <section id="terminal" class="terminal-container">
-    <div class="terminal-header">
-      <div class="terminal-buttons">
-        <span class="btn red"></span>
-        <span class="btn yellow"></span>
-        <span class="btn green"></span>
+  <!-- =========================================================
+       FLOATING BOTTOM-LEFT CLI TERMINAL
+       ========================================================= -->
+  <div class="floating-cli-container">
+    
+    <!-- Hidden Log Window (Pops up on hover/focus) -->
+    <div class="floating-term-body" id="terminal-body">
+      <div class="term-header-mini">
+        <div class="terminal-buttons">
+          <span class="btn red"></span>
+          <span class="btn yellow"></span>
+          <span class="btn green"></span>
+        </div>
+        <span class="terminal-title">jai-prakash@control-plane:~</span>
       </div>
-      <span class="terminal-title">bash — jai-prakash@control-plane:~</span>
-    </div>
-    <div class="terminal-body" id="terminal-body">
       <p class="term-output">Terminal active. Try commands: <span class="highlight">'bash deploy.sh'</span>, <span class="highlight">'kubectl get pods'</span>, <span class="highlight">'terraform plan'</span>, or <span class="highlight">'certs'</span>.</p>
     </div>
-    <div class="terminal-input-line">
-      <span class="prompt">jaiprakash@k8s-node1:~$</span>
-      <input type="text" id="cli-input" placeholder="Type 'bash deploy.sh' to trigger GitHub repository build..." autocomplete="off" />
+
+    <!-- Single Line Expanding Input -->
+    <div class="floating-term-input" onclick="document.getElementById('cli-input').focus()">
+      <div class="term-icon-trigger"><i data-lucide="terminal"></i></div>
+      <span class="prompt">jaiprakash:~$</span>
+      <input type="text" id="cli-input" placeholder="Type 'help' or 'bash deploy.sh'..." autocomplete="off" />
     </div>
-  </section>
+    
+  </div>
 
   <!-- =========================================================
        MODAL OVERLAY

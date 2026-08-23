@@ -1588,3 +1588,152 @@ body[data-theme="light"] .tag-badge {
   color: #020617 !important;
   font-weight: 600 !important;
 }
+
+
+/* =========================================================
+   FLOATING CLI TERMINAL (Bottom Left)
+   ========================================================= */
+.floating-cli-container {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  font-family: var(--font-mono);
+}
+
+.floating-term-body {
+  background: rgba(8, 8, 12, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(var(--theme-rgb), 0.3);
+  border-radius: 12px;
+  width: 450px;
+  max-height: 0; /* Hidden by default */
+  opacity: 0;
+  overflow-y: auto;
+  margin-bottom: 12px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px rgba(var(--theme-rgb), 0.15);
+  pointer-events: none; /* Ignores clicks when collapsed */
+}
+
+.term-header-mini {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.term-output, .log-line {
+  padding: 0 16px;
+  font-size: 0.8rem;
+}
+.term-output:first-of-type { padding-top: 12px; }
+.term-output:last-of-type { padding-bottom: 16px; }
+
+/* Pop up the log window when interacting! */
+.floating-cli-container:hover .floating-term-body,
+.floating-cli-container:focus-within .floating-term-body {
+  max-height: 300px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.floating-term-input {
+  display: flex;
+  align-items: center;
+  background: rgba(8, 8, 12, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  height: 50px;
+  width: 50px; /* Collapsed state: just a small circle */
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+
+/* Expand into a full input line! */
+.floating-cli-container:hover .floating-term-input,
+.floating-cli-container:focus-within .floating-term-input {
+  width: 450px;
+  border-color: rgb(var(--theme-rgb));
+  box-shadow: 0 0 20px rgba(var(--theme-rgb), 0.3);
+  cursor: text;
+}
+
+.term-icon-trigger {
+  min-width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-green);
+  transition: color 0.3s ease;
+}
+
+.floating-cli-container:hover .term-icon-trigger,
+.floating-cli-container:focus-within .term-icon-trigger {
+  color: rgb(var(--theme-rgb));
+}
+
+.floating-term-input .prompt {
+  white-space: nowrap;
+  color: var(--accent-green);
+  font-size: 0.85rem;
+  margin-right: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.floating-term-input input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  outline: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  padding-right: 16px;
+}
+
+/* Delay the text fade-in slightly so it doesn't wrap weirdly during expansion */
+.floating-cli-container:hover .prompt,
+.floating-cli-container:focus-within .prompt,
+.floating-cli-container:hover input,
+.floating-cli-container:focus-within input {
+  opacity: 1;
+  transition-delay: 0.15s; 
+}
+
+/* 8. Floating CLI Terminal (Light Mode) */
+body[data-theme="light"] .floating-term-body,
+body[data-theme="light"] .floating-term-input,
+body[data-theme="light"] .term-header-mini {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
+}
+body[data-theme="light"] .floating-cli-container:hover .floating-term-input,
+body[data-theme="light"] .floating-cli-container:focus-within .floating-term-input {
+  border-color: rgb(var(--theme-rgb)) !important;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.15) !important;
+}
+body[data-theme="light"] .floating-term-input input,
+body[data-theme="light"] .terminal-title,
+body[data-theme="light"] .term-output {
+  color: #020617 !important;
+}
+body[data-theme="light"] .term-icon-trigger {
+  color: rgb(var(--theme-rgb)) !important;
+}
