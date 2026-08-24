@@ -2501,3 +2501,82 @@ body[data-theme="light"] .dashboard-section:hover {
   box-shadow: 0 24px 55px rgba(0, 0, 0, 0.17) !important;
   border-color: rgba(var(--theme-rgb), 0.4) !important;
 }
+
+
+/* =========================================================
+   1. RESTORE MASTER LIGHT MODE VARIABLES & BEIGE BACKGROUND
+   ========================================================= */
+body[data-theme="light"] {
+  --bg-dark: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;    
+  --text-primary: #0f172a;   
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  background: #ffffff !important; /* Restores global pure white background */
+  overflow-x: hidden !important;  /* Keeps the edge-to-edge beige working safely */
+}
+
+/* Paints the Microsoft warm beige full-width safely */
+body[data-theme="light"] .hero-card {
+  position: relative !important;
+  background-color: transparent !important; 
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 60px 24px !important;
+  margin-bottom: 60px !important;
+}
+
+body[data-theme="light"] .hero-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background-color: #f6f5f0 !important; /* Authentic Microsoft warm beige */
+  z-index: -1;
+}
+
+/* =========================================================
+   2. LIGHT MODE FIX FOR NEW NETWORK SLIDE (Slide 2)
+   ========================================================= */
+/* Turns the dark nodes into clean, white elevated cards */
+body[data-theme="light"] .network-node {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+body[data-theme="light"] .network-node:hover {
+  border-color: rgb(var(--theme-rgb)) !important;
+  box-shadow: 0 10px 25px rgba(var(--theme-rgb), 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Softens the skeleton loaders */
+body[data-theme="light"] .skel-line {
+  background: #e2e8f0 !important;
+}
+
+/* Lightens the logo wrappers and brings back original colorful logos! */
+body[data-theme="light"] .node-icon-wrapper {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+body[data-theme="light"] .node-icon {
+  filter: none !important; /* Removes the white wash so colorful logos appear! */
+}
+
+/* Softens the neon lines so they look clean on beige */
+body[data-theme="light"] .network-lines-svg path {
+  stroke: rgba(var(--theme-rgb), 0.4) !important;
+  filter: none !important;
+}
+
+body[data-theme="light"] .network-bottom-glow {
+  background: radial-gradient(ellipse at bottom, rgba(var(--theme-rgb), 0.15) 0%, transparent 60%) !important;
+}
