@@ -5,16 +5,12 @@
    ========================================================= */
 
 /* =========================================================
-   HERO SLIDESHOW PHYSICS (Microsoft Fade/Lift Style)
-   ========================================================= */
-
-/* =========================================================
-   NETWORK HERO SLIDE (Slide 2 - Dark Mode)
+   NETWORK HERO SLIDE (Slide 2 - TeamCity JetBrains Style)
    ========================================================= */
 .network-hero-inner {
   position: relative;
   width: 1000px;
-  height: 520px;
+  height: 560px;
   margin: 0 auto;
 }
 
@@ -29,6 +25,18 @@
   text-align: center;
 }
 
+.network-bottom-glow {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 250px;
+  background: radial-gradient(ellipse at bottom, rgba(var(--theme-rgb), 0.35) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .network-lines-svg {
   position: absolute;
   top: 0;
@@ -39,76 +47,80 @@
   pointer-events: none;
 }
 
-/* Draws the glowing data paths */
+/* Steady Neon Paths (No Dashes, No Moving) */
 .network-lines-svg path {
   fill: none;
-  stroke: rgba(var(--theme-rgb), 0.4);
+  stroke: rgba(var(--theme-rgb), 0.8); /* Solid neon line */
   stroke-width: 1.5;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 5px rgba(var(--theme-rgb), 0.6));
-  
-  /* Creates the dashed animation for flowing data! */
-  stroke-dasharray: 8 6;
-  animation: dataFlow 20s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(var(--theme-rgb), 1)); /* Bright surrounding glow */
 }
 
-@keyframes dataFlow {
-  from { stroke-dashoffset: 500; }
-  to { stroke-dashoffset: 0; }
-}
-
+/* -------------------------------------------
+   THE NODES (Skeletons & Logos)
+   ------------------------------------------- */
 .network-node {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 14px;
-  background: rgba(11, 13, 20, 0.95);
-  border: 1px solid rgba(var(--theme-rgb), 0.5);
+  justify-content: space-between;
+  width: 140px;
+  height: 52px;
+  padding: 0 14px;
+  background: #060910; /* Very dark background */
+  border: 1px solid rgba(var(--theme-rgb), 1); /* Neon border matching theme */
   border-radius: 8px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(var(--theme-rgb), 0.15);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.3), inset 0 0 10px rgba(var(--theme-rgb), 0.15);
   z-index: 5;
-  animation: floatNode 5s ease-in-out infinite alternate;
-  white-space: nowrap;
+}
+
+/* Left side: Skeleton Loaders */
+.node-skeletons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skel-line {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  height: 6px;
+}
+.skel-line.long { width: 35px; }
+.skel-line.short { width: 22px; }
+
+/* Right side: Circular Logo Container */
+.node-icon-wrapper {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .node-icon {
-  width: 18px;
-  height: 18px;
+  width: 15px;
+  height: 15px;
   object-fit: contain;
-  /* Turns the colorful logos bright white for dark mode */
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1); /* Forces all logos to be solid white */
 }
 
-.node-text {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #e2e8f0;
-  letter-spacing: 0.5px;
-}
+/* Exact Static Placement */
+.n-aws  { top: 60px; left: 80px; }
+.n-k8s  { top: 170px; left: 260px; }
+.n-tf   { top: 280px; left: 60px; }
+.n-gh   { top: 380px; left: 280px; }
+.n-jenk { top: 480px; left: 100px; }
 
-/* Node Hover Animation */
-@keyframes floatNode {
-  0% { transform: translate(-50%, -50%) translateY(0); }
-  100% { transform: translate(-50%, -50%) translateY(-8px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(var(--theme-rgb), 0.3); }
-}
+.n-azu  { top: 60px; left: 770px; }
+.n-gcp  { top: 170px; left: 590px; }
+.n-doc  { top: 280px; left: 790px; }
+.n-helm { top: 380px; left: 570px; }
+.n-azdo { top: 480px; left: 750px; }
 
-/* Exact placement to sit at the end of the SVG paths */
-.n-aws  { top: 80px; left: 120px; animation-delay: 0s; }
-.n-k8s  { top: 150px; left: 280px; animation-delay: -1s; }
-.n-tf   { top: 250px; left: 80px; animation-delay: -2s; }
-.n-gh   { top: 320px; left: 240px; animation-delay: -0.5s; }
-.n-jenk { top: 420px; left: 100px; animation-delay: -1.5s; }
-
-.n-azu  { top: 80px; left: 880px; animation-delay: -0.5s; }
-.n-gcp  { top: 150px; left: 720px; animation-delay: -1.5s; }
-.n-doc  { top: 250px; left: 920px; animation-delay: -2.5s; }
-.n-helm { top: 320px; left: 760px; animation-delay: -1s; }
-.n-azdo { top: 420px; left: 900px; animation-delay: -0s; }
-
-/* Responsive scaling for laptops & mobile */
+/* Responsive scaling */
 @media (max-width: 1050px) { .network-hero-inner { transform: scale(0.8); } }
 @media (max-width: 850px) { 
   .network-hero-inner { transform: scale(0.6); margin-top: -50px; margin-bottom: -50px; } 

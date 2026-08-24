@@ -225,56 +225,85 @@
     </div>
   </div>
 
-  <!-- ================= SLIDE 2: NEW CLOUD ARCHITECTURE ================= -->
 <!-- ================= SLIDE 2: DEVOPS NETWORK ARCHITECTURE ================= -->
   <div class="hero-slide">
     <div class="hero-card" style="padding: 0 !important; overflow: visible; justify-content: center !important;">
       
       <div class="network-hero-inner">
         
-        <!-- The Glowing Animated Data Paths -->
-        <svg class="network-lines-svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax meet">
+        <!-- Base Neon Glow at the Bottom -->
+        <div class="network-bottom-glow"></div>
+
+        <!-- Static Neon Right-Angle Paths (TeamCity Style) -->
+        <svg class="network-lines-svg" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMax meet">
           <!-- Left side paths -->
-          <path d="M500,500 L485,460 L120,440 L120,80" />
-          <path d="M500,500 L490,470 L280,450 L280,150" />
-          <path d="M500,500 L475,480 L80,470 L80,250" />
-          <path d="M500,500 L480,485 L240,480 L240,320" />
-          <path d="M500,500 L460,495 L100,495 L100,420" />
+          <path d="M 500 560 L 500 520 Q 500 510 490 510 L 165 510 Q 155 510 155 500 L 155 112" />
+          <path d="M 500 560 L 500 535 Q 500 525 490 525 L 345 525 Q 335 525 335 515 L 335 222" />
+          <path d="M 500 560 L 500 550 Q 500 540 490 540 L 145 540 Q 135 540 135 530 L 135 332" />
+          <path d="M 500 560 L 500 558 Q 500 548 490 548 L 365 548 Q 355 548 355 538 L 355 432" />
+          <path d="M 500 560 L 500 565 Q 500 555 490 555 L 185 555 Q 175 555 175 545 L 175 532" />
+          
           <!-- Right side paths -->
-          <path d="M500,500 L515,460 L880,440 L880,80" />
-          <path d="M500,500 L510,470 L720,450 L720,150" />
-          <path d="M500,500 L525,480 L920,470 L920,250" />
-          <path d="M500,500 L520,485 L760,480 L760,320" />
-          <path d="M500,500 L540,495 L900,495 L900,420" />
+          <path d="M 500 560 L 500 520 Q 500 510 510 510 L 835 510 Q 845 510 845 500 L 845 112" />
+          <path d="M 500 560 L 500 535 Q 500 525 510 525 L 655 525 Q 665 525 665 515 L 665 222" />
+          <path d="M 500 560 L 500 550 Q 500 540 510 540 L 855 540 Q 865 540 865 530 L 865 332" />
+          <path d="M 500 560 L 500 558 Q 500 548 510 548 L 635 548 Q 645 548 645 538 L 645 432" />
+          <path d="M 500 560 L 500 565 Q 500 555 510 555 L 815 555 Q 825 555 825 545 L 825 532" />
         </svg>
 
         <!-- Central Typography -->
         <div class="network-center-content">
-          <div class="hero-overline-group" style="justify-content: center;">
-            <span class="name-pill" style="color: #00d2b4; border-color: rgba(0,210,180,0.5); background: rgba(0,210,180,0.05);">ENTERPRISE PLATFORM ARCHITECTURE</span>
-          </div>
-          <h1 class="hero-headline" style="text-align: center;">Infrastructure has <span class="gradient-text">Evolved.</span></h1>
-          <p class="hero-subtext" style="text-align: center; margin: 0 auto 32px auto; max-width: 90%;">Architecting resilient, highly-available CI/CD platforms, enforcing GitOps workflows, and managing stateful infrastructure at massive scale.</p>
-          <div class="hero-btn-group" style="justify-content: center;">
-            <!-- Buttons linked to your sections! -->
-            <a href="#section-skills" class="hero-btn-primary" style="background: rgb(var(--theme-rgb)) !important;">Skill Set <i data-lucide="settings"></i></a>
-            <a href="#tech-marquee-section" class="hero-btn-outline">Tech Marquee <i data-lucide="repeat"></i></a>
+          <h1 class="hero-headline" style="text-align: center; margin-bottom: 24px;">Infrastructure has <span class="gradient-text">Evolved.</span></h1>
+          <p class="hero-subtext" style="text-align: center; margin: 0 auto 36px auto; max-width: 90%; font-size: 1.05rem;">Architecting resilient, highly-available CI/CD platforms, enforcing GitOps workflows, and managing stateful infrastructure at massive scale.</p>
+          <div class="hero-btn-group" style="justify-content: center; gap: 16px;">
+            <a href="#section-skills" class="hero-btn-primary" style="background: #ffffff !important; color: #000 !important; padding: 12px 28px; border-radius: 100px;">Skill Set</a>
+            <a href="#tech-marquee-section" class="hero-btn-outline" style="border-radius: 100px; padding: 12px 28px;">Tech Marquee</a>
           </div>
         </div>
 
         <!-- Floating Nodes (Left) -->
-        <div class="network-node n-aws"><img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" class="node-icon"><span class="node-text">AWS</span></div>
-        <div class="network-node n-k8s"><img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" class="node-icon"><span class="node-text">Kubernetes</span></div>
-        <div class="network-node n-tf"><img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" class="node-icon"><span class="node-text">Terraform</span></div>
-        <div class="network-node n-gh"><img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" class="node-icon"><span class="node-text">GitHub Actions</span></div>
-        <div class="network-node n-jenk"><img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" class="node-icon"><span class="node-text">Jenkins</span></div>
+        <div class="network-node n-aws">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" class="node-icon"></div>
+        </div>
+        <div class="network-node n-k8s">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" class="node-icon"></div>
+        </div>
+        <div class="network-node n-tf">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" class="node-icon"></div>
+        </div>
+        <div class="network-node n-gh">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" class="node-icon"></div>
+        </div>
+        <div class="network-node n-jenk">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" class="node-icon"></div>
+        </div>
         
         <!-- Floating Nodes (Right) -->
-        <div class="network-node n-azu"><img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" class="node-icon"><span class="node-text">Azure</span></div>
-        <div class="network-node n-gcp"><img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" class="node-icon"><span class="node-text">GCP</span></div>
-        <div class="network-node n-doc"><img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" class="node-icon"><span class="node-text">Docker</span></div>
-        <div class="network-node n-helm"><img src="https://www.vectorlogo.zone/logos/helmsh/helmsh-icon.svg" class="node-icon"><span class="node-text">Helm</span></div>
-        <div class="network-node n-azdo"><img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" class="node-icon"><span class="node-text">Azure DevOps</span></div>
+        <div class="network-node n-azu">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" class="node-icon"></div>
+        </div>
+        <div class="network-node n-gcp">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" class="node-icon"></div>
+        </div>
+        <div class="network-node n-doc">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" class="node-icon"></div>
+        </div>
+        <div class="network-node n-helm">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/helmsh/helmsh-icon.svg" class="node-icon"></div>
+        </div>
+        <div class="network-node n-azdo">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" class="node-icon"></div>
+        </div>
 
       </div>
     </div>
