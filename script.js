@@ -1138,35 +1138,59 @@ window.addEventListener('load', () => {
 
 
 // =========================================================
-// SWIPE GESTURE CONTROLS (Mobile Touch Support)
+// SWIPE GESTURE CONTROLS (Mobile Touch & Trackpad Support)
 // =========================================================
 const sliderWrapper = document.querySelector('.hero-slider-wrapper');
 let touchStartX = 0;
 let touchEndX = 0;
+let isTrackpadSwiping = false;
 
 if (sliderWrapper) {
-  // 1. Record the starting X position when the finger touches the screen
+  // 1. MOBILE TOUCH GESTURES
   sliderWrapper.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
   }, { passive: true });
 
-  // 2. Record the ending X position when the finger lifts off
   sliderWrapper.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
     handleSwipe();
   }, { passive: true });
+
+  // 2. LAPTOP TRACKPAD GESTURES (Two-finger swipe)
+  sliderWrapper.addEventListener('wheel', (e) => {
+    // Check if the scroll is mostly horizontal and strong enough
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 20) {
+      e.preventDefault(); // Prevents the browser from navigating back/forward in history
+
+      // If we aren't already in the middle of a swipe cooldown
+      if (!isTrackpadSwiping) {
+        isTrackpadSwiping = true;
+
+        if (e.deltaX > 0) {
+          showSlide(currentSlide + 1); // Swiped Left -> Next Slide
+        } else {
+          showSlide(currentSlide - 1); // Swiped Right -> Previous Slide
+        }
+        
+        resetSlideTimer();
+
+        // Lock the trackpad swipe for 800ms so it doesn't trigger 50 times in one gesture
+        setTimeout(() => {
+          isTrackpadSwiping = false;
+        }, 800);
+      }
+    }
+  }, { passive: false });
 }
 
 function handleSwipe() {
-  const swipeThreshold = 50; // Minimum pixel distance to trigger a swipe
+  const swipeThreshold = 50; 
   const swipeDistance = touchStartX - touchEndX;
 
   if (swipeDistance > swipeThreshold) {
-    // Finger swiped Left -> Go to NEXT slide
     showSlide(currentSlide + 1);
     resetSlideTimer();
   } else if (swipeDistance < -swipeThreshold) {
-    // Finger swiped Right -> Go to PREVIOUS slide
     showSlide(currentSlide - 1);
     resetSlideTimer();
   }
