@@ -1224,7 +1224,7 @@ function toggleInfinityLoop() {
 }
 
 // =========================================================
-// NAV DEPLOY BUTTON LOGIC (Scroll & Easter Egg)
+// NAV DEPLOY BUTTON LOGIC (Scroll & Easter Egg Toggle)
 // =========================================================
 function navDeployClick() {
   // 1. Scroll smoothly to the very top of the page
@@ -1235,17 +1235,13 @@ function navDeployClick() {
     setSlide(0);
   }
 
-  // 3. Smart Trigger: Only turn the loop ON if it isn't already active!
-  const orbitWrapper = document.querySelector('.ms-orbit-wrapper');
-  
+  // 3. Toggle the Easter Egg! (Switches back and forth every click)
   const triggerEasterEgg = () => {
-    if (orbitWrapper && !orbitWrapper.classList.contains('infinity-mode')) {
-      toggleInfinityLoop();
-    }
+    toggleInfinityLoop();
   };
 
   // If the user is scrolling up from the bottom, wait 600ms for them to arrive.
-  // If they are already at the top, trigger it instantly.
+  // If they are already at the top, toggle it instantly.
   if (window.scrollY > 300) {
     setTimeout(triggerEasterEgg, 600);
   } else {
