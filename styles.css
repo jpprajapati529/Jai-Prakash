@@ -57,59 +57,81 @@
   filter: drop-shadow(0 0 4px rgba(var(--theme-rgb), 0.8)); 
 }
 
-/* THE NODES */
+
+/* -------------------------------------------
+   THE NODES (Premium JetBrains Size & Glass Look)
+   ------------------------------------------- */
 .network-node {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 120px;
-  height: 48px;
-  padding: 0 12px;
-  background: #060910; 
-  border: 1px solid rgba(var(--theme-rgb), 0.5); 
-  border-radius: 6px;
-  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.1), inset 0 0 10px rgba(var(--theme-rgb), 0.1);
+  width: 150px;       /* 30px Wider */
+  height: 56px;       /* 8px Taller */
+  padding: 0 16px;    /* Slightly more internal padding */
+  
+  /* The Translucent JetBrains Frosted Glass Effect */
+  background: rgba(4, 10, 25, 0.65); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  border: 1px solid rgba(var(--theme-rgb), 0.4); 
+  border-radius: 10px; /* Slightly rounder, softer corners */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(var(--theme-rgb), 0.15);
   z-index: 5;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
+/* Richer hover effect */
 .network-node:hover {
   border-color: rgba(var(--theme-rgb), 1);
-  box-shadow: 0 0 20px rgba(var(--theme-rgb), 0.4), inset 0 0 10px rgba(var(--theme-rgb), 0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(var(--theme-rgb), 0.3), inset 0 0 15px rgba(var(--theme-rgb), 0.2);
   transform: translateY(-2px);
+  background: rgba(8, 14, 30, 0.85); /* Darkens slightly when hovered */
 }
 
-.node-skeletons { display: flex; flex-direction: column; gap: 6px; }
-.skel-line { background: rgba(255, 255, 255, 0.15); border-radius: 10px; height: 5px; }
-.skel-line.long { width: 35px; }
-.skel-line.short { width: 22px; }
+/* Left side: Skeleton Loaders (Scaled up to match bigger boxes) */
+.node-skeletons { display: flex; flex-direction: column; gap: 8px; }
+.skel-line { background: rgba(255, 255, 255, 0.12); border-radius: 10px; height: 6px; }
+.skel-line.long { width: 45px; }
+.skel-line.short { width: 28px; }
 
+/* Right side: Circular Logo Container (Scaled up) */
 .node-icon-wrapper {
-  width: 28px; height: 28px; border-radius: 6px; background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15); display: flex; align-items: center; justify-content: center;
+  width: 32px; 
+  height: 32px; 
+  border-radius: 8px; 
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
 }
-.node-icon { width: 16px; height: 16px; object-fit: contain; filter: brightness(0) invert(1); }
+.node-icon { width: 18px; height: 18px; object-fit: contain; filter: brightness(0) invert(1); }
 
-/* Exact Static Edge-Hugging Placement (Matched perfectly to the sweeping SVG curves) */
-.n-tf   { top: 40px;  left: -30px; } /* Furthest left, bleeding off edge */
-.n-aws  { top: 110px; left: 90px; }  /* Inner left */
-.n-k8s  { top: 190px; left: 10px; }  /* Mid left */
-.n-gh   { top: 270px; left: 120px; } /* Inner left */
-.n-jenk { top: 320px; left: -10px; } /* Bottom left */
+/* -------------------------------------------
+   Exact Static Placement (Recalculated for 150x56 boxes)
+   These coordinates perfectly target the X/Y endpoints of your SVG!
+   ------------------------------------------- */
+/* LEFT SIDE (Outermost to Innermost) */
+.n-tf   { top: 60px;  left: -45px; } /* Bleeds off left edge */
+.n-jenk { top: 340px; left: -25px; } 
+.n-k8s  { top: 210px; left: -5px; }  
+.n-aws  { top: 130px; left: 75px; }  
+.n-gh   { top: 290px; left: 105px; } 
 
-.n-gcp  { top: 40px;  left: 910px; } /* Furthest right, bleeding off edge */
-.n-azu  { top: 110px; left: 790px; } /* Inner right */
-.n-doc  { top: 190px; left: 870px; } /* Mid right */
-.n-helm { top: 270px; left: 760px; } /* Inner right */
-.n-azdo { top: 320px; left: 890px; } /* Bottom right */
+/* RIGHT SIDE (Outermost to Innermost) */
+.n-gcp  { top: 60px;  left: 895px; } /* Bleeds off right edge */
+.n-azdo { top: 340px; left: 875px; } 
+.n-doc  { top: 210px; left: 855px; } 
+.n-azu  { top: 130px; left: 775px; } 
+.n-helm { top: 290px; left: 745px; } 
 
 /* Responsive scaling */
 @media (max-width: 1050px) { .network-hero-inner { transform: scale(0.8); } }
 @media (max-width: 850px) { .network-hero-inner { transform: scale(0.6); margin-top: -50px; margin-bottom: -50px; } }
-@media (max-width: 600px) { .network-hero-inner { transform: scale(0.4); margin-top: -100px; margin-bottom: -100px; } .hero-slide-controls { margin-top: -100px !important; } }
-   
+@media (max-width: 600px) { .network-hero-inner { transform: scale(0.4); margin-top: -100px; margin-bottom: -100px; } .hero-slide-controls { margin-top: -100px !important; } }  
 /* =========================================================
    HERO SLIDESHOW PHYSICS (Classic Fade Layout)
    ========================================================= */
