@@ -1201,11 +1201,22 @@ function handleSwipe() {
 // =========================================================
 function toggleInfinityLoop() {
   const orbitWrapper = document.querySelector('.ms-orbit-wrapper');
+  
   if (orbitWrapper) {
-    // Toggles the class that triggers the CSS coordinate change
-    orbitWrapper.classList.toggle('infinity-mode');
+    // Toggles the class and checks if the loop is currently active
+    const isInfinityMode = orbitWrapper.classList.toggle('infinity-mode');
     
-    // Play your UI select sound for that extra tactile feel!
+    // SLIDESHOW PAUSE/PLAY LOGIC
+    if (isInfinityMode) {
+      // Easter Egg Active: Forcefully clear the slideshow timer
+      clearInterval(slideInterval);
+    } else {
+      // Easter Egg Disabled: Safely restart the timer 
+      // (This automatically respects the pause button if the user already clicked it!)
+      startSlideTimer();
+    }
+    
+    // Play your UI select sound for that extra tactile feel
     if (typeof playAudio === 'function' && typeof selectSound !== 'undefined') {
       playAudio(selectSound);
     }
