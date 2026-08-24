@@ -5,13 +5,14 @@
    ========================================================= */
 
 /* =========================================================
-   NETWORK HERO SLIDE (Slide 2 - TeamCity JetBrains Style)
+   NETWORK HERO SLIDE (Slide 2 - Static JetBrains Style)
    ========================================================= */
 .network-hero-inner {
   position: relative;
   width: 1000px;
-  height: 560px;
+  height: 600px; /* Taller to allow the bottom bundle to route smoothly */
   margin: 0 auto;
+  overflow: hidden; /* Clips the lines perfectly at the bottom */
 }
 
 .network-center-content {
@@ -20,18 +21,18 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  max-width: 600px;
+  max-width: 540px; /* Safely constrained so text NEVER touches the inner lines */
   z-index: 10;
   text-align: center;
 }
 
 .network-bottom-glow {
   position: absolute;
-  bottom: -50px;
+  bottom: -40px;
   left: 50%;
   transform: translateX(-50%);
-  width: 600px;
-  height: 250px;
+  width: 400px;
+  height: 150px;
   background: radial-gradient(ellipse at bottom, rgba(var(--theme-rgb), 0.35) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
@@ -47,16 +48,16 @@
   pointer-events: none;
 }
 
-/* Steady Neon Paths (No Dashes, No Moving) */
+/* Steady Solid Neon Paths (No Dashes) */
 .network-lines-svg path {
   fill: none;
-  stroke: rgba(var(--theme-rgb), 0.8); /* Solid neon line */
+  stroke: rgba(var(--theme-rgb), 0.7); 
   stroke-width: 1.5;
-  filter: drop-shadow(0 0 6px rgba(var(--theme-rgb), 1)); /* Bright surrounding glow */
+  filter: drop-shadow(0 0 4px rgba(var(--theme-rgb), 0.8)); 
 }
 
 /* -------------------------------------------
-   THE NODES (Skeletons & Logos)
+   THE NODES (Static Skeletons & Logos)
    ------------------------------------------- */
 .network-node {
   position: absolute;
@@ -66,11 +67,21 @@
   width: 140px;
   height: 52px;
   padding: 0 14px;
-  background: #060910; /* Very dark background */
-  border: 1px solid rgba(var(--theme-rgb), 1); /* Neon border matching theme */
+  background: rgba(8, 12, 20, 0.9); /* Deep dark background */
+  border: 1px solid rgba(var(--theme-rgb), 0.6); /* Steady neon border */
   border-radius: 8px;
-  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.3), inset 0 0 10px rgba(var(--theme-rgb), 0.15);
+  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.15), inset 0 0 10px rgba(var(--theme-rgb), 0.1);
+  backdrop-filter: blur(8px);
   z-index: 5;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Very subtle interaction to feel native, but no wild floating */
+.network-node:hover {
+  border-color: rgba(var(--theme-rgb), 1);
+  box-shadow: 0 0 20px rgba(var(--theme-rgb), 0.4), inset 0 0 10px rgba(var(--theme-rgb), 0.2);
+  transform: translateY(-2px);
 }
 
 /* Left side: Skeleton Loaders */
@@ -107,20 +118,20 @@
   filter: brightness(0) invert(1); /* Forces all logos to be solid white */
 }
 
-/* Exact Static Placement */
-.n-aws  { top: 60px; left: 80px; }
-.n-k8s  { top: 170px; left: 260px; }
-.n-tf   { top: 280px; left: 60px; }
-.n-gh   { top: 380px; left: 280px; }
-.n-jenk { top: 480px; left: 100px; }
+/* Staggered Mathematical Placement (Perfectly matches SVG path ends) */
+.n-tf   { top: 260px; left: 20px; }
+.n-aws  { top: 60px;  left: 40px; }
+.n-jenk { top: 460px; left: 60px; }
+.n-gh   { top: 360px; left: 80px; }
+.n-k8s  { top: 160px; left: 100px; }
 
-.n-azu  { top: 60px; left: 770px; }
-.n-gcp  { top: 170px; left: 590px; }
-.n-doc  { top: 280px; left: 790px; }
-.n-helm { top: 380px; left: 570px; }
-.n-azdo { top: 480px; left: 750px; }
+.n-gcp  { top: 160px; left: 760px; }
+.n-helm { top: 360px; left: 780px; }
+.n-azu  { top: 60px;  left: 800px; }
+.n-azdo { top: 460px; left: 820px; }
+.n-doc  { top: 260px; left: 840px; }
 
-/* Responsive scaling */
+/* Responsive scaling ensures paths never break or overlap on small screens */
 @media (max-width: 1050px) { .network-hero-inner { transform: scale(0.8); } }
 @media (max-width: 850px) { 
   .network-hero-inner { transform: scale(0.6); margin-top: -50px; margin-bottom: -50px; } 
