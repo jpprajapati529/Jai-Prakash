@@ -7,10 +7,14 @@
 /* =========================================================
    NETWORK HERO SLIDE (Slide 2 - Static JetBrains Style)
    ========================================================= */
+/* =========================================================
+   NETWORK HERO SLIDE (Slide 2 - Static JetBrains Style)
+   ========================================================= */
 .network-hero-inner {
   position: relative;
   width: 1000px;
-  height: 640px; /* Taller to allow the bottom bundle to route smoothly without cutting off */
+  /* THE MAGIC FIX: This exact 440px matches Slide 1, stopping the dots from jumping! */
+  height: 440px; 
   margin: 0 auto;
   overflow: hidden; 
 }
@@ -22,10 +26,27 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  max-width: 460px; /* Forces text to wrap so it never touches the lines */
+  max-width: 420px; 
   z-index: 10;
   text-align: center;
 }
+
+/* ... (Keep your existing SVG Path, Node, and Logo CSS here) ... */
+
+/* -------------------------------------------
+   Exact Static Placement (Centered exactly on the new 440px SVG lines) 
+   ------------------------------------------- */
+.n-tf   { top: 60px;  left: 0px; }
+.n-jenk { top: 240px; left: 50px; }
+.n-aws  { top: 120px; left: 100px; }
+.n-gh   { top: 300px; left: 150px; }
+.n-k8s  { top: 180px; left: 200px; }
+
+.n-gcp  { top: 180px; left: 680px; }
+.n-helm { top: 300px; left: 730px; }
+.n-azu  { top: 120px; left: 780px; }
+.n-azdo { top: 240px; left: 830px; }
+.n-doc  { top: 60px;  left: 880px; }
 
 /* Gradient fade at the bottom to smoothly hide the line origins */
 .network-bottom-glow {
