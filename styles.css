@@ -10,32 +10,34 @@
 .network-hero-inner {
   position: relative;
   width: 1000px;
-  height: 600px; /* Taller to allow the bottom bundle to route smoothly */
+  height: 640px; /* Taller to allow the bottom bundle to route smoothly without cutting off */
   margin: 0 auto;
-  overflow: hidden; /* Clips the lines perfectly at the bottom */
+  overflow: hidden; 
 }
 
+/* Center text safely positioned between the wide neon tracks */
 .network-center-content {
   position: absolute;
-  top: 45%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  max-width: 540px; /* Safely constrained so text NEVER touches the inner lines */
+  max-width: 460px; /* Forces text to wrap so it never touches the lines */
   z-index: 10;
   text-align: center;
 }
 
+/* Gradient fade at the bottom to smoothly hide the line origins */
 .network-bottom-glow {
   position: absolute;
-  bottom: -40px;
+  bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 400px;
+  width: 600px;
   height: 150px;
   background: radial-gradient(ellipse at bottom, rgba(var(--theme-rgb), 0.35) 0%, transparent 60%);
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
 }
 
 .network-lines-svg {
@@ -48,7 +50,7 @@
   pointer-events: none;
 }
 
-/* Steady Solid Neon Paths (No Dashes) */
+/* Steady Solid Neon Paths (No crossing, perfectly routed) */
 .network-lines-svg path {
   fill: none;
   stroke: rgba(var(--theme-rgb), 0.7); 
@@ -57,27 +59,26 @@
 }
 
 /* -------------------------------------------
-   THE NODES (Static Skeletons & Logos)
+   THE NODES (Skeleton style, no text)
    ------------------------------------------- */
 .network-node {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 140px;
-  height: 52px;
-  padding: 0 14px;
-  background: rgba(8, 12, 20, 0.9); /* Deep dark background */
-  border: 1px solid rgba(var(--theme-rgb), 0.6); /* Steady neon border */
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.15), inset 0 0 10px rgba(var(--theme-rgb), 0.1);
-  backdrop-filter: blur(8px);
+  width: 120px;
+  height: 48px;
+  padding: 0 12px;
+  background: #060910; /* Deep dark background */
+  border: 1px solid rgba(var(--theme-rgb), 0.5); /* Steady neon border */
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(var(--theme-rgb), 0.1), inset 0 0 10px rgba(var(--theme-rgb), 0.1);
   z-index: 5;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-/* Very subtle interaction to feel native, but no wild floating */
+/* Subtle glow interaction */
 .network-node:hover {
   border-color: rgba(var(--theme-rgb), 1);
   box-shadow: 0 0 20px rgba(var(--theme-rgb), 0.4), inset 0 0 10px rgba(var(--theme-rgb), 0.2);
@@ -94,7 +95,7 @@
 .skel-line {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 10px;
-  height: 6px;
+  height: 5px;
 }
 .skel-line.long { width: 35px; }
 .skel-line.short { width: 22px; }
@@ -103,33 +104,33 @@
 .node-icon-wrapper {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px; /* JetBrains squircle shape */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .node-icon {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   object-fit: contain;
   filter: brightness(0) invert(1); /* Forces all logos to be solid white */
 }
 
-/* Staggered Mathematical Placement (Perfectly matches SVG path ends) */
-.n-tf   { top: 260px; left: 20px; }
-.n-aws  { top: 60px;  left: 40px; }
+/* Exact Static Placement (Centered exactly on their individual SVG lines) */
+.n-tf   { top: 260px; left: 0px; }
 .n-jenk { top: 460px; left: 60px; }
-.n-gh   { top: 360px; left: 80px; }
-.n-k8s  { top: 160px; left: 100px; }
+.n-aws  { top: 60px;  left: 120px; }
+.n-gh   { top: 360px; left: 180px; }
+.n-k8s  { top: 160px; left: 240px; }
 
-.n-gcp  { top: 160px; left: 760px; }
-.n-helm { top: 360px; left: 780px; }
-.n-azu  { top: 60px;  left: 800px; }
+.n-gcp  { top: 160px; left: 640px; }
+.n-helm { top: 360px; left: 700px; }
+.n-azu  { top: 60px;  left: 760px; }
 .n-azdo { top: 460px; left: 820px; }
-.n-doc  { top: 260px; left: 840px; }
+.n-doc  { top: 260px; left: 880px; }
 
 /* Responsive scaling ensures paths never break or overlap on small screens */
 @media (max-width: 1050px) { .network-hero-inner { transform: scale(0.8); } }

@@ -227,34 +227,34 @@
 
 <!-- ================= SLIDE 2: DEVOPS NETWORK ARCHITECTURE ================= -->
   <div class="hero-slide">
-    <div class="hero-card" style="padding: 0 !important; overflow: visible; justify-content: center !important;">
+    <div class="hero-card" style="padding: 0 !important; overflow: visible; justify-content: center !important; border: none; background: transparent;">
       
       <div class="network-hero-inner">
         
-        <!-- Base Neon Glow at the Bottom -->
+        <!-- Base Neon Glow at the Bottom to hide line cutouts -->
         <div class="network-bottom-glow"></div>
 
         <!-- Perfectly Routed, Non-Overlapping Neon Paths -->
-        <svg class="network-lines-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMax meet">
-          <!-- Left side paths (Routed from outermost to innermost) -->
-          <path d="M 480 600 L 480 585 Q 480 580 475 580 L 95 580 Q 90 580 90 575 L 90 286" />
-          <path d="M 484 600 L 484 579 Q 484 574 479 574 L 115 574 Q 110 574 110 569 L 110 86" />
-          <path d="M 488 600 L 488 573 Q 488 568 483 568 L 135 568 Q 130 568 130 563 L 130 486" />
-          <path d="M 492 600 L 492 567 Q 492 562 487 562 L 155 562 Q 150 562 150 557 L 150 386" />
-          <path d="M 496 600 L 496 561 Q 496 556 491 556 L 175 556 Q 170 556 170 551 L 170 186" />
+        <svg class="network-lines-svg" viewBox="0 0 1000 640" preserveAspectRatio="xMidYMax meet">
+          <!-- Left side paths (Routed outermost to innermost so they never cross) -->
+          <path d="M 480 640 L 480 530 Q 480 515 465 515 L 75 515 Q 60 515 60 500 L 60 286" />
+          <path d="M 484 640 L 484 550 Q 484 535 469 535 L 135 535 Q 120 535 120 520 L 120 486" />
+          <path d="M 488 640 L 488 570 Q 488 555 473 555 L 195 555 Q 180 555 180 540 L 180 86" />
+          <path d="M 492 640 L 492 590 Q 492 575 477 575 L 255 575 Q 240 575 240 560 L 240 386" />
+          <path d="M 496 640 L 496 610 Q 496 595 481 595 L 315 595 Q 300 595 300 580 L 300 186" />
           
-          <!-- Right side paths (Routed from innermost to outermost) -->
-          <path d="M 504 600 L 504 561 Q 504 556 509 556 L 825 556 Q 830 556 830 551 L 830 186" />
-          <path d="M 508 600 L 508 567 Q 508 562 513 562 L 845 562 Q 850 562 850 557 L 850 386" />
-          <path d="M 512 600 L 512 573 Q 512 568 517 568 L 865 568 Q 870 568 870 563 L 870 86" />
-          <path d="M 516 600 L 516 579 Q 516 574 521 574 L 885 574 Q 890 574 890 569 L 890 486" />
-          <path d="M 520 600 L 520 585 Q 520 580 525 580 L 905 580 Q 910 580 910 575 L 910 286" />
+          <!-- Right side paths (Routed innermost to outermost) -->
+          <path d="M 504 640 L 504 610 Q 504 595 519 595 L 685 595 Q 700 595 700 580 L 700 186" />
+          <path d="M 508 640 L 508 590 Q 508 575 523 575 L 745 575 Q 760 575 760 560 L 760 386" />
+          <path d="M 512 640 L 512 570 Q 512 555 527 555 L 805 555 Q 820 555 820 540 L 820 86" />
+          <path d="M 516 640 L 516 550 Q 516 535 531 535 L 865 535 Q 880 535 880 520 L 880 486" />
+          <path d="M 520 640 L 520 530 Q 520 515 535 515 L 925 515 Q 940 515 940 500 L 940 286" />
         </svg>
 
-        <!-- Central Typography (Constrained to prevent overlap) -->
+        <!-- Central Typography (Confined to a safe center zone) -->
         <div class="network-center-content">
           <h1 class="hero-headline" style="text-align: center; margin-bottom: 24px;">Infrastructure has <span class="gradient-text">Evolved.</span></h1>
-          <p class="hero-subtext" style="text-align: center; margin: 0 auto 36px auto; font-size: 1.05rem;">Architecting resilient, highly-available CI/CD platforms, enforcing GitOps workflows, and managing stateful infrastructure at massive scale.</p>
+          <p class="hero-subtext" style="text-align: center; margin: 0 auto 36px auto; max-width: 440px; font-size: 1.05rem;">Architecting resilient, highly-available CI/CD platforms, enforcing GitOps workflows, and managing stateful infrastructure at massive scale.</p>
           <div class="hero-btn-group" style="justify-content: center; gap: 16px;">
             <a href="#section-skills" class="hero-btn-primary" style="background: #ffffff !important; color: #000 !important; padding: 12px 28px; border-radius: 100px;">Skill Set</a>
             <a href="#tech-marquee-section" class="hero-btn-outline" style="border-radius: 100px; padding: 12px 28px;">Tech Marquee</a>
@@ -262,47 +262,47 @@
         </div>
 
         <!-- Floating Nodes (Left) -->
-        <div class="network-node n-aws" onclick="openModuleModal('aws')">
-          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
-          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" class="node-icon"></div>
-        </div>
-        <div class="network-node n-k8s" onclick="openModuleModal('kubernetes')">
-          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
-          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" class="node-icon"></div>
-        </div>
         <div class="network-node n-tf" onclick="openModuleModal('terraform')">
           <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
           <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" class="node-icon"></div>
-        </div>
-        <div class="network-node n-gh" onclick="openModuleModal('github')">
-          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
-          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" class="node-icon"></div>
         </div>
         <div class="network-node n-jenk" onclick="openModuleModal('jenkins')">
           <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
           <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" class="node-icon"></div>
         </div>
+        <div class="network-node n-aws" onclick="openModuleModal('aws')">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" class="node-icon"></div>
+        </div>
+        <div class="network-node n-gh" onclick="openModuleModal('github')">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" class="node-icon"></div>
+        </div>
+        <div class="network-node n-k8s" onclick="openModuleModal('kubernetes')">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" class="node-icon"></div>
+        </div>
         
         <!-- Floating Nodes (Right) -->
-        <div class="network-node n-azu" onclick="openModuleModal('azure')">
-          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
-          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" class="node-icon"></div>
-        </div>
         <div class="network-node n-gcp" onclick="openModuleModal('gcp')">
           <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
           <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" class="node-icon"></div>
-        </div>
-        <div class="network-node n-doc" onclick="openModuleModal('docker')">
-          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
-          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" class="node-icon"></div>
         </div>
         <div class="network-node n-helm" onclick="openModuleModal('helm')">
           <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
           <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/helmsh/helmsh-icon.svg" class="node-icon"></div>
         </div>
+        <div class="network-node n-azu" onclick="openModuleModal('azure')">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" class="node-icon"></div>
+        </div>
         <div class="network-node n-azdo" onclick="openModuleModal('azure')">
           <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
           <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" class="node-icon"></div>
+        </div>
+        <div class="network-node n-doc" onclick="openModuleModal('docker')">
+          <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
+          <div class="node-icon-wrapper"><img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" class="node-icon"></div>
         </div>
 
       </div>
