@@ -283,10 +283,13 @@
     </div>
   </div>
 
-  <!-- Slideshow Navigation Dots (Microsoft Style) -->
+  <!-- Slideshow Navigation Controls (Dots + Pause/Play) -->
   <div class="hero-slide-controls">
     <span class="slide-dot active" onclick="setSlide(0)"></span>
     <span class="slide-dot" onclick="setSlide(1)"></span>
+    <button class="slide-pause-btn" onclick="toggleSlidePlay()" title="Pause/Play Slideshow">
+      <i data-lucide="pause" id="slide-pause-icon"></i>
+    </button>
   </div>
 
 </div>

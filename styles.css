@@ -176,6 +176,47 @@ body[data-theme="light"] .slide-dot.active {
   border-color: rgb(var(--theme-rgb));
 }
 
+/* Slideshow Pause/Play Button */
+.slide-pause-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 8px;
+}
+
+.slide-pause-btn:hover {
+  background: rgba(var(--theme-rgb), 0.15);
+  border-color: rgb(var(--theme-rgb));
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.slide-pause-btn i {
+  width: 14px;
+  height: 14px;
+}
+
+/* Light mode pause button adjustments */
+body[data-theme="light"] .slide-pause-btn {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #475569;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .slide-pause-btn:hover {
+  background: #f1f5f9;
+  color: rgb(var(--theme-rgb));
+}
+
 :root {
   --bg-dark: #08080a;
   --card-bg: #000000; 

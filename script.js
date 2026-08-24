@@ -1071,51 +1071,67 @@ function hideLifecycleSpec() {
 
 
 // =========================================================
-// HERO SLIDESHOW ENGINE
+// HERO SLIDESHOW ENGINE (With Pause/Play Control)
 // =========================================================
 let currentSlide = 0;
 const slides = document.querySelectorAll('.hero-slide');
 const dots = document.querySelectorAll('.slide-dot');
 let slideInterval;
+let isPaused = false;
 
 function showSlide(index) {
   if (!slides.length) return;
   
-  // Turn off all slides and dots
   slides.forEach(slide => slide.classList.remove('active'));
   dots.forEach(dot => dot.classList.remove('active'));
   
-  // Set the new index, looping around if necessary
   currentSlide = index;
   if (currentSlide >= slides.length) currentSlide = 0;
   if (currentSlide < 0) currentSlide = slides.length - 1;
   
-  // Turn on the specific slide and dot
   slides[currentSlide].classList.add('active');
   if (dots[currentSlide]) dots[currentSlide].classList.add('active');
   
-  // Re-trigger Lucide to draw the icons on the new slide
   lucide.createIcons();
 }
 
 function setSlide(index) {
   showSlide(index);
-  resetSlideTimer(); // Reset timer if the user clicks a dot manually
+  resetSlideTimer();
 }
 
 function startSlideTimer() {
-  if (!slides.length) return;
+  if (!slides.length || isPaused) return;
+  clearInterval(slideInterval);
   slideInterval = setInterval(() => {
     showSlide(currentSlide + 1);
-  }, 6000); // Transitions to the next slide every 6 seconds
+  }, 6000);
 }
 
 function resetSlideTimer() {
+  if (isPaused) return;
   clearInterval(slideInterval);
   startSlideTimer();
 }
 
-// Start the auto-carousel as soon as the page loads
+function toggleSlidePlay() {
+  isPaused = !isPaused;
+  const pauseIcon = document.getElementById('slide-pause-icon');
+  
+  if (isPaused) {
+    clearInterval(slideInterval);
+    if (pauseIcon) {
+      pauseIcon.setAttribute('data-lucide', 'play');
+    }
+  } else {
+    startSlideTimer();
+    if (pauseIcon) {
+      pauseIcon.setAttribute('data-lucide', 'pause');
+    }
+  }
+  lucide.createIcons();
+}
+
 window.addEventListener('load', () => {
   startSlideTimer();
 });
