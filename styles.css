@@ -2384,16 +2384,25 @@ body[data-theme="light"] .hero-card::before {
 /* =========================================================
    2. LIGHT MODE FIX FOR NEW NETWORK SLIDE (Slide 2)
    ========================================================= */
-/* Turns the dark nodes into clean, white elevated cards */
+/* Turns nodes into solid white cards with an active neon theme glow */
 body[data-theme="light"] .network-node {
   background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05) !important;
+  backdrop-filter: none !important; /* Kills the frosted glass so lines don't show through */
+  -webkit-backdrop-filter: none !important;
+  
+  /* JetBrains glowing theme border */
+  border: 1px solid rgba(var(--theme-rgb), 0.5) !important; 
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 
+              0 0 15px rgba(var(--theme-rgb), 0.15), 
+              inset 0 0 8px rgba(var(--theme-rgb), 0.05) !important;
 }
 
+/* Richer glowing hover effect */
 body[data-theme="light"] .network-node:hover {
-  border-color: rgb(var(--theme-rgb)) !important;
-  box-shadow: 0 10px 25px rgba(var(--theme-rgb), 0.15) !important;
+  border-color: rgba(var(--theme-rgb), 1) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), 
+              0 0 25px rgba(var(--theme-rgb), 0.3), 
+              inset 0 0 12px rgba(var(--theme-rgb), 0.1) !important;
   transform: translateY(-2px) !important;
 }
 
