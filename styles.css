@@ -3,6 +3,68 @@
 /* =========================================================
    1. GLOBAL RESETS & JETBRAINS DARK VARIABLES
    ========================================================= */
+
+/* =========================================================
+   HERO SLIDESHOW PHYSICS (Microsoft Fade/Lift Style)
+   ========================================================= */
+.hero-slider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden; 
+}
+
+.hero-slide {
+  display: none; /* Hide all slides by default */
+  width: 100%;
+  animation: msFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-slide.active {
+  display: block; /* Show only the active slide */
+}
+
+@keyframes msFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slideshow Navigation Dots */
+.hero-slide-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: -60px; /* Pulls the dots up into the beige/dark background */
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 10;
+}
+
+.slide-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--text-muted);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slide-dot.active {
+  background: rgb(var(--theme-rgb));
+  border-color: rgb(var(--theme-rgb));
+  transform: scale(1.1);
+}
+
+/* Light mode specific dots */
+body[data-theme="light"] .slide-dot {
+  border-color: #cbd5e1;
+}
+body[data-theme="light"] .slide-dot.active {
+  background: rgb(var(--theme-rgb));
+  border-color: rgb(var(--theme-rgb));
+}
+
 :root {
   --bg-dark: #08080a;
   --card-bg: #000000; 

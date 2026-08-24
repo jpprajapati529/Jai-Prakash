@@ -121,125 +121,164 @@
 
   </header>
 
+  
 <!-- =========================================================
-       1. HERO BANNER TILE (Corrected Side-by-Side Structure)
-       ========================================================= -->
-  <div class="hero-card">
-    
-    <!-- LEFT SIDE: Typography & Buttons -->
-    <div class="hero-content-left">
-      
-      <div class="hero-overline-group">
-        <span class="name-pill">JAI PRAKASH PRAJAPATI</span>
+     1. HERO SLIDESHOW (Microsoft Style)
+     ========================================================= -->
+<div class="hero-slider-wrapper">
+
+  <!-- ================= SLIDE 1: YOUR EXISTING CONSTELLATION ================= -->
+  <div class="hero-slide active">
+    <div class="hero-card">
+      <!-- LEFT SIDE: Typography & Buttons -->
+      <div class="hero-content-left">
+        <div class="hero-overline-group">
+          <span class="name-pill">JAI PRAKASH PRAJAPATI</span>
+        </div>
+        <h1 class="hero-headline">Senior DevOps &<br>Platform <span class="gradient-text">Engineer</span></h1>
+        <p class="hero-subtext">Automating CI/CD pipelines, optimizing multi-cloud infrastructures, and enforcing resilient Site Reliability engineering practices across AWS, Azure & GCP.</p>
+        <div class="hero-btn-group">
+          <a href="#section-about" class="hero-btn-primary">View More <i data-lucide="arrow-down"></i></a>
+        </div>
       </div>
 
-      <h1 class="hero-headline">Senior DevOps &<br>Platform <span class="gradient-text">Engineer</span></h1>
-      
-      <p class="hero-subtext">Automating CI/CD pipelines, optimizing multi-cloud infrastructures, and enforcing resilient Site Reliability engineering practices across AWS, Azure & GCP.</p>
-      
-      <div class="hero-btn-group">
-        <a href="#section-about" class="hero-btn-primary">View More <i data-lucide="arrow-down"></i></a>
+      <!-- RIGHT SIDE: Engine Card & Infinity Loop -->
+      <div class="hero-image-right">
+        <div class="cicd-engine-card">
+          <div class="cicd-header">
+            <span class="cicd-title"><i data-lucide="cpu"></i> CI/CD INFINITY ENGINE</span>
+            <span class="cicd-status"><span class="status-dot"></span> PIPELINE ONLINE</span>
+          </div>
+
+          <!-- Glowing Orbit & Nodes -->
+          <div class="ms-orbit-wrapper">
+            <div class="ms-center-core"><i data-lucide="infinity"></i></div>
+            
+            <div class="ms-node ms-node-1" onmouseenter="showLifecycleSpec('plan')" onmouseleave="hideLifecycleSpec()">
+              <div class="ms-bg-pane ms-color-1-glass"></div>
+              <div class="ms-logo-wrapper">
+                <div class="ms-logo-bg ms-color-1-solid"></div>
+                <div class="ms-logo-badge ms-color-1-dark"><i data-lucide="clipboard-list"></i></div>
+              </div>
+              <span class="ms-label">Plan</span>
+            </div>
+            <div class="ms-node ms-node-2" onmouseenter="showLifecycleSpec('code')" onmouseleave="hideLifecycleSpec()">
+              <div class="ms-bg-pane ms-color-2-glass"></div>
+              <div class="ms-logo-wrapper">
+                <div class="ms-logo-bg ms-color-2-solid"></div>
+                <div class="ms-logo-badge ms-color-2-dark"><i data-lucide="terminal-square"></i></div>
+              </div>
+              <span class="ms-label">Code</span>
+            </div>
+            <div class="ms-node ms-node-3" onmouseenter="showLifecycleSpec('build')" onmouseleave="hideLifecycleSpec()">
+              <div class="ms-bg-pane ms-color-3-glass"></div>
+              <div class="ms-logo-wrapper">
+                <div class="ms-logo-bg ms-color-3-solid"></div>
+                <div class="ms-logo-badge ms-color-3-dark"><i data-lucide="package"></i></div>
+              </div>
+              <span class="ms-label">Build</span>
+            </div>
+            <div class="ms-node ms-node-4" onmouseenter="showLifecycleSpec('test')" onmouseleave="hideLifecycleSpec()">
+              <div class="ms-bg-pane ms-color-4-glass"></div>
+              <div class="ms-logo-wrapper">
+                <div class="ms-logo-bg ms-color-4-solid"></div>
+                <div class="ms-logo-badge ms-color-4-dark"><i data-lucide="test-tube"></i></div>
+              </div>
+              <span class="ms-label">Test</span>
+            </div>
+            <div class="ms-node ms-node-5" onmouseenter="showLifecycleSpec('release')" onmouseleave="hideLifecycleSpec()">
+              <div class="ms-bg-pane ms-color-5-glass"></div>
+              <div class="ms-logo-wrapper">
+                <div class="ms-logo-bg ms-color-5-solid"></div>
+                <div class="ms-logo-badge ms-color-5-dark"><i data-lucide="tag"></i></div>
+              </div>
+              <span class="ms-label">Release</span>
+            </div>
+            <div class="ms-node ms-node-6" onmouseenter="showLifecycleSpec('deploy')" onmouseleave="hideLifecycleSpec()">
+              <div class="ms-bg-pane ms-color-6-glass"></div>
+              <div class="ms-logo-wrapper">
+                <div class="ms-logo-bg ms-color-6-solid"></div>
+                <div class="ms-logo-badge ms-color-6-dark"><i data-lucide="rocket"></i></div>
+              </div>
+              <span class="ms-label">Deploy</span>
+            </div>
+            <div class="ms-node ms-node-7" onmouseenter="showLifecycleSpec('operate')" onmouseleave="hideLifecycleSpec()">
+              <div class="ms-bg-pane ms-color-7-glass"></div>
+              <div class="ms-logo-wrapper">
+                <div class="ms-logo-bg ms-color-7-solid"></div>
+                <div class="ms-logo-badge ms-color-7-dark"><i data-lucide="settings-2"></i></div>
+              </div>
+              <span class="ms-label">Operate</span>
+            </div>
+            <div class="ms-node ms-node-8" onmouseenter="showLifecycleSpec('monitor')" onmouseleave="hideLifecycleSpec()">
+              <div class="ms-bg-pane ms-color-8-glass"></div>
+              <div class="ms-logo-wrapper">
+                <div class="ms-logo-bg ms-color-8-solid"></div>
+                <div class="ms-logo-badge ms-color-8-dark"><i data-lucide="activity"></i></div>
+              </div>
+              <span class="ms-label">Monitor</span>
+            </div>
+            <div id="lifecycle-overlay" class="lifecycle-overlay"></div>
+          </div>
+        </div>
       </div>
-      
     </div>
+  </div>
 
-    <!-- RIGHT SIDE: Engine Card & Infinity Loop -->
-    <div class="hero-image-right">
+  <!-- ================= SLIDE 2: NEW CLOUD ARCHITECTURE ================= -->
+  <div class="hero-slide">
+    <div class="hero-card">
       
-      <div class="cicd-engine-card">
-        
-        <div class="cicd-header">
-          <span class="cicd-title"><i data-lucide="cpu"></i> CI/CD INFINITY ENGINE</span>
-          <span class="cicd-status"><span class="status-dot"></span> PIPELINE ONLINE</span>
+      <!-- LEFT SIDE: New Typography -->
+      <div class="hero-content-left">
+        <div class="hero-overline-group">
+          <span class="name-pill" style="color: #3b82f6; border-color: rgba(59,130,246,0.5); background: rgba(59,130,246,0.05);">CLOUD INFRASTRUCTURE</span>
         </div>
-
-        <!-- ==========================================
-             MICROSOFT-STYLE DEVOPS CONSTELLATION 
-             ========================================== -->
-        <div class="ms-orbit-wrapper">
-          
-          <!-- Glowing Center Core (Infinity) -->
-          <div class="ms-center-core">
-            <i data-lucide="infinity"></i>
-          </div>
-
-          <!-- Orbiting MS-Style Nodes -->
-          <div class="ms-node ms-node-1" onmouseenter="showLifecycleSpec('plan')" onmouseleave="hideLifecycleSpec()">
-            <div class="ms-bg-pane ms-color-1-glass"></div>
-            <div class="ms-logo-wrapper">
-              <div class="ms-logo-bg ms-color-1-solid"></div>
-              <div class="ms-logo-badge ms-color-1-dark"><i data-lucide="clipboard-list"></i></div>
-            </div>
-            <span class="ms-label">Plan</span>
-          </div>
-
-          <div class="ms-node ms-node-2" onmouseenter="showLifecycleSpec('code')" onmouseleave="hideLifecycleSpec()">
-            <div class="ms-bg-pane ms-color-2-glass"></div>
-            <div class="ms-logo-wrapper">
-              <div class="ms-logo-bg ms-color-2-solid"></div>
-              <div class="ms-logo-badge ms-color-2-dark"><i data-lucide="terminal-square"></i></div>
-            </div>
-            <span class="ms-label">Code</span>
-          </div>
-
-          <div class="ms-node ms-node-3" onmouseenter="showLifecycleSpec('build')" onmouseleave="hideLifecycleSpec()">
-            <div class="ms-bg-pane ms-color-3-glass"></div>
-            <div class="ms-logo-wrapper">
-              <div class="ms-logo-bg ms-color-3-solid"></div>
-              <div class="ms-logo-badge ms-color-3-dark"><i data-lucide="package"></i></div>
-            </div>
-            <span class="ms-label">Build</span>
-          </div>
-
-          <div class="ms-node ms-node-4" onmouseenter="showLifecycleSpec('test')" onmouseleave="hideLifecycleSpec()">
-            <div class="ms-bg-pane ms-color-4-glass"></div>
-            <div class="ms-logo-wrapper">
-              <div class="ms-logo-bg ms-color-4-solid"></div>
-              <div class="ms-logo-badge ms-color-4-dark"><i data-lucide="test-tube"></i></div>
-            </div>
-            <span class="ms-label">Test</span>
-          </div>
-
-          <div class="ms-node ms-node-5" onmouseenter="showLifecycleSpec('release')" onmouseleave="hideLifecycleSpec()">
-            <div class="ms-bg-pane ms-color-5-glass"></div>
-            <div class="ms-logo-wrapper">
-              <div class="ms-logo-bg ms-color-5-solid"></div>
-              <div class="ms-logo-badge ms-color-5-dark"><i data-lucide="tag"></i></div>
-            </div>
-            <span class="ms-label">Release</span>
-          </div>
-
-          <div class="ms-node ms-node-6" onmouseenter="showLifecycleSpec('deploy')" onmouseleave="hideLifecycleSpec()">
-            <div class="ms-bg-pane ms-color-6-glass"></div>
-            <div class="ms-logo-wrapper">
-              <div class="ms-logo-bg ms-color-6-solid"></div>
-              <div class="ms-logo-badge ms-color-6-dark"><i data-lucide="rocket"></i></div>
-            </div>
-            <span class="ms-label">Deploy</span>
-          </div>
-
-          <div class="ms-node ms-node-7" onmouseenter="showLifecycleSpec('operate')" onmouseleave="hideLifecycleSpec()">
-            <div class="ms-bg-pane ms-color-7-glass"></div>
-            <div class="ms-logo-wrapper">
-              <div class="ms-logo-bg ms-color-7-solid"></div>
-              <div class="ms-logo-badge ms-color-7-dark"><i data-lucide="settings-2"></i></div>
-            </div>
-            <span class="ms-label">Operate</span>
-          </div>
-
-          <div class="ms-node ms-node-8" onmouseenter="showLifecycleSpec('monitor')" onmouseleave="hideLifecycleSpec()">
-            <div class="ms-bg-pane ms-color-8-glass"></div>
-            <div class="ms-logo-wrapper">
-              <div class="ms-logo-bg ms-color-8-solid"></div>
-              <div class="ms-logo-badge ms-color-8-dark"><i data-lucide="activity"></i></div>
-            </div>
-            <span class="ms-label">Monitor</span>
-          </div>
-
-          <!-- Hover Data Overlay (Pops up in the center!) -->
-          <div id="lifecycle-overlay" class="lifecycle-overlay"></div>
-          
+        <h1 class="hero-headline">Enterprise-Grade<br><span class="gradient-text">Architecture</span></h1>
+        <p class="hero-subtext">Designing and provisioning highly available, fault-tolerant ecosystems across AWS, Azure, and Google Cloud with strict zero-trust security and Terraform automation.</p>
+        <div class="hero-btn-group">
+          <a href="#section-skills" class="hero-btn-primary" style="background: #3b82f6 !important;">View Stack <i data-lucide="layers"></i></a>
         </div>
+      </div>
+
+      <!-- RIGHT SIDE: A sleek floating icon display -->
+      <div class="hero-image-right">
+        <div class="cicd-engine-card" style="display:flex; justify-content:center; align-items:center; flex-direction:column; gap: 30px; height:440px;">
+           <div style="display:flex; gap: 40px; align-items: flex-end;">
+              <!-- Azure Icon -->
+              <div style="display:flex; flex-direction:column; align-items:center; gap: 15px; transform: translateY(20px);">
+                 <i data-lucide="cloud-snow" style="width: 70px; height: 70px; color: #0089D6; filter: drop-shadow(0 15px 25px rgba(0,137,214,0.4));"></i>
+                 <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); font-weight:600;">AZURE</span>
+              </div>
+              <!-- AWS Icon (Center, elevated) -->
+              <div style="display:flex; flex-direction:column; align-items:center; gap: 15px; transform: translateY(-20px);">
+                 <i data-lucide="cloud" style="width: 90px; height: 90px; color: #FF9900; filter: drop-shadow(0 15px 25px rgba(255,153,0,0.4));"></i>
+                 <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); font-weight:600;">AWS</span>
+              </div>
+              <!-- GCP Icon -->
+              <div style="display:flex; flex-direction:column; align-items:center; gap: 15px; transform: translateY(20px);">
+                 <i data-lucide="cloud-lightning" style="width: 70px; height: 70px; color: #4285F4; filter: drop-shadow(0 15px 25px rgba(66,133,244,0.4));"></i>
+                 <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); font-weight:600;">GCP</span>
+              </div>
+           </div>
+           
+           <!-- Simulated Terminal Command under the clouds -->
+           <div style="margin-top: 40px; padding: 12px 24px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-primary); box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+              <span style="color: #22c55e;">~</span> <span style="color: #3b82f6;">terraform</span> apply <span style="color: #94a3b8;">--auto-approve</span>
+           </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Slideshow Navigation Dots (Microsoft Style) -->
+  <div class="hero-slide-controls">
+    <span class="slide-dot active" onclick="setSlide(0)"></span>
+    <span class="slide-dot" onclick="setSlide(1)"></span>
+  </div>
+
+</div>
 
         <!-- Interactive 4x2 Hover Grid -->
         <div class="lifecycle-grid">

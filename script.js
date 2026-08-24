@@ -1068,3 +1068,54 @@ function hideLifecycleSpec() {
     footerStatus.innerText = "Continuous Loop Active";
   }
 }
+
+
+// =========================================================
+// HERO SLIDESHOW ENGINE
+// =========================================================
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.slide-dot');
+let slideInterval;
+
+function showSlide(index) {
+  if (!slides.length) return;
+  
+  // Turn off all slides and dots
+  slides.forEach(slide => slide.classList.remove('active'));
+  dots.forEach(dot => dot.classList.remove('active'));
+  
+  // Set the new index, looping around if necessary
+  currentSlide = index;
+  if (currentSlide >= slides.length) currentSlide = 0;
+  if (currentSlide < 0) currentSlide = slides.length - 1;
+  
+  // Turn on the specific slide and dot
+  slides[currentSlide].classList.add('active');
+  if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+  
+  // Re-trigger Lucide to draw the icons on the new slide
+  lucide.createIcons();
+}
+
+function setSlide(index) {
+  showSlide(index);
+  resetSlideTimer(); // Reset timer if the user clicks a dot manually
+}
+
+function startSlideTimer() {
+  if (!slides.length) return;
+  slideInterval = setInterval(() => {
+    showSlide(currentSlide + 1);
+  }, 6000); // Transitions to the next slide every 6 seconds
+}
+
+function resetSlideTimer() {
+  clearInterval(slideInterval);
+  startSlideTimer();
+}
+
+// Start the auto-carousel as soon as the page loads
+window.addEventListener('load', () => {
+  startSlideTimer();
+});
