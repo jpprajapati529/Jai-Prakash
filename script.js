@@ -1231,19 +1231,24 @@ function navDeployClick() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   // 2. Ensure Slide 1 (the Constellation) is currently active
-  if (currentSlide !== 0) {
+  if (typeof currentSlide !== 'undefined' && currentSlide !== 0) {
     setSlide(0);
   }
 
-  // 3. Trigger the Easter Egg!
-  // If the user is far down the page, we delay the animation slightly 
-  // so they actually see the loop forming as they arrive at the top.
-  if (window.scrollY > 300) {
-    setTimeout(() => {
+  // 3. Smart Trigger: Only turn the loop ON if it isn't already active!
+  const orbitWrapper = document.querySelector('.ms-orbit-wrapper');
+  
+  const triggerEasterEgg = () => {
+    if (orbitWrapper && !orbitWrapper.classList.contains('infinity-mode')) {
       toggleInfinityLoop();
-    }, 600); // 600ms delay to match the smooth scroll speed
+    }
+  };
+
+  // If the user is scrolling up from the bottom, wait 600ms for them to arrive.
+  // If they are already at the top, trigger it instantly.
+  if (window.scrollY > 300) {
+    setTimeout(triggerEasterEgg, 600);
   } else {
-    // If they are already at the top, toggle it instantly
-    toggleInfinityLoop();
+    triggerEasterEgg();
   }
 }
