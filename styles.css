@@ -139,82 +139,88 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Slideshow Navigation Dots */
+
+
+/* =========================================================
+   SLIDESHOW CONTROLS (Microsoft Line & Squircle Style)
+   ========================================================= */
 .hero-slide-controls {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-top: -60px; /* Pulls the dots up into the beige/dark background */
+  gap: 8px; /* Tighter gap for the lines */
+  margin-top: -60px;
   margin-bottom: 60px;
   position: relative;
   z-index: 10;
 }
 
+/* 1. The Line Indicators (Replacing Dots) */
 .slide-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid var(--text-muted);
-  background: transparent;
+  width: 24px; /* Makes them horizontal lines */
+  height: 3px;
+  border-radius: 2px;
+  border: none !important;
+  background: rgba(255, 255, 255, 0.2); /* Dim grey line */
   cursor: pointer;
   transition: all 0.3s ease;
+  padding: 0 !important;
 }
 
 .slide-dot.active {
-  background: rgb(var(--theme-rgb));
-  border-color: rgb(var(--theme-rgb));
-  transform: scale(1.1);
+  background: rgb(var(--theme-rgb)); /* Active theme color */
+  width: 32px; /* Active line stretches slightly */
+  transform: none !important;
 }
 
-/* Light mode specific dots */
-body[data-theme="light"] .slide-dot {
-  border-color: #cbd5e1;
-}
-body[data-theme="light"] .slide-dot.active {
-  background: rgb(var(--theme-rgb));
-  border-color: rgb(var(--theme-rgb));
-}
-
-/* Slideshow Pause/Play Button */
+/* 2. The Pause/Play Button (Squircle Outline) */
 .slide-pause-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-secondary);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  background: transparent !important; /* Removes the filled background */
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  
+  /* THE FIX: Forces strict square dimensions to kill the oval shape */
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important; 
+  padding: 0 !important; 
+  
+  border-radius: 6px !important; /* Soft rounded corners like Microsoft */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-left: 8px;
+  margin-left: 6px;
 }
 
 .slide-pause-btn:hover {
-  background: rgba(var(--theme-rgb), 0.15);
-  border-color: rgb(var(--theme-rgb));
-  color: #fff;
-  transform: scale(1.05);
+  border-color: rgb(var(--theme-rgb)) !important;
+  color: rgb(var(--theme-rgb)) !important;
+  transform: scale(1.05) !important;
 }
 
 .slide-pause-btn i {
-  width: 14px;
-  height: 14px;
+  width: 13px !important;
+  height: 13px !important;
+  stroke-width: 2.5;
 }
 
-/* Light mode pause button adjustments */
+/* 3. Light Mode Overrides */
+body[data-theme="light"] .slide-dot {
+  background: #cbd5e1;
+}
+body[data-theme="light"] .slide-dot.active {
+  background: rgb(var(--theme-rgb));
+}
 body[data-theme="light"] .slide-pause-btn {
-  background: #ffffff;
-  border-color: #cbd5e1;
-  color: #475569;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+  box-shadow: none !important; 
 }
-
 body[data-theme="light"] .slide-pause-btn:hover {
-  background: #f1f5f9;
-  color: rgb(var(--theme-rgb));
+  border-color: rgb(var(--theme-rgb)) !important;
+  color: rgb(var(--theme-rgb)) !important;
 }
 
 :root {
