@@ -1135,3 +1135,39 @@ function toggleSlidePlay() {
 window.addEventListener('load', () => {
   startSlideTimer();
 });
+
+
+// =========================================================
+// SWIPE GESTURE CONTROLS (Mobile Touch Support)
+// =========================================================
+const sliderWrapper = document.querySelector('.hero-slider-wrapper');
+let touchStartX = 0;
+let touchEndX = 0;
+
+if (sliderWrapper) {
+  // 1. Record the starting X position when the finger touches the screen
+  sliderWrapper.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  // 2. Record the ending X position when the finger lifts off
+  sliderWrapper.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+}
+
+function handleSwipe() {
+  const swipeThreshold = 50; // Minimum pixel distance to trigger a swipe
+  const swipeDistance = touchStartX - touchEndX;
+
+  if (swipeDistance > swipeThreshold) {
+    // Finger swiped Left -> Go to NEXT slide
+    showSlide(currentSlide + 1);
+    resetSlideTimer();
+  } else if (swipeDistance < -swipeThreshold) {
+    // Finger swiped Right -> Go to PREVIOUS slide
+    showSlide(currentSlide - 1);
+    resetSlideTimer();
+  }
+}
