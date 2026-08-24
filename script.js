@@ -1222,3 +1222,28 @@ function toggleInfinityLoop() {
     }
   }
 }
+
+// =========================================================
+// NAV DEPLOY BUTTON LOGIC (Scroll & Easter Egg)
+// =========================================================
+function navDeployClick() {
+  // 1. Scroll smoothly to the very top of the page
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // 2. Ensure Slide 1 (the Constellation) is currently active
+  if (currentSlide !== 0) {
+    setSlide(0);
+  }
+
+  // 3. Trigger the Easter Egg!
+  // If the user is far down the page, we delay the animation slightly 
+  // so they actually see the loop forming as they arrive at the top.
+  if (window.scrollY > 300) {
+    setTimeout(() => {
+      toggleInfinityLoop();
+    }, 600); // 600ms delay to match the smooth scroll speed
+  } else {
+    // If they are already at the top, toggle it instantly
+    toggleInfinityLoop();
+  }
+}
