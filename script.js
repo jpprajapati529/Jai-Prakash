@@ -1195,3 +1195,19 @@ function handleSwipe() {
     resetSlideTimer();
   }
 }
+
+// =========================================================
+// DEVOPS INFINITY LOOP EASTER EGG
+// =========================================================
+function toggleInfinityLoop() {
+  const orbitWrapper = document.querySelector('.ms-orbit-wrapper');
+  if (orbitWrapper) {
+    // Toggles the class that triggers the CSS coordinate change
+    orbitWrapper.classList.toggle('infinity-mode');
+    
+    // Play your UI select sound for that extra tactile feel!
+    if (typeof playAudio === 'function' && typeof selectSound !== 'undefined') {
+      playAudio(selectSound);
+    }
+  }
+}

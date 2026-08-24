@@ -1922,6 +1922,47 @@ body[data-theme="light"] .term-icon-trigger {
 .ms-node-7 { top: 35%; left: 79%; } /* Operate */
 .ms-node-8 { top: 18%; left: 66%; } /* Monitor */
 
+/* =========================================================
+   INFINITY LOOP EASTER EGG (Interactive Mini-Game)
+   ========================================================= */
+/* 1. Add a bouncy, satisfying transition to the nodes */
+.ms-node {
+  transition: top 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              transform 0.4s ease !important;
+}
+
+/* 2. Make the core feel like a button */
+.ms-center-core {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* 3. When active, make the core pulse and glow intensely */
+.ms-orbit-wrapper.infinity-mode .ms-center-core {
+  box-shadow: 0 0 50px rgba(168, 85, 247, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.6);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.ms-orbit-wrapper.infinity-mode .ms-center-core i {
+  animation: pulseCoreIcon 1.2s infinite alternate;
+}
+
+@keyframes pulseCoreIcon {
+  0% { transform: scale(1); filter: drop-shadow(0 0 5px #ffffff); }
+  100% { transform: scale(1.4); filter: drop-shadow(0 0 15px #ffffff); }
+}
+
+/* 4. The Figure-8 Coordinates! 
+   When the class is active, they fly into a perfect mathematical infinity loop */
+.ms-orbit-wrapper.infinity-mode .ms-node-1 { top: 22%; left: 24%; } /* Plan (Top Left) */
+.ms-orbit-wrapper.infinity-mode .ms-node-2 { top: 50%; left: 10%; } /* Code (Far Left) */
+.ms-orbit-wrapper.infinity-mode .ms-node-3 { top: 78%; left: 24%; } /* Build (Bottom Left) */
+.ms-orbit-wrapper.infinity-mode .ms-node-4 { top: 65%; left: 40%; } /* Test (Crossing Center) */
+.ms-orbit-wrapper.infinity-mode .ms-node-5 { top: 35%; left: 60%; } /* Release (Crossing Center) */
+.ms-orbit-wrapper.infinity-mode .ms-node-6 { top: 22%; left: 76%; } /* Deploy (Top Right) */
+.ms-orbit-wrapper.infinity-mode .ms-node-7 { top: 50%; left: 90%; } /* Operate (Far Right) */
+.ms-orbit-wrapper.infinity-mode .ms-node-8 { top: 78%; left: 76%; } /* Monitor (Bottom Right) */
 
 /* =========================================================
    MICROSOFT OFFICE THEME GRADIENTS
