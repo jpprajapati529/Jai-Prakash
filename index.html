@@ -233,25 +233,24 @@
         <!-- Base Neon Glow at the Bottom to hide line cutouts -->
         <div class="network-bottom-glow"></div>
 
-        <!-- Perfectly Routed, Sweeping Neon Paths (JetBrains 25px Radius) -->
+        <!-- Perfectly Routed, Sweeping Neon Paths (Clipped at Box Edges) -->
         <svg class="network-lines-svg" viewBox="0 0 1000 440" preserveAspectRatio="xMidYMax meet" style="overflow: visible;">
           
-          <!-- Left side paths (Stacked bottom-to-top to never cross) -->
-          <path d="M 440 500 L 440 455 Q 440 430 415 430 L 55 430 Q 30 430 30 405 L 30 88" />
-          <path d="M 452 500 L 452 445 Q 452 420 427 420 L 75 420 Q 50 420 50 395 L 50 368" />
-          <path d="M 464 500 L 464 435 Q 464 410 439 410 L 95 410 Q 70 410 70 385 L 70 238" />
-          <path d="M 476 500 L 476 425 Q 476 400 451 400 L 175 400 Q 150 400 150 375 L 150 158" />
-          <path d="M 488 500 L 488 415 Q 488 390 463 390 L 205 390 Q 180 390 180 365 L 180 318" />
+          <!-- Left side paths (Trimmed to meet box bottoms) -->
+          <path d="M 440 500 L 440 455 Q 440 430 415 430 L 55 430 Q 30 430 30 405 L 30 76" />
+          <path d="M 452 500 L 452 445 Q 452 420 427 420 L 75 420 Q 50 420 50 395 L 50 356" />
+          <path d="M 464 500 L 464 435 Q 464 410 439 410 L 95 410 Q 70 410 70 385 L 70 226" />
+          <path d="M 476 500 L 476 425 Q 476 400 451 400 L 175 400 Q 150 400 150 375 L 150 146" />
+          <path d="M 488 500 L 488 415 Q 488 390 463 390 L 205 390 Q 180 390 180 365 L 180 306" />
           
-          <!-- Right side paths (Stacked bottom-to-top to never cross) -->
-          <path d="M 560 500 L 560 455 Q 560 430 585 430 L 945 430 Q 970 430 970 405 L 970 88" />
-          <path d="M 548 500 L 548 445 Q 548 420 573 420 L 925 420 Q 950 420 950 395 L 950 368" />
-          <path d="M 536 500 L 536 435 Q 536 410 561 410 L 905 410 Q 930 410 930 385 L 930 238" />
-          <path d="M 524 500 L 524 425 Q 524 400 549 400 L 825 400 Q 850 400 850 375 L 850 158" />
-          <path d="M 512 500 L 512 415 Q 512 390 537 390 L 795 390 Q 820 390 820 365 L 820 318" />
+          <!-- Right side paths (Trimmed to meet box bottoms) -->
+          <path d="M 560 500 L 560 455 Q 560 430 585 430 L 945 430 Q 970 430 970 405 L 970 76" />
+          <path d="M 548 500 L 548 445 Q 548 420 573 420 L 925 420 Q 950 420 950 395 L 950 356" />
+          <path d="M 536 500 L 536 435 Q 536 410 561 410 L 905 410 Q 930 410 930 385 L 930 226" />
+          <path d="M 524 500 L 524 425 Q 524 400 549 400 L 825 400 Q 850 400 850 375 L 850 146" />
+          <path d="M 512 500 L 512 415 Q 512 390 537 390 L 795 390 Q 820 390 820 365 L 820 306" />
           
         </svg>
-
         <!-- Central Typography (Confined to a safe center zone) -->
         <div class="network-center-content">
           <h1 class="hero-headline" style="text-align: center; margin-bottom: 24px;">Infrastructure has <span class="gradient-text">Evolved.</span></h1>

@@ -114,19 +114,22 @@
    Exact Static Placement (Recalculated for 150x56 boxes)
    These coordinates perfectly target the X/Y endpoints of your SVG!
    ------------------------------------------- */
-/* LEFT SIDE (Outermost to Innermost) */
-.n-tf   { top: 60px;  left: -45px; } /* Bleeds off left edge */
-.n-jenk { top: 340px; left: -25px; } 
-.n-k8s  { top: 210px; left: -5px; }  
-.n-aws  { top: 130px; left: 75px; }  
-.n-gh   { top: 290px; left: 105px; } 
+/* -------------------------------------------
+   Exact Static Placement (Raised by 40px & SVG paths clipped to bottom edges)
+   ------------------------------------------- */
+/* LEFT SIDE */
+.n-tf   { top: 20px;  left: -45px; } 
+.n-aws  { top: 90px;  left: 75px; }  
+.n-k8s  { top: 170px; left: -5px; }  
+.n-gh   { top: 250px; left: 105px; } 
+.n-jenk { top: 300px; left: -25px; } 
 
-/* RIGHT SIDE (Outermost to Innermost) */
-.n-gcp  { top: 60px;  left: 895px; } /* Bleeds off right edge */
-.n-azdo { top: 340px; left: 875px; } 
-.n-doc  { top: 210px; left: 855px; } 
-.n-azu  { top: 130px; left: 775px; } 
-.n-helm { top: 290px; left: 745px; } 
+/* RIGHT SIDE */
+.n-gcp  { top: 20px;  left: 895px; } 
+.n-azu  { top: 90px;  left: 775px; } 
+.n-doc  { top: 170px; left: 855px; } 
+.n-helm { top: 250px; left: 745px; } 
+.n-azdo { top: 300px; left: 875px; }
 
 /* Responsive scaling */
 @media (max-width: 1050px) { .network-hero-inner { transform: scale(0.8); } }
