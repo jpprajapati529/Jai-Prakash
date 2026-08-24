@@ -40,6 +40,9 @@
   z-index: 2;
 }
 
+/* =========================================================
+   FIBER OPTIC DATA FLOW (Slide 2 Lines)
+   ========================================================= */
 .network-lines-svg {
   position: absolute;
   top: 0;
@@ -50,6 +53,41 @@
   pointer-events: none;
 }
 
+/* 1. The Faint Empty Cables */
+.network-tracks path {
+  fill: none;
+  stroke: rgba(var(--theme-rgb), 0.25); /* Dimmed so the glow pops */
+  stroke-width: 1.5;
+}
+
+/* 2. The Glowing Data Packets */
+.pulse-line {
+  fill: none;
+  stroke: rgb(var(--theme-rgb)); /* Solid bright theme color */
+  stroke-width: 2;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgba(var(--theme-rgb), 1)); 
+  
+  /* Creates a short packet: 10% line, 90% empty gap */
+  stroke-dasharray: 10 90; 
+  /* Hides the line initially by pushing it off the 100-length track */
+  stroke-dashoffset: 100; 
+  
+  animation: flowUpwards linear infinite;
+}
+
+/* Because the SVG path starts at the bottom and ends at the node, 
+   animating offset from 100 to 0 naturally pulls it UP the line! */
+@keyframes flowUpwards {
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Staggered timings so they feel beautifully organic and random */
+.pulse-1 { animation-duration: 3.5s; animation-delay: 0s; }
+.pulse-2 { animation-duration: 4.2s; animation-delay: 0.8s; }
+.pulse-3 { animation-duration: 3.8s; animation-delay: 1.5s; }
+.pulse-4 { animation-duration: 4.5s; animation-delay: 0.4s; }
+.pulse-5 { animation-duration: 3.2s; animation-delay: 1.1s; }
 .network-lines-svg path {
   fill: none;
   stroke: rgba(var(--theme-rgb), 0.7); 
@@ -2522,12 +2560,19 @@ body[data-theme="light"] .node-icon {
   filter: none !important; /* Removes the white wash so colorful logos appear! */
 }
 
-/* Softens the neon lines so they look clean on beige */
-body[data-theme="light"] .network-lines-svg path {
-  stroke: rgba(var(--theme-rgb), 0.4) !important;
-  filter: none !important;
+/* Softens the base cables so they look clean on beige */
+body[data-theme="light"] .network-tracks path {
+  stroke: rgba(var(--theme-rgb), 0.15) !important;
+}
+
+/* Gives the moving data packets a sharp, solid look in light mode */
+body[data-theme="light"] .pulse-line {
+  stroke: rgb(var(--theme-rgb)) !important;
+  filter: drop-shadow(0 0 4px rgba(var(--theme-rgb), 0.5)) !important;
 }
 
 body[data-theme="light"] .network-bottom-glow {
   background: radial-gradient(ellipse at bottom, rgba(var(--theme-rgb), 0.15) 0%, transparent 60%) !important;
 }
+
+
