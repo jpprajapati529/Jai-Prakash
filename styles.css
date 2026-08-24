@@ -10,11 +10,12 @@
 .network-hero-inner {
   position: relative;
   width: 1000px;
-  height: 440px; /* EXACT match to Slide 1 */
-  margin: 10px auto; /* Matches Slide 1's margins */
-  overflow: hidden; 
+  height: 440px; 
+  margin: 10px auto; 
+  
+  /* THE FIX: Changed from 'hidden' to 'visible' so lines can reach the bottom edge! */
+  overflow: visible; 
 }
-
 .network-center-content {
   position: absolute;
   top: 40%;
@@ -28,7 +29,8 @@
 
 .network-bottom-glow {
   position: absolute;
-  bottom: -20px;
+  /* THE FIX: Pushed the glow down from -20px to -60px to cover the longer line tails */
+  bottom: -60px; 
   left: 50%;
   transform: translateX(-50%);
   width: 600px;

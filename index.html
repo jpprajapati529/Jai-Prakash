@@ -233,22 +233,23 @@
         <!-- Base Neon Glow at the Bottom to hide line cutouts -->
         <div class="network-bottom-glow"></div>
 
-        <!-- Perfectly Routed, Non-Overlapping Neon Paths -->
-        <!-- Perfectly Routed, Non-Overlapping Neon Paths -->
-        <svg class="network-lines-svg" viewBox="0 0 1000 440" preserveAspectRatio="xMidYMax meet">
-          <!-- Left side paths (Routed from center to nodes) -->
-          <path d="M 470 440 L 470 375 Q 470 370 465 370 L 265 370 Q 260 370 260 365 L 260 204" />
-          <path d="M 476 440 L 476 385 Q 476 380 471 380 L 215 380 Q 210 380 210 375 L 210 324" />
-          <path d="M 482 440 L 482 395 Q 482 390 477 390 L 165 390 Q 160 390 160 385 L 160 144" />
-          <path d="M 488 440 L 488 405 Q 488 400 483 400 L 115 400 Q 110 400 110 395 L 110 264" />
-          <path d="M 494 440 L 494 415 Q 494 410 489 410 L 65 410 Q 60 410 60 405 L 60 84" />
+        <!-- Perfectly Routed, Sweeping Neon Paths (JetBrains 25px Radius) -->
+        <svg class="network-lines-svg" viewBox="0 0 1000 440" preserveAspectRatio="xMidYMax meet" style="overflow: visible;">
           
-          <!-- Right side paths -->
-          <path d="M 530 440 L 530 375 Q 530 370 535 370 L 735 370 Q 740 370 740 365 L 740 204" />
-          <path d="M 524 440 L 524 385 Q 524 380 529 380 L 785 380 Q 790 380 790 375 L 790 324" />
-          <path d="M 518 440 L 518 395 Q 518 390 523 390 L 835 390 Q 840 390 840 385 L 840 144" />
-          <path d="M 512 440 L 512 405 Q 512 400 517 400 L 885 400 Q 890 400 890 395 L 890 264" />
-          <path d="M 506 440 L 506 415 Q 506 410 511 410 L 935 410 Q 940 410 940 405 L 940 84" />
+          <!-- Left side paths (Smooth Bezier Curves) -->
+          <path d="M 440 500 L 440 385 Q 440 360 415 360 L 285 360 Q 260 360 260 335 L 260 204" />
+          <path d="M 452 500 L 452 397 Q 452 372 427 372 L 235 372 Q 210 372 210 347 L 210 324" />
+          <path d="M 464 500 L 464 409 Q 464 384 439 384 L 185 384 Q 160 384 160 359 L 160 144" />
+          <path d="M 476 500 L 476 421 Q 476 396 451 396 L 135 396 Q 110 396 110 371 L 110 264" />
+          <path d="M 488 500 L 488 433 Q 488 408 463 408 L 85 408 Q 60 408 60 383 L 60 84" />
+          
+          <!-- Right side paths (Smooth Bezier Curves) -->
+          <path d="M 560 500 L 560 385 Q 560 360 585 360 L 715 360 Q 740 360 740 335 L 740 204" />
+          <path d="M 548 500 L 548 397 Q 548 372 573 372 L 765 372 Q 790 372 790 347 L 790 324" />
+          <path d="M 536 500 L 536 409 Q 536 384 561 384 L 815 384 Q 840 384 840 359 L 840 144" />
+          <path d="M 524 500 L 524 421 Q 524 396 549 396 L 865 396 Q 890 396 890 371 L 890 264" />
+          <path d="M 512 500 L 512 433 Q 512 408 537 408 L 915 408 Q 940 408 940 383 L 940 84" />
+          
         </svg>
 
         <!-- Central Typography (Confined to a safe center zone) -->
