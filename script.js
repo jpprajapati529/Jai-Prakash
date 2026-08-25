@@ -656,19 +656,21 @@ function openModuleModal(moduleId) {
   modalContent.style.opacity = '1';
   modalContent.style.transform = 'translate(0px, 0px) scale(1)';
 
-  // 4. Draw Clean Solid Neon Tether from Node Edge to Modal Edge
+  
+  // 4. Draw Clean Solid Neon Tether from Node Edge to Modal Header Edge
   if (activeClickedNode && activeFloatingNode) {
     const nodeRect = activeFloatingNode.getBoundingClientRect();
     const isAlignRight = overlay.classList.contains("align-right");
     
-    // Connect from the right edge of the node if modal is on the right, or left edge if modal is on the left
     const startX = isAlignRight ? nodeRect.right : nodeRect.left;
     const startY = nodeRect.top + nodeRect.height / 2;
     
     const endX = isAlignRight ? rectModal.left : rectModal.right;
-    const endY = rectModal.top + rectModal.height / 2;
+    
+    // THE FIX: Anchor endY near the top header area of the modal so it never sags into content boxes
+    const endY = Math.max(rectModal.top + 35, Math.min(rectModal.top + 80, startY));
 
-    // Perfect horizontal S-curve bridge with zero vertical sagging
+    // Clean horizontal S-curve bridge
     const midX = (startX + endX) / 2;
     const pathData = `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`;
     
