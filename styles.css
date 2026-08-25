@@ -1682,11 +1682,15 @@ body[data-theme="light"] .floating-active-node {
   to { stroke-dashoffset: -20; }
 }
 
+/* =========================================================
+   SOLID NEON TETHER (Non-dashed, Clean Bridge)
+   ========================================================= */
 #modal-connector-path {
   stroke: rgb(var(--theme-rgb));
-  stroke-dasharray: 8 6;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  fill: none;
   filter: drop-shadow(0 0 8px rgb(var(--theme-rgb)));
-  animation: dashFlow 1.5s linear infinite;
   opacity: 0;
   transition: opacity 0.3s ease;
 }

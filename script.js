@@ -656,23 +656,22 @@ function openModuleModal(moduleId) {
   modalContent.style.opacity = '1';
   modalContent.style.transform = 'translate(0px, 0px) scale(1)';
 
-  // 4. Draw Neon Tether Curve from Node to Modal Edge
+  // 4. Draw Clean Solid Neon Tether from Node Edge to Modal Edge
   if (activeClickedNode && activeFloatingNode) {
     const nodeRect = activeFloatingNode.getBoundingClientRect();
-    const startX = nodeRect.left + nodeRect.width / 2;
+    const isAlignRight = overlay.classList.contains("align-right");
+    
+    // Connect from the right edge of the node if modal is on the right, or left edge if modal is on the left
+    const startX = isAlignRight ? nodeRect.right : nodeRect.left;
     const startY = nodeRect.top + nodeRect.height / 2;
     
-    const isAlignRight = overlay.classList.contains("align-right");
     const endX = isAlignRight ? rectModal.left : rectModal.right;
     const endY = rectModal.top + rectModal.height / 2;
 
-    // Smooth cubic bezier curve control points
-    const controlX1 = startX + (endX - startX) * 0.5;
-    const controlY1 = startY;
-    const controlX2 = startX + (endX - startX) * 0.5;
-    const controlY2 = endY;
-
-    const pathData = `M ${startX} ${startY} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${endX} ${endY}`;
+    // Perfect horizontal S-curve bridge with zero vertical sagging
+    const midX = (startX + endX) / 2;
+    const pathData = `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`;
+    
     document.getElementById("modal-connector-path").setAttribute("d", pathData);
   }
 
