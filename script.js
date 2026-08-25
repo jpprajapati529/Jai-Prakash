@@ -558,7 +558,7 @@ CMD ["node", "dist/index.js"]</div>
     ]
   },
 
-  
+
   "kubernetes": {
     title: "Kubernetes (K8s)",
     description: `
@@ -662,31 +662,113 @@ CMD ["node", "dist/index.js"]</div>
       }
     ]
   },
-  "helm": {
+
+  
+"helm": {
     title: "Helm",
-    description: "Helm is the package manager for Kubernetes, used to define, install, and upgrade complex Kubernetes applications using Charts.",
+    description: `
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
+        <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
+          <img src="https://www.vectorlogo.zone/logos/helmsh/helmsh-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
+        </div>
+        <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          Helm is the package manager for Kubernetes, used to define, install, and upgrade even the most complex Kubernetes applications using reusable packaging templates called Charts.
+        </p>
+      </div>
+    `,
     tabs: [
       {
-        name: "My Responsibilities",
+        name: "Architecture",
         type: "html",
         content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Utilized Helm and Kustomize to standardize microservice deployments and simplify cluster configuration management.</p>
-              <ul class="rich-list">
-                <li>Packaged microservices into reusable Helm Charts for rapid, repeatable deployments across multiple environments.</li>
-                <li>Managed complex YAML templating to ensure environment-specific configurations were securely injected at runtime.</li>
-              </ul>
-            </div>
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="layers"></i> Helm Core Architecture & Concepts</h4>
+            <table class="notes-table">
+              <thead><tr><th>Concept</th><th>Description & Role</th></tr></thead>
+              <tbody>
+                <tr><td>Helm Client</td><td>The command-line interface (CLI) for users to manage charts, create packages, and interact with repositories and clusters.</td></tr>
+                <tr><td>Helm v3 Architecture</td><td>Unlike v2 which relied on a server-side component (Tiller), Helm v3 communicates directly with the Kubernetes API server using standard kubeconfig permissions.</td></tr>
+                <tr><td>Chart</td><td>A bundle of information (YAML files and templates) describing a related set of Kubernetes resources.</td></tr>
+                <tr><td>Release</td><td>An instance of a chart running in a Kubernetes cluster. The same chart can be installed multiple times, creating unique releases.</td></tr>
+                <tr><td>Repository</td><td>Public or private locations where Helm charts are stored, shared, and indexed (e.g., Artifact Hub).</td></tr>
+              </tbody>
+            </table>
           </div>
         `
       },
       {
-        name: "Values YAML",
-        type: "code",
-        filename: "values.yaml",
-        content: `replicaCount: 3\nimage:\n  repository: my-enterprise-repo/core-api\n  tag: "v2.4.1"`
+        name: "Chart Files",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="folder-tree"></i> Standard Helm Chart Directory Structure</h4>
+            <table class="notes-table">
+              <thead><tr><th>File / Directory</th><th>Purpose</th></tr></thead>
+              <tbody>
+                <tr><td>Chart.yaml</td><td>Contains metadata about the chart, including its name, description, version, and application version.</td></tr>
+                <tr><td>values.yaml</td><td>Defines the default configuration values that can be injected into your templates.</td></tr>
+                <tr><td>templates/</td><td>Directory containing valid Kubernetes YAML templates that combine with <code>values.yaml</code> at runtime.</td></tr>
+                <tr><td>templates/_helpers.tpl</td><td>A helper file used to define reusable template snippets, labels, and naming conventions.</td></tr>
+                <tr><td>charts/</td><td>Directory containing any dependent subcharts required by the parent chart.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
+      },
+      {
+        name: "Configurations",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 20px;">
+            <h4 class="notes-heading"><i data-lucide="file-code"></i> 1. Chart Metadata (Chart.yaml)</h4>
+            <div class="notes-code-block">apiVersion: v2
+name: fintech-app
+description: A Helm chart for enterprise microservice deployment
+type: application
+version: 0.1.0
+appVersion: "1.4.2"</div>
+          </div>
+
+          <div class="notes-section" style="margin-bottom: 20px;">
+            <h4 class="notes-heading"><i data-lucide="sliders"></i> 2. Default Configuration (values.yaml)</h4>
+            <div class="notes-code-block">replicaCount: 3
+
+image:
+  repository: registry.internal/fintech/core-api
+  tag: "1.4.2"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80</div>
+          </div>
+
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="box"></i> 3. Template Manifest (templates/deployment.yaml)</h4>
+            <div class="notes-code-block">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "fintech-app.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "fintech-app.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "fintech-app.name" . }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "fintech-app.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8080</div>
+          </div>
+        `
       }
     ]
   },
