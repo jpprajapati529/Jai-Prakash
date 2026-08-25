@@ -349,7 +349,7 @@ const moduleData = {
     title: "Terraform",
     // We put the Logo and Definition inside the description so it sits perfectly above the tabs!
     description: `
-      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 10px;">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
         <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
           <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
         </div>
@@ -452,7 +452,7 @@ provider "google" {
             variable "region"      { type = string, default = "us-central1" }
             variable "bucket_name" { type = string }
 
-            # outputs.tf
+# outputs.tf
             output "bucket_url" {
             value = google_storage_bucket.app_bucket.url
             }</div>
