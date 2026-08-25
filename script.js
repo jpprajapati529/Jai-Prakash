@@ -595,22 +595,43 @@ function openModuleModal(moduleId) {
 
   selectModalTab(data, 0, tabsContainer.children[0]);
 
-  // --- THE NEW ANIMATION MATH ---
-  const modalContent = document.querySelector('.modal-content');
-  const windowCenterX = window.innerWidth / 2;
-  const windowCenterY = window.innerHeight / 2;
-  
-  // Calculate the exact distance from the click to the center of the screen
-  const deltaX = lastClickX - windowCenterX;
-  const deltaY = lastClickY - windowCenterY;
+  const overlay = document.getElementById("modal-overlay");
+  overlay.classList.remove("align-left", "align-right", "align-center");
 
-  // Inject those exact coordinates into the CSS variables!
+  const windowWidth = window.innerWidth;
+  
+  // SIDE-AWARE LOGIC: Clicked left -> open right. Clicked right -> open left.
+  if (lastClickX < windowWidth * 0.45) {
+    overlay.classList.add("align-right");
+  } else if (lastClickX > windowWidth * 0.55) {
+    overlay.classList.add("align-left");
+  } else {
+    overlay.classList.add("align-center");
+  }
+
+  // Activate overlay so we can measure the final rendered position
+  overlay.classList.add("active");
+  
+  const modalContent = document.querySelector('.modal-content');
+  
+  // Calculate exact origin offset from click to final modal center
+  modalContent.style.transition = 'none';
+  modalContent.getBoundingClientRect(); // force reflow
+
+  const rect = modalContent.getBoundingClientRect();
+  const finalCenterX = rect.left + rect.width / 2;
+  const finalCenterY = rect.top + rect.height / 2;
+
+  const deltaX = lastClickX - finalCenterX;
+  const deltaY = lastClickY - finalCenterY;
+
   modalContent.style.setProperty('--start-x', `${deltaX}px`);
   modalContent.style.setProperty('--start-y', `${deltaY}px`);
-  // ------------------------------
 
-  const overlay = document.getElementById("modal-overlay");
-  overlay.classList.add("active");
+  // Re-enable smooth spring transition
+  modalContent.offsetHeight; 
+  modalContent.style.transition = '';
+
   lucide.createIcons();
 }
 
