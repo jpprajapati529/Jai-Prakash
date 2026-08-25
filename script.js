@@ -1978,37 +1978,47 @@ function hideLifecycleSpec() {
 
 
 // =========================================================
-// HERO SLIDESHOW ENGINE (With Pause/Play Control)
+// NATIVE SCROLL-SNAP SLIDESHOW ENGINE
 // =========================================================
 let currentSlide = 0;
 const slides = document.querySelectorAll('.hero-slide');
 const dots = document.querySelectorAll('.slide-dot');
+const slidesContainer = document.getElementById('hero-slides-container');
 let slideInterval;
 let isPaused = false;
 
+// Function to smoothly scroll to a specific slide
 function showSlide(index) {
-  if (!slides.length) return;
-  
-  slides.forEach(slide => slide.classList.remove('active'));
-  dots.forEach(dot => dot.classList.remove('active'));
+  if (!slides.length || !slidesContainer) return;
   
   currentSlide = index;
   if (currentSlide >= slides.length) currentSlide = 0;
   if (currentSlide < 0) currentSlide = slides.length - 1;
   
-  slides[currentSlide].classList.add('active');
-  if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+  // Natively scroll the flex container
+  slidesContainer.scrollTo({
+    left: currentSlide * slidesContainer.clientWidth,
+    behavior: 'smooth'
+  });
   
-  lucide.createIcons();
+  updateDots();
 }
 
+function updateDots() {
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentSlide);
+  });
+}
+
+// Clicking a dot manually routes you to that slide
 function setSlide(index) {
   showSlide(index);
   resetSlideTimer();
 }
 
+// Auto-advance timer
 function startSlideTimer() {
-  if (!slides.length || isPaused) return;
+  if (!slides.length || !slidesContainer || isPaused) return;
   clearInterval(slideInterval);
   slideInterval = setInterval(() => {
     showSlide(currentSlide + 1);
@@ -2021,86 +2031,62 @@ function resetSlideTimer() {
   startSlideTimer();
 }
 
+// Pause/Play Button Logic
 function toggleSlidePlay() {
   isPaused = !isPaused;
   const pauseIcon = document.getElementById('slide-pause-icon');
   
   if (isPaused) {
     clearInterval(slideInterval);
-    if (pauseIcon) {
-      pauseIcon.setAttribute('data-lucide', 'play');
-    }
+    if (pauseIcon) pauseIcon.setAttribute('data-lucide', 'play');
   } else {
     startSlideTimer();
-    if (pauseIcon) {
-      pauseIcon.setAttribute('data-lucide', 'pause');
-    }
+    if (pauseIcon) pauseIcon.setAttribute('data-lucide', 'pause');
   }
   lucide.createIcons();
 }
 
+// Initialize on load
 window.addEventListener('load', () => {
   startSlideTimer();
 });
 
-
 // =========================================================
-// SWIPE GESTURE CONTROLS (Mobile Touch & Trackpad Support)
+// SYNC DOTS WHEN USER MANUALLY SWIPES/DRAGS
 // =========================================================
-const sliderWrapper = document.querySelector('.hero-slider-wrapper');
-let touchStartX = 0;
-let touchEndX = 0;
-let isTrackpadSwiping = false;
-
-if (sliderWrapper) {
-  // 1. MOBILE TOUCH GESTURES
-  sliderWrapper.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-
-  sliderWrapper.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  }, { passive: true });
-
-  // 2. LAPTOP TRACKPAD GESTURES (Two-finger swipe)
-  sliderWrapper.addEventListener('wheel', (e) => {
-    // Check if the scroll is mostly horizontal and strong enough
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 20) {
-      e.preventDefault(); // Prevents the browser from navigating back/forward in history
-
-      // If we aren't already in the middle of a swipe cooldown
-      if (!isTrackpadSwiping) {
-        isTrackpadSwiping = true;
-
-        if (e.deltaX > 0) {
-          showSlide(currentSlide + 1); // Swiped Left -> Next Slide
-        } else {
-          showSlide(currentSlide - 1); // Swiped Right -> Previous Slide
-        }
-        
-        resetSlideTimer();
-
-        // Lock the trackpad swipe for 800ms so it doesn't trigger 50 times in one gesture
-        setTimeout(() => {
-          isTrackpadSwiping = false;
-        }, 800);
-      }
+if (slidesContainer) {
+  slidesContainer.addEventListener('scroll', () => {
+    // Calculate which slide is currently most visible
+    const scrollPos = slidesContainer.scrollLeft;
+    const slideWidth = slidesContainer.clientWidth;
+    const newIndex = Math.round(scrollPos / slideWidth);
+    
+    // If the visible slide changes, update the dots!
+    if (newIndex !== currentSlide) {
+      currentSlide = newIndex;
+      updateDots();
     }
-  }, { passive: false });
+  }, { passive: true });
 }
 
-function handleSwipe() {
-  const swipeThreshold = 50; 
-  const swipeDistance = touchStartX - touchEndX;
+// =========================================================
+// PAUSE ON HOVER & TOUCH (Native Edition)
+// =========================================================
+if (slidesContainer) {
+  // Pause the timer while the user is actively reading or dragging
+  slidesContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+  slidesContainer.addEventListener('touchstart', () => clearInterval(slideInterval), { passive: true });
 
-  if (swipeDistance > swipeThreshold) {
-    showSlide(currentSlide + 1);
-    resetSlideTimer();
-  } else if (swipeDistance < -swipeThreshold) {
-    showSlide(currentSlide - 1);
-    resetSlideTimer();
-  }
+  // Resume the timer when they leave (if not manually paused and no modal is open)
+  const resumeSlider = () => {
+    const isModalOpen = document.getElementById("modal-overlay").classList.contains("active");
+    if (!isPaused && !isModalOpen) {
+      startSlideTimer();
+    }
+  };
+
+  slidesContainer.addEventListener('mouseleave', resumeSlider);
+  slidesContainer.addEventListener('touchend', resumeSlider);
 }
 
 // =========================================================
@@ -2172,38 +2158,3 @@ document.querySelectorAll('.network-node').forEach(node => {
 });
 
 
-// =========================================================
-// PAUSE ENTIRE SLIDESHOW ON HOVER & TOUCH
-// =========================================================
-const mainSliderWrapper = document.querySelector('.hero-slider-wrapper');
-
-if (mainSliderWrapper) {
-  // 1. Desktop Mouse Hover
-  mainSliderWrapper.addEventListener('mouseenter', () => clearInterval(slideInterval));
-  
-  // 2. Touchscreen Swipe Start
-  mainSliderWrapper.addEventListener('touchstart', () => clearInterval(slideInterval), { passive: true });
-
-  // 3. Resume when mouse leaves
-  mainSliderWrapper.addEventListener('mouseleave', resumeSlider);
-  
-  // 4. Resume when touchscreen swipe ends
-  mainSliderWrapper.addEventListener('touchend', resumeSlider);
-
-  // 5. THE FIX: Block Chrome's Trackpad Back/Forward Gesture!
-  mainSliderWrapper.addEventListener('wheel', (e) => {
-    // If the user is swiping horizontally (left/right) more than vertically (up/down)
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      e.preventDefault(); // This definitively stops the blue back/forward arrow
-      clearInterval(slideInterval); // Also pause the slider while they are swiping
-    }
-  }, { passive: false }); // passive: false is REQUIRED to use preventDefault()
-}
-
-// Helper function to cleanly resume the slider
-function resumeSlider() {
-  const isModalOpen = document.getElementById("modal-overlay").classList.contains("active");
-  if (!isPaused && !isModalOpen) {
-    startSlideTimer();
-  }
-}

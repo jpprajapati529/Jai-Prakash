@@ -211,33 +211,45 @@
 /* =========================================================
    HERO SLIDESHOW PHYSICS (Horizontal Swipe Stack)
    ========================================================= */
+/* =========================================================
+   HERO SLIDESHOW PHYSICS (Native Horizontal Scroll Snap)
+   ========================================================= */
 .hero-slider-wrapper {
   position: relative;
   width: 100%;
-  overflow-x: hidden;
-  
-  /* Prevents Chrome's swipe-left/swipe-right back page navigation */
-  overscroll-behavior-x: none; 
-  /* Tells the browser to only handle vertical scrolling natively */
-  touch-action: pan-y;
+}
 
-  /* Grid stack locks the container height and overlaps the slides perfectly */
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
+.hero-slides-container {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  
+  /* The Magic Microsoft/Apple Native Trackpad Snapping */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Stops Chrome from swiping back to the previous webpage */
+  overscroll-behavior-x: none; 
+  
+  /* Hide the ugly native scrollbar */
+  scrollbar-width: none; /* Firefox */
+}
+.hero-slides-container::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 .hero-slide {
-  grid-column: 1;
-  grid-row: 1;
+  flex: 0 0 100%; /* Forces each slide to be exactly 100% of the screen width */
   width: 100%;
-  /* THE FIX: Force slides to always be fully opaque and visible */
+  min-width: 100%;
+  scroll-snap-align: center; /* Magnetically snaps to the center */
+  
+  /* Ensure slides are always visible side-by-side */
   opacity: 1 !important;
   visibility: visible !important;
-  pointer-events: none;
-  
-  /* THE FIX: Only animate the physical movement (transform) */
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
 }
 
 /* Slide 1 waits completely off-screen to the LEFT when inactive */
@@ -262,13 +274,11 @@
    SLIDESHOW CONTROLS (Microsoft Line & Squircle Style)
    ========================================================= */
 .hero-slide-controls {
-  grid-column: 1;
-  grid-row: 2; /* Drops the controls permanently below the slides */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px; 
-  margin-top: -30px; /* Adjusted to fit the new grid stack */
+  margin-top: 10px; 
   margin-bottom: 60px;
   position: relative;
   z-index: 10;
