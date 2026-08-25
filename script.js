@@ -261,33 +261,92 @@ const moduleData = {
     ]
   },
 
-  "azure": {
+
+"azure": {
     title: "Microsoft Azure",
-    description: "Azure is a public cloud computing platform providing scalable computing, analytics, storage, and IAM networking.",
+    description: `
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
+        <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
+          <img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
+        </div>
+        <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          Microsoft Azure provides enterprise-grade cloud computing services, specializing in hybrid-cloud deployments, robust IAM networking, and scalable Kubernetes architectures.
+        </p>
+      </div>
+    `,
     tabs: [
       {
-        name: "My Responsibilities",
+        name: "Architectures",
         type: "html",
         content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Engineered automated deployments and maintained infrastructure across hybrid environments, including Azure resources and on-premises OpenShift clusters.</p>
-              <ul class="rich-list">
-                <li>Provisioned and managed Azure Compute, Blob, Cosmos DB, and Azure Kubernetes Service (AKS).</li>
-                <li>Configured Azure Entra ID, RBAC policies, and security groups to strictly control access to critical services.</li>
-                <li>Migrated legacy applications to the Azure cloud, improving application responsiveness and reliability.</li>
-                <li>Utilized Azure Monitor and Prometheus to analyze performance bottlenecks and usage trends for cost optimization.</li>
-              </ul>
-            </div>
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="network"></i> Core Azure Architectures</h4>
+            <table class="notes-table">
+              <thead><tr><th>Pattern</th><th>Use Case & Implementation</th></tr></thead>
+              <tbody>
+                <tr><td>Hub-and-Spoke</td><td>Centralizes traffic routing, firewall inspection, and shared services (Hub) while isolating workloads (Spokes) via VNet peering.</td></tr>
+                <tr><td>Azure Landing Zones</td><td>Enterprise-scale architecture providing pre-configured governance, networking, and identity foundations.</td></tr>
+                <tr><td>Multi-Region HA</td><td>Achieving 99.99% availability using Azure Front Door or Traffic Manager to route users to the closest active region.</td></tr>
+                <tr><td>Hybrid Connectivity</td><td>Integrating on-premises datacenters with Azure using ExpressRoute or Site-to-Site VPNs for secure, low-latency access.</td></tr>
+              </tbody>
+            </table>
           </div>
         `
       },
       {
-        name: "IaC Example",
-        type: "code",
-        filename: "azure_rbac.tf",
-        content: `resource "azurerm_role_assignment" "aks_monitoring" {\n  scope                = azurerm_kubernetes_cluster.aks_prod.id\n  role_definition_name = "Monitoring Metrics Publisher"\n  principal_id         = azuread_service_principal.monitor_sp.object_id\n}`
+        name: "DevOps Services",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="cloud-snow"></i> Key Azure DevOps Services</h4>
+            <table class="notes-table">
+              <thead><tr><th>Service</th><th>DevOps Purpose</th></tr></thead>
+              <tbody>
+                <tr><td>Azure Kubernetes Service (AKS)</td><td>Managed K8s service for deploying and scaling containerized applications with built-in Entra ID integration.</td></tr>
+                <tr><td>Azure Container Registry (ACR)</td><td>Private registry for securely building, storing, and scanning Docker images and OCI artifacts.</td></tr>
+                <tr><td>Azure Key Vault</td><td>Centralized, highly secure storage for API keys, passwords, certificates, and cryptographic keys.</td></tr>
+                <tr><td>Microsoft Entra ID</td><td>(Formerly Azure AD) Comprehensive identity and access management for implementing strict RBAC and Zero Trust.</td></tr>
+                <tr><td>Azure Monitor & Log Analytics</td><td>Full-stack observability platform for collecting telemetry, setting up alerts, and analyzing application performance.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
+      },
+      {
+        name: "Terraform Configurations",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 20px;">
+            <h4 class="notes-heading"><i data-lucide="box"></i> AKS Cluster Provisioning</h4>
+            <div class="notes-code-block">resource "azurerm_kubernetes_cluster" "aks_cluster" {
+  name                = "prod-banking-aks"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  dns_prefix          = "prodaks"
+
+  default_node_pool {
+    name           = "systempool"
+    node_count     = 3
+    vm_size        = "Standard_DS2_v2"
+    vnet_subnet_id = azurerm_subnet.aks_subnet.id
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+}</div>
+          </div>
+
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="shield-check"></i> Azure RBAC Role Assignment (AKS to ACR)</h4>
+            <div class="notes-code-block">resource "azurerm_role_assignment" "aks_acr_pull" {
+  principal_id                     = azurerm_kubernetes_cluster.aks_cluster.kubelet_identity[0].object_id
+  role_definition_name             = "AcrPull"
+  scope                            = azurerm_container_registry.acr.id
+  skip_service_principal_aad_check = true
+}</div>
+          </div>
+        `
       }
     ]
   },
@@ -1049,14 +1108,22 @@ function openModuleModal(moduleId) {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'kubernetes') {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
-  } else if (moduleId === 'github') {
-    iconContainer.innerHTML = `<svg style="width: 22px; height: 22px; fill: #ffffff;" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>`;} 
-    else if (moduleId === 'jenkins') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'azure') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'gcp') {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
-  }
-    else {
+  } else if (moduleId === 'docker') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'helm') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/helmsh/helmsh-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'github') {
+    // Pure White Modern GitHub Logo
+    iconContainer.innerHTML = `<svg style="width: 22px; height: 22px; fill: #ffffff;" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>`;
+  } else if (moduleId === 'jenkins') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'azure-devops') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else {
     iconContainer.innerHTML = `<i id="modal-icon" data-lucide="box" style="color: var(--accent-purple);"></i>`;
     lucide.createIcons();
   }
