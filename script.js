@@ -846,7 +846,7 @@ function openModuleModal(moduleId) {
 
   document.getElementById("modal-title").innerText = data.title;
 
-  // Dynamically place official colored logos in the header via if-else statements
+  // Hardcoded if-else lines for each tool's header logo
   const iconContainer = document.getElementById("modal-header-icon-container");
   
   if (moduleId === 'terraform') {
