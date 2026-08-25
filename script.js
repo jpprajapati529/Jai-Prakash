@@ -183,35 +183,84 @@ const moduleData = {
   // TECH STACK MARQUEE MODALS (RESTORED)
   // ----------------------------------------------------
   "aws": {
-    title: "Amazon Web Services (AWS)",
-    description: "AWS is a comprehensive cloud platform offering compute, storage, database, and networking services.",
+    title: "Amazon Web Services",
+    description: `
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
+        <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
+          <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
+        </div>
+        <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          AWS provides on-demand cloud computing platforms and APIs, enabling highly scalable, resilient, and secure DevOps infrastructure architectures.
+        </p>
+      </div>
+    `,
     tabs: [
       {
-        name: "My Responsibilities",
+        name: "DevOps Services",
         type: "html",
         content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Built and maintained resilient multi-tenant environments to enable reliable operations and effortless scaling of applications.</p>
-              <ul class="rich-list">
-                <li>Managed EC2, S3, RDS, DynamoDB, Lambda, and EKS deployments across the cloud infrastructure.</li>
-                <li>Migrated on-premises applications to AWS, ensuring minimal downtime and seamless integration.</li>
-                <li>Established IAM roles, policies, and security groups to mitigate breaches and exceed compliance audit requirements.</li>
-                <li>Implemented comprehensive monitoring and alerting using AWS CloudWatch, CloudTrail, and Prometheus.</li>
-              </ul>
-            </div>
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="cloud"></i> Core Infrastructure</h4>
+            <table class="notes-table">
+              <thead><tr><th>Service</th><th>Purpose in DevOps</th></tr></thead>
+              <tbody>
+                <tr><td>Amazon EKS</td><td>Managed Kubernetes service for orchestrating containerized microservices at scale.</td></tr>
+                <tr><td>Amazon ECR</td><td>Secure container image registry for storing and scanning Docker deployment artifacts.</td></tr>
+                <tr><td>Amazon S3</td><td>Highly durable object storage, essential for Terraform remote state files and backups.</td></tr>
+                <tr><td>AWS IAM</td><td>Identity and Access Management for enforcing strict least-privilege security policies.</td></tr>
+                <tr><td>Amazon RDS</td><td>Managed relational databases ensuring automated failover, scaling, and high availability.</td></tr>
+              </tbody>
+            </table>
           </div>
         `
       },
       {
-        name: "IaC Example",
-        type: "code",
-        filename: "aws_iam_policy.tf",
-        content: `resource "aws_iam_policy" "strict_s3_access" {\n  name        = "RestrictedS3Access"\n  description = "Enforces least privilege based on audit requirements"\n\n  policy = jsonencode({\n    Version = "2012-10-17"\n    Statement = [{\n      Action   = ["s3:GetObject", "s3:ListBucket"]\n      Effect   = "Allow"\n      Resource = ["arn:aws:s3:::prod-app-data", "arn:aws:s3:::prod-app-data/*"]\n    }]\n  })\n}`
+        name: "Terraform Configurations",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 20px;">
+            <h4 class="notes-heading"><i data-lucide="box"></i> EKS Cluster Provisioning</h4>
+            <div class="notes-code-block">module "eks" {
+  source  = "terraform-aws-modules/eks/aws"
+  version = "~> 20.0"
+
+  cluster_name    = "prod-fintech-cluster"
+  cluster_version = "1.29"
+  vpc_id          = module.vpc.vpc_id
+  subnet_ids      = module.vpc.private_subnets
+
+  eks_managed_node_groups = {
+    default = {
+      min_size       = 2
+      max_size       = 10
+      desired_size   = 3
+      instance_types = ["t3.large"]
+    }
+  }
+}</div>
+          </div>
+
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="shield"></i> IAM Policy for CI/CD S3 Access</h4>
+            <div class="notes-code-block">resource "aws_iam_policy" "terraform_state" {
+  name        = "TerraformStateAccess"
+  description = "Allows CI/CD pipeline to access remote state"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action   = ["s3:GetObject", "s3:PutObject"]
+      Effect   = "Allow"
+      Resource = "arn:aws:s3:::tf-prod-state-bucket/*"
+    }]
+  })
+}</div>
+          </div>
+        `
       }
     ]
   },
+
   "azure": {
     title: "Microsoft Azure",
     description: "Azure is a public cloud computing platform providing scalable computing, analytics, storage, and IAM networking.",
@@ -723,9 +772,12 @@ function openModuleModal(moduleId) {
 
   document.getElementById("modal-title").innerText = data.title;
 
+  // Dynamically place logos in header, or default box icon for others
   const iconContainer = document.getElementById("modal-header-icon-container");
   if (moduleId === 'terraform') {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'aws') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else {
     iconContainer.innerHTML = `<i id="modal-icon" data-lucide="box" style="color: var(--accent-purple);"></i>`;
     lucide.createIcons();
