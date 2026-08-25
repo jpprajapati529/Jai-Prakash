@@ -292,24 +292,83 @@ const moduleData = {
     ]
   },
   "gcp": {
-    title: "Google Cloud Platform (GCP)",
-    description: "GCP is a suite of cloud services that runs on the same infrastructure Google uses internally, offering high-performance compute and data analytics.",
+    title: "Google Cloud Platform",
+    description: `
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
+        <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
+          <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
+        </div>
+        <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          Google Cloud Platform (GCP) provides highly scalable, globally distributed infrastructure, specializing in containerized workloads and SRE-driven operations.
+        </p>
+      </div>
+    `,
     tabs: [
       {
-        name: "My Responsibilities",
+        name: "Architectures",
         type: "html",
         content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Managed containerized microservices and automated cloud deployments while strictly enforcing Site Reliability Engineering (SRE) practices.</p>
-              <ul class="rich-list">
-                <li>Provisioned multi-tenant GCP environments including GCS, Compute Engine, Cloud SQL, and GKE.</li>
-                <li>Implemented SRE practices by defining SLIs/SLOs and error budgets to maintain system reliability.</li>
-                <li>Established GCP Projects, Service Accounts, and IAM roles to exceed industry security compliance standards.</li>
-                <li>Unified observability and incident response using GCP Stackdriver and Prometheus.</li>
-              </ul>
-            </div>
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="network"></i> Core GCP Architectures</h4>
+            <table class="notes-table">
+              <thead><tr><th>Pattern</th><th>Use Case & Implementation</th></tr></thead>
+              <tbody>
+                <tr><td>Shared VPC</td><td>Allows an organization to connect resources from multiple isolated projects to a common, centralized Virtual Private Cloud network.</td></tr>
+                <tr><td>Hub-and-Spoke</td><td>Centralizes network traffic routing and security inspections by linking remote spoke VPCs through a central transit hub VPC.</td></tr>
+                <tr><td>Global Load Balancing</td><td>Distributes global external traffic to the closest backend region via a single anycast IP, ensuring massive scale and low latency.</td></tr>
+                <tr><td>Private Google Access</td><td>Allows internal VM instances or GKE nodes without external IP addresses to securely reach Google APIs and services.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
+      },
+      {
+        name: "DevOps Services",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="cloud-lightning"></i> Key GCP DevOps Services</h4>
+            <table class="notes-table">
+              <thead><tr><th>Service</th><th>DevOps Purpose</th></tr></thead>
+              <tbody>
+                <tr><td>Google Kubernetes Engine (GKE)</td><td>Managed, enterprise-grade Kubernetes service for deploying containerized applications at immense scale.</td></tr>
+                <tr><td>Cloud Build</td><td>Serverless CI/CD platform that executes builds across multiple environments and natively triggers via Git workflows.</td></tr>
+                <tr><td>Artifact Registry</td><td>Universal package manager for securely storing Docker container images, Helm charts, and language packages.</td></tr>
+                <tr><td>Cloud IAM & Service Accounts</td><td>Granular identity and access management for securely controlling workload permissions and human access.</td></tr>
+                <tr><td>Cloud Operations (Stackdriver)</td><td>Integrated monitoring, logging, and tracing for defining SLIs/SLOs, alerting, and SRE observability.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
+      },
+      {
+        name: "Terraform Configurations",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 20px;">
+            <h4 class="notes-heading"><i data-lucide="box"></i> GKE Private Cluster Provisioning</h4>
+            <div class="notes-code-block">resource "google_container_cluster" "primary" {
+  name     = "prod-gke-cluster"
+  location = "asia-south1"
+
+  remove_default_node_pool = true
+  initial_node_count       = 1
+
+  private_cluster_config {
+    enable_private_nodes    = true
+    enable_private_endpoint = false
+    master_ipv4_cidr_block  = "172.16.0.0/28"
+  }
+}</div>
+          </div>
+
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="user-check"></i> Service Account IAM Role Binding</h4>
+            <div class="notes-code-block">resource "google_project_iam_member" "gke_admin" {
+  project = "capgemini-fintech-prod"
+  role    = "roles/container.admin"
+  member  = "serviceAccount:terraform-sa@capgemini-fintech-prod.iam.gserviceaccount.com"
+}</div>
           </div>
         `
       },
@@ -321,6 +380,8 @@ const moduleData = {
       }
     ]
   },
+
+
   "docker": {
     title: "Docker",
     description: "Docker is a software platform that allows developers to package applications into lightweight, standardized executable components called containers.",
@@ -992,6 +1053,8 @@ function openModuleModal(moduleId) {
     iconContainer.innerHTML = `<svg style="width: 22px; height: 22px; fill: #ffffff;" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>`;} 
     else if (moduleId === 'jenkins') {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'gcp') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   }
     else {
     iconContainer.innerHTML = `<i id="modal-icon" data-lucide="box" style="color: var(--accent-purple);"></i>`;
