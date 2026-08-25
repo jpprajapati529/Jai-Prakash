@@ -1129,6 +1129,9 @@ body[data-theme="light"] .cli-accent {
   overflow: hidden; 
   border: none !important; 
   background: transparent !important; 
+  
+  /* THE FIX: Stops the scroll 120px early so it isn't hidden under the nav bar! */
+  scroll-margin-top: 120px; 
 }
 
 .tech-marquee-section::before {
