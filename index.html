@@ -652,20 +652,22 @@
     </div>
   </section>
 
-  <!-- =========================================================
-       6. PIPELINE SIMULATOR & PROJECTS
+<!-- =========================================================
+       PROJECTS / REPOSITORIES
        ========================================================= -->
-
-  <section id="projects" class="dashboard-section">
+  <!-- THE FIX: Added 'scroll-section' class so the sticky nav tracks it! -->
+  <section id="projects" class="dashboard-section scroll-section">
     <div class="section-header">
-      <h2><i data-lucide="git-branch"></i> Primary DevOps Repository</h2>
+      <h2><i data-lucide="git-branch"></i> DevOps Repositories</h2>
     </div>
-    <div class="card clickable-card" onclick="openModuleModal('business-mgmt')">
+    
+    <!-- Repo 1: Business Management System -->
+    <div class="card clickable-card" style="margin-bottom: 20px;" onclick="window.open('https://github.com/jpprajapati529/Business-Management-System', '_blank')">
       <div style="display:flex; justify-content:space-between; align-items:center;">
         <h3 style="color: var(--accent-purple); font-size: 1.1rem;"><i data-lucide="folder-git-2"></i> BUSINESS MANAGEMENT SYSTEM</h3>
         <span class="tag-badge" style="color: var(--accent-purple);">Featured Stack</span>
       </div>
-      <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 12px 0;">Click here to open interactive code configs for Docker Compose, Kubernetes manifests, Terraform IaC, and GitHub Actions CI/CD workflows.</p>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 12px 0;">Comprehensive repository showcasing interactive code configs for Docker Compose, Kubernetes manifests, Terraform IaC, and GitHub Actions CI/CD workflows.</p>
       <div style="display:flex; gap: 8px; flex-wrap: wrap;">
         <span class="tag-badge">Docker</span>
         <span class="tag-badge">Kubernetes</span>
@@ -673,6 +675,34 @@
         <span class="tag-badge">Jenkins</span>
         <span class="tag-badge">Prometheus</span>
         <span class="tag-badge">GitHub Actions</span>
+      </div>
+    </div>
+
+    <!-- Repo 2: Student Management System -->
+    <div class="card clickable-card" style="margin-bottom: 20px;" onclick="window.open('https://github.com/jpprajapati529/StudentManagementSystem', '_blank')">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="color: var(--accent-purple); font-size: 1.1rem;"><i data-lucide="folder-git-2"></i> STUDENT MANAGEMENT SYSTEM</h3>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 12px 0;">Containerized application deployment demonstrating database integration, multi-tier architecture, and automated build processes.</p>
+      <div style="display:flex; gap: 8px; flex-wrap: wrap;">
+        <span class="tag-badge">Java</span>
+        <span class="tag-badge">Docker</span>
+        <span class="tag-badge">CI/CD Pipelines</span>
+        <span class="tag-badge">Containerization</span>
+      </div>
+    </div>
+
+    <!-- Repo 3: Apps One -->
+    <div class="card clickable-card" onclick="window.open('https://github.com/jpprajapati529/AppsOne', '_blank')">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="color: var(--accent-purple); font-size: 1.1rem;"><i data-lucide="folder-git-2"></i> APPS ONE</h3>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 12px 0;">Platform engineering configurations focused on scalable microservice delivery, infrastructure automation, and reliable cloud-native rollouts.</p>
+      <div style="display:flex; gap: 8px; flex-wrap: wrap;">
+        <span class="tag-badge">Microservices</span>
+        <span class="tag-badge">Cloud Automation</span>
+        <span class="tag-badge">Shell Scripting</span>
+        <span class="tag-badge">Platform Engineering</span>
       </div>
     </div>
   </section>
