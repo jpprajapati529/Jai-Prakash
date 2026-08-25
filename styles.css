@@ -252,23 +252,6 @@
   pointer-events: auto;
 }
 
-/* Slide 1 waits completely off-screen to the LEFT when inactive */
-.hero-slide:nth-child(1) {
-  transform: translateX(-100%); 
-}
-
-
-/* Slide 2 waits completely off-screen to the RIGHT when inactive */
-.hero-slide:nth-child(2) {
-  transform: translateX(100%); 
-}
-
-/* The Active slide glides perfectly into the center */
-.hero-slide.active {
-  pointer-events: auto;
-  transform: translateX(0) !important;
-  z-index: 2;
-}
 
 /* =========================================================
    SLIDESHOW CONTROLS (Microsoft Line & Squircle Style)
@@ -1617,7 +1600,7 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
 }
 
 .modal-content {
-  position: relative; /* ADDED */
+  position: relative; 
   z-index: 1002;
   background: #0f1015; 
   border: 1px solid var(--card-border); 
@@ -1629,17 +1612,15 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
   padding: 24px; 
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(var(--theme-rgb), 0.15);
   
-  /* Starts at click origin, scaled down */
-  transform: translate(var(--start-x, 0px), var(--start-y, 0px)) scale(0.1); 
+  /* Clean, simple scale down for the initial hidden state */
+  transform: scale(0.95); 
   opacity: 0;
-  
-  /* Spring-loaded bouncy transition */
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 .modal-overlay.active .modal-content { 
-  /* Lands in its side-aligned position */
-  transform: translate(0px, 0px) scale(1); 
+  /* Instantly pop to full size */
+  transform: scale(1); 
   opacity: 1;
 }
 
@@ -2503,8 +2484,8 @@ body[data-theme="light"] .hero-card {
   margin-bottom: 60px !important;
 }
 
-/* Paints the Microsoft warm beige full-width safely without margin bugs */
-body[data-theme="light"] .hero-card::before {
+/* Paints the Microsoft warm beige full-width safely on the static wall */
+body[data-theme="light"] .hero-slider-wrapper::before {
   content: "";
   position: absolute;
   top: 0;
@@ -2512,8 +2493,13 @@ body[data-theme="light"] .hero-card::before {
   transform: translateX(-50%);
   width: 100vw;
   height: 100%;
-  background-color: #f6f5f0 !important; /* Authentic Microsoft warm beige */
+  background-color: #f6f5f0 !important;
   z-index: -1;
+  pointer-events: none;
+}
+
+body[data-theme="light"] .hero-card::before {
+  display: none !important; /* Disables the old moving background */
 }
 
 /* 1. Global High-Contrast Typography */

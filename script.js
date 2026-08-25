@@ -1437,28 +1437,9 @@ function openModuleModal(moduleId) {
     if (connectorPath) connectorPath.style.display = "none"; // Hide tether for center cards
   }
 
-  // 2. Initial setup for pop-up animation
-  modalContent.style.transition = 'none';
-  modalContent.style.opacity = '0';
-  modalContent.style.transform = 'translate(0px, 0px) scale(1)';
-
+  // 2. Trigger the clean CSS pop animation instantly
   overlay.classList.add("active");
-
-  const rectModal = modalContent.getBoundingClientRect();
-  const finalCenterX = rectModal.left + rectModal.width / 2;
-  const finalCenterY = rectModal.top + rectModal.height / 2;
-
-  const deltaX = lastClickX - finalCenterX;
-  const deltaY = lastClickY - finalCenterY;
-
-  modalContent.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.1)`;
-  modalContent.offsetHeight;
-
-  // 3. Spring open
-  modalContent.style.transition = '';
-  modalContent.style.opacity = '1';
-  modalContent.style.transform = 'translate(0px, 0px) scale(1)';
-
+  
   // 4. Draw Neon Tether ONLY if it's a network node
   if (isNetworkNode && activeFloatingNode) {
     const nodeRect = activeFloatingNode.getBoundingClientRect();
