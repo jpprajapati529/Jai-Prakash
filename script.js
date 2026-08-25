@@ -40,6 +40,37 @@ const moduleData = {
   // ----------------------------------------------------
   // SKILLS SECTION MODALS
   // ----------------------------------------------------
+
+  "azure-devops": {
+    title: "Microsoft Azure DevOps",
+    description: "Enterprise application lifecycle management, CI/CD pipelines, Git repositories, and automated deployments.",
+    tabs: [
+      {
+        name: "My Responsibilities",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
+              <p class="rich-text">Engineered automated build and release pipelines to streamline software delivery across enterprise environments.</p>
+              <ul class="rich-list">
+                <li>Created and maintained YAML-based Azure Pipelines for continuous integration and automated deployments.</li>
+                <li>Managed Azure Repos, branch policies, pull request triggers, and artifact feeds.</li>
+                <li>Integrated security scanning, automated testing, and quality gates into CI/CD workflows.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        name: "Pipeline YAML",
+        type: "code",
+        filename: "azure-pipelines.yml",
+        content: `trigger:\n  - main\n\npool:\n  vmImage: 'ubuntu-latest'\n\nstages:\n- stage: Build\n  jobs:\n  - job: BuildApp\n    steps:\n    - task: NodeTool@0\n      inputs:\n        versionSpec: '18.x'\n    - script: |\n        npm install\n        npm run build\n      displayName: 'npm install and build'`
+      }
+    ]
+  },
+  
   "skill-cloud": {
     title: "Multi-Cloud Architectures",
     description: "Multi-tier cloud deployment utilizing Kubernetes, VPC Peering, and high-availability managed databases.",
