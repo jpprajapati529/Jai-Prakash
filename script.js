@@ -558,7 +558,7 @@ CMD ["node", "dist/index.js"]</div>
     ]
   },
 
-
+  
   "kubernetes": {
     title: "Kubernetes (K8s)",
     description: `
@@ -662,8 +662,6 @@ CMD ["node", "dist/index.js"]</div>
       }
     ]
   },
-
-  
 "helm": {
     title: "Helm",
     description: `
@@ -687,10 +685,9 @@ CMD ["node", "dist/index.js"]</div>
               <thead><tr><th>Concept</th><th>Description & Role</th></tr></thead>
               <tbody>
                 <tr><td>Helm Client</td><td>The command-line interface (CLI) for users to manage charts, create packages, and interact with repositories and clusters.</td></tr>
-                <tr><td>Helm v3 Architecture</td><td>Unlike v2 which relied on a server-side component (Tiller), Helm v3 communicates directly with the Kubernetes API server using standard kubeconfig permissions.</td></tr>
+                <tr><td>Helm v3 Architecture</td><td>Unlike v2 which relied on Tiller, Helm v3 communicates directly with the Kubernetes API server using standard kubeconfig permissions.</td></tr>
                 <tr><td>Chart</td><td>A bundle of information (YAML files and templates) describing a related set of Kubernetes resources.</td></tr>
-                <tr><td>Release</td><td>An instance of a chart running in a Kubernetes cluster. The same chart can be installed multiple times, creating unique releases.</td></tr>
-                <tr><td>Repository</td><td>Public or private locations where Helm charts are stored, shared, and indexed (e.g., Artifact Hub).</td></tr>
+                <tr><td>Release</td><td>An instance of a chart running in a Kubernetes cluster. The same chart can be installed multiple times.</td></tr>
               </tbody>
             </table>
           </div>
@@ -706,32 +703,30 @@ CMD ["node", "dist/index.js"]</div>
               <thead><tr><th>File / Directory</th><th>Purpose</th></tr></thead>
               <tbody>
                 <tr><td>Chart.yaml</td><td>Contains metadata about the chart, including its name, description, version, and application version.</td></tr>
-                <tr><td>values.yaml</td><td>Defines the default configuration values that can be injected into your templates.</td></tr>
-                <tr><td>templates/</td><td>Directory containing valid Kubernetes YAML templates that combine with <code>values.yaml</code> at runtime.</td></tr>
-                <tr><td>templates/_helpers.tpl</td><td>A helper file used to define reusable template snippets, labels, and naming conventions.</td></tr>
-                <tr><td>charts/</td><td>Directory containing any dependent subcharts required by the parent chart.</td></tr>
+                <tr><td>values.yaml</td><td>Defines default configuration values that can be injected into your templates at runtime.</td></tr>
+                <tr><td>templates/</td><td>Directory containing valid Kubernetes YAML templates combined with <code>values.yaml</code>.</td></tr>
+                <tr><td>templates/_helpers.tpl</td><td>Defines reusable template snippets, labels, and naming conventions.</td></tr>
               </tbody>
             </table>
           </div>
         `
       },
       {
-        name: "Configurations",
-        type: "html",
-        content: `
-          <div class="notes-section" style="margin-bottom: 20px;">
-            <h4 class="notes-heading"><i data-lucide="file-code"></i> 1. Chart Metadata (Chart.yaml)</h4>
-            <div class="notes-code-block">apiVersion: v2
+        name: "Chart.yaml",
+        type: "code",
+        filename: "Chart.yaml",
+        content: `apiVersion: v2
 name: fintech-app
 description: A Helm chart for enterprise microservice deployment
 type: application
 version: 0.1.0
-appVersion: "1.4.2"</div>
-          </div>
-
-          <div class="notes-section" style="margin-bottom: 20px;">
-            <h4 class="notes-heading"><i data-lucide="sliders"></i> 2. Default Configuration (values.yaml)</h4>
-            <div class="notes-code-block">replicaCount: 3
+appVersion: "1.4.2"`
+      },
+      {
+        name: "values.yaml",
+        type: "code",
+        filename: "values.yaml",
+        content: `replicaCount: 3
 
 image:
   repository: registry.internal/fintech/core-api
@@ -740,12 +735,13 @@ image:
 
 service:
   type: ClusterIP
-  port: 80</div>
-          </div>
-
-          <div class="notes-section" style="margin-bottom: 0;">
-            <h4 class="notes-heading"><i data-lucide="box"></i> 3. Template Manifest (templates/deployment.yaml)</h4>
-            <div class="notes-code-block">apiVersion: apps/v1
+  port: 80`
+      },
+      {
+        name: "Deployment.yaml",
+        type: "code",
+        filename: "templates/deployment.yaml",
+        content: `apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "fintech-app.fullname" . }}
@@ -763,15 +759,14 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image.repository }:%{ .Values.image.tag }}"
           ports:
-            - containerPort: 8080</div>
-          </div>
-        `
+            - containerPort: 80`
       }
     ]
   },
+
+  
   "openshift": {
     title: "Red Hat OpenShift",
     description: "OpenShift is an enterprise-grade Kubernetes platform built for a hybrid cloud strategy, offering enhanced security and developer tools.",
