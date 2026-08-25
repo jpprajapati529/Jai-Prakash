@@ -441,35 +441,124 @@ const moduleData = {
   },
 
 
-  "docker": {
+"docker": {
     title: "Docker",
-    description: "Docker is a software platform that allows developers to package applications into lightweight, standardized executable components called containers.",
+    description: `
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
+        <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
+          <img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
+        </div>
+        <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          Docker is an open platform for developing, shipping, and running applications inside lightweight, isolated containers, ensuring consistency across environments.
+        </p>
+      </div>
+    `,
     tabs: [
       {
-        name: "My Responsibilities",
+        name: "Architecture",
         type: "html",
         content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Leveraged Docker to decouple applications from underlying infrastructure, ensuring consistency across development and production.</p>
-              <ul class="rich-list">
-                <li>Deployed and managed containerized microservices across diverse cloud environments.</li>
-                <li>Reduced infrastructure costs through highly efficient resource utilization and optimized container footprints.</li>
-                <li>Integrated Docker builds seamlessly into enterprise CI/CD pipelines.</li>
-              </ul>
-            </div>
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="layers"></i> Docker Client-Server Architecture</h4>
+            <table class="notes-table">
+              <thead><tr><th>Component</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>Docker Client</td><td>The primary user interface (CLI) that accepts user commands (<code>docker run</code>, <code>build</code>) and communicates with the daemon.</td></tr>
+                <tr><td>Docker Daemon (dockerd)</td><td>Listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes.</td></tr>
+                <tr><td>Docker Registry</td><td>A storage and distribution system for public and private images (e.g., Docker Hub, AWS ECR, GitHub Packages).</td></tr>
+                <tr><td>Images & Containers</td><td>An Image is a read-only template with instructions; a Container is a runnable, isolated instance of an image.</td></tr>
+              </tbody>
+            </table>
           </div>
         `
       },
       {
         name: "Dockerfile",
-        type: "code",
-        filename: "Dockerfile",
-        content: `FROM python:3.9-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\nCOPY . .\nUSER 1001 \nCMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:main"]`
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="file-code"></i> Optimized Multi-Stage Dockerfile</h4>
+            <div class="notes-code-block"># Stage 1: Build the application
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Stage 2: Run the production application
+FROM node:18-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+COPY package*.json ./
+RUN npm ci --only=production
+COPY --from=builder /app/dist ./dist
+
+USER node
+EXPOSE 8080
+CMD ["node", "dist/index.js"]</div>
+          </div>
+        `
+      },
+      {
+        name: "Commands",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="terminal-square"></i> Essential Docker CLI Cheatsheet</h4>
+            <table class="notes-table">
+              <thead><tr><th>Command</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>docker build -t app:tag .</td><td>Builds a Docker image from a Dockerfile in the current directory.</td></tr>
+                <tr><td>docker run -d -p 8080:80 app:tag</td><td>Runs a container in detached mode, mapping host port 8080 to container port 80.</td></tr>
+                <tr><td>docker ps -a</td><td>Lists all containers (running and stopped) on the host.</td></tr>
+                <tr><td>docker exec -it &lt;container&gt; sh</td><td>Opens an interactive shell session inside a running container.</td></tr>
+                <tr><td>docker logs -f &lt;container&gt;</td><td>Streams live logs from a specified container instance.</td></tr>
+                <tr><td>docker system prune -a</td><td>Removes all unused containers, networks, and unreferenced images.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
+      },
+      {
+        name: "Volumes",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="hard-drive"></i> Docker Storage & Volume Management</h4>
+            <table class="notes-table">
+              <thead><tr><th>Storage Type</th><th>Characteristics & Use Case</th></tr></thead>
+              <tbody>
+                <tr><td>Volumes</td><td>Managed entirely by Docker (stored in <code>/var/lib/docker/volumes/</code> on Linux). Ideal for persistent production data.</td></tr>
+                <tr><td>Bind Mounts</td><td>Maps a file or directory from the host machine directly into the container. Highly used during local development for live code reloading.</td></tr>
+                <tr><td>tmpfs Mounts</td><td>Stored only in the host system's memory and never written to disk. Used for high-security transient data storage.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
+      },
+      {
+        name: "Networks",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="wifi"></i> Docker Networking Drivers</h4>
+            <table class="notes-table">
+              <thead><tr><th>Network Driver</th><th>Description & Behavior</th></tr></thead>
+              <tbody>
+                <tr><td>Bridge (default)</td><td>A private network internal to the host. Containers on the same bridge can communicate; port mapping is required for external access.</td></tr>
+                <tr><td>Host</td><td>Removes network isolation between the container and the Docker host, binding directly to host network interfaces.</td></tr>
+                <tr><td>None</td><td>Completely disables all networking for the container (total isolation).</td></tr>
+                <tr><td>Overlay</td><td>Connects multiple Docker daemons together, enabling swarm services and cross-host multi-container communication.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
       }
     ]
   },
+
+  
   "kubernetes": {
     title: "Kubernetes (K8s)",
     description: `
