@@ -414,7 +414,7 @@ const moduleData = {
             </table>
           </div>
         `
-      }
+      },
       {
         name: "Modular Example",
         type: "html",
