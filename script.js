@@ -633,31 +633,36 @@ function openModuleModal(moduleId) {
     activeClickedNode.style.opacity = '0'; // Hide original node behind blur
   }
 
-  // 2. Initial tiny bubble state at click coordinates
+  // 2. Measure FINAL full-size coordinates before setting start state
+  // We temporarily set it to scale(1) so the browser gives us the true final edge coordinates
   modalContent.style.transition = 'none';
   modalContent.style.opacity = '0';
-  modalContent.style.transform = 'translate(0px, 0px) scale(0.1)';
+  modalContent.style.transform = 'translate(0px, 0px) scale(1)';
 
+  // Activate overlay so it renders on screen for measurement
   overlay.classList.add("active");
 
-  // Force reflow and calculate pop-up coordinates
+  // Measure the TRUE full-size dimensions
   const rectModal = modalContent.getBoundingClientRect();
   const finalCenterX = rectModal.left + rectModal.width / 2;
   const finalCenterY = rectModal.top + rectModal.height / 2;
 
+  // Now calculate the delta from the click point to the true center
   const deltaX = lastClickX - finalCenterX;
   const deltaY = lastClickY - finalCenterY;
 
+  // NOW set the tiny bubble start state right on top of the clicked node
   modalContent.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.1)`;
+  
+  // Force browser reflow to lock in the starting state
   modalContent.offsetHeight;
 
-  // 3. Spring open with bouncy transition
+  // 3. Spring open with bouncy transition to full size
   modalContent.style.transition = '';
   modalContent.style.opacity = '1';
   modalContent.style.transform = 'translate(0px, 0px) scale(1)';
 
-  // 4. Draw Neon Tether Curve from Node to Modal Edge
-  // 4. Draw Clean Solid Neon Tether from Node Edge to Modal Center-Left/Right Edge
+  // 4. Draw Clean Solid Neon Tether from Node Edge to True Modal Edge
   if (activeClickedNode && activeFloatingNode) {
     const nodeRect = activeFloatingNode.getBoundingClientRect();
     const isAlignRight = overlay.classList.contains("align-right");
@@ -665,9 +670,8 @@ function openModuleModal(moduleId) {
     const startX = isAlignRight ? nodeRect.right : nodeRect.left;
     const startY = nodeRect.top + nodeRect.height / 2;
     
+    // Because rectModal was captured at scale(1), this edge is perfectly accurate now!
     const endX = isAlignRight ? rectModal.left : rectModal.right;
-    
-    // THE FIX: Anchor to the vertical middle of the modal so it points directly into the side
     const endY = rectModal.top + rectModal.height / 2;
 
     // Clean horizontal S-curve bridge
