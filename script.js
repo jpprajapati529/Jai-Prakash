@@ -70,7 +70,7 @@ const moduleData = {
       }
     ]
   },
-  
+
   "skill-cloud": {
     title: "Multi-Cloud Architectures",
     description: "Multi-tier cloud deployment utilizing Kubernetes, VPC Peering, and high-availability managed databases.",
@@ -718,6 +718,7 @@ function openModuleModal(moduleId) {
   const data = moduleData[moduleId];
   if (!data) return;
 
+  // Forcefully pause the slideshow while the modal is open
   clearInterval(slideInterval);
 
   document.getElementById("modal-title").innerText = data.title;
@@ -730,7 +731,6 @@ function openModuleModal(moduleId) {
     lucide.createIcons();
   }
 
-  // THE FIX: Use innerHTML to render the logo & layout perfectly!
   const descEl = document.getElementById("modal-description");
   if (data.description) {
     descEl.innerHTML = data.description;
@@ -742,7 +742,6 @@ function openModuleModal(moduleId) {
   const tabsContainer = document.getElementById("modal-tabs");
   tabsContainer.innerHTML = "";
 
-  // Show tabs if there is more than 1
   if (data.tabs.length > 1) {
     tabsContainer.style.display = "flex";
     data.tabs.forEach((tab, index) => {
@@ -763,19 +762,24 @@ function openModuleModal(moduleId) {
 
   const windowWidth = window.innerWidth;
   
-  // SIDE-AWARE LOGIC: Clicked left -> open right. Clicked right -> open left.
-  if (lastClickX < windowWidth * 0.45) {
-    overlay.classList.add("align-right");
-  } else if (lastClickX > windowWidth * 0.55) {
-    overlay.classList.add("align-left");
+  // Check if clicked node is specifically a Slide 2 network node
+  const isNetworkNode = activeClickedNode && activeClickedNode.classList.contains('network-node');
+
+  if (isNetworkNode) {
+    if (lastClickX < windowWidth * 0.45) {
+      overlay.classList.add("align-right");
+    } else {
+      overlay.classList.add("align-left");
+    }
   } else {
-    overlay.classList.add("align-center");
+    overlay.classList.add("align-center"); // Center modal for skills/cards
   }
 
   const modalContent = document.querySelector('.modal-content');
+  const connectorPath = document.getElementById("modal-connector-path");
 
-  // 1. Create unblurred floating node clone if a node was clicked
-  if (activeClickedNode) {
+  // 1. Create unblurred floating node clone ONLY for Slide 2 network nodes
+  if (isNetworkNode) {
     const rect = activeClickedNode.getBoundingClientRect();
     
     activeFloatingNode = activeClickedNode.cloneNode(true);
@@ -786,55 +790,49 @@ function openModuleModal(moduleId) {
     activeFloatingNode.style.height = `${rect.height}px`;
     
     document.body.appendChild(activeFloatingNode);
-    activeClickedNode.style.opacity = '0'; // Hide original node behind blur
+    activeClickedNode.style.opacity = '0';
+    if (connectorPath) connectorPath.style.display = "block";
+  } else {
+    if (connectorPath) connectorPath.style.display = "none"; // Hide tether for center cards
   }
 
-  // 2. Measure FINAL full-size coordinates before setting start state
-  // We temporarily set it to scale(1) so the browser gives us the true final edge coordinates
+  // 2. Initial setup for pop-up animation
   modalContent.style.transition = 'none';
   modalContent.style.opacity = '0';
   modalContent.style.transform = 'translate(0px, 0px) scale(1)';
 
-  // Activate overlay so it renders on screen for measurement
   overlay.classList.add("active");
 
-  // Measure the TRUE full-size dimensions
   const rectModal = modalContent.getBoundingClientRect();
   const finalCenterX = rectModal.left + rectModal.width / 2;
   const finalCenterY = rectModal.top + rectModal.height / 2;
 
-  // Now calculate the delta from the click point to the true center
   const deltaX = lastClickX - finalCenterX;
   const deltaY = lastClickY - finalCenterY;
 
-  // NOW set the tiny bubble start state right on top of the clicked node
   modalContent.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.1)`;
-  
-  // Force browser reflow to lock in the starting state
   modalContent.offsetHeight;
 
-  // 3. Spring open with bouncy transition to full size
+  // 3. Spring open
   modalContent.style.transition = '';
   modalContent.style.opacity = '1';
   modalContent.style.transform = 'translate(0px, 0px) scale(1)';
 
-  // 4. Draw Clean Solid Neon Tether from Node Edge to True Modal Edge
-  if (activeClickedNode && activeFloatingNode) {
+  // 4. Draw Neon Tether ONLY if it's a network node
+  if (isNetworkNode && activeFloatingNode) {
     const nodeRect = activeFloatingNode.getBoundingClientRect();
     const isAlignRight = overlay.classList.contains("align-right");
     
     const startX = isAlignRight ? nodeRect.right : nodeRect.left;
     const startY = nodeRect.top + nodeRect.height / 2;
     
-    // Because rectModal was captured at scale(1), this edge is perfectly accurate now!
     const endX = isAlignRight ? rectModal.left : rectModal.right;
     const endY = rectModal.top + rectModal.height / 2;
 
-    // Clean horizontal S-curve bridge
     const midX = (startX + endX) / 2;
     const pathData = `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`;
     
-    document.getElementById("modal-connector-path").setAttribute("d", pathData);
+    connectorPath.setAttribute("d", pathData);
   }
 
   lucide.createIcons();
