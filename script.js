@@ -656,7 +656,7 @@ function openModuleModal(moduleId) {
   modalContent.style.opacity = '1';
   modalContent.style.transform = 'translate(0px, 0px) scale(1)';
 
-  
+  // 4. Draw Neon Tether Curve from Node to Modal Edge
   // 4. Draw Clean Solid Neon Tether from Node Edge to Modal Header Edge
   if (activeClickedNode && activeFloatingNode) {
     const nodeRect = activeFloatingNode.getBoundingClientRect();
