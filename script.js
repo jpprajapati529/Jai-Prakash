@@ -846,51 +846,33 @@ function openModuleModal(moduleId) {
 
   document.getElementById("modal-title").innerText = data.title;
 
-  // UNIVERSAL AUTO-LOGO EXTRACTION: Automatically snags the icon/logo from the clicked element!
+  // Dynamically place official colored logos in the header via if-else statements
   const iconContainer = document.getElementById("modal-header-icon-container");
-  iconContainer.innerHTML = "";
-
-  if (activeClickedNode) {
-    const iconWrapper = activeClickedNode.querySelector('.node-icon-wrapper, .jb-skill-logo');
-    const img = activeClickedNode.querySelector('img');
-    const svg = activeClickedNode.querySelector('svg');
-    const iconEl = activeClickedNode.querySelector('i');
-
-    if (iconWrapper) {
-      const clone = iconWrapper.cloneNode(true);
-      // Clean up sizing for the header
-      clone.style.width = "22px";
-      clone.style.height = "22px";
-      const innerImg = clone.querySelector('img, svg');
-      if (innerImg) {
-        innerImg.style.width = "22px";
-        innerImg.style.height = "22px";
-        innerImg.style.objectFit = "contain";
-      }
-      iconContainer.appendChild(clone);
-    } else if (img) {
-      const cloneImg = img.cloneNode(true);
-      cloneImg.style.width = "22px";
-      cloneImg.style.height = "22px";
-      cloneImg.style.objectFit = "contain";
-      iconContainer.appendChild(cloneImg);
-    } else if (svg) {
-      const cloneSvg = svg.cloneNode(true);
-      cloneSvg.style.width = "22px";
-      cloneSvg.style.height = "22px";
-      iconContainer.appendChild(cloneSvg);
-    } else if (iconEl) {
-      const cloneIcon = iconEl.cloneNode(true);
-      cloneIcon.style.width = "22px";
-      cloneIcon.style.height = "22px";
-      iconContainer.appendChild(cloneIcon);
-    } else {
-      iconContainer.innerHTML = `<i data-lucide="box" style="color: var(--accent-purple); width: 22px; height: 22px;"></i>`;
-    }
+  
+  if (moduleId === 'terraform') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'aws') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'kubernetes') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'azure') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'gcp') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'docker') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'helm') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/helmsh/helmsh-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'github') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'jenkins') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'azure-devops') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else {
-    iconContainer.innerHTML = `<i data-lucide="box" style="color: var(--accent-purple); width: 22px; height: 22px;"></i>`;
+    iconContainer.innerHTML = `<i id="modal-icon" data-lucide="box" style="color: var(--accent-purple); width: 22px; height: 22px;"></i>`;
+    lucide.createIcons();
   }
-  lucide.createIcons();
 
   const descEl = document.getElementById("modal-description");
   if (data.description) {
