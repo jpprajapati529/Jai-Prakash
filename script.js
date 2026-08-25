@@ -352,30 +352,104 @@ const moduleData = {
   },
   "kubernetes": {
     title: "Kubernetes (K8s)",
-    description: "Kubernetes is an open-source container orchestration system for automating application deployment, scaling, and operational management.",
+    description: `
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
+        <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
+          <img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
+        </div>
+        <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          Kubernetes is an open-source container orchestration system for automating application deployment, scaling, and operational management.
+        </p>
+      </div>
+    `,
     tabs: [
       {
-        name: "My Responsibilities",
+        name: "Architecture",
         type: "html",
         content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Administered large-scale, high-availability Kubernetes clusters (AKS, EKS, GKE) to ensure reliable microservice operations.</p>
-              <ul class="rich-list">
-                <li>Enhanced system reliability through self-healing configurations and automated scaling.</li>
-                <li>Implemented stringent K8s security best practices, utilizing IAM, HashiCorp Vault, and Secrets Manager.</li>
-                <li>Successfully reduced security incidents by 60% through rigorous policy enforcement.</li>
-              </ul>
-            </div>
+          <div class="notes-section" style="margin-bottom: 20px;">
+            <h4 class="notes-heading"><i data-lucide="server"></i> Control Plane (Master Node)</h4>
+            <table class="notes-table">
+              <thead><tr><th>Component</th><th>Role</th></tr></thead>
+              <tbody>
+                <tr><td>kube-apiserver</td><td>Front-end of the control plane; exposes the Kubernetes API.</td></tr>
+                <tr><td>etcd</td><td>Consistent and highly-available key value store for cluster state.</td></tr>
+                <tr><td>kube-scheduler</td><td>Assigns newly created Pods to available worker nodes.</td></tr>
+                <tr><td>kube-controller-manager</td><td>Runs controller processes (Node, Replication, Endpoints, etc.).</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="hard-drive"></i> Worker Node</h4>
+            <table class="notes-table">
+              <thead><tr><th>Component</th><th>Role</th></tr></thead>
+              <tbody>
+                <tr><td>kubelet</td><td>Agent that ensures containers are running inside a Pod.</td></tr>
+                <tr><td>kube-proxy</td><td>Maintains network rules on nodes, allowing network communication.</td></tr>
+                <tr><td>Container Runtime</td><td>Software responsible for running containers (e.g., containerd, CRI-O).</td></tr>
+              </tbody>
+            </table>
           </div>
         `
       },
       {
-        name: "Security Manifest",
-        type: "code",
-        filename: "k8s_security.yaml",
-        content: `apiVersion: rbac.authorization.k8s.io/v1\nkind: Role\nmetadata:\n  namespace: prod-namespace\n  name: secrets-reader\nrules:\n- apiGroups: [""]\n  resources: ["secrets"]\n  verbs: ["get", "watch", "list"]`
+        name: "Manifests",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="file-json"></i> Core Workloads & Resources</h4>
+            <table class="notes-table">
+              <thead><tr><th>Resource</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>Deployment</td><td>Declarative updates for Pods and ReplicaSets; ideal for stateless apps.</td></tr>
+                <tr><td>StatefulSet</td><td>Manages stateful apps, providing stable persistent storage and network IDs.</td></tr>
+                <tr><td>DaemonSet</td><td>Ensures a copy of a specific Pod runs across all (or matching) cluster nodes.</td></tr>
+                <tr><td>Service</td><td>An abstract way to expose an application running on a set of Pods.</td></tr>
+                <tr><td>Ingress</td><td>Manages external access to services in a cluster, typically HTTP/HTTPS.</td></tr>
+                <tr><td>ConfigMap / Secret</td><td>Separates configuration data and sensitive credentials from Pod code.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
+      },
+      {
+        name: "RCA Guide",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="alert-triangle"></i> Pod Status & Troubleshooting</h4>
+            <table class="notes-table">
+              <thead><tr><th>Error State</th><th>Root Cause Analysis & Fix</th></tr></thead>
+              <tbody>
+                <tr><td>CrashLoopBackOff</td><td>Container fails repeatedly. Check logs (<code>kubectl logs</code>) for app crashes, missing env vars, or bad entrypoints.</td></tr>
+                <tr><td>ImagePullBackOff</td><td>Kubelet cannot pull the image. Verify the image name/tag, registry auth (imagePullSecrets), or network egress.</td></tr>
+                <tr><td>OOMKilled</td><td>Container exceeded its memory limit. Check <code>kubectl describe pod</code> and increase <code>resources.limits.memory</code>.</td></tr>
+                <tr><td>Pending</td><td>Pod cannot be scheduled. Usually indicates insufficient node resources (CPU/Mem) or unmatched node selectors/taints.</td></tr>
+                <tr><td>Evicted</td><td>Node resource starvation. The node is reclaiming resources by terminating lower-priority Pods.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
+      },
+      {
+        name: "Commands",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="terminal-square"></i> Kubectl Cheatsheet</h4>
+            <table class="notes-table">
+              <thead><tr><th>Command</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>kubectl get po,svc,no</td><td>List Pods, Services, and Nodes in the current namespace.</td></tr>
+                <tr><td>kubectl describe pod &lt;pod&gt;</td><td>Show detailed resource states, events, and lifecycle history.</td></tr>
+                <tr><td>kubectl logs -f &lt;pod&gt;</td><td>Stream live logs for a specific Pod (add <code>-c</code> for specific containers).</td></tr>
+                <tr><td>kubectl exec -it &lt;pod&gt; -- sh</td><td>Open an interactive shell session inside a running container.</td></tr>
+                <tr><td>kubectl apply -f &lt;file.yaml&gt;</td><td>Create or update resources declaratively from a manifest file.</td></tr>
+                <tr><td>kubectl port-forward svc/&lt;svc&gt; 8080:80</td><td>Forward local port 8080 to service port 80 for isolated testing.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
       }
     ]
   },
@@ -778,6 +852,8 @@ function openModuleModal(moduleId) {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'aws') {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else if (moduleId === 'kubernetes') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else {
     iconContainer.innerHTML = `<i id="modal-icon" data-lucide="box" style="color: var(--accent-purple);"></i>`;
     lucide.createIcons();
