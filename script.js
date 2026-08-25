@@ -1401,7 +1401,16 @@ function openModuleModal(moduleId) {
       const btn = document.createElement("button");
       btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
       btn.innerText = tab.name;
-      btn.onclick = () => selectModalTab(data, index, btn);
+btn.onclick = () => {
+        selectModalTab(data, index, btn);
+        
+        // Smoothly scroll the modal down to where the tabs start!
+        const modalContent = document.querySelector('.modal-content');
+        modalContent.scrollTo({
+          top: tabsContainer.offsetTop - 24, // 24px padding leaves nice breathing room at the top
+          behavior: 'smooth'
+        });
+      };
       tabsContainer.appendChild(btn);
     });
   } else {
