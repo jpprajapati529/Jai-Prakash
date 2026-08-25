@@ -221,6 +221,14 @@
   align-items: center; 
 }
 
+.slider-container {
+  /* Prevents Chrome's swipe-left/swipe-right back page navigation */
+  overscroll-behavior-x: none; 
+  
+  /* Tells the browser to only handle vertical scrolling natively, leaving horizontal swipes to your slider */
+  touch-action: pan-y; 
+}
+
 .hero-slide {
   grid-column: 1;
   grid-row: 1;
@@ -238,6 +246,7 @@
 .hero-slide:nth-child(1) {
   transform: translateX(-100%); 
 }
+
 
 /* Slide 2 waits completely off-screen to the RIGHT when inactive */
 .hero-slide:nth-child(2) {

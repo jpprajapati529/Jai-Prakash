@@ -2173,22 +2173,28 @@ document.querySelectorAll('.network-node').forEach(node => {
 
 
 // =========================================================
-// PAUSE ENTIRE SLIDESHOW ON HOVER (Microsoft Style)
+// PAUSE ENTIRE SLIDESHOW ON HOVER & TOUCH
 // =========================================================
-// This targets your main slider wrapper. Update the class name if yours is different!
 const mainSliderWrapper = document.querySelector('.slider-container') || document.querySelector('.hero-section') || document.querySelector('.slides');
 
 if (mainSliderWrapper) {
-  mainSliderWrapper.addEventListener('mouseenter', () => {
-    // Stop the timer as soon as the mouse enters anywhere in the slider area
-    clearInterval(slideInterval); 
-  });
+  // 1. Desktop Mouse Hover
+  mainSliderWrapper.addEventListener('mouseenter', () => clearInterval(slideInterval));
   
-  mainSliderWrapper.addEventListener('mouseleave', () => {
-    // Restart the timer when the mouse leaves, BUT only if the user hasn't 
-    // manually clicked the pause button and there isn't a modal currently open.
-    if (!isPaused && !document.getElementById("modal-overlay").classList.contains("active")) {
-      startSlideTimer();
-    }
-  });
+  // 2. Touch/Trackpad Swipe Start
+  mainSliderWrapper.addEventListener('touchstart', () => clearInterval(slideInterval), { passive: true });
+
+  // 3. Resume when mouse leaves
+  mainSliderWrapper.addEventListener('mouseleave', resumeSlider);
+  
+  // 4. Resume when touch/swipe ends
+  mainSliderWrapper.addEventListener('touchend', resumeSlider);
+}
+
+// Helper function to cleanly resume the slider
+function resumeSlider() {
+  const isModalOpen = document.getElementById("modal-overlay").classList.contains("active");
+  if (!isPaused && !isModalOpen) {
+    startSlideTimer();
+  }
 }
