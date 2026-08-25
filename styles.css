@@ -137,18 +137,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 150px;       /* 30px Wider */
-  height: 56px;       /* 8px Taller */
-  padding: 0 16px;    /* Slightly more internal padding */
+  width: 150px;       
+  height: 56px;       
+  padding: 0 16px;    
   
-  /* The Translucent JetBrains Frosted Glass Effect */
-  background: rgba(4, 10, 25, 0.65); 
+  /* THE FIX: JetBrains Translucency & Left-Side Neon Hue */
+  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.12) 0%, rgba(10, 14, 25, 0.5) 40%, rgba(10, 14, 25, 0.7) 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   
-  border: 1px solid rgba(var(--theme-rgb), 0.4); 
-  border-radius: 10px; /* Slightly rounder, softer corners */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(var(--theme-rgb), 0.15);
+  /* Subtle border all around, but a sharp, glowing theme line on the left */
+  border: 1px solid rgba(255, 255, 255, 0.06); 
+  border-left: 2px solid rgba(var(--theme-rgb), 0.8); 
+  
+  /* Inner shadow matching the neon edge to bleed the light inward */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 20px 0 30px -15px rgba(var(--theme-rgb), 0.25);
+  border-radius: 10px; 
   z-index: 5;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -156,10 +160,10 @@
 
 /* Richer hover effect */
 .network-node:hover {
-  border-color: rgba(var(--theme-rgb), 1);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(var(--theme-rgb), 0.3), inset 0 0 15px rgba(var(--theme-rgb), 0.2);
+  border-color: rgba(255, 255, 255, 0.15);
+  border-left: 2px solid rgba(var(--theme-rgb), 1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(var(--theme-rgb), 0.2), inset 30px 0 40px -20px rgba(var(--theme-rgb), 0.4);
   transform: translateY(-2px);
-  background: rgba(8, 14, 30, 0.85); /* Darkens slightly when hovered */
 }
 
 /* Left side: Skeleton Loaders (Scaled up to match bigger boxes) */
@@ -170,17 +174,28 @@
 
 /* Right side: Circular Logo Container (Scaled up) */
 .node-icon-wrapper {
-  width: 32px; 
-  height: 32px; 
-  border-radius: 8px; 
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1); 
+  width: 36px; 
+  height: 36px; 
+  background: transparent; /* No more box */
+  border: none;            /* No more border */
   display: flex; 
   align-items: center; 
-  justify-content: center;
+  justify-content: flex-end; /* Pushes the bigger logo to the right edge */
 }
-.node-icon { width: 18px; height: 18px; object-fit: contain; filter: brightness(0) invert(1); }
 
+.node-icon { 
+  width: 28px; 
+  height: 28px; 
+  object-fit: contain; 
+  /* Softens the pure white slightly to match the JetBrains aesthetic */
+  filter: brightness(0) invert(1) opacity(0.85); 
+  transition: all 0.3s ease;
+}
+
+.network-node:hover .node-icon {
+  filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+  transform: scale(1.1);
+}
 /* -------------------------------------------
    Exact Static Placement (Recalculated for 150x56 boxes)
    These coordinates perfectly target the X/Y endpoints of your SVG!
@@ -2801,23 +2816,19 @@ body[data-theme="light"] .hero-card::before {
    ========================================================= */
 /* Turns nodes into solid white cards with an active neon theme glow */
 body[data-theme="light"] .network-node {
-  background: #ffffff !important;
-  backdrop-filter: none !important; /* Kills the frosted glass so lines don't show through */
+  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.08) 0%, #ffffff 40%, #ffffff 100%) !important;
+  backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  
-  /* JetBrains glowing theme border */
-  border: 1px solid rgba(var(--theme-rgb), 0.5) !important; 
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 
-              0 0 15px rgba(var(--theme-rgb), 0.15), 
-              inset 0 0 8px rgba(var(--theme-rgb), 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important; 
+  border-left: 3px solid rgb(var(--theme-rgb)) !important; /* Thick solid colored edge */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), inset 15px 0 20px -10px rgba(var(--theme-rgb), 0.1) !important;
 }
 
 /* Richer glowing hover effect */
 body[data-theme="light"] .network-node:hover {
-  border-color: rgba(var(--theme-rgb), 1) !important;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), 
-              0 0 25px rgba(var(--theme-rgb), 0.3), 
-              inset 0 0 12px rgba(var(--theme-rgb), 0.1) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  border-left: 3px solid rgb(var(--theme-rgb)) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), 0 0 25px rgba(var(--theme-rgb), 0.2), inset 25px 0 30px -15px rgba(var(--theme-rgb), 0.2) !important;
   transform: translateY(-2px) !important;
 }
 
@@ -2828,8 +2839,8 @@ body[data-theme="light"] .skel-line {
 
 /* Lightens the logo wrappers and brings back original colorful logos! */
 body[data-theme="light"] .node-icon-wrapper {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
+  background: transparent !important;
+  border: none !important;
 }
 
 body[data-theme="light"] .node-icon {
