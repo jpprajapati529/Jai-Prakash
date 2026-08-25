@@ -1437,9 +1437,49 @@ function openModuleModal(moduleId) {
     if (connectorPath) connectorPath.style.display = "none"; // Hide tether for center cards
   }
 
-  // 2. Trigger the clean CSS pop animation instantly
+  // 2. Initial setup for pop-up animation
+  modalContent.style.transition = 'none';
+  modalContent.style.opacity = '0';
+  modalContent.style.transform = 'translate(0px, 0px) scale(1)';
+
   overlay.classList.add("active");
+
+  // WE NEED THIS BACK! It calculates where the modal is so the tether can connect!
+  const rectModal = modalContent.getBoundingClientRect(); 
+  const finalCenterX = rectModal.left + rectModal.width / 2;
+  const finalCenterY = rectModal.top + rectModal.height / 2;
+
+  const deltaX = lastClickX - finalCenterX;
+  const deltaY = lastClickY - finalCenterY;
+
+  // Start tiny at the exact cursor click position
+  modalContent.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.1)`;
   
+  // Force a clean browser repaint to prevent lag
+  void modalContent.offsetWidth; 
+
+  // 3. Spring open (The bubble effect!)
+  modalContent.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease';
+  modalContent.style.opacity = '1';
+  modalContent.style.transform = 'translate(0px, 0px) scale(1)';
+
+  // 4. Draw Neon Tether ONLY if it's a network node
+  if (isNetworkNode && activeFloatingNode) {
+    const nodeRect = activeFloatingNode.getBoundingClientRect();
+    const isAlignRight = overlay.classList.contains("align-right");
+    
+    const startX = isAlignRight ? nodeRect.right : nodeRect.left;
+    const startY = nodeRect.top + nodeRect.height / 2;
+    
+    const endX = isAlignRight ? rectModal.left : rectModal.right;
+    const endY = rectModal.top + rectModal.height / 2;
+
+    const midX = (startX + endX) / 2;
+    const pathData = `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`;
+    
+    if (connectorPath) connectorPath.setAttribute("d", pathData);
+  }
+
   // 4. Draw Neon Tether ONLY if it's a network node
   if (isNetworkNode && activeFloatingNode) {
     const nodeRect = activeFloatingNode.getBoundingClientRect();
