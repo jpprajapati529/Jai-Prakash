@@ -345,53 +345,62 @@ const moduleData = {
       }
     ]
   },
-  "terraform": {
-    title: "Terraform Docs",
-    description: "", // Intentionally left blank to hide the default text!
+"terraform": {
+    title: "Terraform",
+    // We put the Logo and Definition inside the description so it sits perfectly above the tabs!
+    description: `
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 10px;">
+        <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
+          <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
+        </div>
+        <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          Terraform is an Infrastructure as Code (IaC) tool by HashiCorp used to provision and manage cloud resources safely and predictably.
+        </p>
+      </div>
+    `,
     tabs: [
       {
-        name: "Notes",
+        name: "Key Concepts",
         type: "html",
         content: `
-          <!-- Top Center Logo & Definition -->
-          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 32px; margin-top: 10px;">
-            <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
-              <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
-            </div>
-            <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
-              Terraform is an Infrastructure as Code (IaC) tool by HashiCorp used to provision and manage cloud resources safely and predictably.
-            </p>
-          </div>
-
-          <!-- Section 1: Components -->
-          <div class="notes-section">
+          <div class="notes-section" style="margin-bottom: 0;">
             <h4 class="notes-heading"><i data-lucide="layers"></i> Key Concepts</h4>
             <table class="notes-table">
               <thead><tr><th>Concept</th><th>Meaning</th></tr></thead>
               <tbody>
                 <tr><td>Provider</td><td>Plugin that communicates with AWS, Azure, GCP, etc.</td></tr>
                 <tr><td>Resource</td><td>Infrastructure component such as VM, VNet, S3 bucket.</td></tr>
+                <tr><td>Variable</td><td>Input value that makes configuration reusable.</td></tr>
+                <tr><td>Output</td><td>Displays useful values after deployment.</td></tr>
                 <tr><td>Module</td><td>Reusable Terraform configuration.</td></tr>
                 <tr><td>State</td><td>Tracks infrastructure Terraform manages.</td></tr>
               </tbody>
             </table>
           </div>
-
-          <!-- Section 2: Written Files -->
-          <div class="notes-section">
+        `
+      },
+      {
+        name: "Written Files",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
             <h4 class="notes-heading"><i data-lucide="folder-tree"></i> Written Files</h4>
             <table class="notes-table">
               <thead><tr><th>File</th><th>Purpose</th></tr></thead>
               <tbody>
                 <tr><td>providers.tf</td><td>Configures the cloud provider plugins and their required versions.</td></tr>
-                <tr><td>variables.tf</td><td>Input value that makes configuration reusable.</td></tr>
+                <tr><td>variables.tf</td><td>Defines input variables to make configuration reusable.</td></tr>
                 <tr><td>main.tf</td><td>The primary entrypoint containing core infrastructure resources.</td></tr>
                 <tr><td>outputs.tf</td><td>Displays useful values after deployment.</td></tr>
               </tbody>
             </table>
           </div>
-
-          <!-- Section 3: Commands -->
+        `
+      },
+      {
+        name: "Core Commands",
+        type: "html",
+        content: `
           <div class="notes-section" style="margin-bottom: 0;">
             <h4 class="notes-heading"><i data-lucide="terminal-square"></i> Core Commands</h4>
             <table class="notes-table">
@@ -633,11 +642,11 @@ function openModuleModal(moduleId) {
   if (!data) return;
 
   document.getElementById("modal-title").innerText = data.title;
-  
-  // THE SMART FIX: Hide description entirely if it's left blank
+
+  // THE FIX: Use innerHTML to render the logo & layout perfectly!
   const descEl = document.getElementById("modal-description");
   if (data.description) {
-    descEl.innerText = data.description;
+    descEl.innerHTML = data.description;
     descEl.style.display = "block";
   } else {
     descEl.style.display = "none";
@@ -646,7 +655,7 @@ function openModuleModal(moduleId) {
   const tabsContainer = document.getElementById("modal-tabs");
   tabsContainer.innerHTML = "";
 
-  // THE SMART FIX: Hide the tab buttons entirely if there is only 1 section!
+  // Show tabs if there is more than 1
   if (data.tabs.length > 1) {
     tabsContainer.style.display = "flex";
     data.tabs.forEach((tab, index) => {
