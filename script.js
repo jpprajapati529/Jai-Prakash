@@ -609,15 +609,17 @@ function openModuleModal(moduleId) {
     overlay.classList.add("align-center");
   }
 
-  // Activate overlay so we can measure the final rendered position
-  overlay.classList.add("active");
-  
   const modalContent = document.querySelector('.modal-content');
-  
-  // Calculate exact origin offset from click to final modal center
-  modalContent.style.transition = 'none';
-  modalContent.getBoundingClientRect(); // force reflow
 
+  // 1. Temporarily kill transitions and set initial tiny state at click coordinates
+  modalContent.style.transition = 'none';
+  modalContent.style.opacity = '0';
+  modalContent.style.transform = 'translate(0px, 0px) scale(0.1)';
+
+  // Activate overlay so the modal renders in its target side-aligned position
+  overlay.classList.add("active");
+
+  // Force reflow to calculate the modal's final centered position on the screen
   const rect = modalContent.getBoundingClientRect();
   const finalCenterX = rect.left + rect.width / 2;
   const finalCenterY = rect.top + rect.height / 2;
@@ -625,12 +627,16 @@ function openModuleModal(moduleId) {
   const deltaX = lastClickX - finalCenterX;
   const deltaY = lastClickY - finalCenterY;
 
-  modalContent.style.setProperty('--start-x', `${deltaX}px`);
-  modalContent.style.setProperty('--start-y', `${deltaY}px`);
+  // Set the start position right on top of the clicked node
+  modalContent.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.1)`;
 
-  // Re-enable smooth spring transition
-  modalContent.offsetHeight; 
+  // Force another reflow so the browser registers the start coordinates
+  modalContent.offsetHeight;
+
+  // 2. Turn transitions back on and spring open to full size
   modalContent.style.transition = '';
+  modalContent.style.opacity = '1';
+  modalContent.style.transform = 'translate(0px, 0px) scale(1)';
 
   lucide.createIcons();
 }
