@@ -4,6 +4,35 @@
    1. GLOBAL RESETS & JETBRAINS DARK VARIABLES
    ========================================================= */
 
+
+/* =========================================================
+   CUSTOM SLEEK SCROLLBARS (For Modals, Terminal, and Page)
+   ========================================================= */
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+/* Chrome, Edge, Safari Support */
+::-webkit-scrollbar {
+  width: 8px;  /* Vertical scrollbar width */
+  height: 8px; /* Horizontal scrollbar height (for code blocks) */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Hides the ugly white/grey background track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2); /* Soft, translucent grey pill */
+  border-radius: 10px; /* Smooth rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--theme-rgb), 0.8); /* Glows with your active theme color on hover! */
+}
+
 /* =========================================================
    NETWORK HERO SLIDE (Slide 2 - Static JetBrains Style)
    ========================================================= */
@@ -2576,3 +2605,6 @@ body[data-theme="light"] .network-bottom-glow {
 }
 
 
+/* Darker scrollbar for Light Mode */
+body[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.2) !important; }
+body[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: rgba(var(--theme-rgb), 0.8) !important; }
