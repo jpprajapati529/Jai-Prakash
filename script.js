@@ -43,22 +43,35 @@ const moduleData = {
 
   "azure-devops": {
     title: "Microsoft Azure DevOps",
-    description: "Enterprise application lifecycle management, CI/CD pipelines, Git repositories, and automated deployments.",
+    description: `
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
+        <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
+          <svg style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));" viewBox="0 0 128 128">
+            <path fill="#0078D4" d="M120.89 28.445v69.262l-28.445 23.324-44.09-16.07v15.93L23.395 88.25l72.746 5.688V31.574ZM96.64 31.93 55.82 7.11v16.285L18.348 34.418 7.109 48.852v32.785l16.075 7.11V46.718Zm0 0"/>
+          </svg>
+        </div>
+        <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          Azure DevOps is an end-to-end software delivery platform providing agile planning, source control, automated multi-stage CI/CD pipelines, and package management.
+        </p>
+      </div>
+    `,
     tabs: [
       {
-        name: "My Responsibilities",
+        name: "Core Services",
         type: "html",
         content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Engineered automated build and release pipelines to streamline software delivery across enterprise environments.</p>
-              <ul class="rich-list">
-                <li>Created and maintained YAML-based Azure Pipelines for continuous integration and automated deployments.</li>
-                <li>Managed Azure Repos, branch policies, pull request triggers, and artifact feeds.</li>
-                <li>Integrated security scanning, automated testing, and quality gates into CI/CD workflows.</li>
-              </ul>
-            </div>
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="layers"></i> Azure DevOps Suite</h4>
+            <table class="notes-table">
+              <thead><tr><th>Service</th><th>DevOps Role</th></tr></thead>
+              <tbody>
+                <tr><td>Azure Pipelines</td><td>Cloud-hosted CI/CD engine supporting multi-stage YAML pipelines across Linux, macOS, and Windows.</td></tr>
+                <tr><td>Azure Repos</td><td>Unlimited cloud-hosted private Git repositories with pull request policies and branch protections.</td></tr>
+                <tr><td>Azure Boards</td><td>Agile project management tools (Kanban, Scrum, Sprint tracking, backlog grooming).</td></tr>
+                <tr><td>Azure Artifacts</td><td>Integrated package management for Maven, npm, NuGet, and Python package feeds.</td></tr>
+                <tr><td>Azure Test Plans</td><td>Manual and exploratory testing toolkit for enterprise quality assurance.</td></tr>
+              </tbody>
+            </table>
           </div>
         `
       },
@@ -66,7 +79,68 @@ const moduleData = {
         name: "Pipeline YAML",
         type: "code",
         filename: "azure-pipelines.yml",
-        content: `trigger:\n  - main\n\npool:\n  vmImage: 'ubuntu-latest'\n\nstages:\n- stage: Build\n  jobs:\n  - job: BuildApp\n    steps:\n    - task: NodeTool@0\n      inputs:\n        versionSpec: '18.x'\n    - script: |\n        npm install\n        npm run build\n      displayName: 'npm install and build'`
+        content: `trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  azureSubscription: 'Fintech-Service-Connection'
+  acrName: 'crfintechprod.azurecr.io'
+  imageName: 'fintech-api'
+
+stages:
+- stage: BuildAndScan
+  displayName: 'Build & Security Scan'
+  jobs:
+  - job: Build
+    steps:
+    - task: Docker@2
+      displayName: 'Build Docker Image'
+      inputs:
+        command: build
+        repository: $(imageName)
+        tags: $(Build.BuildId)
+
+- stage: DeployToAKS
+  displayName: 'Deploy to Kubernetes'
+  dependsOn: BuildAndScan
+  condition: succeeded()
+  jobs:
+  - deployment: Deploy
+    environment: 'production'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: KubernetesManifest@1
+            displayName: 'Deploy Manifests to AKS'
+            inputs:
+              action: 'deploy'
+              connectionType: 'azureResourceManager'
+              azureSubscriptionConnection: $(azureSubscription)
+              manifests: 'k8s/*.yaml'`
+      },
+      {
+        name: "Key Concepts",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="shield-check"></i> Enterprise CI/CD Governance</h4>
+            <table class="notes-table">
+              <thead><tr><th>Feature</th><th>Implementation Details</th></tr></thead>
+              <tbody>
+                <tr><td>Service Connections</td><td>Secure, credential-less authentication to Azure via Entra ID Service Principals and Workload Identity.</td></tr>
+                <tr><td>Self-Hosted Agents</td><td>Custom build agents deployed in private virtual networks for building internal applications securely.</td></tr>
+                <tr><td>Variable Groups</td><td>Centralized configuration management with direct integration to Azure Key Vault secrets.</td></tr>
+                <tr><td>Branch Policies</td><td>Enforcing mandatory code reviews, successful build validations, and resolved work items before merge.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
       }
     ]
   },
@@ -766,7 +840,7 @@ spec:
     ]
   },
 
-  
+
   "openshift": {
     title: "Red Hat OpenShift",
     description: "OpenShift is an enterprise-grade Kubernetes platform built for a hybrid cloud strategy, offering enhanced security and developer tools.",
@@ -1287,8 +1361,12 @@ function openModuleModal(moduleId) {
     iconContainer.innerHTML = `<svg style="width: 22px; height: 22px; fill: #ffffff;" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>`;
   } else if (moduleId === 'jenkins') {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
-  } else if (moduleId === 'azure-devops') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  }  else if (moduleId === 'azure-devops') {
+    iconContainer.innerHTML = `
+      <svg style="width: 22px; height: 22px;" viewBox="0 0 128 128">
+        <path fill="#0078D4" d="M120.89 28.445v69.262l-28.445 23.324-44.09-16.07v15.93L23.395 88.25l72.746 5.688V31.574ZM96.64 31.93 55.82 7.11v16.285L18.348 34.418 7.109 48.852v32.785l16.075 7.11V46.718Zm0 0"/>
+      </svg>
+    `;
   } else {
     iconContainer.innerHTML = `<i id="modal-icon" data-lucide="box" style="color: var(--accent-purple);"></i>`;
     lucide.createIcons();
