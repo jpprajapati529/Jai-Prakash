@@ -563,6 +563,18 @@ function openMetricModal(key) {
   openModuleModal(key);
 }
 
+// =========================================================
+// DYNAMIC MODAL POP-UP (Tracks Click Position)
+// =========================================================
+let lastClickX = 0;
+let lastClickY = 0;
+
+// Listen to every click on the page and record the X/Y coordinates
+document.addEventListener('click', (e) => {
+  lastClickX = e.clientX;
+  lastClickY = e.clientY;
+}, true);
+
 function openModuleModal(moduleId) {
   const data = moduleData[moduleId];
   if (!data) return;
@@ -582,6 +594,20 @@ function openModuleModal(moduleId) {
   });
 
   selectModalTab(data, 0, tabsContainer.children[0]);
+
+  // --- THE NEW ANIMATION MATH ---
+  const modalContent = document.querySelector('.modal-content');
+  const windowCenterX = window.innerWidth / 2;
+  const windowCenterY = window.innerHeight / 2;
+  
+  // Calculate the exact distance from the click to the center of the screen
+  const deltaX = lastClickX - windowCenterX;
+  const deltaY = lastClickY - windowCenterY;
+
+  // Inject those exact coordinates into the CSS variables!
+  modalContent.style.setProperty('--start-x', `${deltaX}px`);
+  modalContent.style.setProperty('--start-y', `${deltaY}px`);
+  // ------------------------------
 
   const overlay = document.getElementById("modal-overlay");
   overlay.classList.add("active");

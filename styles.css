@@ -1572,7 +1572,7 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
 .modal-content {
   background: #0f1015; 
   border: 1px solid var(--card-border); 
-  border-radius: 16px; /* Keeps your standard square/rounded shape */
+  border-radius: 16px; 
   width: 90%; 
   max-width: 750px;
   max-height: 85vh; 
@@ -1580,17 +1580,17 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
   padding: 24px; 
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(var(--theme-rgb), 0.15);
   
-  /* THE FIX: Thinking Bubble Start State (Small & Lowered) */
-  transform: scale(0.2) translateY(80px); 
+  /* THE MAGIC: Tells the modal to start exactly where you clicked */
+  transform: translate(var(--start-x, 0px), var(--start-y, 80px)) scale(0.1); 
   opacity: 0;
   
-  /* THE FIX: Spring-loaded bouncy transition */
+  /* The bouncy spring-loaded transition */
   transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
 }
 
 .modal-overlay.active .modal-content { 
-  /* THE FIX: Thinking Bubble End State (Full Size & Centered) */
-  transform: scale(1) translateY(0); 
+  /* The End State: Springs safely to the exact center of the screen */
+  transform: translate(0px, 0px) scale(1); 
   opacity: 1;
 }
 .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 16px; margin-bottom: 20px; }
