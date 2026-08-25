@@ -206,39 +206,62 @@
 @media (max-width: 1050px) { .network-hero-inner { transform: scale(0.8); } }
 @media (max-width: 850px) { .network-hero-inner { transform: scale(0.6); margin-top: -50px; margin-bottom: -50px; } }
 @media (max-width: 600px) { .network-hero-inner { transform: scale(0.4); margin-top: -100px; margin-bottom: -100px; } .hero-slide-controls { margin-top: -100px !important; } }  
+
+
 /* =========================================================
-   HERO SLIDESHOW PHYSICS (Classic Fade Layout)
+   HERO SLIDESHOW PHYSICS (Horizontal Swipe Stack)
    ========================================================= */
 .hero-slider-wrapper {
   position: relative;
   width: 100%;
   overflow-x: hidden; 
+  /* Grid stack locks the container height and overlaps the slides perfectly */
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center; 
 }
 
 .hero-slide {
-  display: none; 
+  grid-column: 1;
+  grid-row: 1;
   width: 100%;
-  animation: msFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* Smooth horizontal transition physics */
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s;
 }
 
+/* Slide 1 waits off-screen to the LEFT when inactive */
+.hero-slide:nth-child(1) {
+  transform: translateX(-15%); 
+}
+
+/* Slide 2 waits off-screen to the RIGHT when inactive */
+.hero-slide:nth-child(2) {
+  transform: translateX(15%); 
+}
+
+/* The Active slide glides perfectly into the center */
 .hero-slide.active {
-  display: block; 
-}
-
-@keyframes msFadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0) !important;
+  z-index: 2;
 }
 
 /* =========================================================
    SLIDESHOW CONTROLS (Microsoft Line & Squircle Style)
    ========================================================= */
 .hero-slide-controls {
+  grid-column: 1;
+  grid-row: 2; /* Drops the controls permanently below the slides */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px; 
-  margin-top: -60px;
+  margin-top: -30px; /* Adjusted to fit the new grid stack */
   margin-bottom: 60px;
   position: relative;
   z-index: 10;
@@ -271,6 +294,7 @@ body[data-theme="light"] .slide-dot { background: #cbd5e1; }
 body[data-theme="light"] .slide-dot.active { background: rgb(var(--theme-rgb)); }
 body[data-theme="light"] .slide-pause-btn { border-color: #cbd5e1 !important; color: #475569 !important; box-shadow: none !important; }
 body[data-theme="light"] .slide-pause-btn:hover { border-color: rgb(var(--theme-rgb)) !important; color: rgb(var(--theme-rgb)) !important; }
+
 
 :root {
   --bg-dark: #08080a;
