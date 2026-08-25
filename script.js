@@ -349,14 +349,9 @@ const moduleData = {
     title: "Terraform",
     // We put the Logo and Definition inside the description so it sits perfectly above the tabs!
     description: `
-      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
-        <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
-          <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
-        </div>
-        <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
-          Terraform is an Infrastructure as Code (IaC) tool by HashiCorp used to provision and manage cloud resources safely and predictably.
-        </p>
-      </div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin-bottom: 16px; margin-top: 0;">
+        Terraform is an Infrastructure as Code (IaC) tool by HashiCorp used to provision and manage cloud resources safely and predictably.
+      </p>
     `,
     tabs: [
       {
@@ -695,6 +690,14 @@ function openModuleModal(moduleId) {
   clearInterval(slideInterval);
 
   document.getElementById("modal-title").innerText = data.title;
+
+  const iconContainer = document.getElementById("modal-header-icon-container");
+  if (moduleId === 'terraform') {
+    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+  } else {
+    iconContainer.innerHTML = `<i id="modal-icon" data-lucide="box" style="color: var(--accent-purple);"></i>`;
+    lucide.createIcons();
+  }
 
   // THE FIX: Use innerHTML to render the logo & layout perfectly!
   const descEl = document.getElementById("modal-description");
