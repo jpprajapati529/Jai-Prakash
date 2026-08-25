@@ -692,6 +692,8 @@ function openModuleModal(moduleId) {
   const data = moduleData[moduleId];
   if (!data) return;
 
+  clearInterval(slideInterval);
+
   document.getElementById("modal-title").innerText = data.title;
 
   // THE FIX: Use innerHTML to render the logo & layout perfectly!
@@ -837,6 +839,11 @@ function closeModal() {
   if (activeClickedNode) {
     activeClickedNode.style.opacity = '1';
     activeClickedNode = null;
+  }
+
+  // Safely restart the slideshow timer when the modal closes (if not manually paused)
+  if (!isPaused) {
+    startSlideTimer();
   }
 }
 
@@ -1475,3 +1482,18 @@ function navDeployClick() {
     triggerEasterEgg();
   }
 }
+
+// =========================================================
+// PAUSE SLIDESHOW ON NETWORK NODES HOVER
+// =========================================================
+document.querySelectorAll('.network-node').forEach(node => {
+  node.addEventListener('mouseenter', () => {
+    clearInterval(slideInterval); // Pause when hovering over Slide 2 nodes
+  });
+  node.addEventListener('mouseleave', () => {
+    // Resume only if the slideshow wasn't manually paused and no modal is open
+    if (!isPaused && !document.getElementById("modal-overlay").classList.contains("active")) {
+      startSlideTimer();
+    }
+  });
+});
