@@ -1294,10 +1294,12 @@ body[data-theme="light"] .cli-accent {
 /* NOTE: Keep your existing .nav-pill-group and .nav-pill CSS exactly as it is below this! */
 
 .nav-pill-group {
-  position: relative !important;
-  left: auto;
-  transform: none;
-  margin-left: 60px; 
+  /* THE FIX: Absolute centering to ignore the widths of the left/right items */
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin-left: 0 !important; 
+  
   display: inline-flex;
   align-items: center;
   background-color: rgba(11, 13, 20, 0.85); 
