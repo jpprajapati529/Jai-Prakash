@@ -620,22 +620,75 @@ provider "google" {
 
   "github": {
     title: "GitHub Actions",
-    description: "GitHub Actions is a CI/CD platform that automates software workflows.",
+    description: `
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
+        <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
+          <img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
+        </div>
+        <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipelines.
+        </p>
+      </div>
+    `,
     tabs: [
       {
-        name: "My Responsibilities",
+        name: "Components",
         type: "html",
         content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Engineered automated, event-driven workflows to standardize the software delivery process.</p>
-            </div>
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="cpu"></i> GitHub Actions Architecture</h4>
+            <table class="notes-table">
+              <thead><tr><th>Component</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>Workflow</td><td>A configurable automated process made up of one or more jobs, defined in a YAML file.</td></tr>
+                <tr><td>Event</td><td>A specific activity in a repository that triggers a workflow (e.g., <code>push</code>, <code>pull_request</code>).</td></tr>
+                <tr><td>Job</td><td>A set of steps executed on the same runner infrastructure. Jobs run in parallel by default.</td></tr>
+                <tr><td>Step</td><td>An individual task that can run shell commands or execute composite actions.</td></tr>
+                <tr><td>Action</td><td>A reusable extension or plugin for your workflow (custom code or Marketplace actions).</td></tr>
+                <tr><td>Runner</td><td>A dedicated virtual server (Linux, Windows, macOS) that executes your workflow jobs.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `
+      },
+      {
+        name: "Basic Pipeline",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="file-code"></i> Standard CI Pipeline (.github/workflows/ci.yml)</h4>
+            <div class="notes-code-block">name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install Dependencies & Run Tests
+        run: |
+          npm ci
+          npm run test
+          npm run build</div>
           </div>
         `
       }
     ]
   },
+  
   "jenkins": {
     title: "Jenkins",
     description: "Jenkins is a widely used open-source automation server.",
@@ -846,31 +899,19 @@ function openModuleModal(moduleId) {
 
   document.getElementById("modal-title").innerText = data.title;
 
-  // Hardcoded if-else lines for each tool's header logo
+  // Dynamically place logos in header, or default box icon for others
   const iconContainer = document.getElementById("modal-header-icon-container");
-  
   if (moduleId === 'terraform') {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'aws') {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'kubernetes') {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
-  } else if (moduleId === 'azure') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
-  } else if (moduleId === 'gcp') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
-  } else if (moduleId === 'docker') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
-  } else if (moduleId === 'helm') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/helmsh/helmsh-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'github') {
     iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
-  } else if (moduleId === 'jenkins') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
-  } else if (moduleId === 'azure-devops') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
-  } else {
-    iconContainer.innerHTML = `<i id="modal-icon" data-lucide="box" style="color: var(--accent-purple); width: 22px; height: 22px;"></i>`;
+  } 
+    else {
+    iconContainer.innerHTML = `<i id="modal-icon" data-lucide="box" style="color: var(--accent-purple);"></i>`;
     lucide.createIcons();
   }
 
