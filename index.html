@@ -326,9 +326,14 @@
         <div class="network-node n-azdo" onclick="openModuleModal('azure-devops')">
           <div class="node-skeletons"><div class="skel-line long"></div><div class="skel-line short"></div></div>
           <div class="node-icon-wrapper">
-            <!-- Official Azure DevOps Logo (Monochrome) -->
+            <!-- Official Azure DevOps Logo (Layered Monochrome) -->
             <svg class="node-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path fill="currentColor" d="M0 8.805 7.422 1.94v8.83l-7.422 3.824V8.805zm7.422 8.847L0 14.59v4.201l7.422 3.197v-4.336zm1.267-9.588L24 2.89v8.423l-15.311 8.271v-11.52z"/>
+              <!-- Back Left Ribbon -->
+              <path fill="currentColor" fill-opacity="0.4" d="M0 8.799l7.46-6.783v8.667l-7.46 3.655V8.799z"/>
+              <!-- Bottom Left Ribbon -->
+              <path fill="currentColor" fill-opacity="0.7" d="M7.46 17.48l-7.46-3.116v4.208l7.46 3.24v-4.332z"/>
+              <!-- Front Main Loop -->
+              <path fill="currentColor" fill-opacity="1.0" d="M8.666 7.956L24 2.89v8.423l-15.334 8.27V7.956z"/>
             </svg>
           </div>
         </div>
