@@ -1653,6 +1653,48 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
 @keyframes slowSpin { 100% { transform: rotate(360deg); } }
 .color-spinning { animation: slowSpin 4s linear infinite; color: rgb(var(--theme-rgb)) !important; }
 
+
+/* =========================================================
+   UNBLURRED ACTIVE NODE & NEON TETHER
+   ========================================================= */
+.floating-active-node {
+  position: fixed;
+  background: #060910;
+  border: 1px solid rgb(var(--theme-rgb));
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(var(--theme-rgb), 0.7), inset 0 0 10px rgba(var(--theme-rgb), 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 2005; /* Renders cleanly above the blurred overlay */
+  pointer-events: none;
+}
+
+body[data-theme="light"] .floating-active-node {
+  background: #ffffff;
+  border: 1px solid rgb(var(--theme-rgb));
+  box-shadow: 0 0 25px rgba(var(--theme-rgb), 0.5);
+}
+
+/* Animated Neon Tether */
+@keyframes dashFlow {
+  to { stroke-dashoffset: -20; }
+}
+
+#modal-connector-path {
+  stroke: rgb(var(--theme-rgb));
+  stroke-dasharray: 8 6;
+  filter: drop-shadow(0 0 8px rgb(var(--theme-rgb)));
+  animation: dashFlow 1.5s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active #modal-connector-path {
+  opacity: 1;
+}
+
 /* =========================================================
    BUTTON CURSOR GLOW UPGRADES
    ========================================================= */

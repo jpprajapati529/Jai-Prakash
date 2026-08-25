@@ -568,11 +568,18 @@ function openMetricModal(key) {
 // =========================================================
 let lastClickX = 0;
 let lastClickY = 0;
+let activeClickedNode = null;
+let activeFloatingNode = null;
 
-// Listen to every click on the page and record the X/Y coordinates
+// Track clicks and capture the exact node element clicked
 document.addEventListener('click', (e) => {
   lastClickX = e.clientX;
   lastClickY = e.clientY;
+  
+  const node = e.target.closest('.network-node, .jb-skill-card, .tech-item, .clickable-card');
+  if (node) {
+    activeClickedNode = node;
+  }
 }, true);
 
 function openModuleModal(moduleId) {
@@ -611,32 +618,63 @@ function openModuleModal(moduleId) {
 
   const modalContent = document.querySelector('.modal-content');
 
-  // 1. Temporarily kill transitions and set initial tiny state at click coordinates
+  // 1. Create unblurred floating node clone if a node was clicked
+  if (activeClickedNode) {
+    const rect = activeClickedNode.getBoundingClientRect();
+    
+    activeFloatingNode = activeClickedNode.cloneNode(true);
+    activeFloatingNode.className = "floating-active-node";
+    activeFloatingNode.style.top = `${rect.top}px`;
+    activeFloatingNode.style.left = `${rect.left}px`;
+    activeFloatingNode.style.width = `${rect.width}px`;
+    activeFloatingNode.style.height = `${rect.height}px`;
+    
+    document.body.appendChild(activeFloatingNode);
+    activeClickedNode.style.opacity = '0'; // Hide original node behind blur
+  }
+
+  // 2. Initial tiny bubble state at click coordinates
   modalContent.style.transition = 'none';
   modalContent.style.opacity = '0';
   modalContent.style.transform = 'translate(0px, 0px) scale(0.1)';
 
-  // Activate overlay so the modal renders in its target side-aligned position
   overlay.classList.add("active");
 
-  // Force reflow to calculate the modal's final centered position on the screen
-  const rect = modalContent.getBoundingClientRect();
-  const finalCenterX = rect.left + rect.width / 2;
-  const finalCenterY = rect.top + rect.height / 2;
+  // Force reflow and calculate pop-up coordinates
+  const rectModal = modalContent.getBoundingClientRect();
+  const finalCenterX = rectModal.left + rectModal.width / 2;
+  const finalCenterY = rectModal.top + rectModal.height / 2;
 
   const deltaX = lastClickX - finalCenterX;
   const deltaY = lastClickY - finalCenterY;
 
-  // Set the start position right on top of the clicked node
   modalContent.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.1)`;
-
-  // Force another reflow so the browser registers the start coordinates
   modalContent.offsetHeight;
 
-  // 2. Turn transitions back on and spring open to full size
+  // 3. Spring open with bouncy transition
   modalContent.style.transition = '';
   modalContent.style.opacity = '1';
   modalContent.style.transform = 'translate(0px, 0px) scale(1)';
+
+  // 4. Draw Neon Tether Curve from Node to Modal Edge
+  if (activeClickedNode && activeFloatingNode) {
+    const nodeRect = activeFloatingNode.getBoundingClientRect();
+    const startX = nodeRect.left + nodeRect.width / 2;
+    const startY = nodeRect.top + nodeRect.height / 2;
+    
+    const isAlignRight = overlay.classList.contains("align-right");
+    const endX = isAlignRight ? rectModal.left : rectModal.right;
+    const endY = rectModal.top + rectModal.height / 2;
+
+    // Smooth cubic bezier curve control points
+    const controlX1 = startX + (endX - startX) * 0.5;
+    const controlY1 = startY;
+    const controlX2 = startX + (endX - startX) * 0.5;
+    const controlY2 = endY;
+
+    const pathData = `M ${startX} ${startY} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${endX} ${endY}`;
+    document.getElementById("modal-connector-path").setAttribute("d", pathData);
+  }
 
   lucide.createIcons();
 }
@@ -663,7 +701,18 @@ function selectModalTab(data, index, targetBtn) {
 }
 
 function closeModal() {
-  document.getElementById("modal-overlay").classList.remove("active");
+  const overlay = document.getElementById("modal-overlay");
+  overlay.classList.remove("active");
+
+  // Clean up floating unblurred node and restore original
+  if (activeFloatingNode) {
+    activeFloatingNode.remove();
+    activeFloatingNode = null;
+  }
+  if (activeClickedNode) {
+    activeClickedNode.style.opacity = '1';
+    activeClickedNode = null;
+  }
 }
 
 function closeModalOnOuterClick(e) {
