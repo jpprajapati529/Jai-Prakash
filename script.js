@@ -1203,98 +1203,110 @@ jobs:
     ]
   },
 
+// ----------------------------------------------------
+  // METRIC CARD MODULES (From Resume)
   // ----------------------------------------------------
-  // METRIC CARD MODULES
-  // ----------------------------------------------------
-  "experience": {
-    title: "4 Years DevOps & Platform Engineering",
-    description: "Multi-cloud experience managing infrastructure, provisioning automated pipelines, and administering production clusters.",
+  "roles": {
+    title: "Roles & Responsibilities",
+    description: "Driving cloud-native transformations and establishing robust Platform Engineering practices.",
     tabs: [
       {
-        name: "Visual UI",
+        name: "Core Impact",
         type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Current Impact</h4>
-              <p class="rich-text"><strong>Senior Analyst / Platform Engineer</strong> at Capgemini, transitioning from core DevOps to specialized Platform Engineering.</p>
+              <h4 class="rich-heading"><i data-lucide="server"></i> Infrastructure & Deployments</h4>
               <ul class="rich-list">
-                <li>Architecting and provisioning robust multi-cloud resources across <strong>AWS and GCP</strong> using modular Terraform architectures.</li>
-                <li>Managing enterprise-scale cloud IAM roles, security policies, and optimizing project billing structures.</li>
-                <li>Executing zero-downtime application rollouts across hybrid banking environments using OpenShift and Docker.</li>
+                <li>Built and maintained resilient multi-tenant GCP environments with Terraform, enabling reliable operations and effortless scaling.</li>
+                <li>Managed commissioning and decommissioning of hybrid cloud infrastructure across GCP and on-premises OpenShift clusters.</li>
+                <li>Deployed and managed containerized microservices using Docker and Kubernetes (GKE).</li>
+                <li>Engineered Python, Shell and Bash scripts to automate cloud deployments and workflows.</li>
+                <li>Built and optimized CI/CD pipelines using GitHub Actions & Jenkins.</li>
               </ul>
             </div>
             <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="layers"></i> Core Stack</h4>
-              <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom: 20px;">
-                <span class="tag-badge">AWS & GCP</span>
-                <span class="tag-badge">Terraform</span>
-                <span class="tag-badge">Kubernetes</span>
-                <span class="tag-badge">Jenkins</span>
-                <span class="tag-badge">GitHub Actions</span>
-              </div>
-              <h4 class="rich-heading"><i data-lucide="graduation-cap"></i> Education</h4>
-              <p class="rich-text">BIST, Bhopal<br><span style="color: var(--text-muted); font-size: 0.85rem;">Class of 2022</span></p>
-            </div>
-          </div>
-        `
-      },
-      {
-        name: "Raw Code",
-        type: "code",
-        filename: "experience_profile.yaml",
-        content: `role: "Senior Analyst / Platform Engineer"\ncompany: "Capgemini"\nexperience_years: 4\ndomain_focus:\n  - "Fintech"\n  - "Banking Operations"\ncloud_providers: ["AWS", "Azure", "GCP"]\norchestration: ["Kubernetes", "OpenShift", "Docker", "Helm"]\neducation:\n  institute: "BIST, Bhopal"\n  graduation_year: 2022`
-      }
-    ]
-  },
-  "multicloud": {
-    title: "Multi-Cloud Ecosystem",
-    description: "Automated cloud resource provisioning and IAM policy governance.",
-    tabs: [
-      {
-        name: "Visual UI",
-        type: "html",
-        content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="cloud"></i> Provider Strategy</h4>
-              <p class="rich-text">Unified management of multi-cloud environments to prevent vendor lock-in and ensure high availability.</p>
+              <h4 class="rich-heading"><i data-lucide="shield-check"></i> Security & SRE</h4>
+              <ul class="rich-list">
+                <li>Implemented Kubernetes security best practices using GCP IAM, HashiCorp Vault, and Secrets Manager, reducing incidents by 60%.</li>
+                <li>Configured and audited Service Accounts, custom roles, and IAM policies for secure access to GCS, Compute, SQL, and Stackdriver.</li>
+                <li>Implemented SRE practices by defining SLIs/SLOs and error budgets using Stackdriver and Prometheus for incident response.</li>
+                <li>Migrated on-premises applications to the GCP cloud with minimal downtime.</li>
+              </ul>
             </div>
           </div>
         `
       }
     ]
   },
+  
   "domains": {
     title: "Fintech & Banking Infrastructure",
-    description: "Managing secure hybrid-cloud environments with zero downtime deployments.",
+    description: "Managing highly secure hybrid-cloud environments with zero downtime deployments for financial operations.",
     tabs: [
       {
-        name: "Visual UI",
+        name: "Domain Expertise",
         type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
               <h4 class="rich-heading"><i data-lucide="shield-check"></i> Compliance & Security</h4>
-              <p class="rich-text">Maintaining strict regulatory compliance for banking clients.</p>
+              <p class="rich-text">Maintained strict regulatory compliance for enterprise banking clients through rigorous IAM auditing, secure credential management via HashiCorp Vault, and continuous monitoring of cloud resources.</p>
+              
+              <h4 class="rich-heading"><i data-lucide="activity"></i> High Availability (SRE)</h4>
+              <p class="rich-text">Ensured the continuous operation of critical financial services by establishing strict SLIs/SLOs, defining error budgets, and configuring resilient multi-region architectures.</p>
             </div>
           </div>
         `
       }
     ]
   },
-  "business-mgmt": {
-    title: "Business Management System Stack",
-    description: "End-to-end DevOps architecture demonstrating CI/CD automation and Kubernetes orchestration.",
+  
+  "experience": {
+    title: "Professional Experience",
+    description: "My professional journey building and scaling enterprise cloud platforms.",
     tabs: [
       {
-        name: "Visual UI",
+        name: "Current Role",
         type: "html",
         content: `
           <div class="rich-layout">
             <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="folder-git-2"></i> Architecture Overview</h4>
-              <p class="rich-text">A comprehensive repository showcasing a production-ready DevOps pipeline.</p>
+              <h4 class="rich-heading"><i data-lucide="building-2"></i> Capgemini Technology Services</h4>
+              <div class="metric-value" style="font-size: 1.2rem; color: #fff;">Senior Analyst</div>
+              <div class="metric-sub" style="margin-bottom: 16px;">Pune, India | Dec 2022 - Present</div>
+              <p class="rich-text">Transitioning from core DevOps to Platform Engineering, architecting multi-cloud environments and enabling developers with self-service infrastructure and automated pipelines.</p>
+              <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top: 12px;">
+                <span class="tag-badge">GCP</span>
+                <span class="tag-badge">AWS</span>
+                <span class="tag-badge">Terraform</span>
+                <span class="tag-badge">GKE</span>
+                <span class="tag-badge">OpenShift</span>
+              </div>
+            </div>
+          </div>
+        `
+      }
+    ]
+  },
+  
+  "education": {
+    title: "Education & Academics",
+    description: "My academic foundation in Computer Science and Systems Engineering.",
+    tabs: [
+      {
+        name: "Degree",
+        type: "html",
+        content: `
+          <div class="rich-layout">
+            <div class="rich-section">
+              <h4 class="rich-heading"><i data-lucide="graduation-cap"></i> B.Tech in Computer Science & Engineering</h4>
+              <div class="metric-value" style="font-size: 1.2rem; color: #fff;">BIST, Bhopal</div>
+              <div class="metric-sub" style="margin-bottom: 16px;">Aug 2018 - Jun 2022</div>
+              <ul class="rich-list">
+                <li><strong>CGPA:</strong> 8.0 / 10</li>
+                <li>Developed core competencies in distributed systems, network architecture, and software development lifecycles.</li>
+              </ul>
             </div>
           </div>
         `
