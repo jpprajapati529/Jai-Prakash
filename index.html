@@ -654,24 +654,6 @@
   <!-- =========================================================
        6. PIPELINE SIMULATOR & PROJECTS
        ========================================================= -->
-  <section id="pipeline-sim" class="dashboard-section">
-    <div class="section-header">
-      <h2><i data-lucide="play-circle"></i> Live CI/CD Pipeline Engine (Business-Management-System)</h2>
-      <button id="trigger-btn" class="btn-primary" onclick="triggerPipelineRun()">Trigger Deployment</button>
-    </div>
-    <div class="pipeline-stepper">
-      <div class="step" id="step-lint"><i data-lucide="code"></i> Lint & Security</div>
-      <div class="step-connector"></div>
-      <div class="step" id="step-build"><i data-lucide="box"></i> Build Container</div>
-      <div class="step-connector"></div>
-      <div class="step" id="step-tf"><i data-lucide="file-code"></i> Terraform Plan</div>
-      <div class="step-connector"></div>
-      <div class="step" id="step-deploy"><i data-lucide="server"></i> Deploy to K8s</div>
-    </div>
-    <div class="pipeline-logs-console" id="pipeline-logs">
-      <div class="log-line text-muted">[SYSTEM] Ready to trigger GitHub workflow for jpprajapati529/Business-Management-System. Click 'Trigger Deployment' or type 'bash deploy.sh' in terminal...</div>
-    </div>
-  </section>
 
   <section id="projects" class="dashboard-section">
     <div class="section-header">
