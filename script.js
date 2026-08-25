@@ -2175,20 +2175,29 @@ document.querySelectorAll('.network-node').forEach(node => {
 // =========================================================
 // PAUSE ENTIRE SLIDESHOW ON HOVER & TOUCH
 // =========================================================
-const mainSliderWrapper = document.querySelector('.slider-container') || document.querySelector('.hero-section') || document.querySelector('.slides');
+const mainSliderWrapper = document.querySelector('.hero-slider-wrapper');
 
 if (mainSliderWrapper) {
   // 1. Desktop Mouse Hover
   mainSliderWrapper.addEventListener('mouseenter', () => clearInterval(slideInterval));
   
-  // 2. Touch/Trackpad Swipe Start
+  // 2. Touchscreen Swipe Start
   mainSliderWrapper.addEventListener('touchstart', () => clearInterval(slideInterval), { passive: true });
 
   // 3. Resume when mouse leaves
   mainSliderWrapper.addEventListener('mouseleave', resumeSlider);
   
-  // 4. Resume when touch/swipe ends
+  // 4. Resume when touchscreen swipe ends
   mainSliderWrapper.addEventListener('touchend', resumeSlider);
+
+  // 5. THE FIX: Block Chrome's Trackpad Back/Forward Gesture!
+  mainSliderWrapper.addEventListener('wheel', (e) => {
+    // If the user is swiping horizontally (left/right) more than vertically (up/down)
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault(); // This definitively stops the blue back/forward arrow
+      clearInterval(slideInterval); // Also pause the slider while they are swiping
+    }
+  }, { passive: false }); // passive: false is REQUIRED to use preventDefault()
 }
 
 // Helper function to cleanly resume the slider
