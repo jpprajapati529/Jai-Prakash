@@ -2578,13 +2578,24 @@ body[data-theme="light"] .ide-body-badge {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03) !important; 
 }
 
-/* Kills muddy dark mode glows */
-body[data-theme="light"] #cursor-glow-bg,
+/* Hide ONLY the full-screen ambient background glow in light mode */
+body[data-theme="light"] #cursor-glow-bg {
+  display: none !important; 
+}
+
+/* Create a premium, soft pastel cursor spotlight for Light Mode cards */
 body[data-theme="light"] .card::before, 
 body[data-theme="light"] .jb-skill-card::before, 
 body[data-theme="light"] .dashboard-section::before,
 body[data-theme="light"] .ide-window::before {
-  display: none !important; 
+  display: block !important; /* Turns the light back on! */
+  
+  /* A very soft, elegant 8% opacity tint of your active theme color */
+  background: radial-gradient(
+    600px circle at var(--x, -500px) var(--y, -500px), 
+    rgba(var(--theme-rgb), 0.08), 
+    transparent 45%
+  ) !important;
 }
 
 /* 3. High-Contrast Buttons & CI/CD Grid */
