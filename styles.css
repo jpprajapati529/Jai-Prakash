@@ -6,12 +6,12 @@
 
 
 /* =========================================================
-   CUSTOM SLEEK SCROLLBARS (For Modals, Terminal, and Page)
+   CUSTOM NEON SCROLLBARS (Transparent & Glowing)
    ========================================================= */
 /* Firefox Support */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  scrollbar-color: rgba(var(--theme-rgb), 0.5) transparent;
 }
 
 /* Chrome, Edge, Safari Support */
@@ -21,16 +21,20 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent; /* Hides the ugly white/grey background track */
+  background: transparent; /* Totally invisible track */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2); /* Soft, translucent grey pill */
-  border-radius: 10px; /* Smooth rounded corners */
+  /* The Neon Tube Effect: Transparent center with a glowing colored border */
+  background: rgba(var(--theme-rgb), 0.1); 
+  border: 1px solid rgba(var(--theme-rgb), 0.5); 
+  border-radius: 10px; 
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--theme-rgb), 0.8); /* Glows with your active theme color on hover! */
+  /* Brighter neon core and solid border when you interact with it */
+  background: rgba(var(--theme-rgb), 0.4); 
+  border: 1px solid rgba(var(--theme-rgb), 1); 
 }
 
 /* =========================================================
@@ -2605,6 +2609,12 @@ body[data-theme="light"] .network-bottom-glow {
 }
 
 
-/* Darker scrollbar for Light Mode */
-body[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.2) !important; }
-body[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: rgba(var(--theme-rgb), 0.8) !important; }
+/* Light Mode Neon Scrollbar */
+body[data-theme="light"] ::-webkit-scrollbar-thumb { 
+  background: rgba(var(--theme-rgb), 0.05) !important; 
+  border: 1px solid rgba(var(--theme-rgb), 0.6) !important; 
+}
+body[data-theme="light"] ::-webkit-scrollbar-thumb:hover { 
+  background: rgba(var(--theme-rgb), 0.25) !important; 
+  border: 1px solid rgba(var(--theme-rgb), 1) !important; 
+}
