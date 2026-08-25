@@ -346,23 +346,69 @@ const moduleData = {
     ]
   },
   "terraform": {
-    title: "Terraform",
-    description: "Terraform is an Infrastructure as Code (IaC) tool by HashiCorp used to provision and manage cloud resources safely and predictably.",
+    title: "Terraform Docs",
+    description: "", // Intentionally left blank to hide the default text!
     tabs: [
       {
-        name: "My Responsibilities",
+        name: "Notes",
         type: "html",
         content: `
-          <div class="rich-layout">
-            <div class="rich-section">
-              <h4 class="rich-heading"><i data-lucide="target"></i> Role & Impact</h4>
-              <p class="rich-text">Acted as the primary IaC architect to enforce infrastructure consistency and prevent manual configuration drift.</p>
+          <!-- Top Center Logo & Definition -->
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 32px; margin-top: 10px;">
+            <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
+              <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
             </div>
+            <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+              Terraform is an Infrastructure as Code (IaC) tool by HashiCorp used to provision and manage cloud resources safely and predictably.
+            </p>
+          </div>
+
+          <!-- Section 1: Components -->
+          <div class="notes-section">
+            <h4 class="notes-heading"><i data-lucide="layers"></i> Key Concepts</h4>
+            <table class="notes-table">
+              <thead><tr><th>Concept</th><th>Meaning</th></tr></thead>
+              <tbody>
+                <tr><td>Provider</td><td>Plugin that communicates with AWS, Azure, GCP, etc.</td></tr>
+                <tr><td>Resource</td><td>Infrastructure component such as VM, VNet, S3 bucket.</td></tr>
+                <tr><td>Module</td><td>Reusable Terraform configuration.</td></tr>
+                <tr><td>State</td><td>Tracks infrastructure Terraform manages.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Section 2: Written Files -->
+          <div class="notes-section">
+            <h4 class="notes-heading"><i data-lucide="folder-tree"></i> Written Files</h4>
+            <table class="notes-table">
+              <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+              <tbody>
+                <tr><td>providers.tf</td><td>Configures the cloud provider plugins and their required versions.</td></tr>
+                <tr><td>variables.tf</td><td>Input value that makes configuration reusable.</td></tr>
+                <tr><td>main.tf</td><td>The primary entrypoint containing core infrastructure resources.</td></tr>
+                <tr><td>outputs.tf</td><td>Displays useful values after deployment.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Section 3: Commands -->
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="terminal-square"></i> Core Commands</h4>
+            <table class="notes-table">
+              <thead><tr><th>Command</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>terraform init</td><td>Initializes the working directory and downloads necessary plugins.</td></tr>
+                <tr><td>terraform plan</td><td>Shows what Terraform will create/change/delete.</td></tr>
+                <tr><td>terraform apply</td><td>Actually makes the changes.</td></tr>
+                <tr><td>terraform destroy</td><td>Removes managed infrastructure.</td></tr>
+              </tbody>
+            </table>
           </div>
         `
       }
     ]
   },
+
   "github": {
     title: "GitHub Actions",
     description: "GitHub Actions is a CI/CD platform that automates software workflows.",
@@ -587,18 +633,32 @@ function openModuleModal(moduleId) {
   if (!data) return;
 
   document.getElementById("modal-title").innerText = data.title;
-  document.getElementById("modal-description").innerText = data.description;
+  
+  // THE SMART FIX: Hide description entirely if it's left blank
+  const descEl = document.getElementById("modal-description");
+  if (data.description) {
+    descEl.innerText = data.description;
+    descEl.style.display = "block";
+  } else {
+    descEl.style.display = "none";
+  }
 
   const tabsContainer = document.getElementById("modal-tabs");
   tabsContainer.innerHTML = "";
 
-  data.tabs.forEach((tab, index) => {
-    const btn = document.createElement("button");
-    btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
-    btn.innerText = tab.name;
-    btn.onclick = () => selectModalTab(data, index, btn);
-    tabsContainer.appendChild(btn);
-  });
+  // THE SMART FIX: Hide the tab buttons entirely if there is only 1 section!
+  if (data.tabs.length > 1) {
+    tabsContainer.style.display = "flex";
+    data.tabs.forEach((tab, index) => {
+      const btn = document.createElement("button");
+      btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
+      btn.innerText = tab.name;
+      btn.onclick = () => selectModalTab(data, index, btn);
+      tabsContainer.appendChild(btn);
+    });
+  } else {
+    tabsContainer.style.display = "none";
+  }
 
   selectModalTab(data, 0, tabsContainer.children[0]);
 

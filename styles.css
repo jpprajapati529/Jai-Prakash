@@ -1657,6 +1657,89 @@ h2 { font-size: 1.35rem; font-weight: 600; display: flex; align-items: center; g
 
 
 /* =========================================================
+   MODAL NOTES STYLING (Notion/Obsidian Style Tables)
+   ========================================================= */
+.notes-section {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.notes-heading {
+  color: rgb(var(--theme-rgb));
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 12px;
+}
+
+.notes-heading i {
+  width: 18px; height: 18px;
+}
+
+.notes-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.notes-table th {
+  padding: 10px 12px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notes-table td {
+  padding: 12px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.notes-table tr:last-child td {
+  border-bottom: none;
+}
+
+.notes-table td:first-child {
+  color: var(--text-primary);
+  font-weight: 600;
+  width: 30%;
+  font-family: var(--font-mono);
+}
+
+/* Light Mode Overrides for Notes */
+body[data-theme="light"] .notes-section {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+}
+body[data-theme="light"] .notes-heading {
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+body[data-theme="light"] .notes-table th {
+  border-bottom: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+body[data-theme="light"] .notes-table td {
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+}
+body[data-theme="light"] .notes-table td:first-child {
+  color: #0f172a !important;
+}
+
+/* =========================================================
    UNBLURRED ACTIVE NODE & NEON TETHER
    ========================================================= */
 .floating-active-node {
