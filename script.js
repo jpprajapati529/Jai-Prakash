@@ -415,6 +415,57 @@ const moduleData = {
           </div>
         `
       }
+      {
+        name: "Modular Example",
+        type: "html",
+        content: `
+          <div class="notes-section" style="margin-bottom: 20px;">
+            <h4 class="notes-heading"><i data-lucide="cloud"></i> 1. Remote Backend & Provider (providers.tf)</h4>
+            <div class="notes-code-block">terraform {
+  backend "gcs" {
+    bucket = "tf-state-prod-bucket"
+    prefix = "terraform/state"
+  }
+}
+
+provider "google" {
+  project = var.project_id
+  region  = var.region
+}</div>
+          </div>
+
+          <div class="notes-section" style="margin-bottom: 20px;">
+            <h4 class="notes-heading"><i data-lucide="box"></i> 2. GCS Resource (main.tf)</h4>
+            <div class="notes-code-block">resource "google_storage_bucket" "app_bucket" {
+  name          = var.bucket_name
+  location      = var.region
+  force_destroy = true
+
+  uniform_bucket_level_access = true
+}</div>
+          </div>
+
+          <div class="notes-section" style="margin-bottom: 20px;">
+            <h4 class="notes-heading"><i data-lucide="sliders"></i> 3. Variables & Outputs (variables.tf / outputs.tf)</h4>
+            <div class="notes-code-block"># variables.tf
+            variable "project_id"  { type = string }
+            variable "region"      { type = string, default = "us-central1" }
+            variable "bucket_name" { type = string }
+
+            # outputs.tf
+            output "bucket_url" {
+            value = google_storage_bucket.app_bucket.url
+            }</div>
+          </div>
+
+          <div class="notes-section" style="margin-bottom: 0;">
+            <h4 class="notes-heading"><i data-lucide="settings"></i> 4. Execution Values (terraform.tfvars)</h4>
+            <div class="notes-code-block">project_id  = "fin-prod"
+              region      = "asia-south1"
+              bucket_name = "fintech-app-assets-bucket"</div>
+          </div>
+        `
+      }
     ]
   },
 
