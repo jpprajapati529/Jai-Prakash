@@ -2832,20 +2832,35 @@ body[data-theme="light"] .hero-card::before {
    2. LIGHT MODE FIX FOR NEW NETWORK SLIDE (Slide 2)
    ========================================================= */
 /* Turns nodes into solid white cards with an active neon theme glow */
+/* Turns nodes into frosted glass cards with a full neon theme glow in light mode */
 body[data-theme="light"] .network-node {
-  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.08) 0%, #ffffff 40%, #ffffff 100%) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important; 
-  border-left: 3px solid rgb(var(--theme-rgb)) !important; /* Thick solid colored edge */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), inset 15px 0 20px -10px rgba(var(--theme-rgb), 0.1) !important;
+  /* THE FIX: Changed solid #ffffff to translucent white (0.6) so lines show through! */
+  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.15) 0%, rgba(255, 255, 255, 0.6) 40%, rgba(255, 255, 255, 0.7) 100%) !important;
+  
+  /* THE FIX: Turned the frosted glass blur back on! */
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  
+  /* Full-wrap colored outline matching dark mode */
+  border: 1px solid rgba(var(--theme-rgb), 0.5) !important; 
+  
+  /* Outer pastel glow + inner shadow bleed */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 
+              0 0 12px rgba(var(--theme-rgb), 0.25), 
+              inset 15px 0 20px -10px rgba(var(--theme-rgb), 0.15) !important;
 }
 
-/* Richer glowing hover effect */
+/* Richer glowing hover effect for Light Mode */
 body[data-theme="light"] .network-node:hover {
-  border-color: rgba(0, 0, 0, 0.12) !important;
-  border-left: 3px solid rgb(var(--theme-rgb)) !important;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), 0 0 25px rgba(var(--theme-rgb), 0.2), inset 25px 0 30px -15px rgba(var(--theme-rgb), 0.2) !important;
+  /* Solidifies the outline color */
+  border: 1px solid rgba(var(--theme-rgb), 1) !important;
+  
+  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.25) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.85) 100%) !important;
+  
+  /* Intensifies the outer glow */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), 
+              0 0 20px rgba(var(--theme-rgb), 0.4), 
+              inset 25px 0 30px -15px rgba(var(--theme-rgb), 0.25) !important;
   transform: translateY(-2px) !important;
 }
 
