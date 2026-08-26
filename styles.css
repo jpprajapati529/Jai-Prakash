@@ -141,17 +141,18 @@
   height: 56px;       
   padding: 0 16px;    
   
-  /* THE FIX: Highly translucent background so the neon lines shine through! */
+  /* Highly translucent background so the neon lines shine through */
   background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.15) 0%, rgba(8, 12, 20, 0.25) 50%, rgba(8, 12, 20, 0.4) 100%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   
-  /* Subtle border all around, but a sharp, glowing theme line on the left */
-  border: 1px solid rgba(255, 255, 255, 0.08); 
-  border-left: 2px solid rgba(var(--theme-rgb), 0.8); 
+  /* THE FIX: Full, continuous neon outline matching your active theme color! */
+  border: 1px solid rgba(var(--theme-rgb), 0.6); 
   
-  /* Inner shadow matching the neon edge to bleed the light inward */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 20px 0 30px -15px rgba(var(--theme-rgb), 0.25);
+  /* Adds a soft outer neon glow, plus the inner shadow bleeding inward */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 
+              0 0 10px rgba(var(--theme-rgb), 0.3), 
+              inset 20px 0 30px -15px rgba(var(--theme-rgb), 0.25);
   border-radius: 10px; 
   z-index: 5;
   cursor: pointer;
@@ -160,11 +161,14 @@
 
 /* Richer hover effect */
 .network-node:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  border-left: 2px solid rgba(var(--theme-rgb), 1);
-  /* Slightly brightens the glass on hover, but keeps it see-through */
+  /* The outline becomes 100% solid and fully bright on hover */
+  border: 1px solid rgba(var(--theme-rgb), 1);
   background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.25) 0%, rgba(8, 12, 20, 0.35) 50%, rgba(8, 12, 20, 0.5) 100%);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(var(--theme-rgb), 0.2), inset 30px 0 40px -20px rgba(var(--theme-rgb), 0.4);
+  
+  /* The outer glow intensifies heavily */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 
+              0 0 20px rgba(var(--theme-rgb), 0.6), 
+              inset 30px 0 40px -20px rgba(var(--theme-rgb), 0.4);
   transform: translateY(-2px);
 }
 
