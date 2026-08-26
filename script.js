@@ -26,8 +26,11 @@ function toggleTheme() {
 }
 
 // Mouse Tracking for JetBrains Cursor Spotlight
+// Mouse Tracking for JetBrains Cursor Spotlight
 document.addEventListener("mousemove", (e) => {
-  const card = e.target.closest(".card, .project-card, .dashboard-section, .rich-content-container, .ide-window, .summary-card, .jb-skill-card, .hero-btn-primary, .hero-btn-outline, .lifecycle-btn");
+  // THE FIX: Removed '.summary-card' from the selector list so it doesn't steal the hover coordinates from '.dashboard-section'
+  const card = e.target.closest(".card, .project-card, .dashboard-section, .rich-content-container, .ide-window, .jb-skill-card, .hero-btn-primary, .hero-btn-outline, .lifecycle-btn");
+  
   if (card) {
     const rect = card.getBoundingClientRect();
     card.style.setProperty("--x", `${e.clientX - rect.left}px`);
