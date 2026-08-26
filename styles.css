@@ -132,6 +132,9 @@
 /* -------------------------------------------
    THE NODES (Premium JetBrains Size & Glass Look)
    ------------------------------------------- */
+/* -------------------------------------------
+   THE NODES (Premium JetBrains Size & Glass Look)
+   ------------------------------------------- */
 .network-node {
   position: absolute;
   display: flex;
@@ -141,18 +144,19 @@
   height: 56px;       
   padding: 0 16px;    
   
-  /* Highly translucent background so the neon lines shine through */
-  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.15) 0%, rgba(8, 12, 20, 0.25) 50%, rgba(8, 12, 20, 0.4) 100%);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* Highly translucent background fading from neon to clear dark glass */
+  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.15) 0%, rgba(10, 14, 25, 0.4) 35%, rgba(10, 14, 25, 0.4) 100%);
   
-  /* THE FIX: Full, continuous neon outline matching your active theme color! */
-  border: 1px solid rgba(var(--theme-rgb), 0.6); 
+  /* The blur effect makes the lines visible but frosted underneath! */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   
-  /* Adds a soft outer neon glow, plus the inner shadow bleeding inward */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 
-              0 0 10px rgba(var(--theme-rgb), 0.3), 
-              inset 20px 0 30px -15px rgba(var(--theme-rgb), 0.25);
+  /* Thin theme-colored border all around */
+  border: 1px solid rgba(var(--theme-rgb), 0.4); 
+  
+  /* INSET shadow creates that distinct JetBrains 'beam' on the left edge */
+  box-shadow: inset 25px 0 25px -20px rgba(var(--theme-rgb), 0.5), 
+              0 10px 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px; 
   z-index: 5;
   cursor: pointer;
@@ -161,14 +165,11 @@
 
 /* Richer hover effect */
 .network-node:hover {
-  /* The outline becomes 100% solid and fully bright on hover */
-  border: 1px solid rgba(var(--theme-rgb), 1);
-  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.25) 0%, rgba(8, 12, 20, 0.35) 50%, rgba(8, 12, 20, 0.5) 100%);
-  
-  /* The outer glow intensifies heavily */
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 
-              0 0 20px rgba(var(--theme-rgb), 0.6), 
-              inset 30px 0 40px -20px rgba(var(--theme-rgb), 0.4);
+  border: 1px solid rgba(var(--theme-rgb), 0.8);
+  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.25) 0%, rgba(10, 14, 25, 0.5) 35%, rgba(10, 14, 25, 0.5) 100%);
+  box-shadow: inset 30px 0 30px -20px rgba(var(--theme-rgb), 0.6), 
+              0 15px 30px rgba(0, 0, 0, 0.7), 
+              0 0 15px rgba(var(--theme-rgb), 0.3);
   transform: translateY(-2px);
 }
 
@@ -2832,35 +2833,29 @@ body[data-theme="light"] .hero-card::before {
    2. LIGHT MODE FIX FOR NEW NETWORK SLIDE (Slide 2)
    ========================================================= */
 /* Turns nodes into solid white cards with an active neon theme glow */
-/* Turns nodes into frosted glass cards with a full neon theme glow in light mode */
+/* Light Mode: Frosted glass cards with left-side beam */
 body[data-theme="light"] .network-node {
-  /* THE FIX: Changed solid #ffffff to translucent white (0.6) so lines show through! */
-  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.15) 0%, rgba(255, 255, 255, 0.6) 40%, rgba(255, 255, 255, 0.7) 100%) !important;
+  /* Translucent white base so lines show through */
+  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.12) 0%, rgba(255, 255, 255, 0.5) 35%, rgba(255, 255, 255, 0.5) 100%) !important;
   
-  /* THE FIX: Turned the frosted glass blur back on! */
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  /* Frosted glass blur */
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
   
-  /* Full-wrap colored outline matching dark mode */
-  border: 1px solid rgba(var(--theme-rgb), 0.5) !important; 
+  border: 1px solid rgba(var(--theme-rgb), 0.4) !important; 
   
-  /* Outer pastel glow + inner shadow bleed */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 
-              0 0 12px rgba(var(--theme-rgb), 0.25), 
-              inset 15px 0 20px -10px rgba(var(--theme-rgb), 0.15) !important;
+  /* Inset beam + subtle outer pastel glow */
+  box-shadow: inset 25px 0 25px -20px rgba(var(--theme-rgb), 0.25), 
+              0 10px 20px rgba(0, 0, 0, 0.05), 
+              0 0 15px rgba(var(--theme-rgb), 0.1) !important;
 }
 
-/* Richer glowing hover effect for Light Mode */
 body[data-theme="light"] .network-node:hover {
-  /* Solidifies the outline color */
-  border: 1px solid rgba(var(--theme-rgb), 1) !important;
-  
-  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.25) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.85) 100%) !important;
-  
-  /* Intensifies the outer glow */
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), 
-              0 0 20px rgba(var(--theme-rgb), 0.4), 
-              inset 25px 0 30px -15px rgba(var(--theme-rgb), 0.25) !important;
+  border: 1px solid rgba(var(--theme-rgb), 0.8) !important;
+  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.2) 0%, rgba(255, 255, 255, 0.6) 35%, rgba(255, 255, 255, 0.6) 100%) !important;
+  box-shadow: inset 30px 0 30px -20px rgba(var(--theme-rgb), 0.4), 
+              0 15px 30px rgba(0, 0, 0, 0.1), 
+              0 0 20px rgba(var(--theme-rgb), 0.2) !important;
   transform: translateY(-2px) !important;
 }
 
