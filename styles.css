@@ -141,13 +141,13 @@
   height: 56px;       
   padding: 0 16px;    
   
-  /* THE FIX: JetBrains Translucency & Left-Side Neon Hue */
-  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.12) 0%, rgba(10, 14, 25, 0.5) 40%, rgba(10, 14, 25, 0.7) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* THE FIX: Highly translucent background so the neon lines shine through! */
+  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.15) 0%, rgba(8, 12, 20, 0.25) 50%, rgba(8, 12, 20, 0.4) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   
   /* Subtle border all around, but a sharp, glowing theme line on the left */
-  border: 1px solid rgba(255, 255, 255, 0.06); 
+  border: 1px solid rgba(255, 255, 255, 0.08); 
   border-left: 2px solid rgba(var(--theme-rgb), 0.8); 
   
   /* Inner shadow matching the neon edge to bleed the light inward */
@@ -162,6 +162,8 @@
 .network-node:hover {
   border-color: rgba(255, 255, 255, 0.15);
   border-left: 2px solid rgba(var(--theme-rgb), 1);
+  /* Slightly brightens the glass on hover, but keeps it see-through */
+  background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.25) 0%, rgba(8, 12, 20, 0.35) 50%, rgba(8, 12, 20, 0.5) 100%);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(var(--theme-rgb), 0.2), inset 30px 0 40px -20px rgba(var(--theme-rgb), 0.4);
   transform: translateY(-2px);
 }
