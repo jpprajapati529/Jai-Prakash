@@ -2202,3 +2202,77 @@ document.querySelectorAll('.network-node').forEach(node => {
   });
 });
 
+
+// =========================================================
+// JAI-BOT AI SIMULATION ENGINE
+// =========================================================
+
+function toggleAIBot() {
+  const chatWindow = document.getElementById("ai-chat-window");
+  chatWindow.classList.toggle("active");
+  if (chatWindow.classList.contains("active")) {
+    document.getElementById("ai-input").focus();
+  }
+}
+
+function handleAIKeyPress(event) {
+  if (event.key === "Enter") {
+    sendAIMessage();
+  }
+}
+
+function sendAIMessage() {
+  const inputField = document.getElementById("ai-input");
+  const messageText = inputField.value.trim();
+  if (!messageText) return;
+
+  // 1. Display User Message
+  addChatBubble(messageText, "user-msg");
+  inputField.value = "";
+
+  // 2. Show "Typing..." indicator
+  const typingId = "typing-" + Date.now();
+  addChatBubble("<i>typing...</i>", "bot-msg", typingId);
+
+  // 3. Process the NLP logic & wait 1 second to simulate AI thinking
+  setTimeout(() => {
+    document.getElementById(typingId).remove();
+    const response = generateAIResponse(messageText.toLowerCase());
+    addChatBubble(response, "bot-msg");
+  }, 1000);
+}
+
+function addChatBubble(htmlContent, className, id = null) {
+  const messageBox = document.getElementById("ai-chat-messages");
+  const msgDiv = document.createElement("div");
+  msgDiv.className = `ai-msg ${className}`;
+  if (id) msgDiv.id = id;
+  msgDiv.innerHTML = htmlContent;
+  messageBox.appendChild(msgDiv);
+  messageBox.scrollTop = messageBox.scrollHeight;
+}
+
+// The "Brain" of the Bot
+function generateAIResponse(query) {
+  if (query.includes("skill") || query.includes("tech") || query.includes("stack")) {
+    return "Jai is highly skilled in Multi-Cloud architectures (<b>AWS, Azure, GCP</b>). His core stack includes <b>Kubernetes, Terraform, Docker, Helm</b>, and automating CI/CD pipelines with <b>GitHub Actions</b> and <b>Jenkins</b>.";
+  } 
+  else if (query.includes("experience") || query.includes("work") || query.includes("job")) {
+    return "Jai has 4 years of experience and is currently a Senior Analyst and Platform Engineer at <b>Capgemini</b>, focusing on high-availability infrastructures for the Fintech and Banking sectors.";
+  } 
+  else if (query.includes("education") || query.includes("college") || query.includes("degree")) {
+    return "He holds a B.Tech in Computer Science and Engineering from <b>BIST, Bhopal</b> (Class of 2022), where he graduated with a solid 8.0 CGPA.";
+  } 
+  else if (query.includes("contact") || query.includes("email") || query.includes("hire") || query.includes("reach")) {
+    return "You can reach out to him directly at <b>jaiprajapatiwork@gmail.com</b>, or connect with him via the LinkedIn link in the Contact section below!";
+  } 
+  else if (query.includes("cert") || query.includes("badge")) {
+    return "Jai holds numerous certifications, including AWS DevOps Professional, GCP DevOps Engineer, Azure DevOps Expert, and HashiCorp Terraform Associate.";
+  } 
+  else if (query.includes("hello") || query.includes("hi") || query.includes("hey")) {
+    return "Hello! How can I help you learn more about Jai today?";
+  } 
+  else {
+    return "I'm a simple bot, but I know a lot about Jai! Try asking specifically about his <b>skills</b>, <b>experience</b>, <b>certifications</b>, or <b>education</b>.";
+  }
+}
