@@ -242,23 +242,30 @@
 }
 
 /* The giant blurred orb that shifts colors */
+/* The giant blurred orb that shifts colors */
 .hero-vignette-orb {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70vw; 
-  height: 70vw;
-  max-width: 900px;
-  max-height: 900px;
-  border-radius: 50%;
   
-  /* Defaults to your primary purple, but JS overrides this dynamically */
-  background-color: rgb(var(--hero-glow-color, 168, 85, 247));
+  /* Make it massive to fill the background */
+  width: 150vw; 
+  height: 150vw;
+  max-width: 1800px;
+  max-height: 1800px;
   
-  opacity: 0.18; /* Perfect subtle dark mode wash */
-  filter: blur(140px); /* Massive blur spreads the light across the background */
-  transition: background-color 1s ease;
+  /* THE FIX: Use a pure, buttery-smooth CSS radial gradient instead of an aggressive blur filter */
+  background: radial-gradient(
+    circle at center, 
+    rgba(var(--hero-glow-color, 168, 85, 247), 0.18) 0%, 
+    rgba(var(--hero-glow-color, 168, 85, 247), 0.05) 40%, 
+    transparent 70%
+  );
+  
+  /* We removed the heavy filter: blur(140px) which was causing the pixelated color banding! */
+  transition: background 1.5s ease-in-out;
+  pointer-events: none;
 }
 
 /* Force the auto-cycled node to visually pop just like a physical mouse hover */
