@@ -221,11 +221,12 @@
 .n-jenk { top: 300px; left: -25px; } 
 
 /* RIGHT SIDE */
-.n-gcp  { top: 20px;  left: 895px; } 
-.n-azu  { top: 90px;  left: 775px; } 
-.n-doc  { top: 170px; left: 855px; } 
-.n-helm { top: 250px; left: 745px; } 
-.n-azdo { top: 300px; left: 875px; }
+/* RIGHT SIDE (Shifted left so they stay within the 1000px container boundary) */
+.n-gcp  { top: 20px;  left: 810px; } 
+.n-azu  { top: 90px;  left: 720px; } 
+.n-doc  { top: 170px; left: 780px; } 
+.n-helm { top: 250px; left: 690px; } 
+.n-azdo { top: 300px; left: 750px; }
 
 /* Responsive scaling */
 @media (max-width: 1050px) { .network-hero-inner { transform: scale(0.8); } }
