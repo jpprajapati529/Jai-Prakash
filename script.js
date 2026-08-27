@@ -1,5 +1,11 @@
-// Initialize Icons
-lucide.createIcons();
+// Initialize Icons Safely (Prevents crashing if the CDN is ever slow)
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  } else {
+    console.error("Icon library failed to load from CDN.");
+  }
+});
 
 // =========================================================
 // LIGHT/DARK MODE TOGGLE (FIXED LUCIDE ICON SWAP)
@@ -1683,7 +1689,7 @@ if (cliInput) {
 
       const respLine = document.createElement("p");
       respLine.className = "term-output";
-      respLine.innerHTML =- response;
+      respLine.innerHTML = response;
       terminalBody.appendChild(respLine);
       terminalBody.scrollTop = terminalBody.scrollHeight;
     }
