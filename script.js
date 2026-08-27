@@ -1976,7 +1976,7 @@ const lifecycleStages = ['plan', 'code', 'build', 'test', 'release', 'deploy', '
 let currentStageIndex = 0;
 let lifecycleInterval = null;
 let isLifecycleHovered = false;
-let isAutoCycleEnabled = true; // <-- NEW: Easter Egg Toggle Flag!
+let isAutoCycleEnabled = false; // <-- NEW: Easter Egg Toggle Flag!
 
 // Helper function to convert Hex colors (#2563eb) to RGB strings for CSS variables
 function hexToRgb(hex) {
@@ -2068,11 +2068,15 @@ function manualLifecycleBlur() {
 }
 
 // THE EASTER EGG: Toggle Auto-Cycle when clicking the top-left Logo
+// THE EASTER EGG: Toggle Auto-Cycle when clicking the top-left Logo
 function toggleAutoCycle() {
   isAutoCycleEnabled = !isAutoCycleEnabled;
   
+  const footerStatus = document.querySelector('.cicd-footer-status');
+
   if (isAutoCycleEnabled) {
     startLifecycleAutoCycle();
+    if (footerStatus) footerStatus.innerText = "Auto-Cycle Active";
   } else {
     // Pause everything and reset to default
     clearInterval(lifecycleInterval);
@@ -2082,7 +2086,6 @@ function toggleAutoCycle() {
     const overlay = document.getElementById('lifecycle-overlay');
     if (overlay) overlay.classList.remove('active');
     
-    const footerStatus = document.querySelector('.cicd-footer-status');
     if (footerStatus) footerStatus.innerText = "Auto-Cycle Paused";
   }
 }
