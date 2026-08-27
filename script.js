@@ -1976,15 +1976,16 @@ const lifecycleStages = ['plan', 'code', 'build', 'test', 'release', 'deploy', '
 let currentStageIndex = 0;
 let lifecycleInterval = null;
 let isLifecycleHovered = false;
+let isAutoCycleEnabled = true; // <-- NEW: Easter Egg Toggle Flag!
 
-// Helper function to convert Hex colors (#2563eb) to RGB strings (37, 99, 235) for CSS variables
+// Helper function to convert Hex colors (#2563eb) to RGB strings for CSS variables
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '168, 85, 247';
 }
 
 // Master function to handle updating the UI, text, and colors
-function activateLifecycleStage(stageKey) {
+function activateLifecycleStage(stageKey, showPopup = false) {
   const data = lifecycleData[stageKey];
   if (!data) return;
 
@@ -1992,53 +1993,53 @@ function activateLifecycleStage(stageKey) {
   const rgbColor = hexToRgb(data.color);
   document.documentElement.style.setProperty('--hero-glow-color', rgbColor);
 
-  // 2. Visually pop the active node (mimicking a hover)
+  // 2. Visually pop the active node
   document.querySelectorAll('.ms-node').forEach(node => node.classList.remove('auto-active'));
   const activeNodeIndex = lifecycleStages.indexOf(stageKey) + 1;
   const activeNode = document.querySelector(`.ms-node-${activeNodeIndex}`);
   if (activeNode) activeNode.classList.add('auto-active');
 
-  // 3. Update the center text specifications overlay
+  // 3. Update the center overlay (ONLY IF HOVERED - Kept hidden during auto-cycle!)
   const overlay = document.getElementById('lifecycle-overlay');
   const footerText = document.getElementById('cicd-footer-text');
   const footerStatus = document.querySelector('.cicd-footer-status');
 
   if (overlay) {
-    const toolsHTML = data.tools.map(tool => `<span class="tool-pill">${tool}</span>`).join('');
-    overlay.innerHTML = `
-      <div class="lifecycle-title">${data.title}</div>
-      <div class="lifecycle-metric" style="color: ${data.color} !important;">${data.metric}</div>
-      <p class="lifecycle-desc">${data.desc}</p>
-      <div class="lifecycle-tools">${toolsHTML}</div>
-    `;
-    overlay.classList.add('active');
+    if (showPopup) {
+      const toolsHTML = data.tools.map(tool => `<span class="tool-pill">${tool}</span>`).join('');
+      overlay.innerHTML = `
+        <div class="lifecycle-title">${data.title}</div>
+        <div class="lifecycle-metric" style="color: ${data.color} !important;">${data.metric}</div>
+        <p class="lifecycle-desc">${data.desc}</p>
+        <div class="lifecycle-tools">${toolsHTML}</div>
+      `;
+      overlay.classList.add('active');
+    } else {
+      overlay.classList.remove('active'); // Keep it hidden during auto-cycle
+    }
   }
 
-  if (footerText) {
-    footerText.innerText = `Stage: ${stageKey.toUpperCase()}`;
-    footerText.style.color = "#fff";
-  }
-  if (footerStatus) {
-    footerStatus.innerText = data.tools.join(", ");
+  // Update bottom footer text silently
+  if (showPopup) {
+    if (footerText) { footerText.innerText = `Stage: ${stageKey.toUpperCase()}`; footerText.style.color = "#fff"; }
+    if (footerStatus) { footerStatus.innerText = data.tools.join(", "); }
+  } else {
+    if (footerText) { footerText.innerText = "Hover stage for specs"; footerText.style.color = "var(--text-muted)"; }
+    if (footerStatus) { footerStatus.innerText = isAutoCycleEnabled ? "Auto-Cycle Active" : "Auto-Cycle Paused"; }
   }
 }
 
 // Start the continuous auto-cycler
 function startLifecycleAutoCycle() {
   if (lifecycleInterval) clearInterval(lifecycleInterval);
-  
-  // Kickstart the very first node if the overlay isn't already visible
-  const overlay = document.getElementById('lifecycle-overlay');
-  if (overlay && !overlay.classList.contains('active')) {
-    activateLifecycleStage(lifecycleStages[currentStageIndex]);
-  }
+  if (!isAutoCycleEnabled) return; // Prevent starting if Easter Egg is turned off
 
   lifecycleInterval = setInterval(() => {
     if (!isLifecycleHovered) {
       currentStageIndex = (currentStageIndex + 1) % lifecycleStages.length;
-      activateLifecycleStage(lifecycleStages[currentStageIndex]);
+      activateLifecycleStage(lifecycleStages[currentStageIndex], false); // FALSE = Do not show center popup!
     }
-  }, 3500); // Changes the stage every 3.5 seconds
+  }, 3500);
 }
 
 // User overrides the cycler by physically hovering over a node
@@ -2046,13 +2047,44 @@ function manualLifecycleFocus(stageKey) {
   isLifecycleHovered = true;
   clearInterval(lifecycleInterval); 
   currentStageIndex = lifecycleStages.indexOf(stageKey);
-  activateLifecycleStage(stageKey);
+  activateLifecycleStage(stageKey, true); // TRUE = Show center popup!
 }
 
 // User moves their mouse away, seamlessly resuming the cycler
 function manualLifecycleBlur() {
   isLifecycleHovered = false;
-  startLifecycleAutoCycle(); 
+  
+  // Instantly hide the popup when mouse leaves
+  const overlay = document.getElementById('lifecycle-overlay');
+  if (overlay) overlay.classList.remove('active'); 
+  
+  if (isAutoCycleEnabled) {
+    startLifecycleAutoCycle(); 
+  } else {
+    // If auto-cycle is disabled via Easter Egg, reset nodes back to default when mouse leaves
+    document.querySelectorAll('.ms-node').forEach(node => node.classList.remove('auto-active'));
+    document.documentElement.style.setProperty('--hero-glow-color', '168, 85, 247');
+  }
+}
+
+// THE EASTER EGG: Toggle Auto-Cycle when clicking the top-left Logo
+function toggleAutoCycle() {
+  isAutoCycleEnabled = !isAutoCycleEnabled;
+  
+  if (isAutoCycleEnabled) {
+    startLifecycleAutoCycle();
+  } else {
+    // Pause everything and reset to default
+    clearInterval(lifecycleInterval);
+    document.querySelectorAll('.ms-node').forEach(node => node.classList.remove('auto-active'));
+    document.documentElement.style.setProperty('--hero-glow-color', '168, 85, 247');
+    
+    const overlay = document.getElementById('lifecycle-overlay');
+    if (overlay) overlay.classList.remove('active');
+    
+    const footerStatus = document.querySelector('.cicd-footer-status');
+    if (footerStatus) footerStatus.innerText = "Auto-Cycle Paused";
+  }
 }
 
 // Fire up the engine automatically when the page finishes loading

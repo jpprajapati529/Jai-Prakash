@@ -1324,11 +1324,9 @@ body[data-theme="light"] .cli-accent {
   width: 100%;
   z-index: 150; 
   
-  /* The full-width frosted glass background */
-  background-color: rgba(8, 8, 12, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  /* THE FIX: Removed the background color, blur, and border! */
+  background-color: transparent;
+  border-bottom: none;
   
   /* Animation setup */
   pointer-events: none;
@@ -3097,3 +3095,11 @@ body[data-theme="light"] .ai-chat-header, body[data-theme="light"] .ai-chat-inpu
 body[data-theme="light"] .bot-msg { background: #f1f5f9 !important; color: #0f172a !important; }
 body[data-theme="light"] .user-msg { background: rgb(var(--theme-rgb)) !important; color: #ffffff !important; }
 body[data-theme="light"] .ai-chat-input-area input { background: #ffffff !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
+
+
+
+/* 6. Sticky Nav & Pills */
+body[data-theme="light"] .sticky-section-nav {
+  background: transparent !important;
+  border-bottom: none !important;
+}
