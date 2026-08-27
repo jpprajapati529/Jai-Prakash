@@ -2901,7 +2901,6 @@ body[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
 }
 
 
-
 /* =========================================================
    FLOATING AI BOT STYLES
    ========================================================= */
@@ -2913,6 +2912,9 @@ body[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  
+  /* THE FIX: Tells the mouse to ignore this massive invisible wrapper */
+  pointer-events: none; 
 }
 
 .ai-trigger-btn {
@@ -2929,6 +2931,9 @@ body[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 10px 25px rgba(var(--theme-rgb), 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding: 0;
+  
+  /* THE FIX: Re-enables the mouse ONLY for the actual button */
+  pointer-events: auto; 
 }
 
 .ai-trigger-btn:hover {
