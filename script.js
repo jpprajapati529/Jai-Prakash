@@ -1,8 +1,5 @@
-// Initialize Icons Safely (Prevents crashing if the CDN is ever slow)
-// Initialize Icons safely AFTER the HTML has fully loaded
-document.addEventListener("DOMContentLoaded", () => {
-  lucide.createIcons();
-});
+// Initialize Icons
+lucide.createIcons();
 
 // =========================================================
 // LIGHT/DARK MODE TOGGLE (FIXED LUCIDE ICON SWAP)
@@ -1686,7 +1683,7 @@ if (cliInput) {
 
       const respLine = document.createElement("p");
       respLine.className = "term-output";
-      respLine.innerHTML = response;
+      respLine.innerHTML =- response;
       terminalBody.appendChild(respLine);
       terminalBody.scrollTop = terminalBody.scrollHeight;
     }
