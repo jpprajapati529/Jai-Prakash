@@ -1778,7 +1778,7 @@ window.addEventListener('scroll', () => {
 // JETBRAINS AUTO-COLOR CYCLING ENGINE (PAUSE & KEEP COLOR)
 // =========================================================
 const jbColors = [
-  { r: 168, g: 85, b: 247 },  // 0. Primary Purple (Base)
+  { r: 108, g: 24, b: 255 },  // 0. Primary Violet (Base)
   { r: 8,   g: 124, b: 250 }, // 1. IntelliJ Blue
   { r: 33,  g: 215, b: 137 }, // 2. PyCharm Green
   { r: 255, g: 115, b: 0 },   // 3. Fleet Orange
@@ -1979,9 +1979,11 @@ let isLifecycleHovered = false;
 let isAutoCycleEnabled = false; // <-- NEW: Easter Egg Toggle Flag!
 
 // Helper function to convert Hex colors (#2563eb) to RGB strings for CSS variables
+// Helper function to convert Hex colors (#2563eb) to RGB strings for CSS variables
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '168, 85, 247';
+  // THE FIX: Changed fallback from '168, 85, 247' to '108, 24, 255'
+  return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '108, 24, 255';
 }
 
 // Master function to handle updating the UI, text, and colors
@@ -2061,10 +2063,10 @@ function manualLifecycleBlur() {
   if (isAutoCycleEnabled) {
     startLifecycleAutoCycle(); 
   } else {
-    // If auto-cycle is disabled via Easter Egg, reset nodes back to default when mouse leaves
+    // Pause everything and reset to default
+    clearInterval(lifecycleInterval);
     document.querySelectorAll('.ms-node').forEach(node => node.classList.remove('auto-active'));
-    document.documentElement.style.setProperty('--hero-glow-color', '168, 85, 247');
-  }
+    document.documentElement.style.setProperty('--hero-glow-color', '108, 24, 255');
 }
 
 // THE EASTER EGG: Toggle Auto-Cycle when clicking the top-left Logo

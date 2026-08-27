@@ -243,23 +243,22 @@
 
 /* The giant blurred orb that shifts colors */
 /* The giant blurred orb that shifts colors */
+/* The giant blurred orb that shifts colors */
 .hero-vignette-orb {
   position: absolute;
-  top: -150px; /* Pulls the absolute brightest core slightly off-screen */
+  top: -150px; 
   left: 50%;
   transform: translateX(-50%);
-  
-  /* Expands to cover the full width, but limits how far down it bleeds */
   width: 150vw; 
   height: 1200px;
   max-width: 2500px;
   
-  /* THE FIX: Overhead gradient - vibrant at the top, fading completely into pure black */
+  /* THE FIX: Updated fallback colors to Violet and increased top opacity to 0.6 */
   background: radial-gradient(
     ellipse at top, 
-    rgba(var(--hero-glow-color, 168, 85, 247), 0.45) 0%,   /* Rich, vibrant, highly-visible core */
-    rgba(var(--hero-glow-color, 168, 85, 247), 0.12) 35%,  /* Smooth mid-tone transition */
-    transparent 70%                                        /* Total fade to deep pitch black */
+    rgba(var(--hero-glow-color, 108, 24, 255), 0.6) 0%,   
+    rgba(var(--hero-glow-color, 108, 24, 255), 0.15) 35%, 
+    transparent 70%                                        
   );
   
   transition: background 1.5s ease-in-out;
@@ -373,7 +372,8 @@ body[data-theme="light"] .slide-pause-btn:hover { border-color: rgb(var(--theme-
   --bg-dark: #08080a;
   --card-bg: #000000; 
   --card-border: #22252d;
-  --theme-rgb: 168, 85, 247; 
+  /* THE FIX: Changed from Purple (168, 85, 247) to JetBrains Deep Violet */
+  --theme-rgb: 108, 24, 255; 
   --accent-purple: rgb(var(--theme-rgb)); 
   --accent-green: #22c55e;
   --accent-blue: #3b82f6;
