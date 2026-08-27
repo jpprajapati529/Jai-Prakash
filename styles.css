@@ -2491,6 +2491,35 @@ body[data-theme="light"] .hero-subtext {
 
 
 /* =========================================================
+   JETBRAINS 4-COLOR AMBIENT BACKGROUND
+   ========================================================= */
+.hero-ambient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 950px; /* Covers the navbar and entire hero section */
+  z-index: -1;   /* Sits strictly in the background */
+  pointer-events: none;
+
+  /* THE FIX: A pure CSS gradient (NO blur) for zero pixelation. 
+     Positioned at 35% X / -10% Y to create the exact sweeping curve you drew! */
+  background: radial-gradient(
+    ellipse 120% 110% at 35% -10%, 
+    rgba(var(--hero-glow-color, 108, 24, 255), 0.55) 0%,   /* Intense vibrant core */
+    rgba(var(--hero-glow-color, 108, 24, 255), 0.15) 45%,  /* Smooth mid-tone fade */
+    transparent 75%                                        /* Pure dark vignette outside the curve */
+  );
+  
+  transition: background 0.1s ease;
+}
+
+/* Hide the ambient background in Light Mode */
+body[data-theme="light"] .hero-ambient-bg {
+  display: none !important;
+}
+
+/* =========================================================
    HIGH-CONTRAST LIGHT MODE (Fully Unified UI)
    *MUST STAY AT THE BOTTOM OF THE FILE TO WORK*
    ========================================================= */
