@@ -159,9 +159,8 @@
               0 10px 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px; 
   
-  /* THE FIX: Punches the node high above any overlapping wrappers */
+  /* THE FIX: Punches the node high above all other invisible wrappers */
   z-index: 50 !important; 
-  
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -221,14 +220,11 @@
 .n-jenk { top: 300px; left: -25px; } 
 
 /* RIGHT SIDE */
-/* =========================================================
-   RIGHT SIDE NODES (Fixed with 'right' anchoring for 100% clickability)
-   ========================================================= */
-.n-gcp  { top: 20px;  right: 40px;  left: auto !important; } 
-.n-azu  { top: 90px;  right: 130px; left: auto !important; } 
-.n-doc  { top: 170px; right: 70px;  left: auto !important; } 
-.n-helm { top: 250px; right: 160px; left: auto !important; } 
-.n-azdo { top: 300px; right: 100px; left: auto !important; }
+.n-gcp  { top: 20px;  left: 895px; } 
+.n-azu  { top: 90px;  left: 775px; } 
+.n-doc  { top: 170px; left: 855px; } 
+.n-helm { top: 250px; left: 745px; } 
+.n-azdo { top: 300px; left: 875px; }
 
 /* Responsive scaling */
 @media (max-width: 1050px) { .network-hero-inner { transform: scale(0.8); } }
