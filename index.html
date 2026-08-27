@@ -781,6 +781,43 @@
   </div>
 
   <!-- =========================================================
+       FLOATING AI BOT (Bottom Right)
+       ========================================================= -->
+  <div class="ai-bot-container">
+    
+    <!-- The Chat Window -->
+    <div class="ai-chat-window" id="ai-chat-window">
+      <div class="ai-chat-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="bot" style="color: var(--accent-purple);"></i>
+          <span style="font-weight: 600; font-size: 0.9rem;">Ask Autumn</span>
+        </div>
+        <button class="ai-close-btn" onclick="toggleAIBot()">&times;</button>
+      </div>
+      
+      <div class="ai-chat-messages" id="ai-chat-messages">
+        <!-- Default Welcome Message -->
+        <div class="ai-msg bot-msg">
+          Hello! I'm Jai's AI assistant. Ask me about his <b>skills</b>, <b>experience</b>, <b>education</b>, or how to <b>contact</b> him!
+        </div>
+      </div>
+      
+      <div class="ai-chat-input-area">
+        <input type="text" id="ai-input" placeholder="Type a question..." autocomplete="off" onkeypress="handleAIKeyPress(event)" />
+        <button class="ai-send-btn" onclick="sendAIMessage()">
+          <i data-lucide="send"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- The Trigger Button -->
+    <button class="ai-trigger-btn" onclick="toggleAIBot()" title="Ask AI about Jai">
+      <i data-lucide="sparkles"></i>
+    </button>
+    
+  </div>
+
+  <!-- =========================================================
        MODAL OVERLAY
        ========================================================= -->
   <div id="modal-overlay" class="modal-overlay" onclick="closeModalOnOuterClick(event)">
