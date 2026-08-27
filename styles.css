@@ -245,25 +245,23 @@
 /* The giant blurred orb that shifts colors */
 .hero-vignette-orb {
   position: absolute;
-  top: 50%;
+  top: -150px; /* Pulls the absolute brightest core slightly off-screen */
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   
-  /* Make it massive to fill the background */
+  /* Expands to cover the full width, but limits how far down it bleeds */
   width: 150vw; 
-  height: 150vw;
-  max-width: 1800px;
-  max-height: 1800px;
+  height: 1200px;
+  max-width: 2500px;
   
-  /* THE FIX: Use a pure, buttery-smooth CSS radial gradient instead of an aggressive blur filter */
+  /* THE FIX: Overhead gradient - vibrant at the top, fading completely into pure black */
   background: radial-gradient(
-    circle at center, 
-    rgba(var(--hero-glow-color, 168, 85, 247), 0.18) 0%, 
-    rgba(var(--hero-glow-color, 168, 85, 247), 0.05) 40%, 
-    transparent 70%
+    ellipse at top, 
+    rgba(var(--hero-glow-color, 168, 85, 247), 0.45) 0%,   /* Rich, vibrant, highly-visible core */
+    rgba(var(--hero-glow-color, 168, 85, 247), 0.12) 35%,  /* Smooth mid-tone transition */
+    transparent 70%                                        /* Total fade to deep pitch black */
   );
   
-  /* We removed the heavy filter: blur(140px) which was causing the pixelated color banding! */
   transition: background 1.5s ease-in-out;
   pointer-events: none;
 }
