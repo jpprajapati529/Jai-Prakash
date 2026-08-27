@@ -231,6 +231,52 @@
 
 
 /* =========================================================
+   DYNAMIC HERO VIGNETTE (JetBrains Style)
+   ========================================================= */
+.hero-vignette-container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* The giant blurred orb that shifts colors */
+.hero-vignette-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw; 
+  height: 70vw;
+  max-width: 900px;
+  max-height: 900px;
+  border-radius: 50%;
+  
+  /* Defaults to your primary purple, but JS overrides this dynamically */
+  background-color: rgb(var(--hero-glow-color, 168, 85, 247));
+  
+  opacity: 0.18; /* Perfect subtle dark mode wash */
+  filter: blur(140px); /* Massive blur spreads the light across the background */
+  transition: background-color 1s ease;
+}
+
+/* Force the auto-cycled node to visually pop just like a physical mouse hover */
+.ms-node.auto-active .ms-logo-wrapper { transform: scale(1.15) translateY(-5px); }
+.ms-node.auto-active .ms-bg-pane { transform: skewX(-12deg) rotate(-4deg) scale(1.1) translate(-2px, -4px); opacity: 1; filter: brightness(1.2); }
+.ms-node.auto-active .ms-label { color: rgb(var(--hero-glow-color, 168, 85, 247)); transform: translateY(-2px); }
+
+/* Hide the vignette in Light Mode completely */
+body[data-theme="light"] .hero-vignette-container {
+  display: none !important;
+}
+
+/* Sync the text color for the active node in Light Mode */
+body[data-theme="light"] .ms-node.auto-active .ms-label {
+  color: rgb(var(--hero-glow-color, 168, 85, 247)) !important;
+}
+
+/* =========================================================
    HERO SLIDESHOW PHYSICS (Horizontal Swipe Stack)
    ========================================================= */
 /* =========================================================

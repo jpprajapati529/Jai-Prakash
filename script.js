@@ -1972,54 +1972,97 @@ const lifecycleData = {
   }
 };
 
-function showLifecycleSpec(stageKey) {
+const lifecycleStages = ['plan', 'code', 'build', 'test', 'release', 'deploy', 'operate', 'monitor'];
+let currentStageIndex = 0;
+let lifecycleInterval = null;
+let isLifecycleHovered = false;
+
+// Helper function to convert Hex colors (#2563eb) to RGB strings (37, 99, 235) for CSS variables
+function hexToRgb(hex) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '168, 85, 247';
+}
+
+// Master function to handle updating the UI, text, and colors
+function activateLifecycleStage(stageKey) {
   const data = lifecycleData[stageKey];
+  if (!data) return;
+
+  // 1. Smoothly transition the giant background Vignette Orb color
+  const rgbColor = hexToRgb(data.color);
+  document.documentElement.style.setProperty('--hero-glow-color', rgbColor);
+
+  // 2. Visually pop the active node (mimicking a hover)
+  document.querySelectorAll('.ms-node').forEach(node => node.classList.remove('auto-active'));
+  const activeNodeIndex = lifecycleStages.indexOf(stageKey) + 1;
+  const activeNode = document.querySelector(`.ms-node-${activeNodeIndex}`);
+  if (activeNode) activeNode.classList.add('auto-active');
+
+  // 3. Update the center text specifications overlay
   const overlay = document.getElementById('lifecycle-overlay');
-  
-  const footer = document.querySelector('.cicd-footer');
   const footerText = document.getElementById('cicd-footer-text');
   const footerStatus = document.querySelector('.cicd-footer-status');
-  
-  if (!overlay || !data) return;
 
-  const toolsHTML = data.tools.map(tool => `<span class="tool-pill">${tool}</span>`).join('');
+  if (overlay) {
+    const toolsHTML = data.tools.map(tool => `<span class="tool-pill">${tool}</span>`).join('');
+    overlay.innerHTML = `
+      <div class="lifecycle-title">${data.title}</div>
+      <div class="lifecycle-metric" style="color: ${data.color} !important;">${data.metric}</div>
+      <p class="lifecycle-desc">${data.desc}</p>
+      <div class="lifecycle-tools">${toolsHTML}</div>
+    `;
+    overlay.classList.add('active');
+  }
 
-  overlay.innerHTML = `
-    <div class="lifecycle-title">${data.title}</div>
-    <div class="lifecycle-metric" style="color: ${data.color} !important;">${data.metric}</div>
-    <p class="lifecycle-desc">${data.desc}</p>
-    <div class="lifecycle-tools">${toolsHTML}</div>
-  `;
-  
-  overlay.classList.add('active');
-
-  if (footer) footer.classList.add('active-box');
   if (footerText) {
     footerText.innerText = `Stage: ${stageKey.toUpperCase()}`;
     footerText.style.color = "#fff";
   }
   if (footerStatus) {
-    footerStatus.innerText = data.tools.join(", "); 
+    footerStatus.innerText = data.tools.join(", ");
   }
 }
 
-function hideLifecycleSpec() {
+// Start the continuous auto-cycler
+function startLifecycleAutoCycle() {
+  if (lifecycleInterval) clearInterval(lifecycleInterval);
+  
+  // Kickstart the very first node if the overlay isn't already visible
   const overlay = document.getElementById('lifecycle-overlay');
-  const footer = document.querySelector('.cicd-footer');
-  const footerText = document.getElementById('cicd-footer-text');
-  const footerStatus = document.querySelector('.cicd-footer-status');
-  
-  if (overlay) overlay.classList.remove('active');
-  
-  if (footer) footer.classList.remove('action-box');
-  if (footerText) {
-    footerText.innerText = "Hover stage for specs";
-    footerText.style.color = "var(--text-muted)";
+  if (overlay && !overlay.classList.contains('active')) {
+    activateLifecycleStage(lifecycleStages[currentStageIndex]);
   }
-  if (footerStatus) {
-    footerStatus.innerText = "Continuous Loop Active";
-  }
+
+  lifecycleInterval = setInterval(() => {
+    if (!isLifecycleHovered) {
+      currentStageIndex = (currentStageIndex + 1) % lifecycleStages.length;
+      activateLifecycleStage(lifecycleStages[currentStageIndex]);
+    }
+  }, 3500); // Changes the stage every 3.5 seconds
 }
+
+// User overrides the cycler by physically hovering over a node
+function manualLifecycleFocus(stageKey) {
+  isLifecycleHovered = true;
+  clearInterval(lifecycleInterval); 
+  currentStageIndex = lifecycleStages.indexOf(stageKey);
+  activateLifecycleStage(stageKey);
+}
+
+// User moves their mouse away, seamlessly resuming the cycler
+function manualLifecycleBlur() {
+  isLifecycleHovered = false;
+  startLifecycleAutoCycle(); 
+}
+
+// Fire up the engine automatically when the page finishes loading
+window.addEventListener('load', () => {
+  startLifecycleAutoCycle();
+});
+
+// Fallbacks for the old function names just in case they are still referenced in HTML
+function showLifecycleSpec(key) { manualLifecycleFocus(key); }
+function hideLifecycleSpec() { manualLifecycleBlur(); }
 
 
 // =========================================================
