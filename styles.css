@@ -2491,44 +2491,6 @@ body[data-theme="light"] .hero-subtext {
 
 
 /* =========================================================
-   DYNAMIC HERO VIGNETTE (JetBrains 4-Color Ambient Light)
-   ========================================================= */
-.hero-vignette-container {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  overflow: hidden;
-  z-index: 0; /* Sits perfectly behind your content */
-  pointer-events: none;
-}
-
-/* The overhead stage light gradient */
-.hero-vignette-orb {
-  position: absolute;
-  top: -150px; /* Pulls the absolute brightest core slightly off-screen */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150vw; 
-  height: 1200px;
-  max-width: 2500px;
-  
-  /* Vibrant at the top, fading smoothly into pure black at the bottom */
-  background: radial-gradient(
-    ellipse at top, 
-    rgba(var(--hero-glow-color, 108, 24, 255), 0.55) 0%,   
-    rgba(var(--hero-glow-color, 108, 24, 255), 0.15) 40%, 
-    transparent 75%                                        
-  );
-  
-  pointer-events: none;
-}
-
-/* Hide the vignette completely in Light Mode */
-body[data-theme="light"] .hero-vignette-container {
-  display: none !important;
-}
-
-
-/* =========================================================
    HIGH-CONTRAST LIGHT MODE (Fully Unified UI)
    *MUST STAY AT THE BOTTOM OF THE FILE TO WORK*
    ========================================================= */
