@@ -231,56 +231,6 @@
 
 
 /* =========================================================
-   DYNAMIC HERO VIGNETTE (JetBrains Style)
-   ========================================================= */
-.hero-vignette-container {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  overflow: hidden;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* The giant blurred orb that shifts colors */
-/* The giant blurred orb that shifts colors */
-/* The giant blurred orb that shifts colors */
-.hero-vignette-orb {
-  position: absolute;
-  top: -150px; 
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150vw; 
-  height: 1200px;
-  max-width: 2500px;
-  
-  /* THE FIX: Updated fallback colors to Violet and increased top opacity to 0.6 */
-  background: radial-gradient(
-    ellipse at top, 
-    rgba(var(--hero-glow-color, 108, 24, 255), 0.6) 0%,   
-    rgba(var(--hero-glow-color, 108, 24, 255), 0.15) 35%, 
-    transparent 70%                                        
-  );
-  
-  transition: background 1.5s ease-in-out;
-  pointer-events: none;
-}
-
-/* Force the auto-cycled node to visually pop just like a physical mouse hover */
-.ms-node.auto-active .ms-logo-wrapper { transform: scale(1.15) translateY(-5px); }
-.ms-node.auto-active .ms-bg-pane { transform: skewX(-12deg) rotate(-4deg) scale(1.1) translate(-2px, -4px); opacity: 1; filter: brightness(1.2); }
-.ms-node.auto-active .ms-label { color: rgb(var(--hero-glow-color, 168, 85, 247)); transform: translateY(-2px); }
-
-/* Hide the vignette in Light Mode completely */
-body[data-theme="light"] .hero-vignette-container {
-  display: none !important;
-}
-
-/* Sync the text color for the active node in Light Mode */
-body[data-theme="light"] .ms-node.auto-active .ms-label {
-  color: rgb(var(--hero-glow-color, 168, 85, 247)) !important;
-}
-
-/* =========================================================
    HERO SLIDESHOW PHYSICS (Horizontal Swipe Stack)
    ========================================================= */
 /* =========================================================
@@ -372,8 +322,7 @@ body[data-theme="light"] .slide-pause-btn:hover { border-color: rgb(var(--theme-
   --bg-dark: #08080a;
   --card-bg: #000000; 
   --card-border: #22252d;
-  /* THE FIX: Changed from Purple (168, 85, 247) to JetBrains Deep Violet */
-  --theme-rgb: 108, 24, 255; 
+  --theme-rgb: 168, 85, 247; 
   --accent-purple: rgb(var(--theme-rgb)); 
   --accent-green: #22c55e;
   --accent-blue: #3b82f6;
@@ -1329,9 +1278,11 @@ body[data-theme="light"] .cli-accent {
   width: 100%;
   z-index: 150; 
   
-  /* THE FIX: Removed the background color, blur, and border! */
-  background-color: transparent;
-  border-bottom: none;
+  /* The full-width frosted glass background */
+  background-color: rgba(8, 8, 12, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   
   /* Animation setup */
   pointer-events: none;
@@ -3100,11 +3051,3 @@ body[data-theme="light"] .ai-chat-header, body[data-theme="light"] .ai-chat-inpu
 body[data-theme="light"] .bot-msg { background: #f1f5f9 !important; color: #0f172a !important; }
 body[data-theme="light"] .user-msg { background: rgb(var(--theme-rgb)) !important; color: #ffffff !important; }
 body[data-theme="light"] .ai-chat-input-area input { background: #ffffff !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
-
-
-
-/* 6. Sticky Nav & Pills */
-body[data-theme="light"] .sticky-section-nav {
-  background: transparent !important;
-  border-bottom: none !important;
-}

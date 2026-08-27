@@ -18,8 +18,7 @@
     <div class="sticky-nav-content">
 
       <!-- 1. LEFT: Logo -->
-      <!-- Update both instances of this logo! -->
-<div class="logo" onclick="toggleAutoCycle()" title="Toggle Auto-Cycle Easter Egg">
+      <div class="logo" onclick="triggerPipelineRun()" title="Cluster Operational">
         <div class="system-status-icon">
           <i data-lucide="activity"></i>
           <span class="neon-ring"></span>
@@ -67,9 +66,8 @@
   <header class="navbar">
     
     <!-- 1. LEFT: Logo -->
-<!-- Update both instances of this logo! -->
-<div class="logo" onclick="toggleAutoCycle()" title="Toggle Auto-Cycle Easter Egg">
-        <div class="system-status-icon">
+    <div class="logo" onclick="triggerPipelineRun()" title="Cluster Operational - Click to Trigger Pipeline">
+      <div class="system-status-icon">
         <i data-lucide="activity"></i>
         <span class="neon-ring"></span>
       </div>
@@ -130,12 +128,6 @@
      1. HERO SLIDESHOW (Microsoft Style)
      ========================================================= -->
 <div class="hero-slider-wrapper">
-
-  <!-- 1. THE NEW JETBRAINS VIGNETTE ORB -->
-  <div class="hero-vignette-container">
-    <div class="hero-vignette-orb" id="hero-vignette-orb"></div>
-  </div>
-
   <div class="hero-slides-container" id="hero-slides-container">
   <!-- ================= SLIDE 1: YOUR EXISTING CONSTELLATION ================= -->
   <div class="hero-slide active">
@@ -169,9 +161,8 @@
             <!-- Racing neon comet trail -->
             <path class="infinity-path" pathLength="100" d="M 24,22 C 5,22 5,78 24,78 C 45,78 55,22 76,22 C 95,22 95,78 76,78 C 55,78 45,22 24,22 Z" />
           </svg>
-<div class="ms-center-core" onclick="toggleInfinityLoop()" title="Click to assemble DevOps Loop"><i data-lucide="infinity"></i></div>
-            <!-- 2. UPDATED NODES WITH NEW HOVER LOGIC -->
-            <div class="ms-node ms-node-1" onmouseenter="manualLifecycleFocus('plan')" onmouseleave="manualLifecycleBlur()">
+            <div class="ms-center-core" onclick="toggleInfinityLoop()" title="Click to assemble DevOps Loop"><i data-lucide="infinity"></i></div>            
+            <div class="ms-node ms-node-1" onmouseenter="showLifecycleSpec('plan')" onmouseleave="hideLifecycleSpec()">
               <div class="ms-bg-pane ms-color-1-glass"></div>
               <div class="ms-logo-wrapper">
                 <div class="ms-logo-bg ms-color-1-solid"></div>
@@ -179,7 +170,7 @@
               </div>
               <span class="ms-label">Plan</span>
             </div>
-            <div class="ms-node ms-node-2" onmouseenter="manualLifecycleFocus('code')" onmouseleave="manualLifecycleBlur()">
+            <div class="ms-node ms-node-2" onmouseenter="showLifecycleSpec('code')" onmouseleave="hideLifecycleSpec()">
               <div class="ms-bg-pane ms-color-2-glass"></div>
               <div class="ms-logo-wrapper">
                 <div class="ms-logo-bg ms-color-2-solid"></div>
@@ -187,7 +178,7 @@
               </div>
               <span class="ms-label">Code</span>
             </div>
-            <div class="ms-node ms-node-3" onmouseenter="manualLifecycleFocus('build')" onmouseleave="manualLifecycleBlur()">
+            <div class="ms-node ms-node-3" onmouseenter="showLifecycleSpec('build')" onmouseleave="hideLifecycleSpec()">
               <div class="ms-bg-pane ms-color-3-glass"></div>
               <div class="ms-logo-wrapper">
                 <div class="ms-logo-bg ms-color-3-solid"></div>
@@ -195,7 +186,7 @@
               </div>
               <span class="ms-label">Build</span>
             </div>
-            <div class="ms-node ms-node-4" onmouseenter="manualLifecycleFocus('test')" onmouseleave="manualLifecycleBlur()">
+            <div class="ms-node ms-node-4" onmouseenter="showLifecycleSpec('test')" onmouseleave="hideLifecycleSpec()">
               <div class="ms-bg-pane ms-color-4-glass"></div>
               <div class="ms-logo-wrapper">
                 <div class="ms-logo-bg ms-color-4-solid"></div>
@@ -203,7 +194,7 @@
               </div>
               <span class="ms-label">Test</span>
             </div>
-            <div class="ms-node ms-node-5" onmouseenter="manualLifecycleFocus('release')" onmouseleave="manualLifecycleBlur()">
+            <div class="ms-node ms-node-5" onmouseenter="showLifecycleSpec('release')" onmouseleave="hideLifecycleSpec()">
               <div class="ms-bg-pane ms-color-5-glass"></div>
               <div class="ms-logo-wrapper">
                 <div class="ms-logo-bg ms-color-5-solid"></div>
@@ -211,7 +202,7 @@
               </div>
               <span class="ms-label">Release</span>
             </div>
-            <div class="ms-node ms-node-6" onmouseenter="manualLifecycleFocus('deploy')" onmouseleave="manualLifecycleBlur()">
+            <div class="ms-node ms-node-6" onmouseenter="showLifecycleSpec('deploy')" onmouseleave="hideLifecycleSpec()">
               <div class="ms-bg-pane ms-color-6-glass"></div>
               <div class="ms-logo-wrapper">
                 <div class="ms-logo-bg ms-color-6-solid"></div>
@@ -219,7 +210,7 @@
               </div>
               <span class="ms-label">Deploy</span>
             </div>
-            <div class="ms-node ms-node-7" onmouseenter="manualLifecycleFocus('operate')" onmouseleave="manualLifecycleBlur()">
+            <div class="ms-node ms-node-7" onmouseenter="showLifecycleSpec('operate')" onmouseleave="hideLifecycleSpec()">
               <div class="ms-bg-pane ms-color-7-glass"></div>
               <div class="ms-logo-wrapper">
                 <div class="ms-logo-bg ms-color-7-solid"></div>
@@ -227,7 +218,7 @@
               </div>
               <span class="ms-label">Operate</span>
             </div>
-            <div class="ms-node ms-node-8" onmouseenter="manualLifecycleFocus('monitor')" onmouseleave="manualLifecycleBlur()">
+            <div class="ms-node ms-node-8" onmouseenter="showLifecycleSpec('monitor')" onmouseleave="hideLifecycleSpec()">
               <div class="ms-bg-pane ms-color-8-glass"></div>
               <div class="ms-logo-wrapper">
                 <div class="ms-logo-bg ms-color-8-solid"></div>
@@ -385,7 +376,7 @@
 
         <div class="cicd-footer">
           <span id="cicd-footer-text">Hover stage for specs</span>
-          <span class="cicd-footer-status">Auto-Cycle Paused</span>
+          <span class="cicd-footer-status">Continuous Loop Active</span>
         </div>
 
       </div>
