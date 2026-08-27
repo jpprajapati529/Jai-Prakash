@@ -1358,7 +1358,7 @@ function openModuleModal(moduleId) {
   // Dynamically place logos in header, or default box icon for others
   const iconContainer = document.getElementById("modal-header-icon-container");
   if (moduleId === 'terraform') {
-    iconContainer.innerHTML = `<img src="./assets/terraform-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+    iconContainer.innerHTML = `<img src="./assets/terraformio-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'aws') {
     iconContainer.innerHTML = `<img src="./assets/aws-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'kubernetes') {
