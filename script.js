@@ -1,10 +1,7 @@
 // Initialize Icons Safely (Prevents crashing if the CDN is ever slow)
+// Initialize Icons safely AFTER the HTML has fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-  if (typeof lucide !== 'undefined') {
-    lucide.createIcons();
-  } else {
-    console.error("Icon library failed to load from CDN.");
-  }
+  lucide.createIcons();
 });
 
 // =========================================================
