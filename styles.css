@@ -54,10 +54,17 @@
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 420px; /* Constrains the box strictly to the center */
-  max-width: 90%;
+  width: 100%;
+  max-width: 420px; 
   z-index: 10;
   text-align: center;
+  
+  /* THE FIX: Tells the mouse to completely ignore this invisible box so it can't block nodes */
+  pointer-events: none; 
+}
+
+/* Re-enables the mouse ONLY for the Skill Set / Tools buttons inside the center box */
+.network-center-content .hero-btn-group {
   pointer-events: auto;
 }
 
@@ -144,22 +151,16 @@
   width: 150px;       
   height: 56px;       
   padding: 0 16px;    
-  
-  /* Highly translucent background fading from neon to clear dark glass */
   background: linear-gradient(90deg, rgba(var(--theme-rgb), 0.15) 0%, rgba(10, 14, 25, 0.4) 35%, rgba(10, 14, 25, 0.4) 100%);
-  
-  /* The blur effect makes the lines visible but frosted underneath! */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  
-  /* Thin theme-colored border all around */
   border: 1px solid rgba(var(--theme-rgb), 0.4); 
-  
-  /* INSET shadow creates that distinct JetBrains 'beam' on the left edge */
   box-shadow: inset 25px 0 25px -20px rgba(var(--theme-rgb), 0.5), 
               0 10px 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px; 
-  z-index: 15;
+  
+  /* THE FIX: Punches the node high above all other invisible wrappers */
+  z-index: 50 !important; 
   cursor: pointer;
   transition: all 0.2s ease;
 }
