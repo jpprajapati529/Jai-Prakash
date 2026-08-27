@@ -2899,3 +2899,4 @@ body[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
   background: rgba(var(--theme-rgb), 0.25) !important; 
   border: 1px solid rgba(var(--theme-rgb), 1) !important; 
 }
+
