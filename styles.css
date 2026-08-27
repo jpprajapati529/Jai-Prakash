@@ -159,8 +159,9 @@
               0 10px 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px; 
   
-  /* THE FIX: Punches the node high above all other invisible wrappers */
+  /* THE FIX: Punches the node high above any overlapping wrappers */
   z-index: 50 !important; 
+  
   cursor: pointer;
   transition: all 0.2s ease;
 }
