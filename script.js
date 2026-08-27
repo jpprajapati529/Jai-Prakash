@@ -264,7 +264,7 @@ stages:
     description: `
       <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
         <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
-          <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
+          <img src="./assets/aws-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
         </div>
         <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
           AWS provides on-demand cloud computing platforms and APIs, enabling highly scalable, resilient, and secure DevOps infrastructure architectures.
@@ -344,7 +344,7 @@ stages:
     description: `
       <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
         <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
-          <img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
+          <img src="./assets/azure-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
         </div>
         <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
           Microsoft Azure provides enterprise-grade cloud computing services, specializing in hybrid-cloud deployments, robust IAM networking, and scalable Kubernetes architectures.
@@ -432,7 +432,7 @@ stages:
     description: `
       <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
         <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
-          <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
+          <img src="./assets/gcp-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
         </div>
         <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
           Google Cloud Platform (GCP) provides highly scalable, globally distributed infrastructure, specializing in containerized workloads and SRE-driven operations.
@@ -523,7 +523,7 @@ stages:
     description: `
       <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
         <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
-          <img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
+          <img src="./assets/docker-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
         </div>
         <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
           Docker is an open platform for developing, shipping, and running applications inside lightweight, isolated containers, ensuring consistency across environments.
@@ -641,7 +641,7 @@ CMD ["node", "dist/index.js"]</div>
     description: `
       <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
         <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
-          <img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
+          <img src="./assets/k8s-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
         </div>
         <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
           Kubernetes is an open-source container orchestration system for automating application deployment, scaling, and operational management.
@@ -744,7 +744,7 @@ CMD ["node", "dist/index.js"]</div>
     description: `
       <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
         <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
-          <img src="https://www.vectorlogo.zone/logos/helmsh/helmsh-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
+          <img src="./assets/helm-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
         </div>
         <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
           Helm is the package manager for Kubernetes, used to define, install, and upgrade even the most complex Kubernetes applications using reusable packaging templates called Charts.
@@ -986,7 +986,7 @@ provider "google" {
     description: `
       <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
         <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
-          <img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
+          <img src="./assets/github-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
         </div>
         <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
           GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipelines.
@@ -1057,7 +1057,7 @@ jobs:
     description: `
       <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 24px; margin-top: 0px;">
         <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);">
-          <img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
+          <img src="./assets/jenkins-icon.svg" style="width: 44px; height: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); object-fit: contain;">
         </div>
         <p style="color: var(--text-secondary); max-width: 500px; font-size: 0.95rem; line-height: 1.6; margin: 0;">
           Jenkins is an open-source automation server that enables developers to reliably build, test, and deploy their software using extensible pipeline architectures.
@@ -1358,24 +1358,24 @@ function openModuleModal(moduleId) {
   // Dynamically place logos in header, or default box icon for others
   const iconContainer = document.getElementById("modal-header-icon-container");
   if (moduleId === 'terraform') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+    iconContainer.innerHTML = `<img src="./assets/terraform-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'aws') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+    iconContainer.innerHTML = `<img src="./assets/aws-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'kubernetes') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+    iconContainer.innerHTML = `<img src="./assets/k8s-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'azure') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+    iconContainer.innerHTML = `<img src="./assets/azure-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'gcp') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+    iconContainer.innerHTML = `<img src="./assets/gcp-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'docker') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+    iconContainer.innerHTML = `<img src="./assets/docker-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'helm') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/helmsh/helmsh-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+    iconContainer.innerHTML = `<img src="./assets/helm-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   } else if (moduleId === 'github') {
     // Pure White Modern GitHub Logo
     iconContainer.innerHTML = `<svg style="width: 22px; height: 22px; fill: #ffffff;" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>`;
   } else if (moduleId === 'jenkins') {
-    iconContainer.innerHTML = `<img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
+    iconContainer.innerHTML = `<img src="./assets/jenkins-icon.svg" style="width: 22px; height: 22px; object-fit: contain;">`;
   }  else if (moduleId === 'azure-devops') {
     iconContainer.innerHTML = `
       <svg style="width: 22px; height: 22px;" viewBox="0 0 128 128">
