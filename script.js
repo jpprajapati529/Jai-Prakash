@@ -2276,3 +2276,52 @@ function generateAIResponse(query) {
     return "I'm a simple bot, but I know a lot about Jai! Try asking specifically about his <b>skills</b>, <b>experience</b>, <b>certifications</b>, or <b>education</b>.";
   }
 }
+
+
+// =========================================================
+// HERO VIGNETTE AUTO-CYCLER (JetBrains 4-Color Style)
+// =========================================================
+// We use a specific 4-color JetBrains palette for the background
+const vignetteColors = [
+  { r: 108, g: 24,  b: 255 }, // 1. Deep Violet (JetBrains Default)
+  { r: 8,   g: 124, b: 250 }, // 2. IntelliJ Blue
+  { r: 225, g: 31,  b: 113 }, // 3. Rider Magenta
+  { r: 255, g: 115, b: 0 }    // 4. Fleet Orange
+];
+
+let vigColorIndex = 0;
+let vigNextColorIndex = 1;
+let vigProgress = 0;
+
+function lerpColorVignette(start, end, t) {
+  return Math.round(start + (end - start) * t);
+}
+
+function cycleVignetteColor() {
+  const current = vignetteColors[vigColorIndex];
+  const next = vignetteColors[vigNextColorIndex];
+
+  // Calculate the smooth transition between colors
+  const r = lerpColorVignette(current.r, next.r, vigProgress);
+  const g = lerpColorVignette(current.g, next.g, vigProgress);
+  const b = lerpColorVignette(current.b, next.b, vigProgress);
+
+  // Apply the color strictly to the background vignette variable
+  document.documentElement.style.setProperty('--hero-glow-color', `${r}, ${g}, ${b}`);
+
+  // Speed of the color shift (lower is slower/smoother)
+  vigProgress += 0.0015; 
+
+  if (vigProgress >= 1) {
+    vigProgress = 0;
+    vigColorIndex = vigNextColorIndex;
+    vigNextColorIndex = (vigColorIndex + 1) % vignetteColors.length;
+  }
+  
+  requestAnimationFrame(cycleVignetteColor);
+}
+
+// Start the background cycler immediately on load
+window.addEventListener('load', () => {
+  requestAnimationFrame(cycleVignetteColor);
+});
