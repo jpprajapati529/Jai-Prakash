@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO & Enterprise Metadata -->
   <title>Jai Prakash | DevOps & Platform Engineer</title>
+  <meta name="description" content="Portfolio of Jai Prakash, a Senior DevOps & Platform Engineer specializing in AWS, Azure, GCP, Kubernetes, and CI/CD automation.">
+  <meta name="author" content="Jai Prakash Prajapati">
+  
+  <!-- Open Graph / Social Media Preview Cards (LinkedIn, Slack, Discord) -->
+  <meta property="og:title" content="Jai Prakash | DevOps & Platform Engineer">
+  <meta property="og:description" content="Automating CI/CD pipelines, optimizing multi-cloud infrastructures, and enforcing resilient SRE practices.">
+  <meta property="og:type" content="website">
+  <!-- Replace the content URL below with a link to a screenshot of your site once hosted -->
+  <meta property="og:image" content="https://jpprajapati529.github.io/Jai-Prakash/preview-image.jpg"> 
+  <meta property="og:url" content="https://jpprajapati529.github.io/Jai-Prakash/">
+
+  <!-- Fonts & Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Performance Optimization: Added 'defer' so these don't block the page from rendering! -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 <body>
   
@@ -818,34 +834,38 @@
   </div>
 
   <!-- =========================================================
-       MODAL OVERLAY
+       MODAL OVERLAY (With Enterprise ARIA Accessibility)
        ========================================================= -->
-  <div id="modal-overlay" class="modal-overlay" onclick="closeModalOnOuterClick(event)">
+  <div id="modal-overlay" class="modal-overlay" aria-hidden="true" onclick="closeModalOnOuterClick(event)">
     
     <!-- Neon Connecting Cable SVG -->
-    <svg class="modal-connector-svg" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1001;">
+    <svg class="modal-connector-svg" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1001;">
       <path id="modal-connector-path" d="" fill="none" stroke="rgb(var(--theme-rgb))" stroke-width="2.5" />
     </svg>
 
-    <div class="modal-content">
+    <!-- ARIA roles tell screen readers this is a dialog box -->
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-header">
         <div style="display: flex; align-items: center; gap: 10px;">
-          <!-- Added ID wrapper to dynamically swap icons/logos -->
-          <div id="modal-header-icon-container" style="display: flex; align-items: center;">
+          <div id="modal-header-icon-container" style="display: flex; align-items: center;" aria-hidden="true">
             <i id="modal-icon" data-lucide="box" style="color: var(--accent-purple);"></i>
           </div>
           <h2 id="modal-title" style="font-size: 1.05rem; color: #fff;">Details</h2>
         </div>
-        <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+        <button class="modal-close-btn" onclick="closeModal()" aria-label="Close modal">&times;</button>
       </div>
       <div class="modal-body">
         <p id="modal-description" style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.95rem;"></p>
-        <div class="modal-tabs" id="modal-tabs"></div>
-        <div id="modal-rich-content" class="rich-content-container" style="display: none;"></div>
-        <div id="modal-code-container" class="code-preview-container" style="display: none;">
+        
+        <!-- ARIA role tells screen readers this is a tab navigation menu -->
+        <div class="modal-tabs" id="modal-tabs" role="tablist"></div>
+        
+        <div id="modal-rich-content" class="rich-content-container" role="tabpanel" style="display: none;"></div>
+        
+        <div id="modal-code-container" class="code-preview-container" role="tabpanel" style="display: none;">
           <div class="code-header">
             <span id="code-filename" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-purple);">config.yaml</span>
-            <button class="btn-copy" onclick="copyCodeSnippet()">Copy Snippet</button>
+            <button class="btn-copy" onclick="copyCodeSnippet()" aria-label="Copy code snippet">Copy Snippet</button>
           </div>
           <pre><code id="code-block" class="code-content">// Select a tab above...</code></pre>
         </div>
@@ -853,6 +873,4 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  
