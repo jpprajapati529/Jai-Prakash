@@ -3073,30 +3073,30 @@ body[data-theme="light"] .ai-chat-input-area input { background: #ffffff !import
    ========================================================= */
 /* 1. NIGHT SKY BASELINE (Dark Mode) */
 #night-sky-bg {
-  position: absolute; 
+  position: fixed; /* THE FIX: Locks it to your screen! */
   top: 0; left: 0; 
-  width: 100%; height: 950px; /* Constrained to top hero section */
+  width: 100vw; height: 100vh; /* Covers the entire window */
   z-index: -2; 
   pointer-events: none; 
   overflow: hidden;
   
   opacity: 1;
-  transform: translateX(0); /* Normal position */
+  transform: translateX(0); 
   transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Night Sky hides in Light Mode (Moon & Stars slide RIGHT) */
 body[data-theme="light"] #night-sky-bg {
   opacity: 0;
-  transform: translateX(150px); /* Moves off to the right */
+  transform: translateX(150px); 
   visibility: hidden;
 }
 
 /* 2. DAY SCAPE BASELINE (Light Mode) */
 #day-scape-bg {
-  position: absolute; 
+  position: fixed; /* THE FIX: Locks it to your screen! */
   top: 0; left: 0; 
-  width: 100%; height: 950px; /* Constrained to top hero section */
+  width: 100vw; height: 100vh; /* Covers the entire window */
   z-index: -2; 
   pointer-events: none; 
   overflow: hidden;
@@ -3108,6 +3108,13 @@ body[data-theme="light"] #night-sky-bg {
   visibility: hidden;
   transform: translateX(-150px); /* Starts hidden on the LEFT */
   transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
+}
+
+/* Day Scape triggers in Light Mode (Sky & Sun slide in from LEFT to RIGHT) */
+body[data-theme="light"] #day-scape-bg {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
 }
 
 /* Day Scape triggers in Light Mode (Sky & Sun slide in from LEFT to RIGHT) */
@@ -3146,8 +3153,9 @@ body[data-theme="light"] #day-scape-bg {
 /* Ocean layered separately to come from BOTTOM */
 .ocean-layer {
   position: absolute;
-  bottom: 0; left: 0;
-  width: 100%; height: 250px;
+  bottom: -5px; /* Pulls it slightly down to prevent a gap */
+  left: 0;
+  width: 100%; height: 25vh;
   transform: translateY(100%); /* Hidden below */
   transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -3157,10 +3165,27 @@ body[data-theme="light"] .ocean-layer {
   transition-delay: 0.4s; /* Waits for the sky to slide in first */
 }
 
+/* THE FIX: Add flowing up/down physics to the water layers */
+.ocean-layer path:nth-child(1) {
+  animation: waveDrift1 5s ease-in-out infinite;
+}
+.ocean-layer path:nth-child(2) {
+  animation: waveDrift2 7s ease-in-out infinite alternate;
+}
+
+@keyframes waveDrift1 {
+  0%, 100% { transform: translate(0px, 0px); }
+  50% { transform: translate(-20px, 15px); }
+}
+@keyframes waveDrift2 {
+  0%, 100% { transform: translate(0px, 0px); }
+  50% { transform: translate(20px, -10px); }
+}
+
 /* Tree pops up AFTER the ocean */
 .tree-silhouette {
   position: absolute;
-  bottom: 60px; left: 8%; /* Rests on the ocean horizon */
+  bottom: 12vh; left: 8vw; /* Anchors it cleanly to the viewport */
   width: 120px; height: 180px;
   opacity: 0.35; 
   transform: translateY(100px) scaleY(0); /* Hidden down and squished */
