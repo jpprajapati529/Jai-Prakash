@@ -3059,6 +3059,42 @@ body[data-theme="light"] .user-msg { background: rgb(var(--theme-rgb)) !importan
 body[data-theme="light"] .ai-chat-input-area input { background: #ffffff !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
 
 
+/* =========================================================
+   NIGHT SKY BACKGROUND (Premium Dark Mode Layer)
+   ========================================================= */
+#night-sky-bg {
+  position: fixed; /* Stays locked in the background even when scrolling */
+  top: 0; left: 0; 
+  width: 100vw; height: 100vh;
+  z-index: -2; /* Drops it securely behind your purple ambient glow */
+  pointer-events: none; /* 100% invisible to the mouse! */
+  overflow: hidden;
+}
+
+/* Elegant, glowing crescent moon using a pure CSS box-shadow trick */
+.moon {
+  position: absolute;
+  top: 15%; 
+  right: 18%; /* Sits nicely in the upper right corner */
+  width: 50px; 
+  height: 50px;
+  border-radius: 50%;
+  background: transparent;
+  /* The shadow creates the crescent shape and the outer glow */
+  box-shadow: 12px 12px 0 0 rgba(255, 255, 255, 0.95),
+              12px 12px 25px 0 rgba(255, 255, 255, 0.4);
+  transform: rotate(-15deg);
+  opacity: 0.85;
+}
+
+/* Base setup for the infinite starfield */
+.stars {
+  position: absolute;
+  top: 0; left: 0; 
+  width: 200%; height: 200%; /* Double size to allow for seamless scrolling */
+  pointer-events: none;
+}
+
 /* Tiny, dense background stars (Smoothed & Anti-aliased) */
 .stars-1 {
   background-image: 
@@ -3081,4 +3117,15 @@ body[data-theme="light"] .ai-chat-input-area input { background: #ffffff !import
   background-repeat: repeat;
   background-size: 450px 450px;
   animation: starDrift 100s linear infinite; 
+}
+
+/* The infinite scrolling animation */
+@keyframes starDrift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); } 
+}
+
+/* Completely hide the night sky when the user switches to Light Mode */
+body[data-theme="light"] #night-sky-bg {
+  display: none !important;
 }
