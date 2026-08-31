@@ -2173,19 +2173,25 @@ body[data-theme="light"] .term-icon-trigger {
 }
 
 /* 1. The Skewed Glass Pane (The soft background shadow) */
+/* 1. The Skewed Glass Pane (The soft background shadow) */
 .ms-bg-pane {
   position: absolute;
   top: -20px; left: -15px;
   width: 85px; height: 105px;
   border-radius: 18px;
-  /* The exact angle from the MS graphics */
-  transform: skewX(-12deg) rotate(-4deg); 
+  
+  /* THE FIX: Force hardware-accelerated anti-aliasing */
+  transform: skewX(-12deg) rotate(-4deg) translateZ(0); 
+  outline: 1px solid transparent; 
+  backface-visibility: hidden;
+  will-change: transform;
+  
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 1;
   opacity: 0.85;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 1px rgba(255,255,255,0.1);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -2195,6 +2201,7 @@ body[data-theme="light"] .term-icon-trigger {
   width: 54px; height: 54px;
   z-index: 2;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backface-visibility: hidden;
 }
 
 .ms-logo-bg {
@@ -2203,6 +2210,8 @@ body[data-theme="light"] .term-icon-trigger {
   width: 44px; height: 44px;
   border-radius: 12px;
   box-shadow: inset 2px 2px 4px rgba(255,255,255,0.4), 0 6px 12px rgba(0,0,0,0.2);
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
 }
 
 /* 3. The Overlapping Badge (Mimics the P, W, X letter squares) */
@@ -2230,8 +2239,8 @@ body[data-theme="light"] .term-icon-trigger {
 }
 
 /* Hover Interactions */
-.ms-node:hover .ms-logo-wrapper { transform: scale(1.15) translateY(-5px); }
-.ms-node:hover .ms-bg-pane { transform: skewX(-12deg) rotate(-4deg) scale(1.1) translate(-2px, -4px); opacity: 1; filter: brightness(1.2); }
+.ms-node:hover .ms-logo-wrapper { transform: scale(1.15) translateY(-5px) translateZ(0); }
+.ms-node:hover .ms-bg-pane { transform: skewX(-12deg) rotate(-4deg) scale(1.1) translate(-2px, -4px) translateZ(0); opacity: 1; filter: brightness(1.2); }
 .ms-node:hover .ms-label { color: rgb(var(--theme-rgb)); transform: translateY(-2px); }
 
 /* =========================================================
