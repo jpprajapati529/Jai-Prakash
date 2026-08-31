@@ -10,10 +10,42 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+  <!-- ==========================================
+       NIGHT SKY BACKGROUND (Dark Mode Only)
+       ========================================== -->
   <div id="night-sky-bg" aria-hidden="true">
     <div class="moon"></div>
     <div class="stars stars-1"></div>
     <div class="stars stars-2"></div>
+  </div>
+
+  <!-- ==========================================
+       DAY SCAPE BACKGROUND (Light Mode Only)
+       ========================================== -->
+  <div id="day-scape-bg" aria-hidden="true">
+    <!-- 1. The Sunrise -->
+    <div class="sun"></div>
+    
+    <!-- 2. The Flock of Birds -->
+    <div class="birds">
+      <svg class="bird bird-1" viewBox="0 0 24 24"><path fill="currentColor" d="M22 6c-3 0-5 2.5-6 4.5-1-2-3-4.5-6-4.5S5 8.5 4 10.5C3 8.5 1 6 0 6s2 4 4 4c-2 2-4 4-4 4s2-2.5 4-4.5C5 11.5 7 14 8 14s2-2.5 3-4.5c1 2 3 4.5 5 4.5s4-2 4-4-2-4-4-4z"/></svg>
+      <svg class="bird bird-2" viewBox="0 0 24 24"><path fill="currentColor" d="M22 6c-3 0-5 2.5-6 4.5-1-2-3-4.5-6-4.5S5 8.5 4 10.5C3 8.5 1 6 0 6s2 4 4 4c-2 2-4 4-4 4s2-2.5 4-4.5C5 11.5 7 14 8 14s2-2.5 3-4.5c1 2 3 4.5 5 4.5s4-2 4-4-2-4-4-4z"/></svg>
+      <svg class="bird bird-3" viewBox="0 0 24 24"><path fill="currentColor" d="M22 6c-3 0-5 2.5-6 4.5-1-2-3-4.5-6-4.5S5 8.5 4 10.5C3 8.5 1 6 0 6s2 4 4 4c-2 2-4 4-4 4s2-2.5 4-4.5C5 11.5 7 14 8 14s2-2.5 3-4.5c1 2 3 4.5 5 4.5s4-2 4-4-2-4-4-4z"/></svg>
+    </div>
+
+    <!-- 3. Minimalist Pine Tree -->
+    <svg class="tree-silhouette" viewBox="0 0 100 150">
+      <rect x="45" y="120" width="10" height="30" fill="#64748b"/>
+      <polygon points="50,10 80,60 20,60" fill="#94a3b8"/>
+      <polygon points="50,40 85,90 15,90" fill="#94a3b8"/>
+      <polygon points="50,70 90,120 10,120" fill="#94a3b8"/>
+    </svg>
+
+    <!-- 4. Layered Ocean Waves -->
+    <svg class="ocean-layer" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="#bae6fd" fill-opacity="0.6" d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,160C672,160,768,192,864,186.7C960,181,1056,139,1152,133.3C1248,128,1344,160,1392,176L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      <path fill="#7dd3fc" fill-opacity="0.4" d="M0,256L48,229.3C96,203,192,149,288,144C384,139,480,181,576,202.7C672,224,768,224,864,213.3C960,203,1056,181,1152,165.3C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
   </div>
 
   <div class="hero-ambient-bg"></div>

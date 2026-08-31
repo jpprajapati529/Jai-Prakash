@@ -3071,13 +3071,89 @@ body[data-theme="light"] .ai-chat-input-area input { background: #ffffff !import
 /* =========================================================
    NIGHT SKY BACKGROUND (Premium Dark Mode Layer)
    ========================================================= */
+/* =========================================================
+   CINEMATIC DAY / NIGHT TRANSITIONS
+   ========================================================= */
+/* Night Sky Baseline (Dark Mode) */
 #night-sky-bg {
-  position: fixed; /* Stays locked in the background even when scrolling */
-  top: 0; left: 0; 
-  width: 100vw; height: 100vh;
-  z-index: -2; /* Drops it securely behind your purple ambient glow */
-  pointer-events: none; /* 100% invisible to the mouse! */
-  overflow: hidden;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Night Sky hides in Light Mode (Moon floats UP and fades away) */
+body[data-theme="light"] #night-sky-bg {
+  opacity: 0;
+  transform: translateY(-100px); 
+  visibility: hidden;
+}
+
+/* Day Scape Baseline (Hidden below the screen by default) */
+#day-scape-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; 
+  pointer-events: none; overflow: hidden;
+  
+  /* Creates the soft morning sky blending into your beige */
+  background: linear-gradient(to bottom, rgba(186, 230, 253, 0.4) 0%, transparent 60%);
+  
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100px); /* Starts completely hidden down low */
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Day Scape triggers in Light Mode (Sun & Ocean rise UP into view) */
+body[data-theme="light"] #day-scape-bg {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   DAY SCAPE ELEMENT STYLING
+   ========================================================= */
+.sun {
+  position: absolute;
+  top: 15%; right: 18%; /* Exactly where the moon sits! */
+  width: 50px; height: 50px;
+  background: linear-gradient(135deg, #fef08a, #f59e0b);
+  border-radius: 50%;
+  box-shadow: 0 0 40px rgba(245, 158, 11, 0.4), 0 0 80px rgba(253, 230, 138, 0.2);
+}
+
+.ocean-layer {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 25vh;
+}
+
+.tree-silhouette {
+  position: absolute;
+  bottom: 12vh; left: 8%; /* Rests beautifully on the ocean horizon */
+  width: 120px; height: 180px;
+  opacity: 0.35; /* Crisp, watermark style */
+}
+
+/* The Flying Birds */
+.bird {
+  position: absolute;
+  width: 24px; height: 24px;
+  color: #94a3b8; /* Slate color */
+  opacity: 0.6;
+  animation: flyAcross 25s linear infinite;
+}
+
+/* Stagger their starting positions and speeds */
+.bird-1 { top: 20%; left: -10vw; animation-duration: 30s; }
+.bird-2 { top: 28%; left: -15vw; animation-duration: 40s; animation-delay: 5s; }
+.bird-3 { top: 15%; left: -5vw;  animation-duration: 35s; animation-delay: 12s; }
+
+@keyframes flyAcross {
+  0% { transform: translateX(0vw) translateY(0px) scale(0.8); }
+  50% { transform: translateX(50vw) translateY(-30px) scale(1.1); }
+  100% { transform: translateX(120vw) translateY(10px) scale(0.8); }
 }
 
 /* Elegant, glowing crescent moon using a pure CSS box-shadow trick */
