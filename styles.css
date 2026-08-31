@@ -3059,73 +3059,26 @@ body[data-theme="light"] .user-msg { background: rgb(var(--theme-rgb)) !importan
 body[data-theme="light"] .ai-chat-input-area input { background: #ffffff !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
 
 
-/* =========================================================
-   NIGHT SKY BACKGROUND (Premium Dark Mode Layer)
-   ========================================================= */
-#night-sky-bg {
-  position: fixed; /* Stays locked in the background even when scrolling */
-  top: 0; left: 0; 
-  width: 100vw; height: 100vh;
-  z-index: -2; /* Drops it securely behind your purple ambient glow */
-  pointer-events: none; /* 100% invisible to the mouse! */
-  overflow: hidden;
-}
-
-/* Elegant, glowing crescent moon using a pure CSS box-shadow trick */
-.moon {
-  position: absolute;
-  top: 15%; 
-  right: 18%; /* Sits nicely in the upper right corner */
-  width: 50px; 
-  height: 50px;
-  border-radius: 50%;
-  background: transparent;
-  /* The shadow creates the crescent shape and the outer glow */
-  box-shadow: 12px 12px 0 0 rgba(255, 255, 255, 0.95),
-              12px 12px 25px 0 rgba(255, 255, 255, 0.4);
-  transform: rotate(-15deg);
-  opacity: 0.85;
-}
-
-/* Base setup for the infinite starfield */
-.stars {
-  position: absolute;
-  top: 0; left: 0; 
-  width: 200%; height: 200%; /* Double size to allow for seamless scrolling */
-  pointer-events: none;
-}
-
-/* Tiny, dense background stars */
+/* Tiny, dense background stars (Smoothed & Anti-aliased) */
 .stars-1 {
   background-image: 
-    radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.7), rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 90px 80px, rgba(255,255,255,0.5), rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 150px 140px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 250px 60px, rgba(255,255,255,0.4), rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 300px 220px, rgba(255,255,255,0.9), rgba(0,0,0,0));
+    radial-gradient(circle at 20px 30px, rgba(255,255,255,0.7) 0%, transparent 1.5px),
+    radial-gradient(circle at 90px 80px, rgba(255,255,255,0.5) 0%, transparent 1px),
+    radial-gradient(circle at 150px 140px, rgba(255,255,255,0.8) 0%, transparent 1.5px),
+    radial-gradient(circle at 250px 60px, rgba(255,255,255,0.4) 0%, transparent 1px),
+    radial-gradient(circle at 300px 220px, rgba(255,255,255,0.9) 0%, transparent 2px);
   background-repeat: repeat;
   background-size: 350px 350px;
-  animation: starDrift 150s linear infinite; /* Very slow, calming drift */
+  animation: starDrift 150s linear infinite; 
 }
 
-/* Slightly larger, sparse foreground stars */
+/* Slightly larger, sparse foreground stars (Smoothed & Anti-aliased) */
 .stars-2 {
   background-image: 
-    radial-gradient(1.5px 1.5px at 50px 160px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 180px 40px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 220px 200px, rgba(255,255,255,0.6), rgba(0,0,0,0));
+    radial-gradient(circle at 50px 160px, rgba(255,255,255,0.8) 0%, transparent 2px),
+    radial-gradient(circle at 180px 40px, rgba(255,255,255,0.9) 0%, transparent 2.5px),
+    radial-gradient(circle at 220px 200px, rgba(255,255,255,0.6) 0%, transparent 2px);
   background-repeat: repeat;
   background-size: 450px 450px;
-  animation: starDrift 100s linear infinite; /* Moves slightly faster for parallax depth */
-}
-
-/* The infinite scrolling animation */
-@keyframes starDrift {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); } 
-}
-
-/* Completely hide the night sky when the user switches to Light Mode */
-body[data-theme="light"] #night-sky-bg {
-  display: none !important;
+  animation: starDrift 100s linear infinite; 
 }
