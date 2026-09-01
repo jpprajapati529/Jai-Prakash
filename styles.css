@@ -400,8 +400,8 @@ body {
 /* 2b. The New Geometric SVG Logo Styling */
 .custom-logo-svg {
   /* THE FIX: Scaled up massively from 32px to 48px */
-  width: 48px;  
-  height: 48px;
+  width: 35px;  
+  height: 35px;
   transform-origin: center;
   
   /* Adds a tiny drop shadow so the vibrant colors pop against any background */
