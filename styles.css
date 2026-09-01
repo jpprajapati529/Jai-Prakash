@@ -2301,103 +2301,74 @@ body[data-theme="light"] .infinity-track {
 /* =========================================================
    MICROSOFT OFFICE THEME GRADIENTS
    ========================================================= */
-/* 1. Plan (Word Blue) */
-.ms-color-1-glass { background: linear-gradient(135deg, rgba(37, 99, 235, 0.4), rgba(96, 165, 250, 0.1)); }
-.ms-color-1-solid { background: linear-gradient(135deg, #1d4ed8, #60a5fa); }
-.ms-color-1-dark  { background: #1e3a8a; }
-
-/* 2. Code (Teams Purple) */
-.ms-color-2-glass { background: linear-gradient(135deg, rgba(124, 58, 237, 0.4), rgba(167, 139, 250, 0.1)); }
-.ms-color-2-solid { background: linear-gradient(135deg, #6d28d9, #a78bfa); }
-.ms-color-2-dark  { background: #4c1d95; }
-
-/* 3. Build (PowerPoint Orange/Red) */
-.ms-color-3-glass { background: linear-gradient(135deg, rgba(234, 88, 12, 0.4), rgba(251, 146, 60, 0.1)); }
-.ms-color-3-solid { background: linear-gradient(135deg, #c2410c, #fb923c); }
-.ms-color-3-dark  { background: #9a3412; }
-
-/* 4. Test (Excel Green) */
-.ms-color-4-glass { background: linear-gradient(135deg, rgba(22, 163, 74, 0.4), rgba(74, 222, 128, 0.1)); }
-.ms-color-4-solid { background: linear-gradient(135deg, #15803d, #4ade80); }
-.ms-color-4-dark  { background: #14532d; }
-
-/* 5. Release (OneNote Violet) */
-.ms-color-5-glass { background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(192, 132, 252, 0.1)); }
-.ms-color-5-solid { background: linear-gradient(135deg, #7e22ce, #c084fc); }
-.ms-color-5-dark  { background: #581c87; }
-
-/* 6. Deploy (OneDrive Sky) */
-.ms-color-6-glass { background: linear-gradient(135deg, rgba(2, 132, 199, 0.4), rgba(56, 189, 248, 0.1)); }
-.ms-color-6-solid { background: linear-gradient(135deg, #0369a1, #38bdf8); }
-.ms-color-6-dark  { background: #0c4a6e; }
-
-/* 7. Operate (SharePoint Teal) */
-.ms-color-7-glass { background: linear-gradient(135deg, rgba(13, 148, 136, 0.4), rgba(45, 212, 191, 0.1)); }
-.ms-color-7-solid { background: linear-gradient(135deg, #0f766e, #2dd4bf); }
-.ms-color-7-dark  { background: #115e59; }
-
-/* 8. Monitor (Forms Emerald) */
-.ms-color-8-glass { background: linear-gradient(135deg, rgba(5, 150, 105, 0.4), rgba(52, 211, 153, 0.1)); }
-.ms-color-8-solid { background: linear-gradient(135deg, #047857, #34d399); }
-.ms-color-8-dark  { background: #064e3b; }
-
-/* Central Overlay Popup Override */
-.ms-orbit-wrapper .lifecycle-overlay {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  width: 240px; 
-  background: rgba(11, 13, 20, 0.95);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(var(--theme-rgb), 0.5);
-  border-radius: 16px;
-  padding: 16px; 
-  text-align: center;
-  z-index: 20; 
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 30px rgba(var(--theme-rgb), 0.3);
-  pointer-events: none; 
+/* =========================================================
+   SOLAR SYSTEM EASTER EGG (Replaces Infinity Loop)
+   ========================================================= */
+/* 1. Morph the Center Core into a Glowing Sun */
+.ms-orbit-wrapper.infinity-mode .ms-center-core {
+  opacity: 1 !important; 
+  transform: translate(-50%, -50%) scale(1.6) !important; 
+  background: radial-gradient(circle at 30% 30%, #fef08a, #f59e0b) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 60px rgba(245, 158, 11, 0.8), inset -5px -5px 15px rgba(0,0,0,0.3) !important;
 }
 
-.ms-orbit-wrapper .lifecycle-overlay.active {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) scale(1); 
+/* Hide the infinity icon so it looks like a star */
+.ms-orbit-wrapper.infinity-mode .ms-center-core i {
+  opacity: 0; 
 }
 
-/* 3. Constellation Fixes (Making the glass pop on white) */
-body[data-theme="light"] .ms-bg-pane {
-  border: 1px solid rgba(0, 0, 0, 0.05) !important; 
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06) !important; 
+/* Hide the old SVG tracking line */
+.ms-orbit-wrapper.infinity-mode .infinity-trace-svg {
+  display: none; 
 }
 
-/* THE FIX: Removes the white box and syncs the text to your active theme color (Yellow, Purple, etc.) */
-body[data-theme="light"] .ms-label {
-  background: transparent !important; 
-  border: none !important;
-  box-shadow: none !important;
-  color: rgb(var(--theme-rgb)) !important; 
-  font-weight: 700 !important;
+/* 2. Strip away the Glass Panes and Labels */
+.ms-orbit-wrapper.infinity-mode .ms-bg-pane,
+.ms-orbit-wrapper.infinity-mode .ms-label,
+.ms-orbit-wrapper.infinity-mode .ms-logo-badge {
+  opacity: 0 !important;
+  pointer-events: none;
 }
 
-/* Force the inner icons to be pure white, matching Microsoft */
-body[data-theme="light"] .ms-logo-badge i,
-body[data-theme="light"] .ms-logo-badge svg {
-  color: #ffffff !important;
-  stroke: #ffffff !important;
+/* 3. Morph the 8 Nodes into Spherical Planets */
+.ms-orbit-wrapper.infinity-mode .ms-node {
+  top: 50% !important; 
+  left: 50% !important;
+  transition: opacity 0.5s ease;
+  animation: solarOrbit linear infinite;
 }
 
-/* THE FIX: Color-coordinate each label text to its matching stage theme */
-body[data-theme="light"] .ms-node-1 .ms-label { color: #1d4ed8 !important; } /* Word Blue */
-body[data-theme="light"] .ms-node-2 .ms-label { color: #6d28d9 !important; } /* Teams Purple */
-body[data-theme="light"] .ms-node-3 .ms-label { color: #c2410c !important; } /* PowerPoint Orange */
-body[data-theme="light"] .ms-node-4 .ms-label { color: #15803d !important; } /* Excel Green */
-body[data-theme="light"] .ms-node-5 .ms-label { color: #7e22ce !important; } /* OneNote Violet */
-body[data-theme="light"] .ms-node-6 .ms-label { color: #0369a1 !important; } /* OneDrive Sky */
-body[data-theme="light"] .ms-node-7 .ms-label { color: #0f766e !important; } /* SharePoint Teal */
-body[data-theme="light"] .ms-node-8 .ms-label { color: #047857 !important; } /* Forms Emerald */
+.ms-orbit-wrapper.infinity-mode .ms-logo-wrapper {
+  transform: scale(0.65) !important; /* Shrinks them down to planet size */
+}
+
+.ms-orbit-wrapper.infinity-mode .ms-logo-bg {
+  border-radius: 50% !important; /* Rounds the boxes into spheres */
+  box-shadow: inset -4px -4px 10px rgba(0,0,0,0.6), 0 0 15px rgba(255,255,255,0.15) !important;
+}
+
+/* 4. Independent Orbital Radii & Speeds */
+.ms-orbit-wrapper.infinity-mode .ms-node-1 { --orbit-radius: 100px; --orbit-angle: 0deg;   animation-duration: 8s; }
+.ms-orbit-wrapper.infinity-mode .ms-node-2 { --orbit-radius: 125px; --orbit-angle: 45deg;  animation-duration: 12s; }
+.ms-orbit-wrapper.infinity-mode .ms-node-3 { --orbit-radius: 150px; --orbit-angle: 90deg;  animation-duration: 16s; }
+.ms-orbit-wrapper.infinity-mode .ms-node-4 { --orbit-radius: 175px; --orbit-angle: 135deg; animation-duration: 20s; }
+.ms-orbit-wrapper.infinity-mode .ms-node-5 { --orbit-radius: 200px; --orbit-angle: 180deg; animation-duration: 24s; }
+.ms-orbit-wrapper.infinity-mode .ms-node-6 { --orbit-radius: 225px; --orbit-angle: 225deg; animation-duration: 28s; }
+.ms-orbit-wrapper.infinity-mode .ms-node-7 { --orbit-radius: 250px; --orbit-angle: 270deg; animation-duration: 32s; }
+.ms-orbit-wrapper.infinity-mode .ms-node-8 { --orbit-radius: 275px; --orbit-angle: 315deg; animation-duration: 36s; }
+
+/* 5. The Orbital Physics Math */
+/* This spins the planet around the sun, while perfectly counter-spinning the icon so it stays upright! */
+@keyframes solarOrbit {
+  0% { 
+    transform: translate(-50%, -50%) rotate(var(--orbit-angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--orbit-angle))); 
+  }
+  100% { 
+    transform: translate(-50%, -50%) rotate(calc(var(--orbit-angle) + 360deg)) translateX(var(--orbit-radius)) rotate(calc(-1 * (var(--orbit-angle) + 360deg))); 
+  }
+}
+
 /* =========================================================
    REMOVE ENGINE CARD BOX (Pure Floating Constellation)
    ========================================================= */
