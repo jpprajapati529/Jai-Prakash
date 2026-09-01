@@ -2453,15 +2453,15 @@ body[data-theme="light"] .infinity-track {
 /* Node 8: Neptune (Deep azure storms) */
 .ms-orbit-wrapper.infinity-mode .ms-node-8 .ms-logo-bg { background: radial-gradient(circle at 35% 35%, #3b82f6, #1d4ed8, #1e3a8a) !important; }
 
-/* 4. Independent Orbital Radii, Speeds & Realistic Planet Sizes */
-.ms-orbit-wrapper.infinity-mode .ms-node-1 { --orbit-radius: 80px;  --orbit-angle: 0deg;   animation-duration: 6s;  --planet-scale: 0.35; } /* Mercury */
-.ms-orbit-wrapper.infinity-mode .ms-node-2 { --orbit-radius: 115px; --orbit-angle: 45deg;  animation-duration: 10s; --planet-scale: 0.55; } /* Venus */
-.ms-orbit-wrapper.infinity-mode .ms-node-3 { --orbit-radius: 150px; --orbit-angle: 90deg;  animation-duration: 14s; --planet-scale: 0.6;  } /* Earth */
-.ms-orbit-wrapper.infinity-mode .ms-node-4 { --orbit-radius: 180px; --orbit-angle: 135deg; animation-duration: 18s; --planet-scale: 0.45; } /* Mars */
-.ms-orbit-wrapper.infinity-mode .ms-node-5 { --orbit-radius: 225px; --orbit-angle: 180deg; animation-duration: 26s; --planet-scale: 0.95; } /* Jupiter */
-.ms-orbit-wrapper.infinity-mode .ms-node-6 { --orbit-radius: 275px; --orbit-angle: 225deg; animation-duration: 32s; --planet-scale: 0.85; } /* Saturn */
-.ms-orbit-wrapper.infinity-mode .ms-node-7 { --orbit-radius: 320px; --orbit-angle: 270deg; animation-duration: 40s; --planet-scale: 0.7;  } /* Uranus */
-.ms-orbit-wrapper.infinity-mode .ms-node-8 { --orbit-radius: 360px; --orbit-angle: 315deg; animation-duration: 48s; --planet-scale: 0.65; } /* Neptune */
+/* 4. Independent Orbital Radii, Speeds & Realistic Planet Sizes (Tightly Packed) */
+.ms-orbit-wrapper.infinity-mode .ms-node-1 { --orbit-radius: 70px;  --orbit-angle: 0deg;   animation-duration: 6s;  --planet-scale: 0.35; } /* Mercury */
+.ms-orbit-wrapper.infinity-mode .ms-node-2 { --orbit-radius: 95px;  --orbit-angle: 45deg;  animation-duration: 10s; --planet-scale: 0.55; } /* Venus */
+.ms-orbit-wrapper.infinity-mode .ms-node-3 { --orbit-radius: 120px; --orbit-angle: 90deg;  animation-duration: 14s; --planet-scale: 0.6;  } /* Earth */
+.ms-orbit-wrapper.infinity-mode .ms-node-4 { --orbit-radius: 145px; --orbit-angle: 135deg; animation-duration: 18s; --planet-scale: 0.45; } /* Mars */
+.ms-orbit-wrapper.infinity-mode .ms-node-5 { --orbit-radius: 175px; --orbit-angle: 180deg; animation-duration: 26s; --planet-scale: 0.95; } /* Jupiter */
+.ms-orbit-wrapper.infinity-mode .ms-node-6 { --orbit-radius: 210px; --orbit-angle: 225deg; animation-duration: 32s; --planet-scale: 0.85; } /* Saturn */
+.ms-orbit-wrapper.infinity-mode .ms-node-7 { --orbit-radius: 240px; --orbit-angle: 270deg; animation-duration: 40s; --planet-scale: 0.7;  } /* Uranus */
+.ms-orbit-wrapper.infinity-mode .ms-node-8 { --orbit-radius: 265px; --orbit-angle: 315deg; animation-duration: 48s; --planet-scale: 0.65; } /* Neptune */
 
 /* 5. The Orbital Physics Math */
 @keyframes solarOrbit {
