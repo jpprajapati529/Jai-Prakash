@@ -368,81 +368,147 @@ body {
 }
 
 /* =========================================================
-   ENTERPRISE LOGO REDESIGN
+   COMMAND LINE CLI LOGO (ja~sshboard_)
    ========================================================= */
-/* 1. The Wrapper (No cheap borders, floats cleanly) */
-.logo {
-  display: flex !important;
+/* COMMAND LINE CLI LOGO (ja~sshboard_) */
+.brand-logo-cli {
+  display: flex;
   align-items: center;
-  gap: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace; 
+  font-size: 0.9rem !important; /* Shrunk font size */
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
   cursor: pointer;
-  padding: 0; /* Removed button-like padding */
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-left: 4px; 
 }
 
-.logo:hover {
-  transform: translateY(-2px);
-}
-
-/* 2. Premium 3D App Icon Mark */
-.logo-mark {
+.system-status-icon {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px; 
-  height: 34px;
-  border-radius: 8px;
-  /* Rich gradient background */
-  background: linear-gradient(135deg, rgb(var(--theme-rgb)) 0%, #3b82f6 100%);
-  /* Inner white lip for a 3D glass effect, outer shadow for depth */
-  box-shadow: 0 6px 12px rgba(var(--theme-rgb), 0.3), 
-              inset 0 1px 2px rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 24px !important; /* Shrunk from 28px */
+  height: 24px !important; /* Shrunk from 28px */
+  border-radius: 50%;
+  background: rgba(var(--theme-rgb), 0.1);
+  border: 1px solid rgba(var(--theme-rgb), 0.4);
+  color: rgb(var(--theme-rgb));
+  box-shadow: 0 0 10px rgba(var(--theme-rgb), 0.2);
+  transition: all 0.3s ease;
 }
 
-.logo-mark i {
-  width: 18px; 
-  height: 18px;
-  color: #ffffff;
-  stroke-width: 2.5;
+.system-status-icon i {
+  width: 12px !important; /* Scaled down icon */
+  height: 12px !important;
 }
 
-/* 3. Enterprise Corporate Typography */
-.brand-text {
-  display: flex;
-  align-items: center;
-  font-family: var(--font-sans); /* Clean, modern geometric font */
-  font-size: 1.3rem;
-  letter-spacing: -0.5px; /* Tightly kerned letters look more expensive */
+.cli-accent {
+  color: #00d2b4; 
+}
+
+.cli-cursor {
+  color: rgb(var(--theme-rgb)); 
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .brand-ja {
-  font-weight: 800;
   color: #ffffff;
+  font-weight: 700;
 }
 
 .brand-ssh {
-  font-family: var(--font-mono); /* Keeps the subtle code aesthetic */
-  font-weight: 600;
-  font-size: 1.15rem;
-  margin: 0 2px;
-  /* Vibrant tech gradient */
-  background: linear-gradient(135deg, #38bdf8 0%, rgb(var(--theme-rgb)) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, rgb(var(--theme-rgb)) 0%, #00d2b4 100%); 
+  color: #08080a; 
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin: 0 4px; 
+  font-size: 1.05rem; 
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(var(--theme-rgb), 0.2); 
 }
 
 .brand-board {
+  color: #a1a1aa; 
   font-weight: 500;
-  color: #94a3b8; /* Elegant slate gray */
 }
 
-/* 4. Light Mode Overrides */
-body[data-theme="light"] .brand-ja { color: #020617 !important; }
-body[data-theme="light"] .brand-board { color: #64748b !important; }
+.logo {
+  display: flex !important;
+  align-items: center;
+  gap: 8px; /* REDUCED: Tighter gap between the icon and text */
+  font-family: var(--font-sans);
+  font-weight: 700;
+  cursor: pointer;
+  /* REDUCED: Much smaller padding to slim down the pill */
+  padding: 4px 12px; 
+  border-radius: 10px; /* Slightly sharper corners */
+  background: rgba(var(--theme-rgb), 0.04);
+  border: 1px solid rgba(var(--theme-rgb), 0.3);
+  box-shadow: 
+    0 0 10px rgba(var(--theme-rgb), 0.1),
+    inset 0 0 8px rgba(var(--theme-rgb), 0.05);
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  border-color: rgba(var(--theme-rgb), 0.8);
+  box-shadow: 
+    0 0 25px rgba(var(--theme-rgb), 0.4),
+    inset 0 0 15px rgba(var(--theme-rgb), 0.15);
+  transform: translateY(-1px);
+}
+
+.logo-emblem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-green);
+  filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.9));
+  animation: pulseNeonGreen 3s infinite alternate;
+}
+
+.logo-text {
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+@keyframes pulseNeonGreen {
+  0% { filter: drop-shadow(0 0 5px rgba(34, 197, 94, 0.6)); }
+  100% { filter: drop-shadow(0 0 14px rgba(34, 197, 94, 1)); }
+}
+
+.logo-prompt {
+  color: var(--accent-purple);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  text-shadow: 0 0 12px rgba(var(--theme-rgb), 0.8);
+}
+
+.logo-highlight {
+  background: linear-gradient(135deg, #ffffff 30%, rgb(var(--theme-rgb)) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(var(--theme-rgb), 0.35));
+}
+
+/* Fix the CLI Logo visibility and richness in Light Mode */
+body[data-theme="light"] .brand-logo-cli {
+  color: #0f172a !important; /* Deep, rich slate (almost black) for 'ja' and 'board' */
+}
+
+body[data-theme="light"] .cli-accent {
+  color: #0d9488 !important; /* A deeper, richer teal for '~ssh' that pops on white */
+}
 
 /* =========================================================
    2. NAVBAR
@@ -2299,7 +2365,7 @@ body[data-theme="light"] .infinity-track {
 }
 
 /* =========================================================
-   MICROSOFT OFFICE THEME GRADIENTS (RESTORED!)
+   MICROSOFT OFFICE THEME GRADIENTS
    ========================================================= */
 /* 1. Plan (Word Blue) */
 .ms-color-1-glass { background: linear-gradient(135deg, rgba(37, 99, 235, 0.4), rgba(96, 165, 250, 0.1)); }
@@ -2341,134 +2407,63 @@ body[data-theme="light"] .infinity-track {
 .ms-color-8-solid { background: linear-gradient(135deg, #047857, #34d399); }
 .ms-color-8-dark  { background: #064e3b; }
 
-
-/* =========================================================
-   SOLAR SYSTEM EASTER EGG (Hyper-Realistic Planets)
-   ========================================================= */
-/* 1. Morph the Center Core into a Blazing Sun */
-.ms-orbit-wrapper.infinity-mode .ms-center-core {
-  opacity: 1 !important; 
-  transform: translate(-50%, -50%) scale(1.8) !important; 
-  /* Dynamic, turbulent fire gradient */
-  background: radial-gradient(circle at 40% 40%, #ffffff 0%, #fef08a 15%, #f59e0b 45%, #9a3412 80%, #431407 100%) !important;
-  border-radius: 50% !important;
-  /* Massive outer corona glow */
-  box-shadow: 0 0 80px 20px rgba(245, 158, 11, 0.5), 
-              0 0 150px 40px rgba(234, 88, 12, 0.3),
-              inset -5px -5px 15px rgba(0,0,0,0.4) !important;
-}
-
-/* THE FIX: Lucide converts <i> to <svg>, so we hide the SVG to remove the infinity logo! */
-.ms-orbit-wrapper.infinity-mode .ms-center-core svg,
-.ms-orbit-wrapper.infinity-mode .ms-center-core i {
-  opacity: 0 !important; 
-}
-
-.ms-orbit-wrapper.infinity-mode .infinity-trace-svg {
-  display: none; 
-}
-
-/* 2. Strip away the Glass Panes and Labels */
-.ms-orbit-wrapper.infinity-mode .ms-bg-pane,
-.ms-orbit-wrapper.infinity-mode .ms-label,
-.ms-orbit-wrapper.infinity-mode .ms-logo-badge {
-  opacity: 0 !important;
-  pointer-events: none;
-}
-
-/* 3. Morph the Nodes into Orbiting Containers */
-.ms-orbit-wrapper.infinity-mode .ms-node {
-  top: 50% !important; 
-  left: 50% !important;
-  transition: opacity 0.5s ease;
-  animation: solarOrbit linear infinite;
-}
-
-/* Dynamically scale each planet based on its variable */
-.ms-orbit-wrapper.infinity-mode .ms-logo-wrapper {
-  transform: scale(var(--planet-scale, 0.65)) !important; 
-}
-
-/* Hide the DevOps icons so the planets look solid */
-.ms-orbit-wrapper.infinity-mode .ms-logo-wrapper i,
-.ms-orbit-wrapper.infinity-mode .ms-logo-wrapper svg,
-.ms-orbit-wrapper.infinity-mode .ms-logo-wrapper img {
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-}
-
-/* Master 3D Shadow Overlay for all planets */
-.ms-orbit-wrapper.infinity-mode .ms-logo-bg {
-  border-radius: 50% !important; 
-  /* Heavy shadow on the dark side, sharp reflection on the lit side */
-  box-shadow: inset -12px -12px 20px rgba(0,0,0,0.9), 
-              inset 4px 4px 10px rgba(255,255,255,0.4), 
-              0 0 10px rgba(255,255,255,0.05) !important;
-}
-
-/* ==============================================
-   REALISTIC PLANET TEXTURES (Pure CSS)
-   ============================================== */
-/* Node 1: Mercury (Grey, cratered texture) */
-.ms-orbit-wrapper.infinity-mode .ms-node-1 .ms-logo-bg { background: radial-gradient(circle at 35% 35%, #a3a3a3, #525252, #262626) !important; }
-
-/* Node 2: Venus (Swirling dense yellow/orange clouds) */
-.ms-orbit-wrapper.infinity-mode .ms-node-2 .ms-logo-bg { background: radial-gradient(circle at 40% 40%, #fcd34d, #d97706, #78350f) !important; }
-
-/* Node 3: Earth (Blue oceans, green continents, white clouds) */
-.ms-orbit-wrapper.infinity-mode .ms-node-3 .ms-logo-bg { 
-  background: 
-    radial-gradient(circle at 60% 40%, rgba(255,255,255,0.5) 10%, transparent 40%),
-    radial-gradient(circle at 30% 60%, #22c55e 15%, transparent 35%), 
-    radial-gradient(circle at 70% 30%, #16a34a 20%, transparent 45%), 
-    #0284c7 !important; 
-}
-
-/* Node 4: Mars (Red, dusty) */
-.ms-orbit-wrapper.infinity-mode .ms-node-4 .ms-logo-bg { background: radial-gradient(circle at 40% 40%, #ea580c, #9a3412, #431407) !important; }
-
-/* Node 5: Jupiter (Massive, striped gas giant) */
-.ms-orbit-wrapper.infinity-mode .ms-node-5 .ms-logo-bg { 
-  background: repeating-linear-gradient(0deg, #92400e, #92400e 10%, #fcd34d 10%, #fcd34d 20%, #b45309 20%, #b45309 35%, #fef3c7 35%, #fef3c7 45%) !important; 
-}
-
-/* Node 6: Saturn (Pale yellow stripes) */
-.ms-orbit-wrapper.infinity-mode .ms-node-6 .ms-logo-bg { 
-  background: repeating-linear-gradient(15deg, #fde68a, #fde68a 15%, #b45309 15%, #b45309 25%, #fef08a 25%, #fef08a 40%) !important; 
-}
-
-/* THE MAGIC: Saturn's Rings! (Using a pseudo-element) */
-.ms-orbit-wrapper.infinity-mode .ms-node-6 .ms-logo-bg::after { 
-  content: ""; position: absolute; top: 50%; left: 50%; 
-  width: 220%; height: 20%; 
-  border: 6px solid rgba(253, 230, 138, 0.7); border-radius: 50%; 
-  transform: translate(-50%, -50%) rotate(-20deg); 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.6), inset 0 2px 8px rgba(0,0,0,0.5); 
+/* Central Overlay Popup Override */
+.ms-orbit-wrapper .lifecycle-overlay {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 240px; 
+  background: rgba(11, 13, 20, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(var(--theme-rgb), 0.5);
+  border-radius: 16px;
+  padding: 16px; 
+  text-align: center;
+  z-index: 20; 
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 30px rgba(var(--theme-rgb), 0.3);
   pointer-events: none; 
 }
 
-/* Node 7: Uranus (Pale cyan) */
-.ms-orbit-wrapper.infinity-mode .ms-node-7 .ms-logo-bg { background: radial-gradient(circle at 35% 35%, #7dd3fc, #0284c7, #082f49) !important; }
-
-/* Node 8: Neptune (Deep azure storms) */
-.ms-orbit-wrapper.infinity-mode .ms-node-8 .ms-logo-bg { background: radial-gradient(circle at 35% 35%, #3b82f6, #1d4ed8, #1e3a8a) !important; }
-
-/* 4. Independent Orbital Radii, Speeds & Realistic Planet Sizes (Tightly Packed) */
-.ms-orbit-wrapper.infinity-mode .ms-node-1 { --orbit-radius: 70px;  --orbit-angle: 0deg;   animation-duration: 6s;  --planet-scale: 0.35; } /* Mercury */
-.ms-orbit-wrapper.infinity-mode .ms-node-2 { --orbit-radius: 95px;  --orbit-angle: 45deg;  animation-duration: 10s; --planet-scale: 0.55; } /* Venus */
-.ms-orbit-wrapper.infinity-mode .ms-node-3 { --orbit-radius: 120px; --orbit-angle: 90deg;  animation-duration: 14s; --planet-scale: 0.6;  } /* Earth */
-.ms-orbit-wrapper.infinity-mode .ms-node-4 { --orbit-radius: 145px; --orbit-angle: 135deg; animation-duration: 18s; --planet-scale: 0.45; } /* Mars */
-.ms-orbit-wrapper.infinity-mode .ms-node-5 { --orbit-radius: 175px; --orbit-angle: 180deg; animation-duration: 26s; --planet-scale: 0.95; } /* Jupiter */
-.ms-orbit-wrapper.infinity-mode .ms-node-6 { --orbit-radius: 210px; --orbit-angle: 225deg; animation-duration: 32s; --planet-scale: 0.85; } /* Saturn */
-.ms-orbit-wrapper.infinity-mode .ms-node-7 { --orbit-radius: 240px; --orbit-angle: 270deg; animation-duration: 40s; --planet-scale: 0.7;  } /* Uranus */
-.ms-orbit-wrapper.infinity-mode .ms-node-8 { --orbit-radius: 265px; --orbit-angle: 315deg; animation-duration: 48s; --planet-scale: 0.65; } /* Neptune */
-
-/* 5. The Orbital Physics Math */
-@keyframes solarOrbit {
-  0% { transform: translate(-50%, -50%) rotate(var(--orbit-angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--orbit-angle))); }
-  100% { transform: translate(-50%, -50%) rotate(calc(var(--orbit-angle) + 360deg)) translateX(var(--orbit-radius)) rotate(calc(-1 * (var(--orbit-angle) + 360deg))); }
+.ms-orbit-wrapper .lifecycle-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1); 
 }
 
+/* 3. Constellation Fixes (Making the glass pop on white) */
+body[data-theme="light"] .ms-bg-pane {
+  border: 1px solid rgba(0, 0, 0, 0.05) !important; 
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06) !important; 
+}
+
+/* THE FIX: Removes the white box and syncs the text to your active theme color (Yellow, Purple, etc.) */
+body[data-theme="light"] .ms-label {
+  background: transparent !important; 
+  border: none !important;
+  box-shadow: none !important;
+  color: rgb(var(--theme-rgb)) !important; 
+  font-weight: 700 !important;
+}
+
+/* Force the inner icons to be pure white, matching Microsoft */
+body[data-theme="light"] .ms-logo-badge i,
+body[data-theme="light"] .ms-logo-badge svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* THE FIX: Color-coordinate each label text to its matching stage theme */
+body[data-theme="light"] .ms-node-1 .ms-label { color: #1d4ed8 !important; } /* Word Blue */
+body[data-theme="light"] .ms-node-2 .ms-label { color: #6d28d9 !important; } /* Teams Purple */
+body[data-theme="light"] .ms-node-3 .ms-label { color: #c2410c !important; } /* PowerPoint Orange */
+body[data-theme="light"] .ms-node-4 .ms-label { color: #15803d !important; } /* Excel Green */
+body[data-theme="light"] .ms-node-5 .ms-label { color: #7e22ce !important; } /* OneNote Violet */
+body[data-theme="light"] .ms-node-6 .ms-label { color: #0369a1 !important; } /* OneDrive Sky */
+body[data-theme="light"] .ms-node-7 .ms-label { color: #0f766e !important; } /* SharePoint Teal */
+body[data-theme="light"] .ms-node-8 .ms-label { color: #047857 !important; } /* Forms Emerald */
 /* =========================================================
    REMOVE ENGINE CARD BOX (Pure Floating Constellation)
    ========================================================= */
@@ -2732,17 +2727,17 @@ body[data-theme="light"] .tag-badge {
   font-weight: 600 !important;
 }
 
-/* Keeps the logo free-floating in Light Mode */
+/* Gives the Logo a stronger, much more visible border and crisp shadow */
 body[data-theme="light"] .logo {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  background: #ffffff !important;
+  border: 1px solid #94a3b8 !important; /* Stronger, darker slate border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important; /* Crisper drop shadow */
 }
 
+/* Adds a beautiful purple glow to the logo when you hover over it in Light Mode */
 body[data-theme="light"] .logo:hover {
-  transform: translateY(-2px) !important;
-  border: none !important;
-  box-shadow: none !important;
+  border-color: rgb(var(--theme-rgb)) !important;
+  box-shadow: 0 6px 15px rgba(var(--theme-rgb), 0.2) !important;
 }
 
 /* Keeps the smaller square navigation icons subtle */
@@ -3073,54 +3068,66 @@ body[data-theme="light"] .user-msg { background: rgb(var(--theme-rgb)) !importan
 body[data-theme="light"] .ai-chat-input-area input { background: #ffffff !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
 
 
-
 /* =========================================================
    CINEMATIC DAY / NIGHT BACKGROUNDS & TRANSITIONS
    ========================================================= */
-/* 1. MASTER WRAPPERS (Locked to screen, NO sliding!) */
-#night-sky-bg, #day-scape-bg {
-  position: fixed; /* Locks the ocean, sky, and stars to the camera */
+/* 1. NIGHT SKY BASELINE (Dark Mode) */
+#night-sky-bg {
+  position: fixed; /* THE FIX: Locks it to your screen! */
   top: 0; left: 0; 
-  width: 100vw; height: 100vh;
+  width: 100vw; height: 100vh; /* Covers the entire window */
   z-index: -2; 
   pointer-events: none; 
   overflow: hidden;
+  
+  opacity: 1;
+  transform: translateX(0); 
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* We use a pseudo-element for the Day Sky so it crossfades smoothly without hiding the sun mid-arc */
-#day-scape-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+/* Night Sky hides in Light Mode (Moon & Stars slide RIGHT) */
+body[data-theme="light"] #night-sky-bg {
+  opacity: 0;
+  transform: translateX(150px); 
+  visibility: hidden;
+}
+
+/* 2. DAY SCAPE BASELINE (Light Mode) */
+#day-scape-bg {
+  position: fixed; /* THE FIX: Locks it to your screen! */
+  top: 0; left: 0; 
+  width: 100vw; height: 100vh; /* Covers the entire window */
+  z-index: -2; 
+  pointer-events: none; 
+  overflow: hidden;
+  
+  /* Soft blue morning sky fading into your beige background */
   background: linear-gradient(to bottom, rgba(186, 230, 253, 0.6) 0%, transparent 70%);
+  
   opacity: 0;
-  transition: opacity 1.5s ease;
-}
-body[data-theme="light"] #day-scape-bg::before {
-  opacity: 1;
+  visibility: hidden;
+  transform: translateX(-150px); /* Starts hidden on the LEFT */
+  transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
 }
 
-/* Stars fade out smoothly */
-.stars {
+/* Day Scape triggers in Light Mode (Sky & Sun slide in from LEFT to RIGHT) */
+body[data-theme="light"] #day-scape-bg {
   opacity: 1;
-  transition: opacity 1.2s ease;
-}
-body[data-theme="light"] .stars {
-  opacity: 0;
+  visibility: visible;
+  transform: translateX(0);
 }
 
-/* Birds fade in */
-.birds {
-  opacity: 0;
-  transition: opacity 1.5s ease;
-}
-body[data-theme="light"] .birds {
+/* Day Scape triggers in Light Mode (Sky & Sun slide in from LEFT to RIGHT) */
+body[data-theme="light"] #day-scape-bg {
   opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
 }
 
 /* =========================================================
-   CELESTIAL ARC PHYSICS (Orbital Sun & Moon)
+   DAY / NIGHT ELEMENTS (Moon, Sun, Ocean, Tree)
    ========================================================= */
+/* Elegant, glowing crescent moon */
 .moon {
   position: absolute;
   top: 15%; right: 18%; 
@@ -3129,20 +3136,11 @@ body[data-theme="light"] .birds {
   background: transparent;
   box-shadow: 12px 12px 0 0 rgba(255, 255, 255, 0.95),
               12px 12px 25px 0 rgba(255, 255, 255, 0.4);
-              
-  /* THE MAGIC: Off-center pivot creates the sweeping downward right arc */
-  transform-origin: -20vw 60vh; 
-  transform: rotate(-15deg); /* Natural starting position */
+  transform: rotate(-15deg);
   opacity: 0.85;
-  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease;
 }
 
-/* Moon arcs down and away to the right */
-body[data-theme="light"] .moon {
-  transform: rotate(60deg); 
-  opacity: 0;
-}
-
+/* Golden Sun (Moved to Left side) */
 .sun {
   position: absolute;
   top: 15%; left: 18%; 
@@ -3150,23 +3148,9 @@ body[data-theme="light"] .moon {
   background: linear-gradient(135deg, #fef08a, #f59e0b);
   border-radius: 50%;
   box-shadow: 0 0 40px rgba(245, 158, 11, 0.4), 0 0 80px rgba(253, 230, 138, 0.2);
-  
-  /* THE MAGIC: Off-center pivot creates the sweeping upward arc from the left */
-  transform-origin: 30vw 60vh;
-  transform: rotate(-75deg); /* Starts hidden, buried down to the bottom-left */
-  opacity: 0;
-  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease;
 }
 
-/* Sun arcs up and into position from the left */
-body[data-theme="light"] .sun {
-  transform: rotate(0deg); 
-  opacity: 1;
-}
-
-/* =========================================================
-   OCEAN HORIZON
-   ========================================================= */
+/* Ocean layered separately to come from BOTTOM */
 .ocean-layer {
   position: absolute;
   bottom: -5px; left: -5%; /* Pulled wider to allow sideways swaying */
@@ -3206,7 +3190,7 @@ body[data-theme="light"] .tree-silhouette {
   transition-delay: 1.1s; 
 }
 
-/* The Flying Birds */
+/* The Flying Birds (Realistic Scale) */
 .bird {
   position: absolute;
   width: 40px; height: 40px; /* Scaled up so the detailed wings are visible */
@@ -3220,9 +3204,9 @@ body[data-theme="light"] .tree-silhouette {
 .bird-3 { top: 15%; left: -5vw;  animation-duration: 35s; animation-delay: 12s; }
 
 @keyframes flyAcross {
-  0% { transform: translateX(0vw) translateY(0px) scale(0.8); }
-  50% { transform: translateX(50vw) translateY(-30px) scale(1.1); }
-  100% { transform: translateX(120vw) translateY(10px) scale(0.8); }
+  0% { transform: translateX(0vw) translateY(0px) scale(0.6); }
+  50% { transform: translateX(50vw) translateY(-40px) scale(1); }
+  100% { transform: translateX(120vw) translateY(15px) scale(0.6); }
 }
 
 /* Base setup for the infinite starfield */
