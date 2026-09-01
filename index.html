@@ -68,28 +68,30 @@
     <div class="sticky-nav-content">
 
      <!-- 1. LEFT: Logo -->
-    <div class="logo" onclick="burstButterflies(event); triggerPipelineRun()" title="Cluster Operational">
-      <div class="logo-mark">
-        <!-- The Accurate, Scaled Multi-Color Geometric SVG -->
-        <svg class="custom-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <path id="blade" fill="currentColor" d="M 12,-5 L 44,1 L 24,-18 Z M 24,-18 L 44,-42 L 12,-20 Z"/>
-          </defs>
-          <g transform="translate(50, 50)">
-            <use href="#blade" transform="rotate(0)" style="color: #4285F4;" />
-            <use href="#blade" transform="rotate(51.43)" style="color: #EA4335;" />
-            <use href="#blade" transform="rotate(102.86)" style="color: #FBBC05;" />
-            <use href="#blade" transform="rotate(154.29)" style="color: #34A853;" />
-            <use href="#blade" transform="rotate(205.71)" style="color: #06B6D4;" />
-            <use href="#blade" transform="rotate(257.14)" style="color: #8B5CF6;" />
-            <use href="#blade" transform="rotate(308.57)" style="color: #F97316;" />
-          </g>
-        </svg>
+      <div class="logo" onclick="triggerPipelineRun()" title="Cluster Operational">
+        <div class="logo-mark">
+          <!-- The Accurate, Scaled Multi-Color Geometric SVG -->
+          <svg class="custom-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- THE FIX: This path perfectly traces the exact "bowtie" shape from your image -->
+              <path id="blade" fill="currentColor" d="M 12,-5 L 44,1 L 24,-18 Z M 24,-18 L 44,-42 L 12,-20 Z"/>
+            </defs>
+            <g transform="translate(50, 50)">
+              <!-- Google-inspired vibrant color palette -->
+              <use href="#blade" transform="rotate(0)" style="color: #4285F4;" />      <!-- Blue -->
+              <use href="#blade" transform="rotate(51.43)" style="color: #EA4335;" />  <!-- Red -->
+              <use href="#blade" transform="rotate(102.86)" style="color: #FBBC05;" /> <!-- Yellow -->
+              <use href="#blade" transform="rotate(154.29)" style="color: #34A853;" /> <!-- Green -->
+              <use href="#blade" transform="rotate(205.71)" style="color: #06B6D4;" /> <!-- Cyan -->
+              <use href="#blade" transform="rotate(257.14)" style="color: #8B5CF6;" /> <!-- Purple -->
+              <use href="#blade" transform="rotate(308.57)" style="color: #F97316;" /> <!-- Orange -->
+            </g>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-ja">ja</span><span class="brand-ssh">~ssh</span><span class="brand-board">board</span>
+        </div>
       </div>
-      <div class="brand-text">
-        <span class="brand-ja">ja</span><span class="brand-ssh">~ssh</span><span class="brand-board">board</span>
-      </div>
-    </div>
 
       <!-- 2. CENTER: Navigation Pills (Preserved exactly as requested) -->
       <div class="nav-pill-group">
@@ -125,35 +127,37 @@
 
   <div id="cursor-glow-bg"></div>
 
-  <!-- Navbar -->
+<!-- Navbar -->
   <header class="navbar">
     
-    <div class="logo-mark">
-          <!-- The Accurate, Scaled Multi-Color Geometric SVG -->
-          <svg class="custom-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <!-- THE FIX: This path perfectly traces the exact "bowtie" shape from your image -->
-              <path id="blade" fill="currentColor" d="M 12,-5 L 44,1 L 24,-18 Z M 24,-18 L 44,-42 L 12,-20 Z"/>
-            </defs>
-            <g transform="translate(50, 50)">
-              <!-- Google-inspired vibrant color palette -->
-              <use href="#blade" transform="rotate(0)" style="color: #4285F4;" />      <!-- Blue -->
-              <use href="#blade" transform="rotate(51.43)" style="color: #EA4335;" />  <!-- Red -->
-              <use href="#blade" transform="rotate(102.86)" style="color: #FBBC05;" /> <!-- Yellow -->
-              <use href="#blade" transform="rotate(154.29)" style="color: #34A853;" /> <!-- Green -->
-              <use href="#blade" transform="rotate(205.71)" style="color: #06B6D4;" /> <!-- Cyan -->
-              <use href="#blade" transform="rotate(257.14)" style="color: #8B5CF6;" /> <!-- Purple -->
-              <use href="#blade" transform="rotate(308.57)" style="color: #F97316;" /> <!-- Orange -->
-            </g>
-          </svg>
-        </div>
+    <!-- 1. LEFT: Logo (Restored Clickability & Text) -->
+    <div class="logo" onclick="burstButterflies(event); triggerPipelineRun()" title="Cluster Operational - Click to Trigger Pipeline">
+      <div class="logo-mark">
+        <svg class="custom-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="blade" fill="currentColor" d="M 12,-5 L 44,1 L 24,-18 Z M 24,-18 L 44,-42 L 12,-20 Z"/>
+          </defs>
+          <g transform="translate(50, 50)">
+            <use href="#blade" transform="rotate(0)" style="color: #4285F4;" />
+            <use href="#blade" transform="rotate(51.43)" style="color: #EA4335;" />
+            <use href="#blade" transform="rotate(102.86)" style="color: #FBBC05;" />
+            <use href="#blade" transform="rotate(154.29)" style="color: #34A853;" />
+            <use href="#blade" transform="rotate(205.71)" style="color: #06B6D4;" />
+            <use href="#blade" transform="rotate(257.14)" style="color: #8B5CF6;" />
+            <use href="#blade" transform="rotate(308.57)" style="color: #F97316;" />
+          </g>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-ja">ja</span><span class="brand-ssh">~ssh</span><span class="brand-board">board</span>
+      </div>
+    </div>
 
-    <!-- 2. CENTER: Navigation Links (Absolutely Centered) -->
+    <!-- 2. CENTER: Navigation Links -->
     <nav class="navbar-links">
       <a href="#section-about">About</a>
       <a href="#section-skills">Skills</a>
       
-      <!-- Certifications Dropdown MOVED HERE -->
       <div class="nav-dropdown">
         <a href="#certifications" class="dropdown-trigger">
           Certifications <i data-lucide="chevron-down" class="dropdown-icon"></i>
@@ -166,31 +170,27 @@
         </div>
       </div>
       
-      <!-- <a href="#pipeline-sim">Pipeline</a> -->
       <a href="#projects">Projects</a>
-      <!-- <a href="javascript:void(0)" onclick="document.getElementById('cli-input').focus()">Terminal</a> -->
       <a href="#contact">Contact</a>
     </nav>
 
     <!-- 3. RIGHT: Controls & Theme Switches -->
     <div class="navbar-controls">
-      
       <button class="nav-deploy-btn" onclick="navDeployClick()">
         <i data-lucide="play-circle"></i> Deploy
       </button>
       
       <div class="nav-icon-btn color-cycle-btn" onclick="toggleColorCycle()" title="Toggle Auto-Color Cycle">
-  <i class="color-cycle-icon" data-lucide="palette"></i>
-</div>
+        <i class="color-cycle-icon" data-lucide="palette"></i>
+      </div>
       
       <div class="nav-icon-btn" onclick="resetColorTheme()" title="Reset to Primary Purple">
         <i data-lucide="rotate-ccw"></i>
       </div>
 
       <div class="nav-icon-btn" title="Toggle Light/Dark Theme" onclick="toggleTheme()">
-          <i data-lucide="sun"></i>
-        </div>
-      
+        <i data-lucide="sun"></i>
+      </div>
     </div>
 
   </header>
