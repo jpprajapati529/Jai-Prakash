@@ -403,12 +403,29 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* 2b. The New Geometric SVG Logo Styling */
+.custom-logo-svg {
+  width: 22px; 
+  height: 22px;
+  color: #ffffff; /* Fills the blades with pure white */
+  transform-origin: center;
+  
+  /* Very slow, premium continuous rotation */
+  animation: spinAperture 40s linear infinite;
+}
+
+@keyframes spinAperture {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .logo-mark i {
   width: 18px; 
   height: 18px;
   color: #ffffff;
   stroke-width: 2.5;
 }
+
 
 /* 3. Enterprise Corporate Typography */
 .brand-text {

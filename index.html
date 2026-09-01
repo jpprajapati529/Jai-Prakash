@@ -67,14 +67,29 @@
   <div class="sticky-section-nav">
     <div class="sticky-nav-content">
 
-      <!-- 1. LEFT: Logo -->
+     <!-- 1. LEFT: Logo -->
       <div class="logo" onclick="triggerPipelineRun()" title="Cluster Operational">
-        <div class="system-status-icon">
-          <i data-lucide="activity"></i>
-          <span class="neon-ring"></span>
+        <div class="logo-mark">
+          <!-- The New Geometric Aperture SVG -->
+          <svg class="custom-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Draws one "bowtie" blade -->
+              <path id="blade" fill="currentColor" d="M 6,-7 L 17,-17 L 4,-18 Z M 17,-17 L 29,-28 L 10,-32 Z"/>
+            </defs>
+            <g transform="translate(50, 50)">
+              <!-- Rotates the blade 7 times perfectly in a circle -->
+              <use href="#blade" transform="rotate(0)" />
+              <use href="#blade" transform="rotate(51.43)" />
+              <use href="#blade" transform="rotate(102.86)" />
+              <use href="#blade" transform="rotate(154.29)" />
+              <use href="#blade" transform="rotate(205.71)" />
+              <use href="#blade" transform="rotate(257.14)" />
+              <use href="#blade" transform="rotate(308.57)" />
+            </g>
+          </svg>
         </div>
-        <div class="brand-logo-cli">
-          ja<span class="cli-accent">~ssh</span>board<span class="cli-cursor">_</span>
+        <div class="brand-text">
+          <span class="brand-ja">ja</span><span class="brand-ssh">~ssh</span><span class="brand-board">board</span>
         </div>
       </div>
 
