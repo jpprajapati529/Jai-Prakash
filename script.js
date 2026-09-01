@@ -2276,3 +2276,58 @@ function generateAIResponse(query) {
     return "I'm a simple bot, but I know a lot about Jai! Try asking specifically about his <b>skills</b>, <b>experience</b>, <b>certifications</b>, or <b>education</b>.";
   }
 }
+
+
+// =========================================================
+// BUTTERFLY BURST EASTER EGG
+// =========================================================
+function burstButterflies(event) {
+  // The 7 Google-inspired colors from your logo
+  const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#06B6D4', '#8B5CF6', '#F97316'];
+  
+  // Get exact mouse click coordinates
+  const x = event.clientX;
+  const y = event.clientY;
+
+  // Spawn 21 butterflies (3 full sets of colors) for a massive burst
+  for (let i = 0; i < 21; i++) {
+    const butterfly = document.createElement('div');
+    butterfly.className = 'flying-butterfly';
+    
+    // Calculate a random explosive trajectory
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 150 + Math.random() * 300; // Flies between 150px and 450px away
+    const dx = Math.cos(angle) * distance;
+    const dy = Math.sin(angle) * distance;
+    
+    // Inject physics variables into the CSS
+    butterfly.style.setProperty('--dx', `${dx}px`);
+    butterfly.style.setProperty('--dy', `${dy}px`);
+    butterfly.style.setProperty('--start-rot', `${Math.random() * 360}deg`);
+    butterfly.style.setProperty('--end-rot', `${Math.random() * 360 + 180}deg`);
+    
+    // Position and color the butterfly
+    butterfly.style.left = `${x}px`;
+    butterfly.style.top = `${y}px`;
+    butterfly.style.color = colors[i % colors.length];
+    
+    // Add a slight random delay so they don't all disappear at the exact same millisecond
+    butterfly.style.animationDelay = `${Math.random() * 0.2}s`;
+    
+    // Inject the exact SVG path of your logo blade
+    butterfly.innerHTML = `
+      <div class="flap-wrapper">
+        <svg viewBox="0 -50 50 50" width="100%" height="100%" style="overflow:visible">
+          <path fill="currentColor" d="M 12,-5 L 44,1 L 24,-18 Z M 24,-18 L 44,-42 L 12,-20 Z"/>
+        </svg>
+      </div>
+    `;
+    
+    document.body.appendChild(butterfly);
+    
+    // Automatically clean up the DOM after the animation finishes
+    setTimeout(() => {
+      butterfly.remove();
+    }, 2500);
+  }
+}
