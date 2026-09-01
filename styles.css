@@ -3173,22 +3173,7 @@ body[data-theme="light"] .ocean-layer {
 @keyframes waveDrift2 { 0%, 100% { transform: translate(0px, 0px); } 50% { transform: translate(20px, -10px); } }
 @keyframes waveDrift3 { 0%, 100% { transform: translate(0px, 0px); } 50% { transform: translate(-15px, 8px); } }
 
-/* Tree pops up AFTER the ocean */
-/* Tree pops up AFTER the ocean */
-.tree-silhouette {
-  position: absolute;
-  bottom: 8vh; left: 8vw; 
-  width: 160px; height: 220px;
-  opacity: 0.9; /* High opacity to show off the charcoal vector art */
-  transform: translateY(150px) scaleY(0); 
-  transform-origin: bottom center; 
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
 
-body[data-theme="light"] .tree-silhouette {
-  transform: translateY(0) scaleY(1);
-  transition-delay: 1.1s; 
-}
 
 /* The Flying Birds (Realistic Scale) */
 .bird {
