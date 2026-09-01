@@ -3068,66 +3068,54 @@ body[data-theme="light"] .user-msg { background: rgb(var(--theme-rgb)) !importan
 body[data-theme="light"] .ai-chat-input-area input { background: #ffffff !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
 
 
+
 /* =========================================================
    CINEMATIC DAY / NIGHT BACKGROUNDS & TRANSITIONS
    ========================================================= */
-/* 1. NIGHT SKY BASELINE (Dark Mode) */
-#night-sky-bg {
-  position: fixed; /* THE FIX: Locks it to your screen! */
+/* 1. MASTER WRAPPERS (Locked to screen, NO sliding!) */
+#night-sky-bg, #day-scape-bg {
+  position: fixed; /* Locks the ocean, sky, and stars to the camera */
   top: 0; left: 0; 
-  width: 100vw; height: 100vh; /* Covers the entire window */
+  width: 100vw; height: 100vh;
   z-index: -2; 
   pointer-events: none; 
   overflow: hidden;
-  
-  opacity: 1;
-  transform: translateX(0); 
-  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Night Sky hides in Light Mode (Moon & Stars slide RIGHT) */
-body[data-theme="light"] #night-sky-bg {
-  opacity: 0;
-  transform: translateX(150px); 
-  visibility: hidden;
-}
-
-/* 2. DAY SCAPE BASELINE (Light Mode) */
-#day-scape-bg {
-  position: fixed; /* THE FIX: Locks it to your screen! */
-  top: 0; left: 0; 
-  width: 100vw; height: 100vh; /* Covers the entire window */
-  z-index: -2; 
-  pointer-events: none; 
-  overflow: hidden;
-  
-  /* Soft blue morning sky fading into your beige background */
+/* We use a pseudo-element for the Day Sky so it crossfades smoothly without hiding the sun mid-arc */
+#day-scape-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: linear-gradient(to bottom, rgba(186, 230, 253, 0.6) 0%, transparent 70%);
-  
   opacity: 0;
-  visibility: hidden;
-  transform: translateX(-150px); /* Starts hidden on the LEFT */
-  transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
+  transition: opacity 1.5s ease;
+}
+body[data-theme="light"] #day-scape-bg::before {
+  opacity: 1;
 }
 
-/* Day Scape triggers in Light Mode (Sky & Sun slide in from LEFT to RIGHT) */
-body[data-theme="light"] #day-scape-bg {
+/* Stars fade out smoothly */
+.stars {
   opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
+  transition: opacity 1.2s ease;
+}
+body[data-theme="light"] .stars {
+  opacity: 0;
 }
 
-/* Day Scape triggers in Light Mode (Sky & Sun slide in from LEFT to RIGHT) */
-body[data-theme="light"] #day-scape-bg {
+/* Birds fade in */
+.birds {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+body[data-theme="light"] .birds {
   opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
 }
 
 /* =========================================================
-   DAY / NIGHT ELEMENTS (Moon, Sun, Ocean, Tree)
+   CELESTIAL ARC PHYSICS (Orbital Sun & Moon)
    ========================================================= */
-/* Elegant, glowing crescent moon */
 .moon {
   position: absolute;
   top: 15%; right: 18%; 
@@ -3136,11 +3124,20 @@ body[data-theme="light"] #day-scape-bg {
   background: transparent;
   box-shadow: 12px 12px 0 0 rgba(255, 255, 255, 0.95),
               12px 12px 25px 0 rgba(255, 255, 255, 0.4);
-  transform: rotate(-15deg);
+              
+  /* THE MAGIC: Off-center pivot creates the sweeping downward right arc */
+  transform-origin: -20vw 60vh; 
+  transform: rotate(-15deg); /* Natural starting position */
   opacity: 0.85;
+  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease;
 }
 
-/* Golden Sun (Moved to Left side) */
+/* Moon arcs down and away to the right */
+body[data-theme="light"] .moon {
+  transform: rotate(60deg); 
+  opacity: 0;
+}
+
 .sun {
   position: absolute;
   top: 15%; left: 18%; 
@@ -3148,20 +3145,34 @@ body[data-theme="light"] #day-scape-bg {
   background: linear-gradient(135deg, #fef08a, #f59e0b);
   border-radius: 50%;
   box-shadow: 0 0 40px rgba(245, 158, 11, 0.4), 0 0 80px rgba(253, 230, 138, 0.2);
+  
+  /* THE MAGIC: Off-center pivot creates the sweeping upward arc from the left */
+  transform-origin: 30vw 60vh;
+  transform: rotate(-75deg); /* Starts hidden, buried down to the bottom-left */
+  opacity: 0;
+  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease;
 }
 
-/* Ocean layered separately to come from BOTTOM */
+/* Sun arcs up and into position from the left */
+body[data-theme="light"] .sun {
+  transform: rotate(0deg); 
+  opacity: 1;
+}
+
+/* =========================================================
+   OCEAN HORIZON
+   ========================================================= */
 .ocean-layer {
   position: absolute;
-  bottom: -5px; left: -5%; /* Pulled wider to allow sideways swaying */
-  width: 110%; height: 35vh; /* Taller, richer waves */
+  bottom: -5px; left: -5%; 
+  width: 110%; height: 35vh; 
   transform: translateY(100%); 
-  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body[data-theme="light"] .ocean-layer {
   transform: translateY(0); 
-  transition-delay: 0.4s; 
+  transition-delay: 0.2s; /* Waits slightly for the sun to rise, then the ocean floods in */
 }
 
 /* Realistic Independent Wave Swaying */
@@ -3173,14 +3184,10 @@ body[data-theme="light"] .ocean-layer {
 @keyframes waveDrift2 { 0%, 100% { transform: translate(0px, 0px); } 50% { transform: translate(20px, -10px); } }
 @keyframes waveDrift3 { 0%, 100% { transform: translate(0px, 0px); } 50% { transform: translate(-15px, 8px); } }
 
-/* Tree pops up AFTER the ocean */
-/* Tree pops up AFTER the ocean */
-
-
 /* The Flying Birds (Realistic Scale) */
 .bird {
   position: absolute;
-  width: 40px; height: 40px; /* Scaled up so the detailed wings are visible */
+  width: 40px; height: 40px; 
   color: #64748b; 
   opacity: 0.7;
   animation: flyAcross 25s linear infinite;
