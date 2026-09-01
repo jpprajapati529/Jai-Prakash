@@ -399,10 +399,12 @@ body {
 
 /* 2b. The New Geometric SVG Logo Styling */
 .custom-logo-svg {
-  width: 32px;  /* Scaled up since the background box is gone */
-  height: 32px;
+  /* THE FIX: Scaled up massively from 32px to 48px */
+  width: 48px;  
+  height: 48px;
   transform-origin: center;
-  /* Adds a tiny drop shadow so the vibrant colors pop against both light and dark backgrounds */
+  
+  /* Adds a tiny drop shadow so the vibrant colors pop against any background */
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); 
   animation: spinAperture 40s linear infinite;
 }
