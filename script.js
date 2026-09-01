@@ -7,22 +7,21 @@ lucide.createIcons();
 function toggleTheme() {
   const body = document.body;
   const isLightMode = body.getAttribute("data-theme") === "light";
+  
+  // Grab BOTH theme toggle buttons (Main Nav and Sticky Nav)
   const themeBtns = document.querySelectorAll('[title="Toggle Light/Dark Theme"]');
 
   if (isLightMode) {
+    // Switch back to Dark Mode
     body.removeAttribute("data-theme");
     themeBtns.forEach(btn => btn.innerHTML = '<i data-lucide="sun"></i>');
   } else {
+    // Switch to Light Mode
     body.setAttribute("data-theme", "light");
     themeBtns.forEach(btn => btn.innerHTML = '<i data-lucide="moon"></i>');
-    
-    // THE FIX: Turn off the Solar System automatically if switching to Light Mode
-    const orbitWrapper = document.querySelector('.ms-orbit-wrapper');
-    if (orbitWrapper && orbitWrapper.classList.contains('infinity-mode')) {
-      orbitWrapper.classList.remove('infinity-mode');
-      if (!isPaused) startSlideTimer(); // Resume the slide timer
-    }
   }
+  
+  // Force Lucide to re-render the newly injected icons on both nav bars
   lucide.createIcons();
 }
 
@@ -2138,25 +2137,24 @@ if (slidesContainer) {
 // =========================================================
 // DEVOPS INFINITY LOOP EASTER EGG
 // =========================================================
-// =========================================================
-// DEVOPS SOLAR SYSTEM EASTER EGG
-// =========================================================
 function toggleInfinityLoop() {
-  // THE FIX: Restrict this feature strictly to Dark Mode
-  if (document.body.getAttribute("data-theme") === "light") {
-    return; // Does nothing if Light Mode is active!
-  }
-
   const orbitWrapper = document.querySelector('.ms-orbit-wrapper');
+  
   if (orbitWrapper) {
+    // Toggles the class and checks if the loop is currently active
     const isInfinityMode = orbitWrapper.classList.toggle('infinity-mode');
     
+    // SLIDESHOW PAUSE/PLAY LOGIC
     if (isInfinityMode) {
+      // Easter Egg Active: Forcefully clear the slideshow timer
       clearInterval(slideInterval);
     } else {
+      // Easter Egg Disabled: Safely restart the timer 
+      // (This automatically respects the pause button if the user already clicked it!)
       startSlideTimer();
     }
     
+    // Play your UI select sound for that extra tactile feel
     if (typeof playAudio === 'function' && typeof selectSound !== 'undefined') {
       playAudio(selectSound);
     }
