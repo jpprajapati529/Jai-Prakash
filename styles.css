@@ -376,11 +376,15 @@ body {
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  padding: 0; /* Removed button-like padding */
+  padding: 0; 
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* THE FIX: Prevents rapid clicks from selecting text on the page! */
+  user-select: none;
+  -webkit-user-select: none; 
 }
 
 .logo:hover {
