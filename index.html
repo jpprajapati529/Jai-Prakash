@@ -68,23 +68,21 @@
     <div class="sticky-nav-content">
 
      <!-- 1. LEFT: Logo -->
-      <div class="logo" onclick="triggerPipelineRun()" title="Cluster Operational">
+      <div class="logo" onclick="burstButterflies(event); window.scrollTo({ top: 0, behavior: 'smooth' });" title="Scroll to Top">
         <div class="logo-mark">
           <!-- The Accurate, Scaled Multi-Color Geometric SVG -->
           <svg class="custom-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <!-- THE FIX: This path perfectly traces the exact "bowtie" shape from your image -->
               <path id="blade" fill="currentColor" d="M 12,-5 L 44,1 L 24,-18 Z M 24,-18 L 44,-42 L 12,-20 Z"/>
             </defs>
             <g transform="translate(50, 50)">
-              <!-- Google-inspired vibrant color palette -->
-              <use href="#blade" transform="rotate(0)" style="color: #4285F4;" />      <!-- Blue -->
-              <use href="#blade" transform="rotate(51.43)" style="color: #EA4335;" />  <!-- Red -->
-              <use href="#blade" transform="rotate(102.86)" style="color: #FBBC05;" /> <!-- Yellow -->
-              <use href="#blade" transform="rotate(154.29)" style="color: #34A853;" /> <!-- Green -->
-              <use href="#blade" transform="rotate(205.71)" style="color: #06B6D4;" /> <!-- Cyan -->
-              <use href="#blade" transform="rotate(257.14)" style="color: #8B5CF6;" /> <!-- Purple -->
-              <use href="#blade" transform="rotate(308.57)" style="color: #F97316;" /> <!-- Orange -->
+              <use href="#blade" transform="rotate(0)" style="color: #4285F4;" />
+              <use href="#blade" transform="rotate(51.43)" style="color: #EA4335;" />
+              <use href="#blade" transform="rotate(102.86)" style="color: #FBBC05;" />
+              <use href="#blade" transform="rotate(154.29)" style="color: #34A853;" />
+              <use href="#blade" transform="rotate(205.71)" style="color: #06B6D4;" />
+              <use href="#blade" transform="rotate(257.14)" style="color: #8B5CF6;" />
+              <use href="#blade" transform="rotate(308.57)" style="color: #F97316;" />
             </g>
           </svg>
         </div>
@@ -130,24 +128,25 @@
 <!-- Navbar -->
   <header class="navbar">
     
-    <!-- 1. LEFT: Logo (Restored Clickability & Text) -->
-    <div class="logo" onclick="burstButterflies(event); triggerPipelineRun()" title="Cluster Operational - Click to Trigger Pipeline">
-      <div class="logo-mark">
-        <svg class="custom-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <path id="blade" fill="currentColor" d="M 12,-5 L 44,1 L 24,-18 Z M 24,-18 L 44,-42 L 12,-20 Z"/>
-          </defs>
-          <g transform="translate(50, 50)">
-            <use href="#blade" transform="rotate(0)" style="color: #4285F4;" />
-            <use href="#blade" transform="rotate(51.43)" style="color: #EA4335;" />
-            <use href="#blade" transform="rotate(102.86)" style="color: #FBBC05;" />
-            <use href="#blade" transform="rotate(154.29)" style="color: #34A853;" />
-            <use href="#blade" transform="rotate(205.71)" style="color: #06B6D4;" />
-            <use href="#blade" transform="rotate(257.14)" style="color: #8B5CF6;" />
-            <use href="#blade" transform="rotate(308.57)" style="color: #F97316;" />
-          </g>
-        </svg>
-      </div>
+    <!-- 1. LEFT: Logo -->
+      <div class="logo" onclick="burstButterflies(event); window.scrollTo({ top: 0, behavior: 'smooth' });" title="Scroll to Top">
+        <div class="logo-mark">
+          <!-- The Accurate, Scaled Multi-Color Geometric SVG -->
+          <svg class="custom-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="blade" fill="currentColor" d="M 12,-5 L 44,1 L 24,-18 Z M 24,-18 L 44,-42 L 12,-20 Z"/>
+            </defs>
+            <g transform="translate(50, 50)">
+              <use href="#blade" transform="rotate(0)" style="color: #4285F4;" />
+              <use href="#blade" transform="rotate(51.43)" style="color: #EA4335;" />
+              <use href="#blade" transform="rotate(102.86)" style="color: #FBBC05;" />
+              <use href="#blade" transform="rotate(154.29)" style="color: #34A853;" />
+              <use href="#blade" transform="rotate(205.71)" style="color: #06B6D4;" />
+              <use href="#blade" transform="rotate(257.14)" style="color: #8B5CF6;" />
+              <use href="#blade" transform="rotate(308.57)" style="color: #F97316;" />
+            </g>
+          </svg>
+        </div>
       <!-- <div class="brand-text">
         <span class="brand-ja">ja</span><span class="brand-ssh">~ssh</span><span class="brand-board">board</span>
       </div> -->
